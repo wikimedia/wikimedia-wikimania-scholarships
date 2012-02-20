@@ -26,6 +26,7 @@ if ( ( isset($_GET['uselang']) ) or ( isset( $values['uselang']) ) ) {
 <ul class="langlist">
 <li><a href="<?= $basepath ?>?uselang=de">de</a></li>
 <li><a href="<?= $basepath ?>?uselang=en">en</a></li>
+<li><a href="<?= $basepath ?>?uselang=ja">ja</a></li>
 <li><a href="<?= $basepath ?>?uselang=pl">pl</a></li>
 <li class="last"><a href="<?= $BASEURL ?>translate"><?= $wgLang->message('help-translate') ?></a></li>
 </ul>
