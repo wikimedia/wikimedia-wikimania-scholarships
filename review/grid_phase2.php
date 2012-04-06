@@ -64,7 +64,6 @@ $schols = $dal->gridData($params);
 		<th style="width: 6%;">age</th>
 		<th style="width: 8%;">partial</th>
 		<th style="width: 5%;">p1</th>
-		<th style="widht: 5%;">#p2</th>
 		<th style="width: 5%;">p2</th>
 	</tr>
 	<?php foreach ($schols as $row): ?>
