@@ -92,8 +92,7 @@ Notes:<br/>
 <textarea id="notes" name="notes"><?= $schol['notes'] ?></textarea>
 <input type="hidden" id="scholid" name="scholid" value='<?php echo $schol['id']; ?>' />
 <ul>
-<li><input type="button" id="stamp" name="stamp" value="Insert stamp" onclick="insertStamp($username['username']);" />
-<input type="submit" id="save" name="save" value="Save" /></li>
+<li><input type="submit" id="save" name="save" value="Save" /></li>
 </ul>
 </div>
 </div>
