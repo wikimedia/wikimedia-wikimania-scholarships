@@ -66,7 +66,7 @@ $schols = $dal->search($params);
 	<?php foreach ($schols as $row): ?>
 	<tr>
 		<td><?= $row['id']; ?></td>
-		<td><a href="<?php echo $BASEURL; ?>review/view?id=<?= $row['id'] ?>&phase=1"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
+		<td><a href="<?php echo $BASEURL; ?>review/view?id=<?= $row['id'] ?>&phase=2"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
 		<td><?= $row['email']; ?></td>
 		<td><?= $row['country_name']; ?></td>
 		<td><?= $row['sex']; ?></td>
