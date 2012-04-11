@@ -13,6 +13,7 @@ $routes = array(
 	'review/region' => BASEDIR . '/review/region_grid.php',
         'review/dump' => BASEDIR . '/admin/dump.php',
 	'review/edit' => BASEDIR . '/review/edit.php',
+	'review/export' => BASEDIR . '/review/export.php',
 	'review/grid' => BASEDIR . '/review/grid.php',
 	'review/grid/score' => BASEDIR . '/review/grid_score.php',
 	'review/phase1' => BASEDIR . '/review/grid.php',

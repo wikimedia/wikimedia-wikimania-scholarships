@@ -32,6 +32,19 @@ class DataAccessLayer {
 		return $sql;
 	}
 
+	function select($fields) {
+		return "SELECT " . join($fields, ',') . ' ';
+	}
+
+	function from( $tables ) {
+		$fromtables = array();
+		foreach( $tables as $k => $v ) {
+			array_push( $fromtables, "`$v` as $k" );
+		}
+		$from = ' FROM '  . join( $fromtables, ',' ) . ' ';
+		return $from;
+	}
+
 	function gridData($params) {
 		$where = array();
 		$apps = isset( $params['apps'] ) ? $params['apps'] : 'unreviewed';
@@ -74,9 +87,24 @@ class DataAccessLayer {
 		}
 
 		if ($params['phase'] == 1) {
-			$sql = "SELECT s.id, s.fname, s.lname, s.email, s.residence, s.exclude,  s.sex, (2012 - year(s.dob)) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, p1count, mycount 
-FROM scholarships s 
-LEFT OUTER JOIN (select *, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
+			$tables = array('s' => 'scholarships');
+			$fields = array('s.id',
+					's.fname', 
+					's.lname', 
+					's.email', 
+					's.residence', 
+					's.exclude',  
+					's.sex',
+					'(2012 - year(s.dob)) as age', 
+					'(s.canpaydiff*s.wantspartial) as partial', 
+					'c.country_name', 
+					'coalesce(p1score,0) as p1score',
+					'p1count',
+					'mycount'
+				);
+
+			$sql = self::select( $fields ) . self::from( $tables ) . 
+"LEFT OUTER JOIN (select *, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
 LEFT OUTER JOIN (select scholarship_id, count(rank) as p1count from rankings where criterion = 'valid' group by scholarship_id) r3 on s.id = r3.scholarship_id 
 LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion = 'valid' AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id
 LEFT OUTER JOIN countries c on s.residence = c.id " 
@@ -84,8 +112,22 @@ LEFT OUTER JOIN countries c on s.residence = c.id "
 GROUP BY s.id, s.fname, s.lname, s.email, s.residence 
 HAVING p1score >= -2 and p1score <= 999 and s.exclude = 0 $limit $offset;";
 		} else {
+			$tables = array('s' => 'scholarships');
+			$fields = array('s.id', 
+					's.fname', 
+					's.lname', 
+					's.email', 
+					's.residence', 
+					's.exclude', 
+					's.sex', 
+					'(2012 - year(s.dob)) as age',
+					'(s.canpaydiff*s.wantspartial) as partial', 
+					'c.country_name', 
+					'coalesce(p1score,0) as p1score', 
+					'coalesce(p2score,0) as p2score', 
+					'coalesce(nscorers,0) as nscorers');
 			array_push( $where, ' p1score >= 1 ' );
-			$sql = "select s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, (2012 - year(s.dob)) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(p2score,0) as p2score, coalesce(nscorers,0) as nscorers from scholarships s 
+			$sql = self::select( $fields ) . self::from( $tables ) . "
 			left outer join (select scholarship_id, sum(rank) as p2score from rankings where criterion in ('onwiki','offwiki', 'future') group by scholarship_id) r on s.id = r.scholarship_id
 			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
 			left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'program') group by scholarship_id) r3 on s.id = r3.scholarship_id			
@@ -99,6 +141,62 @@ LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings whe
 		if (PEAR::isError($res)) 
     			die($res->getMessage());
     		return $res;
+	}
+
+	function export() {
+		$tables = array('s' => 'scholarships');
+		$fields = array('s.id',
+				'c.country_name', //residence
+				'ow.onwiki',
+				'ofw.offwiki',
+				'f.future',
+				'ct.numranks',
+				's.fname',
+				's.lname',
+				's.dob',
+				's.sex',
+				's.email',
+				's.telephone',
+				's.address',
+				'c2.country_name', // nationality
+				's.haspassport',
+				's.airport',
+				's.languages',
+				's.occupation',
+				's.areaofstudy',
+				's.wm05',
+				's.wm06',
+				's.wm07',
+				's.wm08',
+				's.wm09',
+				's.wm10',
+				's.wm11',
+				's.howheard',
+				's.why',
+				's.future',
+				's.involvement',
+				's.contribution',
+				's.username',
+				's.project',
+				's.projectlangs',
+				's.wantspartial',
+				's.canpaydiff',
+				's.sincere',
+				's.agreestotravelconditions',
+				's.willgetvisa',
+				's.willpayincidentals',
+				's.notes'
+		);
+		$sql = self::select( $fields ) . self::from( $tables ) . "
+	 	LEFT JOIN (select scholarship_id, avg(rank) as onwiki from rankings where criterion IN ('onwiki') group by scholarship_id) ow ON (ow.scholarship_id = s.id) 
+ 		LEFT JOIN (select scholarship_id, avg(rank) as offwiki from rankings where criterion IN ('offwiki') group by scholarship_id) ofw ON (ofw.scholarship_id = s.id) 
+ 		LEFT JOIN (select scholarship_id, avg(rank) as future from rankings where criterion IN ('future') group by scholarship_id) f ON (f.scholarship_id = s.id)
+		LEFT JOIN (select scholarship_id, count(rank) as numranks from rankings where criterion IN ('future') group by scholarship_id) ct ON (ct.scholarship_id  = s.id)	
+		LEFT OUTER JOIN countries c ON s.residence = c.id 
+		LEFT OUTER JOIN countries c2 ON s.nationality = c2.id 
+		order by s.id limit 20";
+		$res = $this->db->getAll($sql);
+		return $res;
 	}
 
 	function myUnreviewed($myid, $phase) {
