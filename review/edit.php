@@ -127,7 +127,7 @@ require_once('init.php');
         <li>Address: <textarea id="address" name="address"><?= $schol['address']?></textarea></li>
         <li>Residence: <select id="residence" name="residence">
         <option>Select one:</option>
-        <?php foreach (range(0, 195) as $i)
+        <?php foreach (range(0, count($COUNTRY_NAMES)-1)) as $i)
         if ($schol['residence']==$i) {
                 printf('<option value="%d" selected="selected">%s</option>', $i, $COUNTRY_NAMES[$i]);
             } else {
@@ -136,7 +136,7 @@ require_once('init.php');
         ?></select></li>
 	<li>Citizenship: <select id="nationality" name="nationality">
         <option>Select one:</option>
-        <?php foreach (range(0, 195) as $i)
+        <?php foreach (range(0, count($COUNTRY_NAMES)-1)) as $i)
         if ($schol['nationality']==$i) {
                 printf('<option value="%d" selected="selected">%s</option>', $i, $COUNTRY_NAMES[$i]);
             } else {

@@ -4,19 +4,19 @@ $columns = array(
 	'fname' => 
 	array(
 		'type' => 'varchar',
-		'length' => 32,
+		'length' => 255,
 		'null' => TRUE,
 		'default' => NULL
 	),
 	'lname' => array(
 		'type' => 'varchar',
-		'length' => 32,
+		'length' => 255,
 		'null' => TRUE, 
 		'default' => NULL
 	),
 	'email' => array(
 		'type' => 'varchar',
-		'length' => 64,
+		'length' => 255,
 		'null' => TRUE,
 		'default' => NULL
 	),
@@ -34,13 +34,13 @@ $columns = array(
 	),
 	'residence' => 	array(
 		'type' => 'varchar',
-		'length' => 64,
+		'length' => 255,
 		'null' => TRUE,
 		'default' => NULL
 	),
 	'nationality' => array(
 		'type' => 'varchar',
-		'length' => 64,
+		'length' => 255,
 		'null' => TRUE,
 		'default' => NULL
 	),
@@ -133,9 +133,20 @@ $columns = array(
                 'null' => TRUE,
                 'default' => NULL
         ),
+	'wm12' => array(
+                'type' => 'tinyint',
+                'length' => 1,
+                'null' => TRUE,
+                'default' => NULL
+        ),
 	'presentation' => array(
 		'type' => 'tinyint',
 		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
+	'presentationTopic' => array(
+		'type' => 'text',
 		'null' => TRUE,
 		'default' => NULL
 	),
@@ -150,6 +161,11 @@ $columns = array(
 		'default' => NULL
 	),
 	'future' => array(
+		'type' => 'text',
+		'null' => TRUE,
+		'default' => NULL
+	),
+	'englistAbility' => array(
 		'type' => 'text',
 		'null' => TRUE,
 		'default' => NULL
@@ -214,6 +230,11 @@ $columns = array(
 		'type' => 'tinyint',
 		'null' => FALSE,
 		'default' => 0
+	),
+	'wmfAgreeName' => array(
+		'type' => 'text',
+		'null' => TRUE,
+		'default' => NULL
 	),
 	'rank' => array(
 		'type' => 'int',

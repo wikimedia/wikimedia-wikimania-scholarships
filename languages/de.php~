@@ -122,7 +122,7 @@ Wikimania 2012 Organisations-Team",
 		'credits' => "Danksagung & Lizensierung",
 		'credits-page' => "<p>Die Wikimania scholarships software ist quelloffen (Open Source) und <a href='http://github.com/filbertkm/Scholarships'>erhältlich</a> unter der <a href='http://www.gnu.org/copyleft/gpl.html'>GNU General Public License 3.0</a>.</p>
 
-<p>Der Quelltext basiert auf dem für die Wikimania 2009, 2010 und 2011 verwendeten und für die Wikimania 2012 modifizierten Wikimania scholarships system.</p>",
+<p>Der Quelltest basiert auf dem für die Wikimania 2009, 2010 und 2011 verwendeten und für die Wikimania 2012 modifizierten Wikimania scholarships system.</p>",
 		'help-translate' => "Beim Übersetzen helfen",
 		'translate-page' => "<p>Wir möchten das Bewerbungssystem in soviele Sprachen wie möglich übersetzen.</p>
 

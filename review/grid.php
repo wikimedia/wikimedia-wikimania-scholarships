@@ -21,6 +21,8 @@ $p = 0;
 if ( isset( $_GET['items'] ) )  {
 	$items = intval($_GET['items']);
 }
+else
+	$items = 30;
 
 if ( isset( $_GET['p'] ) )  {
         $p = intval($_GET['p']);

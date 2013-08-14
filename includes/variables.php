@@ -1,5 +1,20 @@
 <?php
 
+/*
+
+//This code is error
+
+$dal = new DataAccessLayer();
+$query_res = $dal->GetListofCountries();	
+
+$COUNTRY_NAMES[] = "Unspecified";
+foreach( $query_res as $countries ){
+	$COUNTRY_NAMES[] = $countries['country_name'];
+}
+*/
+
+
+
 $COUNTRY_NAMES = array("Unspecified",
 		"Afghanistan",
 		"Albania",
@@ -198,7 +213,9 @@ $COUNTRY_NAMES = array("Unspecified",
 		"Hong Kong",
 		"Macao",
 		"Palestinian Territories",
-		"Other");
+		
+		//"Other"  delete, may cause mismatch if the list extend in future
+		);
 
 $COUNTRY_NAMES_CHAPTERS = array("Austria", "Germany", "Switzerland");
 
@@ -223,10 +240,12 @@ $FIELDS = array(
 	"wm09",
 	"wm10",
 	"wm11",
+	"wm12",
 	"presentation",
 	"howheard",
 	"why",
-	"future", 
+	"future",
+	"englishAbility",
 	"username",
 	"project",
 	"projectlangs",
@@ -239,6 +258,8 @@ $FIELDS = array(
 	"willpayincidentals",
 	"agreestotravelconditions",
 	"dob",
-	"rank"
+	"rank",
+	"presentationTopic",
+	"wmfAgreeName"
 	);
 ?>

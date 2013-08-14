@@ -31,25 +31,25 @@ $early_reject_mail_template = <<<EOM
 
 <p>Dear %s,</p>
 
-<p>The Wikimania 2011 Scholarships Review Committee has carefully reviewed your application. With regret, we cannot sponsor your travel to attend Wikimania 2011 in Haifa, Israel.</p>
+<p>The Wikimania 2013 Scholarship Committee has carefully reviewed your application. With regret, we cannot sponsor your travel to attend Wikimania 2013 in Hong Kong.</p>
 
-<p>We received more than 1150 applications from around the world for a limited number of scholarships. Preference has been given to applications from individuals who are very active contributors or volunteers on the Wikimedia projects as well as participants in other free knowledge initiatives.</p>
+<p>We received more than ??? applications from around the world for a limited number of scholarships. Preference has been given to applications from individuals who are very active contributors or volunteers on the Wikimedia projects as well as participants in other free knowledge initiatives.</p>
 
-<p>If you can make other arrangements to attend Wikimania 2011, we encourage you to do so! Conference registration can be found <a href="http://wikimania2011.wikimedia.org/wiki/Registration">here</a>.</p>
+<p>If you can make other arrangements to attend Wikimania 2013, we encourage you to do so! Conference registration can be found <a href="http://wikimania2013.wikimedia.org/wiki/Registration">here</a>.</p>
 
-<p>To qualify for scholarship for next year's Wikimania conference (2012 location to be decided), we encourage you to actively participate in and contribute to the Wikimedia projects and free knowledge initiatives. If you have not yet created a user account, you may do so by clicking "login/create account" on your favorite Wikimedia project. A good place to learn how you can help on the English Wikipedia is <a href="http://en.wikipedia.org/wiki/Wikipedia:Community_portal">here</a>; many other projects and languages, which you can access through our <a href="http://www.wikimedia.org">main portal</a>, have similar pages.</p>
+<p>To qualify for scholarship for next year's Wikimania conference (2014 location to be decided), we encourage you to actively participate in and contribute to the Wikimedia projects and free knowledge initiatives. If you have not yet created a user account, you may do so by clicking "login/create account" on your favorite Wikimedia project. A good place to learn how you can help on the English Wikipedia is <a href="http://en.wikipedia.org/wiki/Wikipedia:Community_portal">here</a>; many other projects and languages, which you can access through our <a href="http://www.wikimedia.org">main portal</a>, have similar pages.</p>
 
 <p>We strongly encourage your participation on Wikimedia's projects. If you need help finding out what you can do to contribute, please do not hesitate to <a href="mailto:wikimania-scholarships@wikimedia.org">write us</a>. Thank you for your interest in Wikimania and the Wikimedia projects.</p>
 
 <p>Sincerely,</p>
 
-<p>Harel Cain<br>
-Communications coordinator<br>
-Wikimania 2011 Scholarship Review Committee</p> 
+<p>Simon Shek<br>
+Community Coordinator (Scholarship & Program)<br>
+Wikimania 2013 Organizing Team</p> 
 </body>
 </html>
 EOM;
-
+/*
 $full_acceptance_mail_template = <<<EOM
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <body>
@@ -326,7 +326,7 @@ Questions? <a href=mailto:wikimania-scholarships@wikimedia.org>Contact us</a>
 </body>
 </html>
 EOM;
-
+*/
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -337,29 +337,31 @@ if (!isset($_SESSION['user_id'])) {
 $start = (int)($_GET['start'] ? $_GET['start'] : 0);
 $howmany = (int)($_GET['howmany'] ? $_GET['howmany'] : 1);
 //
-//$dal = new DataAccessLayer();
-//$schols = $dal->GetPhase1EarlyRejects($start, $howmany);
+$dal = new DataAccessLayer();
+$schols = $dal->GetPhase1EarlyRejects($start, $howmany);
 
 include "$BASEDIR/templates/header_review.php";
 
-$text = file('wmf_partial_accept.txt') or die ("ERROR: Unable to read file");
+//$text = file('wmf_partial_accept.txt') or die ("ERROR: Unable to read file");
 $cnt = 0;
-foreach($text as $line):
-//	echo $line;
+//foreach($text as $line):
+foreach($schols as $line):
+	echo $line;
 	
   	$columns = explode("\t", $line);
-	$mail_instant = preg_replace('/\$1/',trim($columns[0]), $partial_acceptance_mail_template);	
+	$mail_instant = preg_replace('/\$1/',trim($columns[0]), $early_reject_mail_template);	
+	//$mail_instant = preg_replace('/\$1/',trim($columns[0]), $partial_acceptance_mail_template);	
 	//$mail_instant = preg_replace('/\$2/',sprintf('%02d', $cnt) . substr(md5('HAIFA2011' . sprintf('%02d', $cnt)), 0, 4), $mail_instant);
 	$to = $columns[0] . '  <' . $columns[1] . '>';
 
-	//echo $mail_instant;
-	if (!mail_msg($to, 'Wikimania 2011 Scholarship Decision', $mail_instant))
+	echo $mail_instant;
+	/*if (!mail_msg($to, 'Wikimania 2011 Scholarship Decision', $mail_instant))
 	{
 		echo 'Notice: Mail delivery error. Contact Wikimania team.';
 	}
 	else {
 		echo 'Mailing ' . $to . "<br>";
-	}
+	}*/
 
 	$cnt++;
 endforeach; 

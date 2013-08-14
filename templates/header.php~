@@ -24,10 +24,9 @@ if ( ( isset($_GET['uselang']) ) or ( isset( $values['uselang']) ) ) {
 <div class="container">
 <div id="langbar" class="fifteen columns">
 <ul class="langlist">
-<!--<li><a href="<?= $basepath ?>?uselang=de">de</a></li>-->
+<li><a href="<?= $basepath ?>?uselang=de">de</a></li>
 <li><a href="<?= $basepath ?>?uselang=en">en</a></li>
-<li><a href="<?= $basepath ?>?uselang=zh">zh</a></li>
-<!--<li><a href="<?= $basepath ?>?uselang=pl">pl</a></li>-->
+<li><a href="<?= $basepath ?>?uselang=pl">pl</a></li>
 <li class="last"><a href="<?= $BASEURL ?>translate"><?= $wgLang->message('help-translate') ?></a></li>
 </ul>
 </div>

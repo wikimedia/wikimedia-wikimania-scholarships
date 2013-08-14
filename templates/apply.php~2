@@ -67,7 +67,7 @@ $defaults = array(
         'address' => '',
         'residence' => 0,
 		'haspassport'=> 0,
-		//'passportnum' => '',
+		'passportnum' => '',
 		'nationality' => 0,
 		'airport' => '',
 		'language' => '',
@@ -86,8 +86,7 @@ $defaults = array(
 		'presentation' => 0,
 		'howheard' => '',
 		'why' => '',
-		//'future' => '',
-		'englistAbility' => '',
+		'future' => '',
 		'username' => '',
 		'project' => '',
 		'projectlangs' => '',
@@ -101,9 +100,7 @@ $defaults = array(
 		'agreestotravelconditions' => 0,
 		'mm' => 1,
 		'dd' => 1,
-		'chapteragree' => 1,
-		'presentationTopic' => '',
-		'wmfAgreeName' => ''
+		'chapteragree' => 1
 );
 $values = array_merge( $defaults, $_POST );
 ?>
@@ -115,8 +112,6 @@ if ($submitted != TRUE) {
 <form action="<?php echo $BASEURL ?>apply" method="post">
 <label class="required"><?php echo $wgLang->message('required-field');?></label><br/><br/>
 <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>" />
-
-<!-- contact information start-->
 <fieldset>
 <legend><?php echo $wgLang->message('contact-info'); ?></legend>
 <ul id="form-contact-info" class="appform">
@@ -143,9 +138,7 @@ foreach ($COUNTRY_NAMES as $key => $val)
 </li>  
 </ul>
 </fieldset>
-<!-- contact information end-->
 
-<!-- personal information start-->
 <fieldset>
 <legend><?php echo $wgLang->message('form-personalinfo'); ?></legend>
 <ul class="appform">
@@ -164,7 +157,7 @@ foreach ($COUNTRY_NAMES as $key => $val)
     }
 ?></select>
 </li>
-<!--<li><?php echo $wgLang->message('form-passport-number'); ?>: <?php echo $wgLang->message('form-passport-explain'); ?><input type="text" id="passportnum" name="passportnum" <?= isset($values['passportnum'])?'value="' . $values['passportnum'] . '"':''; ?> /></li>-->
+<li><?php echo $wgLang->message('form-passport-number'); ?>: <?php echo $wgLang->message('form-passport-explain'); ?><input type="text" id="passportnum" name="passportnum" <?= isset($values['passportnum'])?'value="' . $values['passportnum'] . '"':''; ?> /></li>
 <li><?php echo $wgLang->message('form-airport'); ?> <input type="text" id="airport" name="airport" <?= isset($values['airport'])?'value="' .$values['airport'] . '"':''; ?> /></li>
 <li><?php echo $wgLang->message('form-language'); ?> <input type="text" id="languages" name="languages" <?= isset($values['languages'])?'value="' .$values['languages'] . '"':''; ?> /></li>
 <li id="dob"><?php echo $wgLang->message('form-dateofbirth'); ?><br/>
@@ -207,29 +200,7 @@ for ( $i = 2013; $i >= $start; $i-- ) {
 <li><?php echo $wgLang->message('form-study'); ?> <input type="text" id="areaofstudy" name="areaofstudy" <?= isset($values['areaofstudy'])?'value="' .$values['areaofstudy'] . '"':''; ?> /></li>
 </ul>
 </fieldset>
-<!-- personal information end-->
 
-<!-- participation start-->
-<fieldset>
-<legend><?php echo $wgLang->message('form-participation'); ?></legend>
-<ul class="appform">
-<li><?php echo $wgLang->message('form-username'); ?> <input type="text" id="username" name="username" <?= isset($values['username'])?'value="' .$values['username'] . '"':''; ?> /></li>
-<li><?php echo $wgLang->message('form-primary-project'); ?> <input type="text" id="project" name="project" <?= isset($values['project'])?'value="' .$values['project'] . '"':''; ?> /></li>
-<li><?php echo $wgLang->message('form-lang-version'); ?> <input type="text" id="projectlangs" name="projectlangs" <?= isset($values['projectlangs'])?'value="' .$values['projectlangs'] . '"':''; ?> /></li>
-<li <?php echo haserror('involvement', $app); ?>><label class='required'>
-<?php echo $wgLang->message('form-extent-explain'); ?></label><br />
-<textarea id="involvement" name="involvement" cols="80" rows="3" required><?= isset($values['involvement'])?$values['involvement']:''; ?></textarea></li>
-<li <?php echo haserror('contribution', $app); ?>><label class='required'>
-<?php echo $wgLang->message('form-contrib-explain'); ?></label><br />
-<textarea id="contribution" name="contribution" cols="80" rows="3" required><?= isset($values['contribution'])?$values['contribution']:''; ?></textarea></li>
-<li <?php echo haserror('englistAbility', $app); ?>><label class='required'>
-<?php echo $wgLang->message('form-englistAbility-explain'); ?></label><br />
-<textarea id="englistAbility" name="englistAbility" cols="80" rows="3" required><?= isset($values['englistAbility'])?$values['englistAbility']:''; ?></textarea></li>
-</ul>
-</fieldset>
-<!-- participation end-->
-
-<!-- interest start-->
 <fieldset>
 <legend><?php echo $wgLang->message('form-interest'); ?></legend>
 <ul class="appform">
@@ -246,7 +217,6 @@ for ( $i = 2013; $i >= $start; $i-- ) {
   </ul>
 </li>
 <li><input type="checkbox" id="presentation" name="presentation" value="1" <?= ($values['presentation']==1)?'checked = "checked" ':''; ?> /><?php echo $wgLang->message('form-presenter'); ?></li>
-<li <?php echo haserror('presentationTopic', $app); ?>><label class='required_present'><?php echo $wgLang->message('form-presentation-topic'); ?> <input type="text" id="presentationTopic" name="presentationTopic" <?= isset($values['presentationTopic'])?'value="' .$values['presentationTopic'] . '"':''; ?> /></label></li>
 <li><?php echo $wgLang->message('form-howheard'); ?></li>
 <select id="howheard" name="howheard">
 <option value="email" <?= ($values['howheard']=='email')?'selected = "selected" ':''; ?>><?php echo $wgLang->message('form-howheard1'); ?></option>
@@ -261,14 +231,25 @@ for ( $i = 2013; $i >= $start; $i-- ) {
 <li <?php echo haserror('why', $app); ?>><label class='required'>
 <?php echo $wgLang->message('form-enrichment'); ?></label><br/>
 <textarea id="why" name="why" cols="80" rows="3" required><?= isset($values['why'])?$values['why']:''; ?></textarea></li>
-<!--<li <?php echo haserror('future', $app); ?>><label class='required'>
+<li <?php echo haserror('future', $app); ?>><label class='required'>
 <?php echo $wgLang->message('form-future-explain'); ?></label><br />
-<textarea id="future" name="future" cols="80" rows="3" required><?= isset($values['future'])?$values['future']:''; ?></textarea></span></li>-->
+<textarea id="future" name="future" cols="80" rows="3" required><?= isset($values['future'])?$values['future']:''; ?></textarea></span></li>
 </ul>
 </fieldset>
-<!-- interest end-->
 
-<!-- partial scholarship start-->
+<fieldset>
+<legend><?php echo $wgLang->message('form-participation'); ?></legend>
+<ul class="appform">
+<li><?php echo $wgLang->message('form-username'); ?> <input type="text" id="username" name="username" <?= isset($values['username'])?'value="' .$values['username'] . '"':''; ?> /></li>
+<li><?php echo $wgLang->message('form-primary-project'); ?> <input type="text" id="project" name="project" <?= isset($values['project'])?'value="' .$values['project'] . '"':''; ?> /></li>
+<li><?php echo $wgLang->message('form-lang-version'); ?> <input type="text" id="projectlangs" name="projectlangs" <?= isset($values['projectlangs'])?'value="' .$values['projectlangs'] . '"':''; ?> /></li>
+<li><?php echo $wgLang->message('form-extent-explain'); ?><br />
+<textarea id="involvement" name="involvement" cols="80" rows="3"><?= isset($values['involvement'])?$values['involvement']:''; ?></textarea></li>
+<li><?php echo $wgLang->message('form-contrib-explain'); ?><br />
+<textarea id="contribution" name="contribution" cols="80" rows="3"><?= isset($values['contribution'])?$values['contribution']:''; ?></textarea></li>
+</ul>
+</fieldset>
+
 <fieldset>
 <legend><?php echo $wgLang->message('form-partial');?></legend>
 <?php echo $wgLang->message('form-partial-explain');?><br />
@@ -277,9 +258,7 @@ for ( $i = 2013; $i >= $start; $i-- ) {
 <li><input type="checkbox" id="canpaydiff" name="canpaydiff" value="1" <?= ($values['canpaydiff']==1)?'checked = "checked" ':''; ?> /> <?php echo $wgLang->message('form-canpaydiff'); ?></li>
 </ul>
 </fieldset>
-<!-- partial scholarship end-->
 
-<!-- agreement form start-->
 <fieldset>
 <legend><?php echo $wgLang->message('form-agree'); ?></legend>
 <ul class="appform">
@@ -289,47 +268,18 @@ for ( $i = 2013; $i >= $start; $i-- ) {
 <li><input type="checkbox" id="agreestotravelconditions" name="agreestotravelconditions" value="1" <?= ($values['agreestotravelconditions']==1)?'checked = "checked" ':''; ?> /> <?php echo $wgLang->message('form-travel-conditions'); ?></li>
 </ul>
 </fieldset>
-<!-- agreement form end-->
 
-<!-- privacy start-->
 <fieldset>
-<!-- scholarship committee -->
 <legend><?php echo $wgLang->message('form-privacy'); ?></legend>
 <p><?php echo $wgLang->message('form-review'); ?></p>
 <ul class="appform">
-<li <?php echo haserror('chapteragree', $app); ?>><label class='required'>
+<li>
 <input type="radio" id="chapteragree" name="chapteragree" value="1" <?= ($values['chapteragree']==1)?'checked = "checked" ':''; ?> /><?php echo $wgLang->message('form-yes'); ?> 
 <input type="radio" id="chapteragree" name="chapteragree" value="0" <?= ($values['chapteragree']==0)?'checked = "checked" ':''; ?> /><?php echo $wgLang->message('form-no'); ?>
-&nbsp;&nbsp;-&nbsp;&nbsp;<?php echo $wgLang->message('form-chapteragree');?></label>
+&nbsp;&nbsp;-&nbsp;&nbsp;<?php echo $wgLang->message('form-chapteragree');?>
 </li>
-</ul>
-<!-- WMF -->
-<p>
-<b>Applicant Rights & Consent to Data Processing and Transfer</b>
-<br /><br />
-I as an applicant for a Wikimedia Foundation ('WMF') scholarship relating to my participation in the 2013 Wikimania conference hosted in Hong Kong, hereby acknowledge and affirmatively consent to the following as a prerequisite to the consideration of my 2013 Wikimania scholarship application ('Application'):
-<br /><br />
-(a) Any personal data or sensitive personal data that I submit as part of or in relation to my Application (collectively 'my Data') may be accessed and reviewed by (i) WMF; (ii) official Wikimedia Chapters, a representative list of which can be found at:  <a href='http://meta.wikimedia.org/wiki/Wikimedia_chapters'>http://meta.wikimedia.org/wiki/Wikimedia_chapters</a> ('WM Chapters'); and (iii) members of a scholarship committee made up of Wikimedia movement members, a representative list of which can be found at: 
-<a href='https://wikimania2013.wikimedia.org/wiki/Scholarship_committee'>https://wikimania2013.wikimedia.org/wiki/Scholarship_committee</a> ('Scholarship Committee'), for the purposes of evaluating my Application.  
-<br /><br />
-(b) Any Data that I submit as a part of or in relation to my Application may be collected, stored, used, modified, communicated, archived, destroyed, or otherwise processed (collectively 'Processed' or 'Processing') by WMF, WM Chapters, Wikimedia CH ('WMCH'), and members of the Scholarship Committee.  My Data may be retained by WMF, WM Chapters, and/or WMCH until I request in writing to WMF that my Data be destroyed or for as long as required by applicable law.
-<br /><br />
-(c) My Data may be transmitted to or from WMF in the United States, WMCH in Switzerland, members of the Scholarship Committee in the country which they reside, and/or WM Chapters in the country which the chapter is based.
-<br /><br />
-(d) The Data that I have submitted is true and accurate to the best of my knowledge.  However, if any of my Data is inaccurate, I understand that I may request that my Data be corrected by emailing <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>.
-<br /><br />
-(e) I understand that I may ask WMF if my Data is being Processed and may request that WMF provide information about: what of my Data WMF currently holds; the purpose of Processing my Data; the categories of my Processed Data; who the individuals involved in Processing my Data are; and who the individuals who are designated to receive my Data are.  I understand that I can request any of the information enumerated in this section by emailing <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>.
-</p>
-<ul class="appform">
-<li <?php echo haserror('form-wmfAgreeName', $app); ?>><label class='required'>
-Please enter your full name:</label> <input type="text" id="wmfAgreeName" name="wmfAgreeName" <?= isset($values['wmfAgreeName'])?'value="' .$values['wmfAgreeName'] . '"':''; ?> />
-</li>
-<li <?php echo haserror('wmfagree', $app); ?>><label class='required'>
-<input type="checkbox" id="wmfagree" name="wmfagree" value="1"/><?php echo $wgLang->message('form-wmfagree');?>
-</label></li>
 </ul>
 </fieldset>
-<!-- privacy end-->
 
 <input type="submit" id="submit" name="submit" value="<?php echo $wgLang->message('form-submit-app'); ?>" />
 </fieldset>

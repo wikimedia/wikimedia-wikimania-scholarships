@@ -13,19 +13,19 @@ if ( ( isset($_GET['uselang']) ) or ( isset( $values['uselang']) ) ) {
         <meta http-equiv="Content-language" content="<?= $lang ?>"/>
         <meta charset="utf-8"/>
 	<title><?php echo $wgLang->message('header-title');?></title>
-	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/base.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/skeleton.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/flexigrid.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/flexigrid.pack.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/style.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/review.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE; ?>css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/base.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/skeleton.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/flexigrid.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/flexigrid.pack.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/style.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/review.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $TEMPLATEBASE_REVIEW; ?>css/jquery-ui.css" />
 	<!--[if lt IE 9]>
-	<script type="text/javascript" src="<?= $TEMPLATEBASE ?>js/html5.js"></script>
+	<script type="text/javascript" src="<?= $TEMPLATEBASE_REVIEW ?>js/html5.js"></script>
 	<![endif]-->
 </head>
 <body>
 <div class="container">
 <div id="header" class="clearfix review">
-<div id="logo"><h1><a id="banner" href="<?php echo $BASEURL; ?>" title="Wikimania 2012"><img id="wm2012banner" src="<?php echo $TEMPLATEBASE;?>images/wm2012banner.png" alt="Wikimania 2012"/></a></h1></div></div>
+<div id="logo"><h1><a id="banner" href="<?php echo $BASEURL; ?>" title="Wikimania 2013"><img id="wm2013banner" src="<?php echo $TEMPLATEBASE_REVIEW;?>images/Wikimania-2013-bannerm.png" alt="Wikimania 2013"/></a></h1></div></div>
