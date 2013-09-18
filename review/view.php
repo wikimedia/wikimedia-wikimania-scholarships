@@ -18,13 +18,16 @@ if ( isset( $_GET['phase'] ) && is_numeric( $_GET['phase'] ) ) {
 $dal = new DataAccessLayer();
 $user_id = $_SESSION['user_id'];
 $username = $dal->GetUsername($user_id);
-$isadmin = $dal->IsSysAdmin();
+$isadmin = $dal->IsSysAdmin($user_id);
 
-$unreviewed = $dal->myUnreviewed($user_id);
+$unreviewed = $dal->myUnreviewed($user_id, $phase);
 
 $id = min($unreviewed);
 if ( isset( $_GET['id']) ) {
 	$id = $_GET['id'];
+}
+if($id == '' or $id<0){
+	echo('<script>alert("please click Phase ' . $phase . ' to return the list")</script>');
 }
 
 $myscorings = $dal->myRankings($id, $user_id, $phase);
@@ -32,7 +35,7 @@ $allscorings = $dal->allRankings($id, $phase);
 $reviewers = $dal->getReviewers($id, $phase);
 
 if (isset($_POST['save'])) {
-	$criteria = array('valid','onwiki', 'offwiki', 'future', 'program'); 
+	$criteria = array('valid','onwiki', 'offwiki', 'future', 'program', 'englishAbility'); 
 	$id = isset( $_POST['scholid'] ) ? $_POST['scholid'] : $id;
 	foreach ($criteria as $c) {
 		if (isset($_POST[$c])) {
@@ -42,9 +45,11 @@ if (isset($_POST['save'])) {
 	if ( isset($_POST['notes']) && strlen($_POST['notes']) > 0) {
 		$dal->UpdateNotes($id, $_POST['notes']);
 	}
-	$nextid = $dal->getNextId($user_id, $id, $phase);
-	$_SESSION['prev_id'] = $id;
-	header('Location: ' . $BASEURL . 'review/view?id=' . $nextid . '&phase=' . $phase);
+	
+	//$nextid = $dal->getNextId($user_id, $id, $phase);
+	//$_SESSION['prev_id'] = $id;
+	//header('Location: ' . $BASEURL . 'review/view?id=' . $nextid . '&phase=' . $phase);
+	header('Location: ' . $BASEURL . 'review/view?id=' . $id . '&phase=' . $phase);
 	exit();
 }
 
@@ -55,6 +60,8 @@ $schol = $dal->GetScholarship( $id );
 <div id="form-container" class="fourteen columns">
 <form method="post" action="<?= $BASEURL; ?>review/view?phase=<?= $phase;?>&id=<?= $id; ?>">
 <?php include TEMPLATEPATH . "admin_nav.php" ?>
+<!--score box start-->
+<?php if ($phase>0): ?>
 <div id="application-view">
 <div id="rank-box" class="clearfix">
 <h4>Rankings <span id="rankingstoggle">[show/collapse]</span></h4>
@@ -82,8 +89,12 @@ $schol = $dal->GetScholarship( $id );
 	<tr>
 		<td>Outside Wikimedia movement:</td>
 		<td><?= RankDropdownList('offwiki',$schol['id']) ?></td>
-		<td><?php if ( $isadmin == 1 ) { echo 'Program:'; } ?></td>
-		<td><?php if ( $isadmin == 1 ) { echo RankDropdownList('program',$schol['id']); }?></td>
+		<td>English Ability:</td>
+		<td><?= RankDropdownList('englishAbility',$schol['id']) ?></td>
+	</tr>
+	<tr>
+		<td>Program:</td>
+		<td><?= RankDropdownList('program',$schol['id']) ?></td>
 	</tr>
 <?php endif; ?>
 </table>
@@ -97,6 +108,8 @@ Notes:<br/>
 </div>
 </div>
 </div>
+<?php endif; ?>
+<!--score box end-->
 
 <fieldset>
 <ul id="view-name" class="appview">
@@ -142,9 +155,9 @@ if ( ( strtotime( $schol['dob'] ) > strtotime( '1875-01-01' ) ) &&
 <?php if (strlen($schol['occupation']) > 0): ?>
 <li>Occupation: <?= $schol['occupation'] ?></li>
 <?php endif; ?> <?php if (strlen($schol['areaofstudy']) > 0): ?>
-<li>Area of study: <?= $schol['areaofstudy'] ?></li>
+<li>Field of study: <?= $schol['areaofstudy'] ?></li>
 <?php endif; ?> <?php if (strlen($schol['occupation']) == 0 && strlen($schol['areaofstudy']) == 0): ?>
-<li>Did not give an occupation or area of study.</li>
+<li>Did not give an occupation or field of study.</li>
 <?php endif; ?>
 </ul>
 
@@ -156,7 +169,8 @@ if ( ( strtotime( $schol['dob'] ) > strtotime( '1875-01-01' ) ) &&
 		<th>2008</th>
 		<th>2009</th>
 		<th>2010</th>
-		<th>2011</th>		
+		<th>2011</th>	
+		<th>2012</th>		
 	</tr>
 	<tr>
 		<td><?= $schol['wm05'] == 1 ? 'X' : '&nbsp;' ?></td>
@@ -166,8 +180,36 @@ if ( ( strtotime( $schol['dob'] ) > strtotime( '1875-01-01' ) ) &&
 		<td><?= $schol['wm09'] == 1 ? 'X' : '&nbsp;' ?></td>
 		<td><?= $schol['wm10'] == 1 ? 'X' : '&nbsp;' ?></td>
 		<td><?= $schol['wm11'] == 1 ? 'X' : '&nbsp;' ?></td>
+		<td><?= $schol['wm12'] == 1 ? 'X' : '&nbsp;' ?></td>
 	</tr>
 </table>
+<p>2012 Scholarship: 
+<?php
+if($schol['2012scholarship']=="F"){
+	echo "Full Scholarship";
+}
+else if ($schol['2012scholarship']=="D"){
+	echo "Declined the full scholarship";
+}
+else if ($schol['2012scholarship']=="P"){
+	echo "Partial Scholarship";
+}
+else {
+	echo "NIL";
+}
+?>
+</p>
+<p></p>
+
+<p>
+<?php 
+if($schol['presentation']==1){ 
+	echo "Will join 'Call for Participation' and Topic is " . $schol['presentationTopic'];
+} else {
+	echo "Will NOT join 'Call for Participation'";
+}
+?>
+</p>
 
 <?php if (($schol['sincere']==0)||($schol['agreestotravelconditions']==0)||($schol['willgetvisa']==0)||($schol['willpayincidentals']==0)) {  // non-editable Answerbox  ?>
 <ul id="terms-agree">
@@ -189,34 +231,70 @@ if ( ( strtotime( $schol['dob'] ) > strtotime( '1875-01-01' ) ) &&
 </fieldset>
 
 <fieldset><legend>Why do you want to attend?</legend> <?php if (strlen($schol['why']) > 0): ?>
-<p><?= $schol['why'] ?></p>
+<!--<p><?= $schol['why'] ?></p>-->
+<p>
+<?php
+	$temp = str_replace("\n","<br />",$schol['why']);
+	echo $temp;
+?>
+</p>
 <?php else: ?>
 <p>Declined to state.</p>
 <?php endif; ?></fieldset>
 
-<fieldset><legend>How will Wikimania affect your future involvement?</legend> <?php if (strlen($schol['future']) > 0): ?>
+<!--<fieldset><legend>How will Wikimania affect your future involvement?</legend> <?php if (strlen($schol['future']) > 0): ?>
 <p><?= $schol['future'] ?></p>
 <?php else: ?>
 <p>Declined to state.</p>
-<?php endif; ?></fieldset>
+<?php endif; ?></fieldset>-->
 
 <fieldset><legend>What is your involvement with Wikimedia?</legend> <?php if (strlen($schol['involvement']) > 0): ?>
-<p><?= $schol['involvement'] ?></p>
+<!--<p><?= $schol['involvement'] ?></p>-->
+<p>
+<?php
+	$temp = str_replace("\n","<br />",$schol['involvement']);
+	echo $temp;
+?>
+</p>
 <?php else: ?>
 <p>Declined to state.</p>
 <?php endif; ?></fieldset>
 
 <fieldset><legend>What contribution have you made to free knowledge and free software?</legend>
 <?php if (strlen($schol['contribution']) > 0): ?>
-<p><?= $schol['contribution'] ?></p>
+<!--<p><?= $schol['contribution'] ?></p>-->
+<p>
+<?php
+	$temp = str_replace("\n","<br />",$schol['contribution']);
+	echo $temp;
+?>
+</p>
 <?php else: ?>
 <p>Declined to state.</p>
 <?php endif; ?></fieldset>
 
-<fieldset><legend><a href="#" id="showfulldump">Show full dump</a></legend>
+<fieldset><legend>English Ability <br />(Question: Hong Kong is an international gourmet paradise. Please use less than 200 words to describe your favourite dish of food.)</legend>
+<?php if (strlen($schol['englistAbility']) > 0): ?>
+<!--<p><?= $schol['englistAbility'] ?></p>-->
+<p>
+<?php
+	$temp = str_replace("\n","<br />",$schol['englistAbility']);
+	echo $temp;
+?>
+</p>
+<?php else: ?>
+<p>Declined to state.</p>
+<?php endif; ?></fieldset>
+
+<!--<fieldset><legend><a href="#" id="showfulldump">Show full dump</a></legend>
 <div id="dump"><?php foreach ($schol as $k => $v): ?>
 <p><?= $k ?>: <?= $v ?></p>
 <?php endforeach; ?></div>
+</fieldset>-->
+<fieldset><legend>Show full dump</legend>
+<?php foreach ($schol as $k => $v): ?>
+<p><?= $k ?>: <?= $v ?></p>
+<?php endforeach; ?>
 </fieldset>
 
 <fieldset><legend>Scorings</legend> 
@@ -239,7 +317,7 @@ if (count($reviewers) > 0) {
 	print "Reviewers:<br/><br/>";
 	print "<ul>";
 	foreach ( $reviewers as $reviewer ) {
-		print '<li>' . $r['username'] . '</li>';
+		print '<li>' . $reviewer['username'] . '</li>';
 	}
 	print "</ul>";
 }

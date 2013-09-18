@@ -421,69 +421,14 @@ HAVING p1score >= -2 and p1score <= 999 and s.exclude = 0 $limit $offset";
 		$this->db->query($query, array($value, $id));
 	}
 
-// Phase List
+// Bulk mailing
 
-	/*function GetPhase1EarlyRejects($start, $howmany) {
+	function GetPhase1EarlyRejects($start, $howmany) {
 		$res = $this->db->getAll("select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s 
 			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id					     
 			group by s.id, s.fname, s.lname, s.email 
 			having p1score < 3 and s.exclude = 0
 			limit ?,?", array($start, $howmany));
-		if (PEAR::isError($res)) 
-   			die($res->getMessage());
-    		return $res;
-	}*/
-	
-	function GetPhase1EarlyRejects() {
-		$res = $this->db->getAll("select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s 
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id					     
-			group by s.id, s.fname, s.lname, s.email 
-			having p1score < 3 and s.exclude = 0");
-		if (PEAR::isError($res)) 
-   			die($res->getMessage());
-    		return $res;
-	}
-	
-	function GetPhase1Success() {
-		$res = $this->db->getAll("select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s 
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id					     
-			group by s.id, s.fname, s.lname, s.email 
-			having p1score >= 3 and s.exclude = 0");
-		if (PEAR::isError($res)) 
-   			die($res->getMessage());
-    		return $res;
-	}
-	
-	function GetRegionListNoCount(){
-		$res = $this->db->getAll("SELECT DISTINCT region FROM countries");
-		if (PEAR::isError($res)) 
-   			die($res->getMessage());
-    		return $res;
-	}
-	
-	function GetP2List($partial, $region) {
-		$sql = "select s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, 2013-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s 
-			left outer join (select scholarship_id, avg(rank) as onwiki from rankings where criterion = 'onwiki' group by scholarship_id) r on s.id = r.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as offwiki from rankings where criterion = 'offwiki' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as future from rankings where criterion = 'future' group by scholarship_id) r3 on s.id = r3.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as englishAbility from rankings where criterion = 'englishAbility' group by scholarship_id) r6 on s.id = r6.scholarship_id
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r4 on s.id = r4.scholarship_id
-			left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'englishAbility') group by scholarship_id) r5 on s.id = r5.scholarship_id	
-			left outer join countries c on s.residence = c.id ";
-
-		if($region!="All")
-			$sql = $sql . "inner join countries c1 on c.region = '" . $region . "' ";
-		
-		if($partial==2){
-			$sql = $sql . "group by s.id, s.fname, s.lname, s.email, s.residence 
-				having p1score >= 3 and s.exclude = 0 order by p2score desc";
-		}
-		else{
-			$sql = $sql . "group by s.id, s.fname, s.lname, s.email, s.residence 
-				having p1score >= 3 and s.exclude = 0 and partial = '" . $partial . "' order by p2score desc";
-		}
-		
-		$res = $this->db->getAll($sql);
 		if (PEAR::isError($res)) 
    			die($res->getMessage());
     		return $res;
@@ -606,14 +551,6 @@ HAVING p1score >= -2 and p1score <= 999 and s.exclude = 0 $limit $offset";
 		return $this->db->getAll("select count(*) as count, c.region from scholarships s LEFT JOIN countries c on c.id = s.residence group by region;");
 	}
 
-	function GetPhase1EarlyRejectsTemp() {
-		$res = $this->db->getAll("select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s 
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id					     
-			group by s.id, s.fname, s.lname, s.email 
-			having p1score < 3 and s.exclude = 0 and s.id>305");
-		if (PEAR::isError($res)) 
-   			die($res->getMessage());
-    		return $res;
-	}
+		
 }
 ?>

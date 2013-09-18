@@ -29,9 +29,21 @@ class Application {
 			if ($data['why'] == '') {
 				array_push( $this->errors, 'why' );
 			}
-			if ($data['future'] == '') {
+			/*if ($data['future'] == '') {
 				array_push( $this->errors, 'future' );
+			}*/
+			 
+			if($data['involvement'] == '') {
+				array_push( $this->errors, 'involvement' );
 			}
+			if($data['contribution'] == '') {
+				array_push( $this->errors, 'contribution' );
+			}
+			if($data['englistAbility'] == '') {
+				array_push( $this->errors, 'englistAbility' );
+			}
+			
+			
 			if ($data['residence'] == 0) {
 				array_push( $this->errors, 'residence' );
 			} 
@@ -40,6 +52,19 @@ class Application {
 			}
 			if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $data['email'])) {
 				array_push( $this->errors, 'email' );
+			}
+			if($data['presentation']==1 && $data['presentationTopic']==''){
+				array_push($this->errors, 'presentationTopic');
+			}
+			
+			/*if($data['chapteragree']==0){
+				array_push( $this->errors, 'chapteragree' );
+			}*/
+			if($data['wmfagree']!=1){
+				array_push( $this->errors, 'wmfagree' );
+			}
+			if($data['wmfAgreeName']==''){
+				array_push($this->errors, 'wmfAgreeName');
 			}
 		}
 
@@ -67,7 +92,12 @@ class Application {
 				die('Could not select DB: ' . mysql_error());
 			}
 
-                       $colnames = array("fname", "lname", "email", "telephone", "address", "residence", "nationality", "haspassport", "passportnum", "airport", "languages", "sex", "occupation", "areaofstudy", "wm05", "wm06", "wm07", "wm08", "wm09", "wm10", "wm11", "presentation", "howheard", "why", "username", "project", "projectlangs", "involvement", "future", "contribution", "sincere", "willgetvisa", "willpayincidentals", "agreestotravelconditions", "chapteragree", "wantspartial", "canpaydiff", "dob", "rank", "ipaddr");
+                       $colnames = array("fname", "lname", "email", "telephone", "address", "residence", "nationality", 
+					   "haspassport", /*"passportnum",*/ "airport", "languages", "sex", "occupation", "areaofstudy", 
+					   "wm05", "wm06", "wm07", "wm08", "wm09", "wm10", "wm11", "wm12", "presentation", "howheard", "why", 
+					   "username", "project", "projectlangs", "involvement", /*"future",*/ "englistAbility", "contribution", 
+					   "sincere", "willgetvisa", "willpayincidentals", "agreestotravelconditions", "chapteragree", 
+					   "wantspartial", "canpaydiff", "dob", "rank", "ipaddr", "presentationTopic", "wmfAgreeName");
 
 			foreach ($colnames as $i) {
 				if ( ( isset( $data[$i] ) ) and ( ( $i == 'residence' ) or ( $i == 'nationality' ) ) ) {
@@ -79,7 +109,7 @@ class Application {
 					if ( ( $i == 'dob' ) && ( isset( $data['yy'] ) ) && ( isset( $data['mm'] ) ) && ( isset( $data['dd'] ) ) ) {
 						$date = sprintf("%d-%d-%d", $data['yy'], $data['mm'], $data['dd']);
 						$time = strtotime($date);
-						if ( ( $time < strtotime( '2011-12-31') ) && ( $time > strtotime( '1875-01-01' ) ) ) {
+						if ( ( $time < strtotime( '2013-12-31') ) && ( $time > strtotime( '1882-01-01' ) ) ) {
 							$answers['dob'] = $date;
 						} else {
 							$answers['dob'] = NULL;
@@ -150,7 +180,7 @@ class Application {
 	}
 
 	function isOpen() {
-		$close_time = gmmktime(0, 0, 0, /*february*/ 2, /*1st*/ 1, 2012);
+		$close_time = gmmktime(0, 0, 0, /*Feb*/ 2, /*23rd*/ 23, 2013);
 		if (time() > $close_time) {
 			if ($chapters_application) {
 				$COUNTRY_NAMES = $COUNTRY_NAMES_CHAPTERS;

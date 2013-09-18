@@ -28,7 +28,15 @@ $users = $dal->GetListofCountries($order);
 	<?php foreach ($users as $row): ?>
 	<tr>
 		<td><a href='<?php echo $BASEURL . "review/search/results?residence=" . $row['country_name'] . "&last=&first="; ?>'><?= $row['country_name']; ?></a></td>
-		<td><a href='<?php echo $BASEURL . "review/search/results?region=" . $row['region'] . "&last=&first="; ?>'><?= $row['region']; ?></td>
+		<td><a href='<?php 
+			if(strrpos($row['region'], "&")!=""){
+				$temp = $row['region'];
+				$temp = str_replace("&","%26",$temp);
+				echo $BASEURL . "review/search/results?region=" . $temp . "&last=&first="; 
+			}
+			else{
+				echo $BASEURL . "review/search/results?region=" . $row['region'] . "&last=&first=";
+			} ?>'><?= $row['region']; ?></td>
 		<td><?= $row['sid']; ?></td>
 	</tr>
 	<?php endforeach; ?>

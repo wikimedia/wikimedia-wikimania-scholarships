@@ -22,7 +22,8 @@ if ( isset( $_GET['items'] ) )  {
 		$items = 'all';
 	}
 } else { 
-	$items = $default_pp;
+	//$items = $default_pp;
+	$items = 30;
 }
 
 if ( isset( $_GET['p'] ) )  {

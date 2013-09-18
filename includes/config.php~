@@ -1,0 +1,24 @@
+<?php
+// save as config.php
+
+$db_host = 'localhost';
+$db_user = 'u00009';
+$db_pass = '1156577777';
+$db_name = 'db00009';
+$db_driver = 'mysql';
+
+$open_time = gmmktime(0, 0, 0, /*january*/ 1, /*1st*/ 1, 2012);
+$close_time = gmmktime(0, 0, 0, /*February*/ 2, /*15th*/ 15, 2013);
+
+$email_from = 'wikimania-scholarships@wikimedia.org';
+
+$chapters_application = FALSE;
+
+
+$TEMPLATEDIR = BASEDIR . '/templates/';
+$TEMPLATEBASE = 'templates/';
+$BASEURL = "/";
+$TEMPLATEBASE_REVIEW = $BASEURL . 'templates/';
+
+$mock = true;
+?>

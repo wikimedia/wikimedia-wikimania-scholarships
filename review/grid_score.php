@@ -18,7 +18,7 @@ $schols = $dal->GetFinalScoring($partial);
 <form method="post" action="<?php echo $BASEURL; ?>grid">
 <h1>Applications</h1>
 <?php include TEMPLATEPATH . "admin_nav.php" ?>
-<table style="width: 100%">
+<table style="width: 100%" border="1">
 	<tr>
 		<th>counter</th>
 		<th>id</th>
@@ -32,13 +32,14 @@ $schols = $dal->GetFinalScoring($partial);
 		<th>onwiki</th>
 		<th>offwiki</th>
 		<th>future</th>
+		<th>English Ability</th>
 		<th>p2 score</th>
 	</tr>
 	<?php foreach ($schols as $row): ?>
 	<tr>
 		<td><?= $ctr++; ?></td>
 		<td><?= $row['id']; ?></td>
-		<td width=25%><a href="view.php?id=<?= $row['id'] ?>"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
+		<td width=25%><a href="../view.php?id=<?= $row['id'] ?>&phase=0" target="_blank"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
 		<td width=20%><?= $row['email']; ?></td>
 		<td width=25%><?= $row['country_name']; ?></td>
 		<td width=8%><?= $row['sex']; ?></td>
@@ -48,6 +49,7 @@ $schols = $dal->GetFinalScoring($partial);
 		<td width=8%><?= round($row['onwiki'],3); ?></td>
 		<td width=8%><?= round($row['offwiki'],3); ?></td>
 		<td width=8%><?= round($row['future'],3); ?></td>
+		<td width=8%><?= round($row['englishAbility'],3); ?></td>
 		<td width=8%><?= round($row['p2score'],4); ?></td>
 	</tr>
 	<?php endforeach; ?>

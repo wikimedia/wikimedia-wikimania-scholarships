@@ -14,7 +14,16 @@ RewriteRule .* index.php/$0 [PT]
 
 Create includes/config.php, based on config.sample.php, filling in database credentials and other settings.
 
+# Base URL
+
+If your URL to the scholarship system is 
+ http://foo.bar/scholarships/
+then your base URL is "/scholarships/".
+
+Remember to set the base URL correctly in .htaccess (RewriteBase) and includes/config.php ($BASEURL).
+
 ## Authors
+* Calvin W. F. Siu, Wikimania 2013 Hong Kong organizing team
 * Katie Filbert, Wikimania 2012 Washington DC organizing team
 * Harel Cain, Wikimania 2011 Haifa organizing team
 * Wikimania 2010 Gdansk organizing team

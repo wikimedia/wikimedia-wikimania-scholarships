@@ -6,12 +6,12 @@ $routes = array(
 	'credits' => $TEMPLATEDIR . 'credits.php',
 	'contact' => $TEMPLATEDIR . 'contact.php',
 	'privacy' => $TEMPLATEDIR . 'privacy.php',
-	'review/bulkmail' => BASEDIR . '/admin/bulk_mail.php',
+	//'review/bulkmail' => BASEDIR . '/admin/bulk_mail.php',
 	'review/country/grid' => BASEDIR . '/review/country_grid.php',
 	'review/country/edit' => BASEDIR . '/review/edit_country.php',
 	'review/country' => BASEDIR . '/review/country_grid.php',
 	'review/region' => BASEDIR . '/review/region_grid.php',
-        'review/dump' => BASEDIR . '/admin/dump.php',
+        //'review/dump' => BASEDIR . '/admin/dump.php',//?
 	'review/edit' => BASEDIR . '/review/edit.php',
 	'review/export' => BASEDIR . '/review/export.php',
 	'review/grid' => BASEDIR . '/review/grid.php',
@@ -30,7 +30,11 @@ $routes = array(
 	'user/password' => BASEDIR . '/user/user_pwreset.php',
 	'user/table' => BASEDIR . '/admin/usertable.php',
 	'user/view' => BASEDIR . '/admin/view_user.php',
-	'user' => BASEDIR . '/user/login.php'
+	'user' => BASEDIR . '/user/login.php',
+	'review/p1/successList' => BASEDIR . '/review/phase1SuccessList.php',
+	'review/p1/failList' => BASEDIR . '/review/phase1FailList.php',
+	'review/p2/list' => BASEDIR . '/review/phase2List.php',
+	'review/mail' => BASEDIR . '/review/mail.php'
 );	
 
 $defaultRoute = $routes['apply'];

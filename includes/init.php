@@ -7,7 +7,9 @@ $template_path = 'templates';
 $application_path = 'application';
 
 #define('BASEDIR', dirname(__FILE__) );
-define('BASEDIR', '/var/www/dev/schols');
+#define('BASEDIR', '/var/www/dev/schols');
+#define('BASEDIR', '/mnt/ms/home/web/u00035/html/scholstest');
+define('BASEDIR', dirname(dirname(__FILE__) ));
 
 define('SYSPATH', BASEDIR . '/' . $system_path . '/');
 define('INCLUDEPATH', BASEDIR . '/' . $include_path . '/');

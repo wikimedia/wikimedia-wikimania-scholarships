@@ -11,15 +11,18 @@ if (!isset($_SESSION['user_id'])) {
 $dal = new DataAccessLayer();
 $params = array(
         'baseurl' => $BASEURL,
-	'phase' => 1,
+	'phase' => 2,
 	'items' => $default_pp,
 	'offset' => 0,
-	'page' => 'review/search/results'
+	'page' => 'review/search/results',
+	'searchLink' => ''
 );
 
 if ( isset( $_GET['items'] ) ) {
 	$params['items'] = $_GET['items'];
 }
+else
+	$params['items'] = 30;
 
 if ( isset( $_GET['p'] ) ) {
 	$params['offset'] = $_GET['p'];
@@ -27,22 +30,32 @@ if ( isset( $_GET['p'] ) ) {
 
 if ( isset( $_GET['last'] ) ) {
 	$params['last'] = $_GET['last'];
+	
+	$params['searchLink'] = '&last=' . $params['last'];
 }
 
 if ( isset( $_GET['first'] ) ) {
 	$params['first'] = $_GET['first'];
+	
+	$params['searchLink'] = '&first=' . $params['first'];
 }
 
 if ( isset( $_GET['citizen'] ) ) {
 	$params['citizen'] = $_GET['citizen'];
+	
+	$params['searchLink'] = '&citizen=' . $params['citizen'];
 }
 
 if ( isset( $_GET['residence'] ) ) {
 	$params['residence'] = $_GET['residence'];
+	
+	$params['searchLink'] = '&residence=' . $params['residence'];
 }
 
 if ( isset( $_GET['region'] ) ) {
 	$params['region'] = $_GET['region'];
+	
+	$params['searchLink'] = '&region=' . $params['region'];
 }
 
 $schols = $dal->search($params);
