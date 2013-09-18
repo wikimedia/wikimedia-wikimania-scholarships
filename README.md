@@ -1,4 +1,6 @@
-# Sample .htaccess file
+##Setup
+
+### Sample .htaccess file
 
 ```
 <IfModule mod_rewrite.c>
@@ -10,11 +12,11 @@ RewriteRule .* index.php/$0 [PT]
 </IfModule>
 ```
 
-# Config file
+### Config file
 
 Create includes/config.php, based on config.sample.php, filling in database credentials and other settings.
 
-# Base URL
+### Base URL
 
 If your URL to the scholarship system is 
  http://foo.bar/scholarships/
