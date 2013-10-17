@@ -1,20 +1,17 @@
 <?php
 
-# set paths
+// set paths
 $system_path = 'system';
 $include_path = 'includes';
 $template_path = 'templates';
 $application_path = 'application';
 
-#define('BASEDIR', dirname(__FILE__) );
-#define('BASEDIR', '/var/www/dev/schols');
-#define('BASEDIR', '/mnt/ms/home/web/u00035/html/scholstest');
-define('BASEDIR', dirname(dirname(__FILE__) ));
+define( 'BASEDIR', dirname( dirname( __FILE__ ) ) );
 
-define('SYSPATH', BASEDIR . '/' . $system_path . '/');
-define('INCLUDEPATH', BASEDIR . '/' . $include_path . '/');
-define('TEMPLATEPATH', BASEDIR . '/' . $template_path . '/');
-define('APPPATH', BASEDIR . '/' . $application_path . '/');
+define( 'SYSPATH', BASEDIR . '/' . $system_path . '/' );
+define( 'INCLUDEPATH', BASEDIR . '/' . $include_path . '/' );
+define( 'TEMPLATEPATH', BASEDIR . '/' . $template_path . '/' );
+define( 'APPPATH', BASEDIR . '/' . $application_path . '/' );
 
 require_once( SYSPATH . "core/Common.php" );
 
@@ -28,11 +25,10 @@ require_once( INCLUDEPATH . "Lang.php" );
 require_once( INCLUDEPATH . "Application.php" );
 require_once( SYSPATH . "core/Router.php" );
 require_once( INCLUDEPATH . "routes.php" );
+require_once( INCLUDEPATH . 'TemplateHelper.php' );
 
 // PEAR DB
-require_once( 'DB.php' );
+//require_once( 'DB.php' );
 
 $wgLang = new Lang();
 $wgRouter = new Router();
-
-?>
