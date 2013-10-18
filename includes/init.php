@@ -6,6 +6,8 @@ $include_path = 'includes';
 $template_path = 'templates';
 $application_path = 'application';
 
+date_default_timezone_set( 'Europe/London' );
+
 define( 'BASEDIR', dirname( dirname( __FILE__ ) ) );
 
 define( 'SYSPATH', BASEDIR . '/' . $system_path . '/' );

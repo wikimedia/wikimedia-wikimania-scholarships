@@ -52,7 +52,7 @@ $messages['zh'] = array(
 		'form-lang-version' => "主要語言：",
 		'form-extent-explain' => "請在下方解釋你參與維基媒體計劃的程度及性質（你是否地方分會會員？管理員？長期在維基編輯？特色條目編輯？經常提供高質素圖片者？等等）",
 		'form-contrib-explain' => "請在下方解釋你參與除了維基計劃外的其他自由知識，自由軟件協作或教育的程度及性質",
-		'form-englistAbility-explain' => "香港是個美食天堂。請用少於200字英文介紹你喜歡的菜餚。",
+		'form-englishability-explain' => "香港是個美食天堂。請用少於200字英文介紹你喜歡的菜餚。",
 		//'form-future-explain' => "請在下方解釋您想參與維基媒體國際會議的原因。",
 		'form-partial' => "部份獎助金",
 		'form-partial-explain' => "除全費獎助金外，本年設有高達機票票價的50%的部分旅費獎助金，這是根據<a href='https://wikimania2013.wikimedia.org/wiki/Getting_to_Hong_Kong/zh'>往返本港的航空旅費預算</a>。",

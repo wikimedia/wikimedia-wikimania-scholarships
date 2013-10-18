@@ -34,7 +34,7 @@ class TemplateHelper {
 	public function getField( $app, $messageKey, $fieldName, $value = null, $required = false ) {
 		global $wgLang;
 
-		$html = '<li' . haserror( $fieldName, $app ) . '><label ';
+		$html = '<li' . $this->haserror( $fieldName, $app ) . '><label ';
 
 		if ( $required ) {
 			$html .= 'class="required"';
@@ -201,6 +201,143 @@ class TemplateHelper {
 </li>';
 
 		return $html;
+	}
+
+	public function getTextArea( $app, $messageKey, $field, $value, $required ) {
+		global $wgLang;
+
+		$html = '<li' . $this->haserror( $field, $app ) . '><label';
+
+		if ( $required ) {
+			$html .= " class='required'";
+		}
+
+		$html .= '>' . $wgLang->message( $messageKey ) . "</label><br />
+			<textarea id='$field' name='$field' cols='80' rows='3'";
+
+		if ( $required ) {
+			$html .= ' required';
+		}
+
+		$html .= '>';
+		$html .= $value ? 'value="' . $value . '" ' : ' ';
+		$html .= '</textarea></li>';
+
+		return $html;
+	}
+
+	public function getYearsAttended( $values ) {
+		global $wgLang;
+
+		$html = '<li>' . $wgLang->message('form-attended') . '
+  <ul class="appform single">';
+
+		$years = array(
+			'wm05' => 2005,
+			'wm06' => 2006,
+			'wm07' => 2007,
+			'wm08' => 2008,
+			'wm09' => 2009,
+			'wm10' => 2010,
+			'wm11' => 2011,
+			'wm12' => 2012
+		);
+
+		foreach( $years as $key => $year ) {
+			$html .= "
+    <li><input type='checkbox' id='$key' name='$key' value='1' ";
+			$html .= $values[$key] ? "checked = 'checked' " : '';
+			$html .= " style='margin-left: 1em'/> $year</li>";
+		}
+
+		$html .= '
+	</ul>
+</li>';
+
+		return $html;
+	}
+
+	public function getCheckbox( $messageKey, $field, $value ) {
+		global $wgLang;
+
+		$html = "
+	<li><input type='checkbox' id='$field' name='$field' value='$value' ";
+		$html .= $value == 1 ? "checked = 'checked' " : '';
+		$html .= '/>' . $wgLang->message( $messageKey ) . '</li>';
+
+		return $html;
+	}
+
+	public function getHowHeard( $value ) {
+		global $wgLang;
+
+		$options = array( 'email', 'project', 'vp', 'wom', 'other' );
+		$html = '<select id="howheard" name="howheard">';
+
+		$i = 1;
+
+		foreach( $options as $option ) {
+			$html .= "<option value='$option' ";
+			$html .= $value == $option ? 'selected = "selected" ' : '';
+			$html .= '>' . $wgLang->message( 'form-howheard' . $i ) . '</option>';
+
+			$i++;
+		}
+
+		$html .= '
+			</select></li>';
+
+		return $html;
+	}
+
+	public function getPartial( $wantsPartial, $canPayDiff ) {
+		global $wgLang;
+
+		$html = '
+<li>' . $wgLang->message( 'form-wantspartial' ) . ' <input type="radio" id="wantspartial" '
+			. 'name="wantspartial" value="1" ';
+		$html .= $wantsPartial == 1 ? 'checked = "checked" ' : '';
+		$html .= '/>' . $wgLang->message( 'form-yes' ) .
+' <input type="radio" id="wantspartial" name="wantspartial" value="0" ';
+		$html .= $wantsPartial == 0 ? 'checked = "checked" ' : '';
+		$html .= '/>' . $wgLang->message( 'form-no' ) . '</li>';
+		$html .= '<li><input type="checkbox" id="canpaydiff" name="canpaydiff" value="1" ';
+		$html .=  $canPayDiff == 1 ? 'checked = "checked" ' : '';
+		$html .= '/> ' . $wgLang->message( 'form-canpaydiff' ) . '</li>';
+
+		return $html;
+	}
+
+	public function getChaptersAgree( $app, $value ) {
+		global $wgLang;
+
+		$html = '
+<li ' . $this->haserror( 'chapteragree', $app ) . '><label class="required">
+<input type="radio" id="chapteragree" name="chapteragree" value="1" ';
+		$html .= $value == 1 ? 'checked = "checked" ' : '';
+		$html .= '/>' . $wgLang->message( 'form-yes' ) . '
+<input type="radio" id="chapteragree" name="chapteragree" value="0"';
+		$html .= $value == 0 ? 'checked = "checked" ' : '';
+		$html .=  '/>' . $wgLang->message( 'form-no' ) . '
+&nbsp;&nbsp;-&nbsp;&nbsp;' . $wgLang->message( 'form-chapteragree' ) . '</label>
+</li>';
+
+		return $html;
+	}
+
+	public function getRights() {
+		global $wgLang;
+
+		$rights = "
+		<!-- WMF -->
+		<p>
+		<b>" . $wgLang->message( 'form-rights-heading' ) . "</b>
+		<br /><br />
+		" . $wgLang->message( 'form-rights' ) . "
+</p>
+<ul class='appform'>";
+
+		return $rights;
 	}
 
 	protected function haserror( $field, $app ) {
