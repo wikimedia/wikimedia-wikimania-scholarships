@@ -26,6 +26,7 @@ server {
 
   location / {
     try_files $uri $uri/ @site;
+    root /Library/WebServer/Documents/scholarships;
   }
 
   location ~ \.php$ {
