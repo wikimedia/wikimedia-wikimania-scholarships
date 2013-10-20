@@ -16,9 +16,17 @@ class Router {
 
 	public $default_controller;
 
-	public function __construct() {
-		global $routes;
+	protected $request;
+
+	protected $baseUrl;
+
+	protected $defaultRoute;
+
+	public function __construct( $baseUrl, $routes, $defaultRoute ) {
+		$this->baseUrl = $baseUrl;
+		$this->request = Request::newFromGlobals();
 		$this->routes = $routes;
+		$this->defaultRoute = $defaultRoute;
 	}
 
 	public function isValid($page) {
@@ -29,11 +37,11 @@ class Router {
 	}
 
 	public function route() {
-		global $defaultRoute, $BASEURL;
+		$server = $this->request->getServer();
 
 		// separate query string, get base request
-		$parts = explode('?', $_SERVER['REQUEST_URI']);
-		$basereq = explode($BASEURL, $parts[0]);
+		$parts = explode( '?', $server['REQUEST_URI'] );
+		$basereq = explode( $this->baseUrl, $parts[0] );
 
 		$reqjoin = join( $basereq, '/' );
 		$req = explode( '/', $reqjoin );
@@ -66,7 +74,7 @@ class Router {
 		} elseif ( ( $this->class == 'review' ) || ( $this->class == 'user' ) ) {
 			return $this->routes['user/login'];
 		} else {
-			return $defaultRoute;
+			return $this->defaultRoute;
 		}
 	}
 }

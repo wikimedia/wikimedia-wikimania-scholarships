@@ -4,8 +4,9 @@ define( 'WMSCHOLS', true );
 
 require_once( "includes/init.php" );
 
-$path = $wgRouter->route();
-$basepath = array_search($path, $routes);
+$router = new Router( BASEDIR, $routes, $defaultRoute );
+$path = $router->route();
+$basepath = array_search( $path, $routes );
 $baselink = $BASEURL . $basepath;
 
 include $path;

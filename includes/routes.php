@@ -35,7 +35,6 @@ $routes = array(
 	'review/p1/failList' => BASEDIR . '/review/phase1FailList.php',
 	'review/p2/list' => BASEDIR . '/review/phase2List.php',
 	'review/mail' => BASEDIR . '/review/mail.php'
-);	
+);
 
 $defaultRoute = $routes['apply'];
-?>
