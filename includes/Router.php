@@ -2,19 +2,11 @@
 
 class Router {
 
-	public $qs;
-
-	public $config;
-
 	public $routes;
 
 	public $class;
 
 	public $method;
-
-	public $directory;
-
-	public $default_controller;
 
 	protected $request;
 
@@ -52,29 +44,40 @@ class Router {
 			array_shift( $req );
 		}
 
-		$this->class = isset($req[0]) ? $req[0] : null;
-		$this->method = isset($req[1]) ? $req[1] : null;
-		$this->method2 = isset($req[2]) ? $req[2] : null;
-
-		$path = '';
-		if ( strlen( $this->class ) > 0 ) {
-			$path = $path . $this->class;
-		}
-
-		if ( strlen( $this->method ) > 0 ) {
-			$path = $path . '/' . $this->method;
-		}
-
-		if ( strlen( $this->method2 ) > 0 ) {
-			$path = $path . '/' . $this->method2;
-		}
+		$path = $this->getPath( $req );
 
 		if ( $this->isValid( $path ) ) {
 			return $this->routes[$path];
-		} elseif ( ( $this->class == 'review' ) || ( $this->class == 'user' ) ) {
+		} elseif ( $this->class && ( in_array( $this->class, array( 'review', 'user' ) ) ) ) {
 			return $this->routes['user/login'];
 		} else {
 			return $this->defaultRoute;
 		}
 	}
+
+	protected function getPath( $req ) {
+		$methods = array();
+		$path = '';
+
+		$this->class = isset( $req[0] ) ? $req[0] : null;
+
+		if ( strlen( $this->class ) > 0 ) {
+			$path = $path . $this->class;
+		}
+
+		if ( isset( $req[1] ) ) {
+			$methods[] = $req[1];
+
+			if ( isset( $req[2] ) ) {
+				$methods[] = $req[2];
+			}
+		}
+
+		foreach( $methods as $method ) {
+			$path .= '/' . $method;
+		}
+
+		return $path;
+	}
+
 }
