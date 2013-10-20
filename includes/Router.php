@@ -2,49 +2,71 @@
 
 class Router {
 
-	public function isValid($page) {
+	public $qs;
+
+	public $config;
+
+	public $routes;
+
+	public $class;
+
+	public $method;
+
+	public $directory;
+
+	public $default_controller;
+
+	public function __construct() {
 		global $routes;
-		if ( array_key_exists( $page, $routes ) ) {
+		$this->routes = $routes;
+	}
+
+	public function isValid($page) {
+		if ( array_key_exists( $page, $this->routes ) ) {
 			return true;
-		} 
+		}
 		return false;
 	}
 
 	public function route() {
-		global $defaultRoute, $routes, $BASEURL;
+		global $defaultRoute, $BASEURL;
+
+		// separate query string, get base request
 		$parts = explode('?', $_SERVER['REQUEST_URI']);
-                $mainreq = explode($BASEURL, $parts[0]);
-	
-		$reqjoin = join($mainreq, '/');
-		$req = explode('/', $reqjoin);
+		$basereq = explode($BASEURL, $parts[0]);
 
-		if ( ( $req[0] == "index.php" ) || ( strlen($req[0]) < 1 ) ) {
-			array_shift($req);
+		$reqjoin = join( $basereq, '/' );
+		$req = explode( '/', $reqjoin );
+
+		while ( isset( $req[0] ) && ( $req[0] == "index.php" ||
+			( strlen( $req[0] ) < 1 ) && count( $req ) > 0 )
+		) {
+			array_shift( $req );
 		}
 
-		$page = isset($req[0]) ? $req[0] : null;
-		$action = isset($req[1]) ? $req[1] : null;
-		$action2 = isset($req[2]) ? $req[2] : null;
+		$this->class = isset($req[0]) ? $req[0] : null;
+		$this->method = isset($req[1]) ? $req[1] : null;
+		$this->method2 = isset($req[2]) ? $req[2] : null;
 
-		$path = '';		
-		if ( strlen( $page ) > 0 ) {
-			$path = $path . $page;
+		$path = '';
+		if ( strlen( $this->class ) > 0 ) {
+			$path = $path . $this->class;
 		}
 
-		if ( strlen( $action ) > 0 ) {
-			$path = $path . '/' . $action;
+		if ( strlen( $this->method ) > 0 ) {
+			$path = $path . '/' . $this->method;
 		}
 
-		if ( strlen( $action2 ) > 0 ) {
-			$path = $path . '/' . $action2;
+		if ( strlen( $this->method2 ) > 0 ) {
+			$path = $path . '/' . $this->method2;
 		}
 
 		if ( $this->isValid( $path ) ) {
-			return $routes[$path];
-		} elseif ( ( $page == 'review' ) || ( $page == 'user' ) ) {
-			return $routes['user/login'];
+			return $this->routes[$path];
+		} elseif ( ( $this->class == 'review' ) || ( $this->class == 'user' ) ) {
+			return $this->routes['user/login'];
 		} else {
 			return $defaultRoute;
 		}
-	}	
-}	
+	}
+}
