@@ -9,4 +9,3 @@ $basepath = array_search($path, $routes);
 $baselink = $BASEURL . $basepath;
 
 include $path;
-?>

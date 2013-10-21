@@ -341,4 +341,4 @@ Please enter your full name:</label> <input type="text" id="wmfAgreeName" name="
 ?>
 </div>
 <br clear="all" />
-<?php include( 'footer.php' ); ?>
+<?php include( 'footer.php' );

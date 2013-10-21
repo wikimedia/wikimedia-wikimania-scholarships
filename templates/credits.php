@@ -5,4 +5,4 @@
 <?= $wgLang->message('credits-page'); ?>
 </div>
 
-<?php include( 'footer.php' ); ?>
+<?php include( 'footer.php' );

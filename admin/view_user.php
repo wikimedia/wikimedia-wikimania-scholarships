@@ -69,4 +69,4 @@ $dal->IsSysAdmin($_SESSION['user_id']); if ($isadmin == 1) { ?>
 <input type="submit" id="save" name="save" value="Save" style="width: 10em" />
 </form>
 <?php } ?>
-<?php include TEMPLATEPATH . "footer.php" ?>
+<?php include TEMPLATEPATH . "footer.php";

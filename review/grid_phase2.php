@@ -88,4 +88,4 @@ $pager = new Pagination($params, $default_pp);
 $pager->render();
 ?>
 
-<?php include TEMPLATEPATH . "footer_review.php" ?>
+<?php include TEMPLATEPATH . "footer_review.php";

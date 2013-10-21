@@ -76,5 +76,4 @@ $randpass = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk
 } else {
   print "Permission denied for this page.";
 }
-include TEMPLATEPATH . "footer.php" 
-?>
+include TEMPLATEPATH . "footer.php";

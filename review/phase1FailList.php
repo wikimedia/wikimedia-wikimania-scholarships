@@ -57,4 +57,4 @@ border:1px solid black;
 	<?php endforeach; ?>
 </table>
 </form>
-<?php include TEMPLATEPATH. "footer_review.php" ?>
+<?php include TEMPLATEPATH. "footer_review.php";

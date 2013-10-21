@@ -55,4 +55,4 @@ $schols = $dal->GetFinalScoring($partial);
 	<?php endforeach; ?>
 </table>
 </form>
-<?php include TEMPLATEPATH. "footer_review.php" ?>
+<?php include TEMPLATEPATH. "footer_review.php";

@@ -328,4 +328,4 @@ if (count($reviewers) > 0) {
 	type="hidden" id="last_id" name="last_id" value="<?= $schol['id'] ?>" />
 </form>
 </div>
-<?php include TEMPLATEPATH . "footer_review.php" ?>
+<?php include TEMPLATEPATH . "footer_review.php";

@@ -43,4 +43,4 @@ $country = $dal->GetCountryInfo($id);
 </fieldset>
 <input type="submit" id="save" name="save" value="Save"
 	style="width: 10em" /></form>
-<?php include TEMPLATEPATH . "footer_review.php" ?>
+<?php include TEMPLATEPATH . "footer_review.php";

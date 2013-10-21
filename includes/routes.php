@@ -38,4 +38,3 @@ $routes = array(
 );	
 
 $defaultRoute = $routes['apply'];
-?>

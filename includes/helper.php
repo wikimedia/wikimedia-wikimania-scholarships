@@ -50,5 +50,3 @@ function RankDropdownList($criterion,$scholarship_id) {
         $ret .= '</select>';
         return $ret;
 }
-
-?>

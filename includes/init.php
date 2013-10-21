@@ -34,5 +34,3 @@ require_once( 'DB.php' );
 
 $wgLang = new Lang();
 $wgRouter = new Router();
-
-?>

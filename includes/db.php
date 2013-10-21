@@ -616,4 +616,3 @@ HAVING p1score >= -2 and p1score <= 999 and s.exclude = 0 $limit $offset";
     		return $res;
 	}
 }
-?>

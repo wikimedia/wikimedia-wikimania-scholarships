@@ -136,5 +136,3 @@ Wikimania 2012 organizing team",
 		'footer-contact' => "Kontakt",
 		'MONTH_NAMES' =>  array('Jan','Feb','Mrz','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'),
 );
-
-?>

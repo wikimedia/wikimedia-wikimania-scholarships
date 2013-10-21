@@ -19,5 +19,3 @@ foreach( $data as $row ) {
 	str_replace( '"', ' ', $row );
 	print( '"' . join($row, '","') . '"' . "\n");
 }
-
-?>

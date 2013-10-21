@@ -20,4 +20,3 @@ $BASEURL = "/";
 $TEMPLATEBASE_REVIEW = $BASEURL . 'templates/';
 
 $mock = true;
-?>

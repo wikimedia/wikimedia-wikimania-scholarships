@@ -113,4 +113,4 @@ $tempRegionSelected=str_replace("&","%26", $tempRegionSelected);
 	<?php endforeach; ?>
 </table>
 </form>
-<?php include TEMPLATEPATH. "footer_review.php" ?>
+<?php include TEMPLATEPATH. "footer_review.php";

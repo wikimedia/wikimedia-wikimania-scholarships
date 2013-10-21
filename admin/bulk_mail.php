@@ -364,6 +364,6 @@ foreach($schols as $line):
 	}*/
 
 	$cnt++;
-endforeach; 
-?>
-<?php include "$BASEDIR/templates/footer.php" ?>
+endforeach;
+
+include "$BASEDIR/templates/footer.php";
