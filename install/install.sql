@@ -312,6 +312,7 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `howheard` text character set utf8,
   `why` text character set utf8,
   `future` text character set utf8,
+  `englistAbility` text character set utf8,
   `username` varchar(64) character set utf8 default NULL,
   `project` text,
   `projectlangs` text,
