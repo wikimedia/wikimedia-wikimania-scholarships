@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `wm12` tinyint(1) default NULL,
   `wm13` tinyint(1) default NULL,
   `presentation` tinyint(1) default NULL,
-  `presentationTopic` text 
+  `presentationTopic` text,
   `howheard` text,
   `why` text,
   `future` text,
