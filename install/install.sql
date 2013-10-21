@@ -324,12 +324,15 @@ CREATE TABLE IF NOT EXISTS `scholarships` (
   `agreestotravelconditions` tinyint(1) NOT NULL default '0',
   `willgetvisa` tinyint(1) NOT NULL default '0',
   `willpayincidentals` tinyint(1) NOT NULL default '0',
+  `chapteragree` tinyint(1) NOT NULL default '0',
+  `wmfAgreeName` text character set utf8,
   `rank` int(11) NOT NULL default '0',
   `notes` text character set utf8,
   `exclude` tinyint(1) NOT NULL default '0',
   `confirmed` tinyint(1) NOT NULL default '0',
   `confhash` varchar(8) default NULL,
   `entered_on` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `ipaddr` varbinary(15) default '127.0.0.1',
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=92 ;
 
