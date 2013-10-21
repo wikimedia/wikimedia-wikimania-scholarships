@@ -32,4 +32,4 @@ if ( ( isset($_GET['uselang']) ) or ( isset( $values['uselang']) ) ) {
 <li class="last"><a href="<?php echo $BASEURL; ?>translate"><?php echo $wgLang->message('help-translate'); ?></a></li>
 </ul>
 </div>
-<h1><a id="banner" href="<?php echo $BASEURL; ?>" title="Wikimania 2013"><img src="<?php echo $TEMPLATEBASE; ?>images/Wikimania-2013-bannerm.png" alt="Wikimania 2013"/></a></h1>
+<h1><a id="banner" href="<?php echo $BASEURL; ?>" title="Wikimania 2013"><img src="<?php echo $TEMPLATEBASE; ?>images/Wikimania-2013-bannerm.png" alt="Wikimania"/></a></h1>
