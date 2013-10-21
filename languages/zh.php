@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $messages['zh'] = array(
 		'header-title' => "2013年維基媒體國際會議 - 獎助金申請",
 		'page-header' => "2013年維基媒體國際會議獎助金",
