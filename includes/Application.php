@@ -53,14 +53,14 @@ class Application {
 			if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $data['email'])) {
 				array_push( $this->errors, 'email' );
 			}
-			if($data['presentation']==1 && $data['presentationTopic']==''){
+			if(isset($data['presentation']) && $data['presentation']==1 && $data['presentationTopic']==''){
 				array_push($this->errors, 'presentationTopic');
 			}
 			
 			/*if($data['chapteragree']==0){
 				array_push( $this->errors, 'chapteragree' );
 			}*/
-			if($data['wmfagree']!=1){
+			if(!isset($data['wmfagree']) || $data['wmfagree']!=1){
 				array_push( $this->errors, 'wmfagree' );
 			}
 			if($data['wmfAgreeName']==''){
