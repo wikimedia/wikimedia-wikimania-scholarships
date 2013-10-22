@@ -7,7 +7,7 @@ body {
 	font-size: 14px;
 	color: #444444;
 	text-decoration: bold;
-	background-color: #FFFFFF;	
+	background-color: #FFFFFF;
 	margin-left: 10%;
 	margin-right: 10%;
 }
@@ -93,6 +93,7 @@ ul.langlist li:after {
 ul#footerlinks li.last:after,
 ul.langlist li.last:after {
  content: '';
+ padding: 0;
 }
 
 div.faq {
@@ -205,7 +206,7 @@ border: 1px solid darkblue;
   margin-bottom: 6em;
 }
 
-#submit { 
+#submit {
   float: left;
   margin: 1.5em;
 }

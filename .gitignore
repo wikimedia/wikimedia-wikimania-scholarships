@@ -1,5 +1,5 @@
 # Don't put config file in git!
-includes/config.php
+/config/config.php
 
 # vim temp files
 *.s[a-w][a-z]

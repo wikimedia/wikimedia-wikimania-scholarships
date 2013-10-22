@@ -15,16 +15,20 @@ define( 'INCLUDEPATH', BASEDIR . '/' . $include_path . '/' );
 define( 'TEMPLATEPATH', BASEDIR . '/' . $template_path . '/' );
 define( 'APPPATH', BASEDIR . '/' . $application_path . '/' );
 
-require_once( __DIR__ . "/config.php" );
+// config
+require_once( __DIR__ . "/../config/config.php" );
+
+// PEAR DB
+require_once( 'DB.php' );
+
 require_once( __DIR__ . "/helper.php" );
 require_once( __DIR__ . "/routes.php" );
-require_once( __DIR__ . "/db.php" );
 require_once( __DIR__ . "/variables.php" );
 require_once( __DIR__ . "/schema.php" );
 
 require_once( __DIR__ . "/Common.php" );
-require_once( __DIR__ . "/helper.php" );
-require_once( __DIR__ . "/pagination.php" );
+require_once( __DIR__ . "/DataAccessLayer.php" );
+require_once( __DIR__ . "/Pagination.php" );
 require_once( __DIR__ . "/Lang.php" );
 require_once( __DIR__ . "/Application.php" );
 require_once( __DIR__ . "/Request.php" );

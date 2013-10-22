@@ -203,7 +203,7 @@ class TemplateHelper {
 		return $html;
 	}
 
-	public function getTextArea( $app, $messageKey, $field, $value, $required ) {
+	public function getTextArea( $app, $messageKey, $field, $value, $required = false ) {
 		global $wgLang;
 
 		$html = '<li' . $this->haserror( $field, $app ) . '><label';

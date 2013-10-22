@@ -249,7 +249,6 @@ if ( $submitted != true ) {
 }
 
 echo '
-</div>
 <br clear="all" />';
 
 include( 'footer.php' );

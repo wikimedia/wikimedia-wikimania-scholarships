@@ -16,41 +16,37 @@ RewriteRule .* index.php/$0 [PT]
 
 ```
 server {
-  listen     80;
-  server_name  scholarships;
-  error_log  /opt/local/var/log/nginx/error.log debug;
-
-  location = / {
-    try_files @site @site;
-  }
-
-  location / {
-    try_files $uri $uri/ @site;
+    listen     80;
+    server_name  scholarships;
+    error_log  /opt/local/var/log/nginx/error.log debug;
     root /Library/WebServer/Documents/scholarships;
-  }
 
-  location ~ \.php$ {
-    index  index.php index.html index.htm;
-    root           /Library/WebServer/Documents/scholarships;
-    fastcgi_pass   127.0.0.1:9000;
-    fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
-    fastcgi_param  PHP_VALUE "error_log=/opt/local/var/log/nginx/scholarships.log";
-    include     fastcgi_params;
-  }
+    location = / {
+      try_files @site @site;
+    }
 
-  location @site {
-    fastcgi_pass   127.0.0.1:9000;
-    root           /Library/WebServer/Documents/scholarships;
-    include fastcgi_params;
-    fastcgi_param  SCRIPT_FILENAME $document_root/index.php;
-    fastcgi_param  PHP_VALUE "error_log=/opt/local/var/log/nginx/scholarships.log";
+    location / {
+      try_files $uri @site;
+    }
+
+    location ~ \.php$ {
+      index  index.php index.html index.htm;
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+      fastcgi_param  PHP_VALUE "error_log=/opt/local/var/log/nginx/scholarships.log";
+      include     fastcgi_params;
+    }
+
+    location @site {
+      rewrite ^ /index.php;
+    }
   }
 }
 ```
 
 ### Config file
 
-Create includes/config.php, based on config.sample.php, filling in database credentials and other settings.
+Create config/config.php, based on config.sample.php, filling in database credentials and other settings.
 
 ### Base URL
 
