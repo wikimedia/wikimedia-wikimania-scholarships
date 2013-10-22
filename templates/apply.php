@@ -104,7 +104,7 @@ if ( $submitted != true ) {
 	$contact .= $templateHelper->getField( $app, 'name-last', 'lname', $values['lname'], true );
 	$contact .= $templateHelper->getField( $app, 'form-email', 'email', $values['email'], true );
 	$contact .= $templateHelper->getField( $app, 'form-telephone', 'telephone', $values['telephone'] );
-	$contact .= $templateHelper->getField( $app, 'form-mailing-address', 'address', $values['address'] );
+	$contact .= $templateHelper->getTextArea( $app, 'form-mailing-address', 'address', $values['address'] );
 
 	$contact .= $templateHelper->getResidenceHtml( $app, $COUNTRY_NAMES, $values['residence'], true );
 
@@ -174,7 +174,7 @@ if ( $submitted != true ) {
 
 	$interest .= $templateHelper->getYearsAttended( $attended );
 	$interest .= $templateHelper->getCheckbox( 'form-presenter', 'presentation', $values['presentation'] );
-	$interest .= $templateHelper->getField( $app, 'form-presentation-topic', 'presentationTopic', $values['presentationTopic'], true );
+	$interest .= $templateHelper->getField( $app, 'form-presentation-topic', 'presentationTopic', $values['presentationTopic'], false );
 	$interest .= $templateHelper->getHowHeard( $values['howheard'] );
 	$interest .= $templateHelper->getTextArea( $app, 'form-enrichment', 'why', $values['why'], true );
 
@@ -211,7 +211,7 @@ if ( $submitted != true ) {
 	$agreement .= $templateHelper->getCheckbox( 'form-incidentals', 'willpayincidentals', $values['willpayincidentals'] );
 	$agreement .= $templateHelper->getCheckbox( 'form-travel-conditions', 'agreestotravelconditions', $values['agreestotravelconditions'] );
 
-	$agreement = '</ul>
+	$agreement .= '</ul>
 </fieldset>
 <!-- agreement form end-->';
 

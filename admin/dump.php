@@ -15,4 +15,3 @@ require_once('init.php');
 	foreach ($schols as $row) {
 		print implode("\t", $row) . "\n";
 	}
-?>

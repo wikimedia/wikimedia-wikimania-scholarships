@@ -151,4 +151,3 @@ Wikimania 2013 organizing team</p>",
 		'footer-contact' => "contact",
 		'MONTH_NAMES' =>  array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'),
 );
-?>

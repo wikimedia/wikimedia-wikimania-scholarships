@@ -262,4 +262,3 @@ $FIELDS = array(
 	"presentationTopic",
 	"wmfAgreeName"
 	);
-?>

@@ -40,4 +40,4 @@ $dal = new DataAccessLayer();
 </form>
 <br clear="all" />
 </div>
-<?php include TEMPLATEPATH . "footer_review.php" ?>
+<?php include TEMPLATEPATH . "footer_review.php";

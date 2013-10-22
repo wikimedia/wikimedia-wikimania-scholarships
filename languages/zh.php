@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $messages['zh'] = array(
 		'header-title' => "2013年維基媒體國際會議 - 獎助金申請",
 		'page-header' => "2013年維基媒體國際會議獎助金",
@@ -137,4 +137,3 @@ $messages['zh'] = array(
 		'footer-contact' => "聯絡",
 		'MONTH_NAMES' => array('一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'),
 );
-?>

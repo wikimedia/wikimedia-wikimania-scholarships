@@ -17,6 +17,6 @@ $chapters_application = FALSE;
 $TEMPLATEDIR = BASEDIR . '/templates/';
 $TEMPLATEBASE = '/templates/';
 $BASEURL = "/";
+$TEMPLATEBASE_REVIEW = $BASEURL . 'templates/';
 
 $mock = true;
-?>

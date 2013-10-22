@@ -39,4 +39,4 @@ require_once('init.php');
 			endforeach; ?>
 	</table>
 	</form>
-<?php include TEMPLATEPATH . "footer.php" ?>
+<?php include TEMPLATEPATH . "footer.php";

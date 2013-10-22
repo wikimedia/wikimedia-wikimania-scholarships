@@ -71,4 +71,4 @@ require_once('init.php');
 	<input type="submit" id="save" name="save" value="Save" style="width: 10em" />
 
 	</form>
-<?php include TEMPLATEPATH . "footer.php" ?>
+<?php include TEMPLATEPATH . "footer.php";

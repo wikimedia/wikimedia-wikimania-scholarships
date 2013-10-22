@@ -90,5 +90,3 @@ Veuillez contacter wikimania-scholarships@wikimedia.org pour toute question rela
 Cordialement,
 The Wikimania scholarship team",
 );
-
-?>

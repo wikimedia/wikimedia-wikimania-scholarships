@@ -26,4 +26,4 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	</fieldset>
 	</form>
 </div>
-<?php include TEMPLATEPATH . "footer.php" ?>
+<?php include TEMPLATEPATH . "footer.php";
