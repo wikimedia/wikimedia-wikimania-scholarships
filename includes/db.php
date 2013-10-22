@@ -1,5 +1,7 @@
 <?php
-	
+// PEAR DB
+require_once( 'DB.php' );
+
 class DataAccessLayer {
 	protected $db;
 

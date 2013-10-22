@@ -31,7 +31,4 @@ require_once( __DIR__ . "/Request.php" );
 require_once( __DIR__ . "/Router.php" );
 require_once( __DIR__ . '/TemplateHelper.php' );
 
-// PEAR DB
-//require_once( 'DB.php' );
-
 $wgLang = new Lang();
