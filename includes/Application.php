@@ -39,8 +39,8 @@ class Application {
 			if($data['contribution'] == '') {
 				array_push( $this->errors, 'contribution' );
 			}
-			if($data['englistAbility'] == '') {
-				array_push( $this->errors, 'englistAbility' );
+			if($data['englishability'] == '') {
+				array_push( $this->errors, 'englishability' );
 			}
 			
 			

@@ -261,7 +261,7 @@ class TemplateHelper {
 		global $wgLang;
 
 		$html = "
-	<li><input type='checkbox' id='$field' name='$field' value='$value' ";
+	<li><input type='checkbox' id='$field' name='$field' value='1' ";
 		$html .= $value == 1 ? "checked = 'checked' " : '';
 		$html .= '/>' . $wgLang->message( $messageKey ) . '</li>';
 

@@ -211,7 +211,7 @@ if ( $submitted != true ) {
 	$agreement .= $templateHelper->getCheckbox( 'form-incidentals', 'willpayincidentals', $values['willpayincidentals'] );
 	$agreement .= $templateHelper->getCheckbox( 'form-travel-conditions', 'agreestotravelconditions', $values['agreestotravelconditions'] );
 
-	$agreement = '</ul>
+	$agreement .= '</ul>
 </fieldset>
 <!-- agreement form end-->';
 
