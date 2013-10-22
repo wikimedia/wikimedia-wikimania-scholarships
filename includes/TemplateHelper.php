@@ -220,7 +220,7 @@ class TemplateHelper {
 		}
 
 		$html .= '>';
-		$html .= $value ? 'value="' . $value . '" ' : ' ';
+		$html .= $value ? $value : ' ';
 		$html .= '</textarea></li>';
 
 		return $html;
