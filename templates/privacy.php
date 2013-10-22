@@ -1,9 +1,11 @@
-<?php include( 'header.php' ); ?>
+<?php
+include( 'header.php' );
 
+echo '
 <div id="privacy">
-<h2><?php echo $wgLang->message('form-privacy'); ?></h2>
-<p><?php echo $wgLang->message('privacy-page'); ?></p>
+<h2>' . $wgLang->message( 'form-privacy' ) . '</h2>
+<p>' . $wgLang->message( 'privacy-page' ) . ' </p>
 
-</div>
+</div>';
 
-<?php include( 'footer.php' );
+include( 'footer.php' );

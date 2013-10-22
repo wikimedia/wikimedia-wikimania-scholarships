@@ -1,9 +1,11 @@
-<?php include( 'header.php' ); ?>
+<?php
+include( 'header.php' );
 
+echo '
 <div id="contact">
-<h2><?php echo $wgLang->message('contact-us'); ?></h2>
-<p><?php echo $wgLang->message('contact-page'); ?></p>
+<h2>' . $wgLang->message( 'contact-us' ). '</h2>
+<p>' . $wgLang->message( 'contact-page' ) . '</p>
 
-</div>
+</div>';
 
-<?php include( 'footer.php' );
+include( 'footer.php' );

@@ -53,7 +53,7 @@ $messages['en'] = array(
 		'form-extent-explain' => "In the space below, please explain the extent and nature of your participation in the Wikimedia projects (Are you a chapter member? An administrator? A longtime editor? An editor on featured articles? A frequent contributor of high quality images? Etc.)",
 		'form-contrib-explain' => "In the space below, please explain the extent and nature of your participation in other free knowledge, free software, collaborative and/or educational initiatives other than the Wikimedia projects.",
 		//'form-future-explain' => "In the space below, please state that why are you interested in attending Wikimania?",
-		'form-englistAbility-explain' => "Hong Kong is an international gourmet paradise. Please use less than 200 words to describe your favourite dish of food.",
+		'form-englishability-explain' => "Hong Kong is an international gourmet paradise. Please use less than 200 words to describe your favourite dish of food.",
 		'form-partial' => "Partial scholarships",
 		'form-partial-explain' => "In addition to the full scholarship option, this year a limited number of <b>partial scholarships</b> are also available to subsidize up to 50% of the estimated air fare from your nearest international airport according to <a href='https://wikimania2013.wikimedia.org/wiki/Getting_to_Hong_Kong'>Getting to Hong Kong</a>.",
 		'form-wantspartial' => "Would you like to be considered for the partial scholarship option?",
@@ -68,7 +68,7 @@ $messages['en'] = array(
 		'form-email-response' =>
 "Dear $1,
 
-This is a confirmation of your application for a scholarship to travel to Wikimania 2013. 
+This is a confirmation of your application for a scholarship to travel to Wikimania 2013.
 
 We will let you know the decision on your scholarship after we finish reviewing and scoring all applications.
 
@@ -102,11 +102,11 @@ Your login info is:
 username: %s
 password: %s
 
-You may login at http://scholarship.wikimedia.hk/user/login 
+You may login at http://scholarship.wikimedia.hk/user/login
 
 You may change your password at https://scholarship.wikimedia.hk/review/user_pwreset.php
 
-Sincerely, 
+Sincerely,
 Simon Shek
 Wikimania 2013 Organizing Team",
 		'not-open' => "Scholarship applications are not open yet.",
@@ -115,6 +115,20 @@ Wikimania 2013 Organizing Team",
 		'form-privacy' => "Privacy",
         'form-review' => "All information contained in this application will be reviewed by the members of the Wikimania Scholarship Committee. All personal information will be held strictly confidential by the Committee, the <a href='http://wikimediafoundation.org'>Wikimedia Foundation</a>, and <a href='http://www.wikimedia.hk'>Wikimedia Hong Kong</a>.",
 		'form-chapteragree' => "I would like to be considered for a <a href='http://meta.wikimedia.org/wiki/Wikimedia chapters' alt='Wikimedia chapters'>Wikimedia chapter</a> scholarship, and agree to share my information with chapters for purpose of selecting and awarding scholarships.",
+		'form-rights-heading' => "Applicant Rights & Consent to Data Processing and Transfer",
+		'form-rights' => "I as an applicant for a Wikimedia Foundation ('WMF') scholarship relating to my participation in the 2013 Wikimania conference hosted in Hong Kong, hereby acknowledge and affirmatively consent to the following as a prerequisite to the consideration of my 2013 Wikimania scholarship application ('Application'):
+		<br /><br />
+		(a) Any personal data or sensitive personal data that I submit as part of or in relation to my Application (collectively 'my Data') may be accessed and reviewed by (i) WMF; (ii) official Wikimedia Chapters, a representative list of which can be found at:  <a href='http://meta.wikimedia.org/wiki/Wikimedia_chapters'>http://meta.wikimedia.org/wiki/Wikimedia_chapters</a> ('WM Chapters'); and (iii) members of a scholarship committee made up of Wikimedia movement members, a representative list of which can be found at:
+		<a href='https://wikimania2013.wikimedia.org/wiki/Scholarship_committee'>https://wikimania2013.wikimedia.org/wiki/Scholarship_committee</a> ('Scholarship Committee'), for the purposes of evaluating my Application.
+		<br /><br />
+		(b) Any Data that I submit as a part of or in relation to my Application may be collected, stored, used, modified, communicated, archived, destroyed, or otherwise processed (collectively 'Processed' or 'Processing') by WMF, WM Chapters, Wikimedia CH ('WMCH'), and members of the Scholarship Committee.  My Data may be retained by WMF, WM Chapters, and/or WMCH until I request in writing to WMF that my Data be destroyed or for as long as required by applicable law.
+		<br /><br />
+		(c) My Data may be transmitted to or from WMF in the United States, WMCH in Switzerland, members of the Scholarship Committee in the country which they reside, and/or WM Chapters in the country which the chapter is based.
+		<br /><br />
+		(d) The Data that I have submitted is true and accurate to the best of my knowledge.  However, if any of my Data is inaccurate, I understand that I may request that my Data be corrected by emailing <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>.
+		<br /><br />
+		(e) I understand that I may ask WMF if my Data is being Processed and may request that WMF provide information about: what of my Data WMF currently holds; the purpose of Processing my Data; the categories of my Processed Data; who the individuals involved in Processing my Data are; and who the individuals who are designated to receive my Data are.  I understand that I can request any of the information enumerated in this section by emailing <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>.",
+		'form-wmfAgreeName' => "Please enter your full name:",
 		'form-wmfagree' => "I agree the statement of 'Applicant Rights & Consent to Data Processing and Transfer'.",
 		'privacy-page' => "<p>All information submitted in scholarship applications will be reviewed by the members of the Wikimania Scholarship Committee.</p>
 <p>All personal information will be held strictly confidential by the Committee, the <a href='http://wikimediafoundation.org'>Wikimedia Foundation</a>, and <a href='http://www.wikimedia.hk'>Wikimedia Hong Kong</a>, in accordance to the Wikimedia Foundation <a href='http://wikimediafoundation.org/wiki/Privacy_policy'>privacy policy</a> and Wikimedia Hong Kong <a href='http://www.wikimedia.hk/index.php/Wikimedia_Hong_Kong:%E7%A7%81%E9%9A%B1%E6%94%BF%E7%AD%96'>privacy</a>, respectively.</p>",

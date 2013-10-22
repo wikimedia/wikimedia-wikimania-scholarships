@@ -2,49 +2,82 @@
 
 class Router {
 
+	public $routes;
+
+	public $class;
+
+	public $method;
+
+	protected $request;
+
+	protected $baseUrl;
+
+	protected $defaultRoute;
+
+	public function __construct( $baseUrl, $routes, $defaultRoute ) {
+		$this->baseUrl = $baseUrl;
+		$this->request = Request::newFromGlobals();
+		$this->routes = $routes;
+		$this->defaultRoute = $defaultRoute;
+	}
+
 	public function isValid($page) {
-		global $routes;
-		if ( array_key_exists( $page, $routes ) ) {
+		if ( array_key_exists( $page, $this->routes ) ) {
 			return true;
-		} 
+		}
 		return false;
 	}
 
 	public function route() {
-		global $defaultRoute, $routes, $BASEURL;
-		$parts = explode('?', $_SERVER['REQUEST_URI']);
-                $mainreq = explode($BASEURL, $parts[0]);
-	
-		$reqjoin = join($mainreq, '/');
-		$req = explode('/', $reqjoin);
+		$server = $this->request->getServer();
 
-		if ( ( $req[0] == "index.php" ) || ( strlen($req[0]) < 1 ) ) {
-			array_shift($req);
+		// separate query string, get base request
+		$parts = explode( '?', $server['REQUEST_URI'] );
+		$basereq = explode( $this->baseUrl, $parts[0] );
+
+		$reqjoin = join( $basereq, '/' );
+		$req = explode( '/', $reqjoin );
+
+		while ( isset( $req[0] ) && ( $req[0] == "index.php" ||
+			( strlen( $req[0] ) < 1 ) && count( $req ) > 0 )
+		) {
+			array_shift( $req );
 		}
 
-		$page = isset($req[0]) ? $req[0] : null;
-		$action = isset($req[1]) ? $req[1] : null;
-		$action2 = isset($req[2]) ? $req[2] : null;
-
-		$path = '';		
-		if ( strlen( $page ) > 0 ) {
-			$path = $path . $page;
-		}
-
-		if ( strlen( $action ) > 0 ) {
-			$path = $path . '/' . $action;
-		}
-
-		if ( strlen( $action2 ) > 0 ) {
-			$path = $path . '/' . $action2;
-		}
+		$path = $this->getPath( $req );
 
 		if ( $this->isValid( $path ) ) {
-			return $routes[$path];
-		} elseif ( ( $page == 'review' ) || ( $page == 'user' ) ) {
-			return $routes['user/login'];
+			return $this->routes[$path];
+		} elseif ( $this->class && ( in_array( $this->class, array( 'review', 'user' ) ) ) ) {
+			return $this->routes['user/login'];
 		} else {
-			return $defaultRoute;
+			return $this->defaultRoute;
 		}
-	}	
-}	
+	}
+
+	protected function getPath( $req ) {
+		$methods = array();
+		$path = '';
+
+		$this->class = isset( $req[0] ) ? $req[0] : null;
+
+		if ( strlen( $this->class ) > 0 ) {
+			$path = $path . $this->class;
+		}
+
+		if ( isset( $req[1] ) ) {
+			$methods[] = $req[1];
+
+			if ( isset( $req[2] ) ) {
+				$methods[] = $req[2];
+			}
+		}
+
+		foreach( $methods as $method ) {
+			$path .= '/' . $method;
+		}
+
+		return $path;
+	}
+
+}

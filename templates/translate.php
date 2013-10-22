@@ -1,8 +1,11 @@
-<?php include( 'header.php' ); ?>
+<?php
 
+include( 'header.php' );
+
+echo '
 <div id="translate">
-<h2><?= $wgLang->message('help-translate'); ?></h2>
-<?= $wgLang->message('translate-page'); ?>
-</div>
+<h2>' . $wgLang->message( 'help-translate' ) . '</h2>'
+. $wgLang->message('translate-page') . '
+</div>';
 
-<?php include( 'footer.php' );
+include( 'footer.php' );
