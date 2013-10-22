@@ -46,7 +46,7 @@ server {
 
 ### Config file
 
-Create includes/config.php, based on config.sample.php, filling in database credentials and other settings.
+Create config/config.php, based on config.sample.php, filling in database credentials and other settings.
 
 ### Base URL
 
