@@ -1,6 +1,6 @@
 <?php
 
-$footer = '<div id="footer" class="fifteen columns">
+$footer = '<div id="footer">
 <ul id="footerlinks">
 <li><a href="http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ">' . $wgLang->message( 'footer-faq' ) . '</a></li>
 <li><a href="' . $BASEURL . 'credits">' . $wgLang->message( 'footer-credits' ) . '</a></li>
