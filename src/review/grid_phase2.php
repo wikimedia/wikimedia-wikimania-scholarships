@@ -46,9 +46,9 @@ $params = array(
 
 $schols = $dal->gridData($params);
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <div id="form-container" class="fourteen columns">
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <ul class="sublinks">
 <li><a href="<?php echo $BASEURL; ?>review/phase2?apps=all">All applications</a></li>
 <li><a href="<?php echo $BASEURL; ?>review/phase2?apps=unreviewed">All unreviewed</a></li>
@@ -88,4 +88,4 @@ $pager = new Pagination($params, $default_pp);
 $pager->render();
 ?>
 
-<?php include TEMPLATEPATH . "footer_review.php";
+<?php include "templates/footer_review.php";

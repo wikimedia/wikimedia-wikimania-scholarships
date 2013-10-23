@@ -2,7 +2,7 @@
 
 define( 'WMSCHOLS', true );
 
-require_once( "includes/init.php" );
+require_once( "../src/init.php" );
 
 $router = new Router( $BASEURL, $routes, $defaultRoute );
 $path = $router->route();

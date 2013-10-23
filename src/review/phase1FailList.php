@@ -24,7 +24,7 @@ if($_GET["action"]=="export"){
 
 $ctr=1;	
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <style>
 table, td, th
 {
@@ -34,7 +34,7 @@ border:1px solid black;
 
 <form method="get" action="<?php echo $BASEURL; ?>review/p1/failList">
 <h1>Phase 1 - Fail List</h1>
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <input type="hidden" name="action" value="export">
 <input type="submit" value="Export list">
 <p></p>
@@ -57,4 +57,4 @@ border:1px solid black;
 	<?php endforeach; ?>
 </table>
 </form>
-<?php include TEMPLATEPATH. "footer_review.php";
+<?php include "templates/footer_review.php";

@@ -45,11 +45,11 @@ require_once('init.php');
 	}
 
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 
 	<form method="post" action="<?php echo $BASEURL; ?>user/password/reset">
 	<h1>View User Info</h1>
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 	
 	<fieldset>
 	<input type="hidden" name="id" id="id" value="<?= $user['id'] ?>" />
@@ -71,4 +71,4 @@ require_once('init.php');
 	<input type="submit" id="save" name="save" value="Save" style="width: 10em" />
 
 	</form>
-<?php include TEMPLATEPATH . "footer.php";
+<?php include "templates/footer.php";

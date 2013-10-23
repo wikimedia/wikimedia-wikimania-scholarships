@@ -14,10 +14,10 @@ $partial = $_GET['partial'] ? $_GET['partial'] : 0;
 $dal = new DataAccessLayer();
 $schols = $dal->GetFinalScoring($partial);
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <form method="post" action="<?php echo $BASEURL; ?>grid">
 <h1>Applications</h1>
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <table style="width: 100%" border="1">
 	<tr>
 		<th>counter</th>
@@ -55,4 +55,4 @@ $schols = $dal->GetFinalScoring($partial);
 	<?php endforeach; ?>
 </table>
 </form>
-<?php include TEMPLATEPATH. "footer_review.php";
+<?php include "templates/footer_review.php";

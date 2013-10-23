@@ -56,10 +56,10 @@ if (isset($_POST['save'])) {
 $skipid = $dal->skipApp( $user_id, $id, $phase );
 $schol = $dal->GetScholarship( $id );
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <div id="form-container" class="fourteen columns">
 <form method="post" action="<?= $BASEURL; ?>review/view?phase=<?= $phase;?>&id=<?= $id; ?>">
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <!--score box start-->
 <?php if ($phase>0): ?>
 <div id="application-view">
@@ -328,4 +328,4 @@ if (count($reviewers) > 0) {
 	type="hidden" id="last_id" name="last_id" value="<?= $schol['id'] ?>" />
 </form>
 </div>
-<?php include TEMPLATEPATH . "footer_review.php";
+<?php include "templates/footer_review.php";

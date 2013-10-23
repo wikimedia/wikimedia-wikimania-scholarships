@@ -60,10 +60,10 @@ if ( isset( $_GET['region'] ) ) {
 
 $schols = $dal->search($params);
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <h2>Scholarship Applications</h2>
 <div id="form-container" class="fourteen columns">
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <form method="get" action="<?php echo $BASEURL; ?>review/search/results">
 <table id="grid" class="grid" style="width: 100%;">
 	<tr>
@@ -106,4 +106,4 @@ $pager->render();
 ?>
 
 </div>
-<?php include TEMPLATEPATH . "footer_review.php";
+<?php include "templates/footer_review.php";

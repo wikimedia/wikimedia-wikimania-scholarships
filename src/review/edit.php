@@ -59,7 +59,7 @@ require_once('init.php');
 	$rankings = $dal->GetPhase1Rankings($schol['id']);
 
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 	<script type="text/javascript">
 		function toggleDump() {
 			var dump = document.getElementById('dump');
@@ -87,7 +87,7 @@ require_once('init.php');
 
 	<form method="post" action="edit.php">
 	<h2>Edit application</h2>
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 	<div style="position: fixed; top: 20%; left: 3%">
 	<p><input type="submit" id="up" name="up" value="+" style="color: green; font-size: 300%; width: 50px; height: 50px" /><br/>
 	<input type="submit" id="skip" name="skip" value="Skip" style="width: 50px; height: 50px" /><br/>
@@ -255,4 +255,4 @@ require_once('init.php');
 	<input type="hidden" id="last_id" name="last_id" value="<?= $schol['id'] ?>"/>
 	</form>
 	</div>
-<?php include TEMPLATEPATH . "footer_review.php"
+<?php include "templates/footer_review.php"

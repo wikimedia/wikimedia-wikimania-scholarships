@@ -42,7 +42,7 @@ if($_GET["action"]=="export"){
 
 $ctr=1;
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <style>
 table, td, th
 {
@@ -52,7 +52,7 @@ border:1px solid black;
 
 <form method="get" action="<?php echo $BASEURL; ?>review/p2/list">
 <h1>Phase 2 List</h1>
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <select name="partial">
 <option value="2" <?php if($partial==2) echo 'selected="selected"'; ?>>all</option>
 <option value="1" <?php if($partial==1) echo 'selected="selected"'; ?>>partial</option>
@@ -113,4 +113,4 @@ $tempRegionSelected=str_replace("&","%26", $tempRegionSelected);
 	<?php endforeach; ?>
 </table>
 </form>
-<?php include TEMPLATEPATH. "footer_review.php";
+<?php include "templates/footer_review.php";

@@ -37,11 +37,11 @@ if ($id!="new")
 $user = $dal->GetUserInfo($id);
 
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 
 <form method="post" action="<?php echo $BASEURL; ?>user/view">
 <h1>View User Info</h1>
-<?php include TEMPLATEPATH . "admin_nav.php";
+<?php include "templates/admin_nav.php";
  $isadmin =
 $dal->IsSysAdmin($_SESSION['user_id']); if ($isadmin == 1) { ?>
 <fieldset><input type="hidden" name="id" id="id"
@@ -69,4 +69,4 @@ $dal->IsSysAdmin($_SESSION['user_id']); if ($isadmin == 1) { ?>
 <input type="submit" id="save" name="save" value="Save" style="width: 10em" />
 </form>
 <?php } ?>
-<?php include TEMPLATEPATH . "footer.php";
+<?php include "templates/footer.php";

@@ -9,10 +9,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 $dal = new DataAccessLayer();
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <h2>Scholarship Applications</h2>
 <div id="form-container" class="fourteen columns">
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <form method="get" action="<?php echo $BASEURL; ?>review/search/results">
 <div style="width: 90%; margin: 0 auto;">
 <div style='width: 50%; float: left;'>
@@ -40,4 +40,4 @@ $dal = new DataAccessLayer();
 </form>
 <br clear="all" />
 </div>
-<?php include TEMPLATEPATH . "footer_review.php";
+<?php include "templates/footer_review.php";

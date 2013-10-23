@@ -14,11 +14,11 @@ $order = (isset($_GET['order']))?$_GET['order']:'';
 $dal = new DataAccessLayer();
 $users = $dal->GetListofRegions();
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 <form method="post" action="grid.php">
 <h2>Applications</h2>
 <div id="form-container" class="fourteen columns">
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 <table id="grid" class="grid">
 	<tr>
 		<th style='width: 32%;'>region</th>
@@ -41,4 +41,4 @@ $users = $dal->GetListofRegions();
 </table>
 </form>
 </div>
-<?php include TEMPLATEPATH . "footer_review.php";
+<?php include "templates/footer_review.php";

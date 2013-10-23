@@ -15,10 +15,10 @@ require_once('init.php');
 	
         $rowstyleeven = 0;
 ?>
-<?php include TEMPLATEPATH . "header_review.php" ?>
+<?php include "templates/header_review.php" ?>
 	<form method="post" action="<?php echo $BASEURL; ?>review/grid">
 	<h1>Applications</h1>
-<?php include TEMPLATEPATH . "admin_nav.php" ?>
+<?php include "templates/admin_nav.php" ?>
 	<table style="width: 100%">
 		<tr>
 			<th>id</th>
@@ -39,4 +39,4 @@ require_once('init.php');
 			endforeach; ?>
 	</table>
 	</form>
-<?php include TEMPLATEPATH . "footer.php";
+<?php include "templates/footer.php";

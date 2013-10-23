@@ -13,8 +13,8 @@ $user_id = $_SESSION['user_id'];
 $dal = new DataAccessLayer();
 $username = $dal->GetUsername($_SESSION['user_id']);
 
-include TEMPLATEPATH . "header_review.php";
-include TEMPLATEPATH . "admin_nav.php";
+include 'templates/header_review.php';
+include 'templates/admin_nav.php';
 
 if (isset($_POST['save'])) {
 	$data = $_POST;
@@ -76,4 +76,4 @@ $randpass = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk
 } else {
   print "Permission denied for this page.";
 }
-include TEMPLATEPATH . "footer.php";
+include 'templates/footer.php';
