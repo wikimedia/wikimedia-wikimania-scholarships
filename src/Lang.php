@@ -12,7 +12,7 @@ class Lang {
 	}
 
 	function langDir() {
-		$langdir = __DIR__ . '/../languages';
+		$langdir = __DIR__ . '/languages';
 		return $langdir;
 	}
 
