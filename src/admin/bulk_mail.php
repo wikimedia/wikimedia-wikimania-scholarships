@@ -1,6 +1,4 @@
 <?php
-require_once('init.php');
-
 function mail_msg($to, $subject, $body) {
 	require_once "Mail.php";
 	$from = $wgLang->message('email-from') . "<$email_from>";

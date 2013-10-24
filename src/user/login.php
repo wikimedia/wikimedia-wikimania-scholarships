@@ -1,6 +1,4 @@
 <?php 
-require_once('init.php');
-
 if (isset($_POST['username']) && isset($_POST['password'])) {
 	$user = new DataAccessLayer();
 	$res = $user->GetUser($_POST['username']);

@@ -4,8 +4,6 @@
 	<p>Send mail:</p>
 	<p>Sent email to following list</p>
 <?php
-	require_once('init.php');
-
 	session_start();
 
 	if (!isset($_SESSION['user_id']))

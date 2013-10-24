@@ -1,6 +1,4 @@
 <?php
-require_once('init.php');
-
 	function YearsOld($date) {
 		$born = preg_replace('/^([^-]*).*$/', '\1', $date);
 		return 2011 - $born;

@@ -1,7 +1,4 @@
 <?php
-
-require_once('init.php');
-
 session_start();
 
 if (!isset($_SESSION['user_id'])) {

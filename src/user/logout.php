@@ -1,6 +1,4 @@
 <?php
-require_once('init.php');
-
 session_start();
 $_SESSION['user_id'] = false;
 session_unset();
