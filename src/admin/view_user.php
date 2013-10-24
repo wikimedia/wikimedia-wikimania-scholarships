@@ -22,7 +22,7 @@ if ( isset( $_POST['save'] ) ) {
 		$answers[$i] = mysql_real_escape_string( $_POST[$i] );
 	}
 	if ( $_POST['formstate'] == 'new' ) {
-		$answers['password'] = md5( $_POST['password'] );
+		$answers['password'] = Password::encodePassword( $_POST['password'] );
 		$id = $dal->NewUserCreate( $answers );
 	} else {
 		$dal->UpdateUserInfo( $answers, $_POST['id'] );

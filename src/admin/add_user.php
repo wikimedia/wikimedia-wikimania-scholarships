@@ -26,7 +26,7 @@ if ( isset( $_POST['save'] ) ) {
 		foreach ( $fieldnames as $i ) {
 			$answers[$i] = mysql_real_escape_string( $_POST[$i] );
 		}
-		$answers['password'] = md5( $_POST['password'] );
+		$answers['password'] = Password::encodePassword( $_POST['password'] );
 		$res = $dal->NewUserCreate( $answers );
 		if ( $res === false ) {
 			echo "<strong>Error: User already exists</strong>";

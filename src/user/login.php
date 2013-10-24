@@ -2,10 +2,15 @@
 if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
 	$user = new DataAccessLayer();
 	$res = $user->GetUser( $_POST['username'] );
-	if ( ( md5( $_POST['password'] ) == $res['password'] ) AND ( $user->UserIsBlocked() == 0 ) ) {
-		$_SESSION['user_id'] = $res['id'];
-		header( 'location: ' . $BASEURL . 'review/phase2' );
+	if ( Password::comparePasswordToHash( $_POST['password'], $res['password'] ) &&
+		$user->UserIsBlocked() == 0 ) {
+			$_SESSION['user_id'] = $res['id'];
+
+		// FIXME: generate new session if on authentication
+		// FIXME: session should store prior destination
+		header( 'location: ' . $BASEURL . 'review/phase1' );
 		exit();
+
 	} else {
 		$error = "Invalid credentials.";
 	}

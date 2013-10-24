@@ -1,3 +1,10 @@
+Wikimania Scholarship Application
+=================================
+
+System Requirements
+-------------------
+* PHP >= 5.3.7
+
 ##Setup
 
 ### Sample .htaccess file

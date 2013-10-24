@@ -25,5 +25,6 @@ require_once 'Application.php';
 require_once 'Request.php';
 require_once 'Router.php';
 require_once 'TemplateHelper.php';
+require_once 'Password.php';
 
 $wgLang = new Lang();

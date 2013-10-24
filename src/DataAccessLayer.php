@@ -573,17 +573,22 @@ class DataAccessLayer {
 		return $res['blocked'];
 	}
 
-	function UpdatePassword( $oldpw, $newpw, $id, $force = NULL ) {
-		if ( $force == 1 ) {
-			$this->db->query( "update users set password = ? where id = ?", array( md5( $newpw ), $id ) );
-			return 1;
+	function UpdatePassword( $oldpw, $newpw, $id, $force = false ) {
+		if ( $force ) {
+			$this->db->query( "update users set password = ? where id = ?",
+				array( Password::encodePassword( $newpw ), $id ) );
+			return true;
+
 		} else {
-			$userdata = $this->db->query( 'select password from users where id = ?', array( $id ) )->fetchRow();
-			if ( $userdata['password'] == md5( $oldpw ) ) {
-				$this->db->query( "update users set password = ? where id = ?", array( md5( $newpw ), $id ) );
-				return 1;
+			$userdata = $this->db->query( 'select password from users where id = ?',
+				array( $id ) )->fetchRow();
+			if ( Password::comparePasswordToHash( $oldpw, $userdata['password'] ) ) {
+				$this->db->query( "update users set password = ? where id = ?",
+					array( Password::encodePassword( $newpw ), $id ) );
+				return true;
+
 			} else {
-				return 0;
+				return false;
 			}
 		}
 	}
