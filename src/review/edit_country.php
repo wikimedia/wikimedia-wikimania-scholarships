@@ -1,25 +1,24 @@
 <?php
-if (!isset($_SESSION['user_id']))
-{
-	header('location: ' . $BASEURL . 'user/login');
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 
 $user_id = $_SESSION['user_id'];
 $dal = new DataAccessLayer();
 
-if (isset( $_GET['id']) ) {
+if ( isset( $_GET['id'] ) ) {
 	$id = $_GET['id'];
 } else {
 	$id = $_POST['id'];
 }
 
-if (isset($_POST['save'])) {
+if ( isset( $_POST['save'] ) ) {
 	$dal->UpdateCountryRank( $id , $_POST['rank'] );
 	$id++;
 }
 
-$country = $dal->GetCountryInfo($id);
+$country = $dal->GetCountryInfo( $id );
 
 ?>
 <?php include "templates/header_review.php" ?>
@@ -39,4 +38,4 @@ $country = $dal->GetCountryInfo($id);
 </fieldset>
 <input type="submit" id="save" name="save" value="Save"
 	style="width: 10em" /></form>
-<?php include "templates/footer_review.php";
+	<?php include "templates/footer_review.php";

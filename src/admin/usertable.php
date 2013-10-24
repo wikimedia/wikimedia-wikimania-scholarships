@@ -1,24 +1,24 @@
-<?php 
-        function GetUserTable($username,$minedits) { // CB added
-                $ret = file_get_contents('http://toolserver.org/~vvv/sulutil.php?user=' . $uname. '&editcount=' . $minedits);
-                var_dump($ret);
-                return $ret;
-        } 
+<?php
+function GetUserTable( $username, $minedits ) { // CB added
+	$ret = file_get_contents( 'http://toolserver.org/~vvv/sulutil.php?user=' . $uname . '&editcount=' . $minedits );
+	var_dump( $ret );
+	return $ret;
+}
 
-        function GetStaggeredUserData($username) {
-			if ($username != "") {
-			$ret = GetUserTable($username,50);
-			if ($ret == "<strong class='error'>Returned no results</strong>") {
-				$ret = GetUserTable($username,10);
-				if ($ret == "<strong class='error'>Returned no results</strong>") {
-					$ret = GetUserTable($username,0);
-				}
-			} 
-			} else {
-			$ret = "No username listed";
-			} 
-		return $ret;
+function GetStaggeredUserData( $username ) {
+	if ( $username != "" ) {
+		$ret = GetUserTable( $username, 50 );
+		if ( $ret == "<strong class='error'>Returned no results</strong>" ) {
+			$ret = GetUserTable( $username, 10 );
+			if ( $ret == "<strong class='error'>Returned no results</strong>" ) {
+				$ret = GetUserTable( $username, 0 );
+			}
+		}
+	} else {
+		$ret = "No username listed";
 	}
+	return $ret;
+}
 
 $uname = $_GET['user'];
 
@@ -34,6 +34,6 @@ $uname = $_GET['user'];
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 </head>
 <body style="font-size:0.85em">
-        <?= GetStaggeredUserData($uname); ?>
+				<?= GetStaggeredUserData( $uname ); ?>
 </body>
 </html>

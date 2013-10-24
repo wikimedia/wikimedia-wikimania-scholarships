@@ -3,27 +3,26 @@
 <body>
 	<p>Send mail:</p>
 	<p>Sent email to following list</p>
-<?php
-	if (!isset($_SESSION['user_id']))
-	{
-		header('location: ' . $BASEURL . 'user/login');
-		exit();
-	}
-	
-	include("PHPMailer_5.2.4/class.phpmailer.php");
-	class mailing{
-		private $mail;
+	<?php
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
+	exit();
+}
 
-		function __construct(){
-			$this->mail= new PHPMailer();
-			$this->mail->Host = "mail.wikimedia.ch";
-			$this->mail->From = "wikimania-scholarships@wikimedia.org";
-			$this->mail->FromName = "Wikimania 2013 Scholarship Committee";
-		}
+include( "PHPMailer_5.2.4/class.phpmailer.php" );
+class mailing {
+	private $mail;
+
+	function __construct() {
+		$this->mail = new PHPMailer();
+		$this->mail->Host = "mail.wikimedia.ch";
+		$this->mail->From = "wikimania-scholarships@wikimedia.org";
+		$this->mail->FromName = "Wikimania 2013 Scholarship Committee";
+	}
 
 		/*function p1reject($name, $email){
 			$subject = "Wikimania 2013 scholarship result";
-   			$body = "<p>Dear ".$name.",</p>".
+				$body = "<p>Dear ".$name.",</p>".
 "<p>The Wikimania 2013 Scholarships Review Committee has carefully reviewed your application. With regret, we cannot sponsor your travel to attend Wikimania 2013 in Hong Kong.</p>
 
 <p>We received more than 1200 applications from around the world for a limited number of scholarships. Preference has been given to applications from individuals who are very active contributors or volunteers on the Wikimedia projects as well as participants in other free knowledge initiatives.</p>
@@ -37,12 +36,12 @@
 <p>Sincerely,</p>
 
 <p>Simon Shek, on behalf of Wikimania 2013 Scholarship Committee</p>";
-   			$this->sendMail($name, $email, $subject, $body);
+				$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p1success($name, $email){
 			$subject = "Wikimania 2013 scholarship update";
-   			$body = "<p>Dear ".$name.",</p>".
+				$body = "<p>Dear ".$name.",</p>".
 "<p>Thank you for applying for a scholarship to attend Wikimania 2013 in Hong Kong! The Wikimania 2013 Scholarships Review Committee is entering the second round of carefully reviewing all applications. </p>
 
 <p>This is a notification that your application has made it to Phase 2 of the scholarship rating process. Note that about 700 applications have made it to Phase 2 after an initial screening of more than 1200 applicants from around the world. Preference has been given to applications from individuals who are very active contributors or volunteers on the Wikimedia projects as well as participants in other free knowledge initiatives.</p>
@@ -54,12 +53,12 @@
 <p>Sincerely,</p>
 
 <p>Simon Shek, on behalf of Wikimania 2013 Scholarship Committee</p>";
-   			$this->sendMail($name, $email, $subject, $body);
+				$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p2WMFFull($id, $name, $email){
 		$subject = "WMF Acceptance letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 <p>Congratulations! On behalf of the 2013 Wikimania Scholarships Program Committee and the Wikimedia Foundation, we are very pleased to inform you that your scholarship application has been approved to pay for your air travel, registration, and dormitory accommodations for Wikimania 2013 in Hong Kong from August 7 -11, 2013.</p>
 <p>You are among a handful of individuals, out of thousands of applicants from all over the world, who have been selected for this opportunity. You have been selected based on your dedication and participation in the Wikimedia movement or other free knowledge and educational initiatives and your potential to add great value to Wikimania and the Wikimedia projects going forward. We hope that you will be engaged by the unique opportunity to attend Wikimania 2013 and convene face-to-face with the global Wikimedia community. We also encourage you to also submit a proposal for a workshop, seminar, tutorial, panel, or presentation! The deadline is April 30th. If interested, see <a href='http://wikimania2013.wikimedia.org/wiki/Submissions#How_to_submit_a_proposal'>http://wikimania2013.wikimedia.org/wiki/Submissions#How_to_submit_a_proposal</a></p>
 <p><b>Please reply promptly to this email to accept or decline this invitation (see REPLY & ACCEPTANCE AGREEMENT below). The deadline to accept or decline this offer is April 19, 2013</b>.</p>
@@ -114,12 +113,12 @@ Scholarships Information Page - key updates will be posted here<br />
 <a href='http://wikimania2013.wikimedia.org/wiki/Attendees'>http://wikimania2013.wikimedia.org/wiki/Attendees</a><br />
 Questions? Contact wikimania-scholarships@wikimedia.org</p>
 ";
-   			$this->sendMail($name, $email, $subject, $body);
+				$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p2WMDEFull($id, $name, $email){
 		$subject = "WMDE / WMF Acceptance letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 <p>Congratulations! On behalf of the 2013 Wikimania Scholarships Program Committee, Wikimedia Deutschland, and the Wikimedia Foundation, we are very pleased to inform you that your scholarship application has been approved to pay for your air travel, registration, and dormitory accommodations for Wikimania 2013 in Hong Kong from August 7 - 11, 2013! Wikimedia Deutschland is funding your full scholarship, and the Wikimedia Foundation will be making your travel arrangements.</p>
 <p>You are among a handful of individuals, out of thousands of applicants from all over the world, who have been selected for this opportunity. You have been selected based on your dedication and participation in the Wikimedia movement or other free knowledge and educational initiatives and your potential to add great value to Wikimania and the Wikimedia projects going forward. We hope that you will be engaged by the unique opportunity to attend Wikimania 2013 and meet face-to-face with the global Wikimedia community. If you wish to submit a proposal for a workshop, seminar, tutorial, panel, or presentation, please do so by the April 30th deadline. See <a href='http://wikimania2013.wikimedia.org/wiki/Submissions#How_to_submit_a_proposal'>http://wikimania2013.wikimedia.org/wiki/Submissions#How_to_submit_a_proposal</a></p>
 <p>Please reply promptly to this email to accept or decline this invitation (see REPLY &amp; ACCEPTANCE AGREEMENT below). <b>The deadline to accept or decline this offer is April 19, 2013</b>.</p>
@@ -170,12 +169,12 @@ Scholarships Information Page - key updates will be posted here<br />
 <a href='http://wikimania2013.wikimedia.org/wiki/Attendees'>http://wikimania2013.wikimedia.org/wiki/Attendees</a><br />
 Questions? Contact wikimania-scholarships@wikimedia.org</p>
 ";
-   			$this->sendMail($name, $email, $subject, $body);
+				$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p2WMFPartial($id, $name, $email){
 		$subject = "Partial Scholarship Acceptance letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 		<p>Congratulations! On behalf of the 2013 Wikimania Scholarships Program Committee and the Wikimedia Foundation, we are very pleased to inform you that your scholarship application has been approved to pay for a partial scholarship for Wikimania 2013 in Hong Kong from August 7 - 11, 2013. This award will be for the following amount which is based on our best estimate for 50% of the travel expenses to/from Hong Kong based on your region of origin:</p>
 <table>
 <tr>
@@ -288,10 +287,10 @@ See who's attending Wikimania 2013!<br />
 ";
 		$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p2WMFWaitlist($id, $name, $email){
 		$subject = "Waitlist letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 		<p><br />
 The Wikimania 2013 Scholarships Program Committee has made its final decision on scholarship awardees for Wikimania 2013 in Hong Kong, August 7-11. Over 1,200 applications for scholarships were received this year. Although you were not granted a scholarship, your application received a high score, and you have been placed on a short waiting list. Should any scholarship grantees not be able to accept it, you will have a chance to be selected. We will notify you if you have been accepted by the end of April.</p>
 <p>We highly value your participation on the Wikimedia projects, and encourage your continued dedication and participation. Thank you for your interest in Wikimania.</p>
@@ -303,10 +302,10 @@ wikimania-scholarships@wikimedia.org</p>
 ";
 		$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p2WMFDecline($id, $name, $email){
 		$subject = "Decline letter";
-   		$body = "<p>Dear Applicant:</p>
+			$body = "<p>Dear Applicant:</p>
 <p><br />
 The Wikimania 2013 Scholarships Program Committee has made its final decision on scholarship recipients. We regret to tell you that you were not selected to receive a scholarship to attend Wikimania 2013 in Hong Kong.</p>
 <p><br />
@@ -323,10 +322,10 @@ wikimania-scholarships@wikimedia.org<br /></p>
 ";
 		$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 		/*function p2WMFChapOpp($id, $name, $email){
 		$subject = "Chapter Scholarship letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 		<p>The Wikimania 2013 Scholarships Program Committee has finished the application reviews for Wikimania 2013 in Hong Kong, August 7 - 11! Your application qualifies for a Wikimedia chapter scholarship, and we would like to inform you that your application information has been shared with a Wikimedia chapter and for the final selection process.</p>
 <p>The final decision will come soon. We highly value your participation on the Wikimedia projects, and encourage your continued dedication and participation. Thank you for your patience, and your interest in Wikimania!</p>
 <p>Sincerely,<br />
@@ -336,10 +335,10 @@ wikimania-scholarships@wikimedia.org</p>
 ";
 		$this->sendMail($name, $email, $subject, $body);
 		}*/
-		
+
 	/*function p2FullRemind($id, $name, $email, $discountCode){
 		$subject = "Full Scholarship Reminder Letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 <p>Earlier this month we received your acceptance of Wikimedia Foundation¡¦s offer that will pay for your air travel, registration, and dormitory accommodations to attend Wikimania 2013 in Hong Kong, Aug 7-11, 2013. Our records indicate that you have not yet made arrangements to attend. We very much would like to encourage you to complete the steps below soon.</p>
 <p>DISCOUNT CODE You will use the discount code to indicate you are a scholarship recipient on the registration form. Use this for registering for the conference and accommodations.</p>
 <p>Discount code: &lt;".$discountCode."&gt; Your Scholarship ID is &lt;".$id."&gt;</p>
@@ -364,10 +363,10 @@ wikimania-scholarships@wikimedia.org</p>
 ";
 		$this->sendMail($name, $email, $subject, $body);
 	}*/
-	
+
 	/*function p2PartialRemind($id, $name, $email){
 		$subject = "Partial Scholarship Reminder letter";
-   		$body = "<p>Dear ".$name.",</p>
+			$body = "<p>Dear ".$name.",</p>
 <p>Earlier this month, we received your acceptance of a partial scholarship to attend Wikimania 2013 in Hong Kong from August 7 - 11, 2013. This is a reminder that the Wikimedia Foundation will reimburse you for either 50% of the exact cost (converted to USD from your local currency based on the exchange rate obtained via Oanda, WMF¡¦s preferred exchange website) of your travel expenses to/from Hong Kong, or the amount listed below*.</p>
 <table>
 <tr>
@@ -455,167 +454,167 @@ wikimania-scholarships@wikimedia.org</p>
 ";
 		$this->sendMail($name, $email, $subject, $body);
 	}*/
-	
-		function p2TravelRemind($id, $name, $email, $discountCode){
+
+	function p2TravelRemind( $id, $name, $email, $discountCode ) {
 		$subject = "Travel Arrangements for your Wikimania Scholarship";
-   		$body = "<p>Dear ".$name.",</p>
-<p>Our records indicate that as of this date, you have not yet contacted
-our Travel Agent (see below) to make your arrangements for travel to
-attend Wikimania 2013 in Hong Kong, Aug 7-11, 2013.   In our previous
-emails we encouraged you to do this by June 15th.   We would strongly
-urge you to act now.   Also if you have not yet registered for the
-conference and/or dorms, please do so as well.</p>
-<p></p>
-<p>Here are the instructions again and we look forward to your
-participation in Wikimania!</p>
-<p></p>
-<p>DISCOUNT CODE You will use the discount code to indicate you are a
-scholarship recipient on the registration form. Use this for
-registering for the conference and accommodations.</p>
-<p></p>
-<p>Discount code: ".$discountCode." Your Scholarship ID is ".$id."</p>
-<p></p>
-<p>Please do the following soon:</p>
-<p></p>
-<p>1. CONFERENCE REGISTRATION</p>
-<p></p>
-<p>Please register for the conference at Registration web site using the
-above discount code.</p>
-<p></p>
-<p>2. ACCOMMODATIONS:</p>
-<p></p>
-<p>Dormitory accommodations for 4 nights will be covered for scholarship
-recipients. Please fill in the registration form:
-http://wikimania2013.wikimedia.org/wiki/Accommodation</p>
-<p></p>
-<p>If you do not wish to stay in the dorms, please let eyoung@wikimedia.org know.</p>
-<p></p>
-<p>3. TRAVEL ARRANGEMENTS:</p>
-<p></p>
-<p>Please contact our travel agency to book your travel, which will be
-paid for directly by the Wikimedia Foundation:</p>
-<p></p>
-<p>Email: wikigroup@tandt.com</p>
-<p></p>
-<p>Toll Free Tel: +1-877-504-1896</p>
-<p></p>
-<p>Travel arrangements must be confirmed no later than June 15.</p>
-<p></p>
-<p>4. SPECIAL NEEDS:</p>
-<p></p>
-<p>Please inform us of any special needs you have related to mobility and
-wheelchair access to ensure appropriate accommodations.</p>
-<p></p>
-<p>If I can be of further assistance, please let me know.</p>
-<p></p>
-<p>Ellie Young</p>
-<p>Conference Coordinator</p>
-<p>Wikimedia Foundation</p>
-<p></p>
-<p>eyoung@wikimedia.org</p>
-";
-		$this->sendMail($name, $email, $subject, $body);
+		$body = "<p>Dear " . $name . ",</p>
+			<p>Our records indicate that as of this date, you have not yet contacted
+			our Travel Agent (see below) to make your arrangements for travel to
+			attend Wikimania 2013 in Hong Kong, Aug 7-11, 2013.   In our previous
+			emails we encouraged you to do this by June 15th.   We would strongly
+			urge you to act now.   Also if you have not yet registered for the
+			conference and/or dorms, please do so as well.</p>
+			<p></p>
+			<p>Here are the instructions again and we look forward to your
+			participation in Wikimania!</p>
+			<p></p>
+			<p>DISCOUNT CODE You will use the discount code to indicate you are a
+			scholarship recipient on the registration form. Use this for
+			registering for the conference and accommodations.</p>
+			<p></p>
+			<p>Discount code: " . $discountCode . " Your Scholarship ID is " . $id . "</p>
+			<p></p>
+			<p>Please do the following soon:</p>
+			<p></p>
+			<p>1. CONFERENCE REGISTRATION</p>
+			<p></p>
+			<p>Please register for the conference at Registration web site using the
+			above discount code.</p>
+			<p></p>
+			<p>2. ACCOMMODATIONS:</p>
+			<p></p>
+			<p>Dormitory accommodations for 4 nights will be covered for scholarship
+			recipients. Please fill in the registration form:
+			http://wikimania2013.wikimedia.org/wiki/Accommodation</p>
+			<p></p>
+			<p>If you do not wish to stay in the dorms, please let eyoung@wikimedia.org know.</p>
+			<p></p>
+			<p>3. TRAVEL ARRANGEMENTS:</p>
+			<p></p>
+			<p>Please contact our travel agency to book your travel, which will be
+			paid for directly by the Wikimedia Foundation:</p>
+			<p></p>
+			<p>Email: wikigroup@tandt.com</p>
+			<p></p>
+			<p>Toll Free Tel: +1-877-504-1896</p>
+			<p></p>
+			<p>Travel arrangements must be confirmed no later than June 15.</p>
+			<p></p>
+			<p>4. SPECIAL NEEDS:</p>
+			<p></p>
+			<p>Please inform us of any special needs you have related to mobility and
+			wheelchair access to ensure appropriate accommodations.</p>
+			<p></p>
+			<p>If I can be of further assistance, please let me know.</p>
+			<p></p>
+			<p>Ellie Young</p>
+			<p>Conference Coordinator</p>
+			<p>Wikimedia Foundation</p>
+			<p></p>
+			<p>eyoung@wikimedia.org</p>
+			";
+		$this->sendMail( $name, $email, $subject, $body );
 	}
-		
-		function sendMail($name, $email, $subject, $body){
-			$this->mail->Subject = $subject;
-			$this->mail->Body = $body;
-			$this->mail->IsHTML(true);
-   			$this->mail->AddAddress($email, $name);
-   			
-			if(!$this->mail->Send()) {
-		    	echo "<p>Mailer Error: " . $this->mail->ErrorInfo . "</p>";
-		   	}
+
+	function sendMail( $name, $email, $subject, $body ) {
+		$this->mail->Subject = $subject;
+		$this->mail->Body = $body;
+		$this->mail->IsHTML( true );
+		$this->mail->AddAddress( $email, $name );
+
+		if ( !$this->mail->Send() ) {
+			echo "<p>Mailer Error: " . $this->mail->ErrorInfo . "</p>";
 		}
 	}
-	
-	//$dal = new DataAccessLayer;
-	//p1 reject
+}
+
+// $dal = new DataAccessLayer;
+// p1 reject
 	/*$schols = $dal->GetPhase1EarlyRejects();
 	$schols = $dal->GetPhase1EarlyRejectsTemp();*/
-	//p1 success
-	//$schols = $dal->GetPhase1Success();
+// p1 success
+// $schols = $dal->GetPhase1Success();
 
-	//$file = fopen("test.txt", "r") or exit( 'Unable to open file! '.getcwd() );//testing
-	//$file = fopen("Full - WMF.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFFull
-	//$file = fopen("Full - WMDE.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMDEFull
-	//$file = fopen("Partial - WMF.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFPartial
-	//$file = fopen("Waitlist - WMF.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFWaitlist
-	//$file = fopen("Decline.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFDecline
-	//$file = fopen("Chapter opportunity.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFChapOpp
-	$file = fopen("FullScholarshipService.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2TravelRemind
-	
-	
-	//Output a line of the file until the end is reached
-	$schols = array();
+// $file = fopen("test.txt", "r") or exit( 'Unable to open file! '.getcwd() );//testing
+// $file = fopen("Full - WMF.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFFull
+// $file = fopen("Full - WMDE.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMDEFull
+// $file = fopen("Partial - WMF.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFPartial
+// $file = fopen("Waitlist - WMF.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFWaitlist
+// $file = fopen("Decline.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFDecline
+// $file = fopen("Chapter opportunity.txt", "r") or exit( 'Unable to open file! '.getcwd() );//p2WMFChapOpp
+$file = fopen( "FullScholarshipService.txt", "r" ) or exit( 'Unable to open file! ' . getcwd() );// p2TravelRemind
+
+
+// Output a line of the file until the end is reached
+$schols = array();
+$temp = "";
+while ( !feof( $file ) ) {
+	$temp = fgets( $file );
+	$tempSplit = preg_split( "/,/", $temp );
+	$tempArr = array( "id" => $tempSplit[0], "name" => $tempSplit[1], "email" => $tempSplit[2], "scholar" => $tempSplit[3] );
+	array_push( $schols, $tempArr );
 	$temp = "";
-	while(!feof($file)){
-		$temp = fgets($file);
-		$tempSplit = preg_split("/,/", $temp);
-		$tempArr = array("id"=>$tempSplit[0],"name"=>$tempSplit[1],"email"=>$tempSplit[2], "scholar"=>$tempSplit[3]);
-		array_push($schols, $tempArr);
-		$temp = "";
-	}
-	fclose($file);
-	
-	$cnt=1;
-	foreach ($schols as $row) {
-		$sendMail = new mailing;
-		
-		//p1 reject
+}
+fclose( $file );
+
+$cnt = 1;
+foreach ( $schols as $row ) {
+	$sendMail = new mailing;
+
+	// p1 reject
 		/*$sendMail -> p1reject($row['fname'] . ' ' . $row['lname'], $row['email']);
 		echo "<p>".$cnt.": ".$row['fname'] . ' ' . $row['lname']." email:".$row['email']."</p>";*/
-		
-		//p1 success
+
+	// p1 success
 		/*$sendMail -> p1success($row['fname'] . ' ' . $row['lname'], $row['email']);
 		echo "<p>".$cnt.": ".$row['fname'] . ' ' . $row['lname']." email:".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2WMFFull
+
+	// p2WMFFull
 		/*$sendMail -> p2WMFFull($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2WMDEFull
+
+	// p2WMDEFull
 		/*$sendMail -> p2WMDEFull($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2WMFPartial
+
+	// p2WMFPartial
 		/*$sendMail -> p2WMFPartial($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2WMFWaitlist
+
+	// p2WMFWaitlist
 		/*$sendMail -> p2WMFWaitlist($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2WMFDecline
+
+	// p2WMFDecline
 		/*$sendMail -> p2WMFDecline($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2WMFChapOpp
+
+	// p2WMFChapOpp
 		/*$sendMail -> p2WMFChapOpp($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2FullRemind
+
+	// p2FullRemind
 		/*$sendMail -> p2FullRemind($row['id'], $row['name'], $row['email'], "WMDE4929ac");
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2PartialRemind
+
+	// p2PartialRemind
 		/*$sendMail -> p2PartialRemind($row['id'], $row['name'], $row['email']);
 		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email']."</p>";
 		$cnt++;*/
-		
-		//p2TravelRemind
-		$sendMail -> p2TravelRemind($row['id'], $row['name'], $row['email'], $row['scholar']);
-		echo "<p>".$cnt.": id=>".$row['id'] . ',name=>' . $row['name'].",email=>".$row['email'].", scholar=>".$row['scholar']."</p>";
-		$cnt++;
-	}
+
+	// p2TravelRemind
+	$sendMail -> p2TravelRemind( $row['id'], $row['name'], $row['email'], $row['scholar'] );
+	echo "<p>" . $cnt . ": id=>" . $row['id'] . ',name=>' . $row['name'] . ",email=>" . $row['email'] . ", scholar=>" . $row['scholar'] . "</p>";
+	$cnt++;
+}
 ?>
 </body>
 </html>

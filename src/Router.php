@@ -21,7 +21,7 @@ class Router {
 		$this->defaultRoute = $defaultRoute;
 	}
 
-	public function isValid($page) {
+	public function isValid( $page ) {
 		if ( array_key_exists( $page, $this->routes ) ) {
 			return true;
 		}
@@ -73,7 +73,7 @@ class Router {
 			}
 		}
 
-		foreach( $methods as $method ) {
+		foreach ( $methods as $method ) {
 			$path .= '/' . $method;
 		}
 

@@ -7,7 +7,7 @@ class User {
 		global $db_driver, $db_user, $db_pass, $db_host, $db_name;
 		$dsn = $db_driver . '://' . $db_user . ':' . $db_pass . '@'
 			. $db_host . '/' . $db_name;
-		$this->db = &DB::Connect($dsn);
+		$this->db = &DB::Connect( $dsn );
 
 		if ( PEAR::isError( $this->db ) ) {
 			die( $this->db->getMessage() );
@@ -54,7 +54,7 @@ class User {
 	}
 
 	function NewUserCreate( $answers ) {
-		$fieldnames = array( "username","password","email","reviewer","isvalid","isadmin" );
+		$fieldnames = array( "username", "password", "email", "reviewer", "isvalid", "isadmin" );
 		$this->db->query(
 			sprintf( "insert into users (%s) values ('%s')", join( $fieldnames, ', ' ), join( $answers, "', '" ) )
 		);
@@ -63,7 +63,7 @@ class User {
 	}
 
 	function UpdateUserInfo( $answers, $id ) {
-		$fieldnames = array( "username","email","reviewer","isvalid","isadmin" );
+		$fieldnames = array( "username", "email", "reviewer", "isvalid", "isadmin" );
 		$query = "update users set ";
 
 		for ( $i = 0; $i <= 4; $i++ ) {
@@ -78,12 +78,12 @@ class User {
 
 	function UpdatePassword( $oldpw, $newpw, $id, $force = null ) {
 		if ( $force === 1 ) {
-			$this->db->query( "update users set password = ? where id = ?", array( sha1( $newpw ),$id ) );
+			$this->db->query( "update users set password = ? where id = ?", array( sha1( $newpw ), $id ) );
 			return 1;
 		} else {
 			$userdata = $this->db->query( 'select password from users where id = ?', array( $id ) )->fetchRow();
 			if ( $userdata['password'] == sha1( $oldpw ) ) {
-				$this->db->query( "update users set password = ? where id = ?", array( sha1( $newpw ),$id ) );
+				$this->db->query( "update users set password = ? where id = ?", array( sha1( $newpw ), $id ) );
 				return 1;
 			} else {
 				return 0;

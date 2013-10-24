@@ -1,14 +1,13 @@
 <?php
-if (!isset($_SESSION['user_id']))
-{
-	header('location: ' . $BASEURL . 'user/login');
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 
 $partial = $_GET['partial'] ? $_GET['partial'] : 0;
 
 $dal = new DataAccessLayer();
-$schols = $dal->GetFinalScoring($partial);
+$schols = $dal->GetFinalScoring( $partial );
 ?>
 <?php include "templates/header_review.php" ?>
 <form method="post" action="<?php echo $BASEURL; ?>grid">
@@ -31,7 +30,7 @@ $schols = $dal->GetFinalScoring($partial);
 		<th>English Ability</th>
 		<th>p2 score</th>
 	</tr>
-	<?php foreach ($schols as $row): ?>
+	<?php foreach ( $schols as $row ): ?>
 	<tr>
 		<td><?= $ctr++; ?></td>
 		<td><?= $row['id']; ?></td>
@@ -42,11 +41,11 @@ $schols = $dal->GetFinalScoring($partial);
 		<td width=8%><?= $row['age']; ?></td>
 		<td width=8%><?= $row['partial']; ?></td>
 		<td width=8%><?= $row['nscorers']; ?></td>
-		<td width=8%><?= round($row['onwiki'],3); ?></td>
-		<td width=8%><?= round($row['offwiki'],3); ?></td>
-		<td width=8%><?= round($row['future'],3); ?></td>
-		<td width=8%><?= round($row['englishAbility'],3); ?></td>
-		<td width=8%><?= round($row['p2score'],4); ?></td>
+		<td width=8%><?= round( $row['onwiki'], 3 ); ?></td>
+		<td width=8%><?= round( $row['offwiki'], 3 ); ?></td>
+		<td width=8%><?= round( $row['future'], 3 ); ?></td>
+		<td width=8%><?= round( $row['englishAbility'], 3 ); ?></td>
+		<td width=8%><?= round( $row['p2score'], 4 ); ?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

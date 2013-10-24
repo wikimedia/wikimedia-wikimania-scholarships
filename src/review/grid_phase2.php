@@ -1,38 +1,38 @@
 <?php
-if (!isset($_SESSION['user_id'])) {
-	header('location: ' . $BASEURL . 'user/login');
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 
 $apps = 'all';
-if( isset( $_GET['apps'] )) {
-        if ( in_array( $_GET['apps'], array('unreviewed', 'all', 'myapps')) ) {
-                $apps = $_GET['apps'];
-        }
+if ( isset( $_GET['apps'] ) ) {
+	if ( in_array( $_GET['apps'], array( 'unreviewed', 'all', 'myapps' ) ) ) {
+		$apps = $_GET['apps'];
+	}
 }
 
 if ( isset( $_GET['items'] ) )  {
 	if ( $_GET['items'] != 'all' ) {
-	        $items = intval($_GET['items']);
+		$items = intval( $_GET['items'] );
 	} else {
 		$items = 'all';
 	}
-} else { 
-	//$items = $default_pp;
+} else {
+	// $items = $default_pp;
 	$items = 30;
 }
 
 if ( isset( $_GET['p'] ) )  {
-        $p = intval($_GET['p']);
+	$p = intval( $_GET['p'] );
 } else {
 	$p = 0;
 }
 
 $dal = new DataAccessLayer();
 $params = array(
-        'min' => isset( $_GET['min'] ) ? $_GET['min'] : -2,
-        'max' => isset( $_GET['max'] ) ? $_GET['max'] : 999,
-        'phase' => 2,
+	'min' => isset( $_GET['min'] ) ? $_GET['min'] : -2,
+	'max' => isset( $_GET['max'] ) ? $_GET['max'] : 999,
+	'phase' => 2,
 	'items' => $items,
 	'apps' => $apps,
 	'offset' => $p,
@@ -40,7 +40,7 @@ $params = array(
 	'page' => 'review/phase2'
 );
 
-$schols = $dal->gridData($params);
+$schols = $dal->gridData( $params );
 ?>
 <?php include "templates/header_review.php" ?>
 <div id="form-container" class="fourteen columns">
@@ -63,7 +63,7 @@ $schols = $dal->gridData($params);
 		<th style="width: 5%;">p1</th>
 		<th style="width: 5%;">#p2</th>
 	</tr>
-	<?php foreach ($schols as $row): ?>
+	<?php foreach ( $schols as $row ): ?>
 	<tr>
 		<td><?= $row['id']; ?></td>
 		<td><a href="<?php echo $BASEURL; ?>review/view?id=<?= $row['id'] ?>&phase=2"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
@@ -80,8 +80,8 @@ $schols = $dal->gridData($params);
 </table>
 </form>
 <?php
-$pager = new Pagination($params, $default_pp);
+$pager = new Pagination( $params, $default_pp );
 $pager->render();
 ?>
 
-<?php include "templates/footer_review.php";
+	<?php include "templates/footer_review.php";

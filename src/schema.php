@@ -1,8 +1,7 @@
 <?php
 
 $columns = array(
-	'fname' => 
-	array(
+	'fname' => array(
 		'type' => 'varchar',
 		'length' => 255,
 		'null' => TRUE,
@@ -11,7 +10,7 @@ $columns = array(
 	'lname' => array(
 		'type' => 'varchar',
 		'length' => 255,
-		'null' => TRUE, 
+		'null' => TRUE,
 		'default' => NULL
 	),
 	'email' => array(
@@ -75,7 +74,7 @@ $columns = array(
 	),
 	'sex' => array(
 		'type' => 'enum',
-		'options' => array('m', 'f', 'd'),
+		'options' => array( 'm', 'f', 'd' ),
 		'null' => TRUE,
 		'default' => NULL
 	),
@@ -98,47 +97,47 @@ $columns = array(
 		'default' => NULL
 	),
 	'wm06' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'wm07' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'wm08' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'wm09' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'wm10' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'wm11' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'wm12' => array(
-                'type' => 'tinyint',
-                'length' => 1,
-                'null' => TRUE,
-                'default' => NULL
-        ),
+		'type' => 'tinyint',
+		'length' => 1,
+		'null' => TRUE,
+		'default' => NULL
+	),
 	'presentation' => array(
 		'type' => 'tinyint',
 		'length' => 1,
@@ -207,25 +206,25 @@ $columns = array(
 		'default' => 0
 	),
 	'sincere' => array(
-                'type' => 'tinyint',
-                'null' => FALSE,
-                'default' => 0
-        ),
+		'type' => 'tinyint',
+		'null' => FALSE,
+		'default' => 0
+	),
 	'agreestotravelconditions' => array(
-                'type' => 'tinyint',
-                'null' => FALSE,
-                'default' => 0
-        ),
+		'type' => 'tinyint',
+		'null' => FALSE,
+		'default' => 0
+	),
 	'willgetvisa' => array(
-                'type' => 'tinyint',
-                'null' => FALSE,
-                'default' => 0
-        ),
+		'type' => 'tinyint',
+		'null' => FALSE,
+		'default' => 0
+	),
 	'willpayincidentals' => array(
-                'type' => 'tinyint',
-                'null' => FALSE,
-                'default' => 0
-        ),
+		'type' => 'tinyint',
+		'null' => FALSE,
+		'default' => 0
+	),
 	'chapteragree' => array(
 		'type' => 'tinyint',
 		'null' => FALSE,

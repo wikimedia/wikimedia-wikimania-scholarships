@@ -1,20 +1,20 @@
 <?php
-function mail_msg($to, $subject, $body) {
+function mail_msg( $to, $subject, $body ) {
 	require_once "Mail.php";
-	$from = $wgLang->message('email-from') . "<$email_from>";
-	$headers = array ('From' => $from,
-	  	'To' => $to,
+	$from = $wgLang->message( 'email-from' ) . "<$email_from>";
+	$headers = array ( 'From' => $from,
+		'To' => $to,
 		'Subject' => $subject,
 		'MIME-Version' => '1.0',
 		'Content-type' => 'text/html; charset=utf-8',
 		'Reply-To' => $email_from,
 		'X-Mailer' => 'PHP/' . phpversion()
 	);
-	$smtp = Mail::factory('mail');
-	$mail = $smtp->send($to, $headers, $body);
+	$smtp = Mail::factory( 'mail' );
+	$mail = $smtp->send( $to, $headers, $body );
 
-	if (PEAR::isError($mail)) {
-		echo("<p>" . $mail->getMessage() . "</p>");
+	if ( PEAR::isError( $mail ) ) {
+		echo( "<p>" . $mail->getMessage() . "</p>" );
 		return false;
 	} else {
 		return true;
@@ -43,7 +43,7 @@ $early_reject_mail_template = <<<EOM
 
 <p>Simon Shek<br>
 Community Coordinator (Scholarship & Program)<br>
-Wikimania 2013 Organizing Team</p> 
+Wikimania 2013 Organizing Team</p>
 </body>
 </html>
 EOM;
@@ -74,12 +74,12 @@ $full_acceptance_mail_template = <<<EOM
 
 <p>Harel Cain<br>
 Communications coordinator<br>
-Wikimania 2011 Scholarship Review Committee</p> 
+Wikimania 2011 Scholarship Review Committee</p>
 
 <p>Jessie Wild<br>
 Special Projects Manager<br>
 Global Development<br>
-Wikimedia Foundation</p> 
+Wikimedia Foundation</p>
 
 
 <h3>EXPENSES COVERED / NOT COVERED</h3>
@@ -94,7 +94,7 @@ Wikimedia Foundation</p>
 
 <p><b>Travel Visas:</b>
 You are responsible for obtaining any visa or travel documentation required for travel from your country of residence to Israel. We recommend that you visit
- <a href=http://wikimania2011.wikimedia.org/wiki/Visas>the visa information page</a> immediately to determine if you need to obtain a visa as requirements vary for each country of origin, and it may take some time and effort to obtain a visa. 
+ <a href=http://wikimania2011.wikimedia.org/wiki/Visas>the visa information page</a> immediately to determine if you need to obtain a visa as requirements vary for each country of origin, and it may take some time and effort to obtain a visa.
  If you require a visa to enter Israel, please fill out the relevant section while completing the <a href=http://wmreg.wikimedia.org.il>conference registration form</a>, so that the conference organizers will pass this information to the Israeli Ministry of Foreign Affairs before you approach your nearest Israeli embassy for a visa applicaiton.</p>
 
 <p><b>Travel Booking by Travel Agent:</b>
@@ -126,8 +126,8 @@ While we encourage you to use the travel agency, if you need to book your air tr
 <p>
 If you decide to accept this scholarship, please visit the<a href=http://wikimania2011.wikimedia.org/wiki/Registration> conference registration page</a> and be sure to complete the <a href=http://wmreg.wikimedia.org.il>conference registration form</a>, entering the discount code <emph><b>WMFFULL:$2</b></emph> in the discount code field.
 <br>
-As a scholarship recipient, you don't have to pay the registration fee or accommodation fee. Should the system ask you to pay them, please ignore.  
-Dormitory accommodations will be covered for scholarship recipients, so please select that option in the accommodation section. Note that the dorms are at a distance from the venue. 
+As a scholarship recipient, you don't have to pay the registration fee or accommodation fee. Should the system ask you to pay them, please ignore.
+Dormitory accommodations will be covered for scholarship recipients, so please select that option in the accommodation section. Note that the dorms are at a distance from the venue.
 Shuttles will provide transportation to the venue.</p>
 
 <h3>SPECIAL NEEDS</h3>
@@ -150,7 +150,7 @@ Shuttles will provide transportation to the venue.</p>
 <h3>USEFUL LINKS</h3>
 
 <ul>
- 
+
 <li><a href=http://wikimania2011.wikimedia.org/wiki/Scholarships>Scholarships Information Page - key updates will be posted here </a></li>
 <li><a href=http://wikimania2011.wikimedia.org/wiki/Main_Page>Wikimania 2011 Page </a></li>
 <li><a href=http://wikimania2011.wikimedia.org/wiki/Registration>Registration </a> </li>
@@ -189,12 +189,12 @@ $full_reject_mail_template = <<<EOM
 
 <p>Harel Cain<br>
 Communications coordinator<br>
-Wikimania 2011 Scholarship Review Committee</p> 
+Wikimania 2011 Scholarship Review Committee</p>
 
 <p>Jessie Wild<br>
 Special Projects Manager<br>
 Global Development<br>
-Wikimedia Foundation</p> 
+Wikimedia Foundation</p>
 EOM;
 
 $full_standby_mail_template = <<<EOM
@@ -219,12 +219,12 @@ $full_standby_mail_template = <<<EOM
 
 <p>Harel Cain<br>
 Communications coordinator<br>
-Wikimania 2011 Scholarship Review Committee</p> 
+Wikimania 2011 Scholarship Review Committee</p>
 
 <p>Jessie Wild<br>
 Special Projects Manager<br>
 Global Development<br>
-Wikimedia Foundation</p> 
+Wikimedia Foundation</p>
 </body>
 </html>
 EOM;
@@ -257,12 +257,12 @@ $partial_acceptance_mail_template = <<<EOM
 
 <p>Harel Cain<br>
 Communications coordinator<br>
-Wikimania 2011 Scholarship Review Committee</p> 
+Wikimania 2011 Scholarship Review Committee</p>
 
 <p>Jessie Wild<br>
 Special Projects Manager<br>
 Global Development<br>
-Wikimedia Foundation</p> 
+Wikimedia Foundation</p>
 
 
 <h3>EXPENSES COVERED / NOT COVERED</h3>
@@ -277,7 +277,7 @@ Wikimedia Foundation</p>
 
 <p><b>Travel Visas:</b>
 You are responsible for obtaining any visa or travel documentation required for travel from your country of residence to Israel. We recommend that you visit
- <a href=http://wikimania2011.wikimedia.org/wiki/Visas>the visa information page</a> immediately to determine if you need to obtain a visa as requirements vary for each country of origin, and it may take some time and effort to obtain a visa. 
+ <a href=http://wikimania2011.wikimedia.org/wiki/Visas>the visa information page</a> immediately to determine if you need to obtain a visa as requirements vary for each country of origin, and it may take some time and effort to obtain a visa.
  If you require a visa to enter Israel, please fill out the relevant section while completing the <a href=http://wmreg.wikimedia.org.il>conference registration form</a>, so that the conference organizers will pass this information to the Israeli Ministry of Foreign Affairs before you approach your nearest Israeli embassy for a visa applicaiton.</p>
 
 <p><b>Direct Reimbursement for Air Travel</b>
@@ -308,7 +308,7 @@ Dormitory accommodations are available for booking, though note that the associa
 <h3>USEFUL LINKS</h3>
 
 <ul>
- 
+
 <li><a href=http://wikimania2011.wikimedia.org/wiki/Scholarships>Scholarships Information Page - key updates will be posted here </a></li>
 <li><a href=http://wikimania2011.wikimedia.org/wiki/Main_Page>Wikimania 2011 Page </a></li>
 <li><a href=http://wikimania2011.wikimedia.org/wiki/Registration>Registration </a> </li>
@@ -324,33 +324,33 @@ Questions? <a href=mailto:wikimania-scholarships@wikimedia.org>Contact us</a>
 </body>
 </html>
 EOM;
-*/
-if (!isset($_SESSION['user_id'])) {
-	header('location: ' . $BASEURL . 'user/login');
+ */
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 
-$start = (int)($_GET['start'] ? $_GET['start'] : 0);
-$howmany = (int)($_GET['howmany'] ? $_GET['howmany'] : 1);
+$start = (int)( $_GET['start'] ? $_GET['start'] : 0 );
+$howmany = (int)( $_GET['howmany'] ? $_GET['howmany'] : 1 );
 //
 $dal = new DataAccessLayer();
-$schols = $dal->GetPhase1EarlyRejects($start, $howmany);
+$schols = $dal->GetPhase1EarlyRejects( $start, $howmany );
 
 include "$BASEDIR/templates/header_review.php";
 
-//$text = file('wmf_partial_accept.txt') or die ("ERROR: Unable to read file");
+// $text = file('wmf_partial_accept.txt') or die ("ERROR: Unable to read file");
 $cnt = 0;
-//foreach($text as $line):
-foreach($schols as $line):
+// foreach($text as $line):
+foreach ( $schols as $line ):
 	echo $line;
-	
-  	$columns = explode("\t", $line);
-	$mail_instant = preg_replace('/\$1/',trim($columns[0]), $early_reject_mail_template);	
-	//$mail_instant = preg_replace('/\$1/',trim($columns[0]), $partial_acceptance_mail_template);	
-	//$mail_instant = preg_replace('/\$2/',sprintf('%02d', $cnt) . substr(md5('HAIFA2011' . sprintf('%02d', $cnt)), 0, 4), $mail_instant);
-	$to = $columns[0] . '  <' . $columns[1] . '>';
 
-	echo $mail_instant;
+$columns = explode( "\t", $line );
+$mail_instant = preg_replace( '/\$1/', trim( $columns[0] ), $early_reject_mail_template );
+// $mail_instant = preg_replace('/\$1/',trim($columns[0]), $partial_acceptance_mail_template);
+// $mail_instant = preg_replace('/\$2/',sprintf('%02d', $cnt) . substr(md5('HAIFA2011' . sprintf('%02d', $cnt)), 0, 4), $mail_instant);
+$to = $columns[0] . '  <' . $columns[1] . '>';
+
+echo $mail_instant;
 	/*if (!mail_msg($to, 'Wikimania 2011 Scholarship Decision', $mail_instant))
 	{
 		echo 'Notice: Mail delivery error. Contact Wikimania team.';
@@ -359,7 +359,7 @@ foreach($schols as $line):
 		echo 'Mailing ' . $to . "<br>";
 	}*/
 
-	$cnt++;
+$cnt++;
 endforeach;
 
 include "$BASEDIR/templates/footer.php";

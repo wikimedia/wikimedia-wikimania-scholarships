@@ -1,6 +1,6 @@
 <?php
-if (!isset($_SESSION['user_id'])) {
-	header('location: ' . $BASEURL . 'user/login');
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 $dal = new DataAccessLayer();

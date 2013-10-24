@@ -1,12 +1,12 @@
 <?php
-if (!isset($_SESSION['user_id'])) {
-	header('location: ' . $BASEURL . 'user/login');
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 
 $dal = new DataAccessLayer();
 $params = array(
-        'baseurl' => $BASEURL,
+	'baseurl' => $BASEURL,
 	'phase' => 2,
 	'items' => $default_pp,
 	'offset' => 0,
@@ -26,35 +26,35 @@ if ( isset( $_GET['p'] ) ) {
 
 if ( isset( $_GET['last'] ) ) {
 	$params['last'] = $_GET['last'];
-	
+
 	$params['searchLink'] = '&last=' . $params['last'];
 }
 
 if ( isset( $_GET['first'] ) ) {
 	$params['first'] = $_GET['first'];
-	
+
 	$params['searchLink'] = '&first=' . $params['first'];
 }
 
 if ( isset( $_GET['citizen'] ) ) {
 	$params['citizen'] = $_GET['citizen'];
-	
+
 	$params['searchLink'] = '&citizen=' . $params['citizen'];
 }
 
 if ( isset( $_GET['residence'] ) ) {
 	$params['residence'] = $_GET['residence'];
-	
+
 	$params['searchLink'] = '&residence=' . $params['residence'];
 }
 
 if ( isset( $_GET['region'] ) ) {
 	$params['region'] = $_GET['region'];
-	
+
 	$params['searchLink'] = '&region=' . $params['region'];
 }
 
-$schols = $dal->search($params);
+$schols = $dal->search( $params );
 ?>
 <?php include "templates/header_review.php" ?>
 <h2>Scholarship Applications</h2>
@@ -72,7 +72,7 @@ $schols = $dal->search($params);
 		<th style="width: 6%;">partial</th>
 		<th style="width: 5%;">p1</th>
 	</tr>
-	<?php foreach ($schols as $row): ?>
+	<?php foreach ( $schols as $row ): ?>
 	<tr>
 		<td><?= $row['id']; ?></td>
 		<td><a href="<?php echo $BASEURL; ?>review/view?id=<?= $row['id'] ?>&phase=2"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
@@ -95,9 +95,9 @@ if ( $row['p1count'] == 0 ) {
 	</tr>
 	<?php endforeach; ?>
 </table>
-</form>
-<?php
-$pager = new Pagination($params, $default_pp);
+	</form>
+	<?php
+$pager = new Pagination( $params, $default_pp );
 $pager->render();
 ?>
 

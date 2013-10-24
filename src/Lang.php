@@ -46,7 +46,7 @@ class Lang {
 		$this->messages = $messages;
 	}
 
-	public function setLang($req) {
+	public function setLang( $req ) {
 		if ( isset( $req['uselang'] ) && in_array( $req['uselang'], $this->getLangs() ) ) {
 			$lang = $req['uselang'];
 		} else {
@@ -67,7 +67,7 @@ class Lang {
 	}
 
 	public function formHasErrors( $key ) {
-		return "<span class='fieldWithErrors'>" . $this->message( $key ). "</span>";
+		return "<span class='fieldWithErrors'>" . $this->message( $key ) . "</span>";
 	}
 
 }

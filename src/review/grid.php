@@ -1,12 +1,12 @@
 <?php
-if (!isset($_SESSION['user_id'])) {
-	header('location: ' . $BASEURL . 'user/login');
+if ( !isset( $_SESSION['user_id'] ) ) {
+	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
 
 $apps = 'all';
-if( isset( $_GET['apps'] )) {
-	if ( in_array( $_GET['apps'], array('unreviewed', 'all', 'myapps')) ) {
+if ( isset( $_GET['apps'] ) ) {
+	if ( in_array( $_GET['apps'], array( 'unreviewed', 'all', 'myapps' ) ) ) {
 		$apps = $_GET['apps'];
 	}
 }
@@ -15,13 +15,13 @@ $items = $default_pp;
 $p = 0;
 
 if ( isset( $_GET['items'] ) )  {
-	$items = intval($_GET['items']);
+	$items = intval( $_GET['items'] );
 }
 else
 	$items = 30;
 
 if ( isset( $_GET['p'] ) )  {
-        $p = intval($_GET['p']);
+	$p = intval( $_GET['p'] );
 }
 
 $dal = new DataAccessLayer();
@@ -32,11 +32,11 @@ $params = array(
 	'items' => $items,
 	'offset' => $p,
 	'apps' => $apps,
-        'baseurl' => $BASEURL,
+	'baseurl' => $BASEURL,
 	'page' => 'review/phase1'
 );
 
-$schols = $dal->gridData($params);
+$schols = $dal->gridData( $params );
 ?>
 <?php include "templates/header_review.php" ?>
 <div id="form-container" class="fourteen columns">
@@ -58,7 +58,7 @@ $schols = $dal->gridData($params);
 		<th style="width: 6%;">partial</th>
 		<th style="width: 5%;">p1</th>
 	</tr>
-	<?php foreach ($schols as $row): ?>
+	<?php foreach ( $schols as $row ): ?>
 	<tr>
 		<td><?= $row['id']; ?></td>
 		<td><a href="<?php echo $BASEURL; ?>review/view?id=<?= $row['id'] ?>&phase=1"><?= $row['fname'] . ' ' . $row['lname']; ?></a></td>
@@ -81,9 +81,9 @@ if ( $row['p1count'] == 0 ) {
 	</tr>
 	<?php endforeach; ?>
 </table>
-</form>
-<?php
-$pager = new Pagination($params, $default_pp);
+	</form>
+	<?php
+$pager = new Pagination( $params, $default_pp );
 $pager->render();
 ?>
 

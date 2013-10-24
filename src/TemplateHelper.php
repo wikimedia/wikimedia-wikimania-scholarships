@@ -79,8 +79,8 @@ class TemplateHelper {
 		}
 
 		$html .= '
-  </select>
-  </li>';
+			</select>
+			</li>';
 
 		return $html;
 	}
@@ -92,10 +92,10 @@ class TemplateHelper {
 			' <input type="radio" id="haspassport" name="haspassport" value="1" ';
 
 		$html .= $hasPassport == 1 ? 'checked = "checked" ' : '';
-		$html .= '/>' . $wgLang->message('form-yes');
+		$html .= '/>' . $wgLang->message( 'form-yes' );
 		$html .= '<input type="radio" id="haspassport" name="haspassport" value="0" ';
 		$html .= $hasPassport == 0 ? 'checked = "checked" ' : '';
-		$html .= '/>' . $wgLang->message('form-no') . '</li>';
+		$html .= '/>' . $wgLang->message( 'form-no' ) . '</li>';
 
 		return $html;
 	}
@@ -117,7 +117,7 @@ class TemplateHelper {
 		}
 
 		$html .= '>
-    <option>' . $wgLang->message( 'form-select' ) . '</option>';
+			<option>' . $wgLang->message( 'form-select' ) . '</option>';
 
 		asort( $countries );
 
@@ -130,7 +130,7 @@ class TemplateHelper {
 		}
 
 		$html .= '</select>
-</li>';
+			</li>';
 
 		return $html;
 	}
@@ -139,8 +139,8 @@ class TemplateHelper {
 		global $wgLang;
 
 		$html = '
-<li id="dob">' . $wgLang->message( 'form-dateofbirth' ) . '<br/>
-<select id="dd" name="dd">';
+			<li id="dob">' . $wgLang->message( 'form-dateofbirth' ) . '<br/>
+			<select id="dd" name="dd">';
 
 		foreach ( range( 1, 31 ) as $i ) {
 			if ( $dd == $i ) {
@@ -156,7 +156,7 @@ class TemplateHelper {
 
 		foreach ( range( 0, 11 ) as $i ) {
 			if ( $mm == $i + 1 ) {
-				$html .= sprintf('<option value="%02d" selected="selected">%s</option>',
+				$html .= sprintf( '<option value="%02d" selected="selected">%s</option>',
 					$i + 1, $month_names[$i] );
 			} else {
 				$html .= sprintf( '<option value="%02d">%s</option>', $i + 1, $month_names[$i] );
@@ -173,7 +173,7 @@ class TemplateHelper {
 		}
 
 		$html .= '</select>
-</li>';
+			</li>';
 
 		return $html;
 	}
@@ -181,24 +181,24 @@ class TemplateHelper {
 	public function getGender( $value ) {
 		global $wgLang;
 
-		$html = '<li>' . $wgLang->message('form-gender')
-    		. '<select id="sex" name="sex">
-        		<option value="m" ';
+		$html = '<li>' . $wgLang->message( 'form-gender' )
+			. '<select id="sex" name="sex">
+			<option value="m" ';
 
-		$html .= $value =='m' ? 'selected = "selected" ' : '';
+		$html .= $value == 'm' ? 'selected = "selected" ' : '';
 		$html .= '>' . $wgLang->message( 'form-gender-male' ) . '</option>
-        <option value="f" ';
+			<option value="f" ';
 
 		$html .= $value == 'f' ? 'selected = "selected" ' : '';
-		$html .= '>' . $wgLang->message('form-gender-female') . '</option>
-        <option value="t" ';
+		$html .= '>' . $wgLang->message( 'form-gender-female' ) . '</option>
+			<option value="t" ';
 		$html .= $value == 't' ? 'selected = "selected" ' : '';
-		$html .= '>' . $wgLang->message('form-gender-transgender') . '</option>
-        <option value="d" ';
+		$html .= '>' . $wgLang->message( 'form-gender-transgender' ) . '</option>
+			<option value="d" ';
 		$html .= $value == 'd' ? 'selected = "selected" ' : '';
-		$html .= '>' . $wgLang->message('form-gender-unspecified') . '</option>
-    </select>
-</li>';
+		$html .= '>' . $wgLang->message( 'form-gender-unspecified' ) . '</option>
+			</select>
+			</li>';
 
 		return $html;
 	}
@@ -229,8 +229,8 @@ class TemplateHelper {
 	public function getYearsAttended( $values ) {
 		global $wgLang;
 
-		$html = '<li>' . $wgLang->message('form-attended') . '
-  <ul class="appform single">';
+		$html = '<li>' . $wgLang->message( 'form-attended' ) . '
+			<ul class="appform single">';
 
 		$years = array(
 			'wm05' => 2005,
@@ -243,16 +243,16 @@ class TemplateHelper {
 			'wm12' => 2012
 		);
 
-		foreach( $years as $key => $year ) {
+		foreach ( $years as $key => $year ) {
 			$html .= "
-    <li><input type='checkbox' id='$key' name='$key' value='1' ";
+				<li><input type='checkbox' id='$key' name='$key' value='1' ";
 			$html .= $values[$key] ? "checked = 'checked' " : '';
 			$html .= " style='margin-left: 1em'/> $year</li>";
 		}
 
 		$html .= '
-	</ul>
-</li>';
+			</ul>
+			</li>';
 
 		return $html;
 	}
@@ -261,7 +261,7 @@ class TemplateHelper {
 		global $wgLang;
 
 		$html = "
-	<li><input type='checkbox' id='$field' name='$field' value='1' ";
+			<li><input type='checkbox' id='$field' name='$field' value='1' ";
 		$html .= $value == 1 ? "checked = 'checked' " : '';
 		$html .= '/>' . $wgLang->message( $messageKey ) . '</li>';
 
@@ -276,7 +276,7 @@ class TemplateHelper {
 
 		$i = 1;
 
-		foreach( $options as $option ) {
+		foreach ( $options as $option ) {
 			$html .= "<option value='$option' ";
 			$html .= $value == $option ? 'selected = "selected" ' : '';
 			$html .= '>' . $wgLang->message( 'form-howheard' . $i ) . '</option>';
@@ -294,11 +294,11 @@ class TemplateHelper {
 		global $wgLang;
 
 		$html = '
-<li>' . $wgLang->message( 'form-wantspartial' ) . ' <input type="radio" id="wantspartial" '
+			<li>' . $wgLang->message( 'form-wantspartial' ) . ' <input type="radio" id="wantspartial" '
 			. 'name="wantspartial" value="1" ';
 		$html .= $wantsPartial == 1 ? 'checked = "checked" ' : '';
 		$html .= '/>' . $wgLang->message( 'form-yes' ) .
-' <input type="radio" id="wantspartial" name="wantspartial" value="0" ';
+			' <input type="radio" id="wantspartial" name="wantspartial" value="0" ';
 		$html .= $wantsPartial == 0 ? 'checked = "checked" ' : '';
 		$html .= '/>' . $wgLang->message( 'form-no' ) . '</li>';
 		$html .= '<li><input type="checkbox" id="canpaydiff" name="canpaydiff" value="1" ';
@@ -312,15 +312,15 @@ class TemplateHelper {
 		global $wgLang;
 
 		$html = '
-<li ' . $this->haserror( 'chapteragree', $app ) . '><label class="required">
-<input type="radio" id="chapteragree" name="chapteragree" value="1" ';
+			<li ' . $this->haserror( 'chapteragree', $app ) . '><label class="required">
+			<input type="radio" id="chapteragree" name="chapteragree" value="1" ';
 		$html .= $value == 1 ? 'checked = "checked" ' : '';
 		$html .= '/>' . $wgLang->message( 'form-yes' ) . '
-<input type="radio" id="chapteragree" name="chapteragree" value="0"';
+			<input type="radio" id="chapteragree" name="chapteragree" value="0"';
 		$html .= $value == 0 ? 'checked = "checked" ' : '';
 		$html .=  '/>' . $wgLang->message( 'form-no' ) . '
-&nbsp;&nbsp;-&nbsp;&nbsp;' . $wgLang->message( 'form-chapteragree' ) . '</label>
-</li>';
+			&nbsp;&nbsp;-&nbsp;&nbsp;' . $wgLang->message( 'form-chapteragree' ) . '</label>
+			</li>';
 
 		return $html;
 	}
@@ -329,13 +329,13 @@ class TemplateHelper {
 		global $wgLang;
 
 		$rights = "
-		<!-- WMF -->
-		<p>
-		<b>" . $wgLang->message( 'form-rights-heading' ) . "</b>
-		<br /><br />
-		" . $wgLang->message( 'form-rights' ) . "
-</p>
-<ul class='appform'>";
+			<!-- WMF -->
+			<p>
+			<b>" . $wgLang->message( 'form-rights-heading' ) . "</b>
+			<br /><br />
+			" . $wgLang->message( 'form-rights' ) . "
+			</p>
+			<ul class='appform'>";
 
 		return $rights;
 	}
