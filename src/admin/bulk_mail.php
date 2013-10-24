@@ -325,8 +325,6 @@ Questions? <a href=mailto:wikimania-scholarships@wikimedia.org>Contact us</a>
 </html>
 EOM;
 */
-session_start();
-
 if (!isset($_SESSION['user_id'])) {
 	header('location: ' . $BASEURL . 'user/login');
 	exit();
