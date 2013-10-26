@@ -28,7 +28,7 @@ if ( isset( $_GET['p'] ) )  {
 	$p = 0;
 }
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $params = array(
 	'min' => isset( $_GET['min'] ) ? $_GET['min'] : -2,
 	'max' => isset( $_GET['max'] ) ? $_GET['max'] : 999,

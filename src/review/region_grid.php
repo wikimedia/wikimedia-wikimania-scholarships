@@ -7,7 +7,7 @@ if ( !isset( $_SESSION['user_id'] ) )
 
 $order = ( isset( $_GET['order'] ) ) ? $_GET['order']:'';
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $users = $dal->GetListofRegions();
 ?>
 <?php include "templates/header_review.php" ?>

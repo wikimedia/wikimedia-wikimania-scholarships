@@ -6,7 +6,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 
 $order = ( isset( $_GET['order'] ) ) ? $_GET['order']:'';
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $users = $dal->GetListofCountries( $order );
 ?>
 <?php include "templates/header_review.php" ?>

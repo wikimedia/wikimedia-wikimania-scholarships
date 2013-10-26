@@ -1,12 +1,12 @@
 <?php
 if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
-	$user = new DataAccessLayer();
+	$user = new User();
 	$res = $user->GetUser( $_POST['username'] );
 	if ( Password::comparePasswordToHash( $_POST['password'], $res['password'] ) &&
-		$user->UserIsBlocked() == 0 ) {
+		$res['blocked'] == 0 ) {
 			$_SESSION['user_id'] = $res['id'];
 
-		// FIXME: generate new session if on authentication
+		// FIXME: generate new session id on authentication
 		// FIXME: session should store prior destination
 		header( 'location: ' . $BASEURL . 'review/phase1' );
 		exit();
@@ -16,7 +16,7 @@ if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
 	}
 }
 ?>
-<?php include "templates/header_review.php" ?>
+<?php include "templates/header_review.php"; ?>
 <div id="form-container" class="fourteen columns">
 	<form method="post" action="<?php echo $BASEURL; ?>user/login" >
 	<h2>Log in</h2>

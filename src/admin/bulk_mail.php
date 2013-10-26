@@ -333,7 +333,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 $start = (int)( $_GET['start'] ? $_GET['start'] : 0 );
 $howmany = (int)( $_GET['howmany'] ? $_GET['howmany'] : 1 );
 //
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $schols = $dal->GetPhase1EarlyRejects( $start, $howmany );
 
 include "$BASEDIR/templates/header_review.php";

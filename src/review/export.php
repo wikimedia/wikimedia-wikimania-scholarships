@@ -4,7 +4,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 	exit();
 }
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $data = $dal->export();
 
 header( "Content-Type: text/plain" );

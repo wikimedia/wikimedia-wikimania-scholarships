@@ -11,16 +11,16 @@ if ( $_GET['id'] )
 else if ( $_POST['id'] )
 	$id = $_POST['id'];
 
-$dal = new DataAccessLayer();
-$username = $dal->GetUsername( $_SESSION['user_id'] );
-$isadmin = $dal->IsSysAdmin( $_SESSION['user_id'] );
+$userDao = new User();
+$username = $userDao->GetUsername( $_SESSION['user_id'] );
+$isadmin = $userDao->IsSysAdmin( $_SESSION['user_id'] );
 
 if ( isset( $_POST['save'] ) ) {
 	if ( $_POST['force'] == 1 ) {
-		$reset = $dal->UpdatePassword( NULL, $_POST['newpw1'], $_POST['id'], 1 );
+		$reset = $userDao->UpdatePassword( NULL, $_POST['newpw1'], $_POST['id'], 1 );
 	} else {
 		if ( $_POST['newpw1'] == $_POST['newpw2'] ) {
-			$reset = $dal->UpdatePassword( $_POST['oldpw'], $_POST['newpw1'], $_POST['id'] );
+			$reset = $userDao->UpdatePassword( $_POST['oldpw'], $_POST['newpw1'], $_POST['id'] );
 			if ( $reset == 0 ) {
 				$error = 1;
 				$errmsg = "Old password incorrect.";
@@ -34,10 +34,10 @@ if ( isset( $_POST['save'] ) ) {
 }
 
 if ( ( $isadmin == 1 ) && ( isset( $_GET['id'] ) ) ) {
-	$user = $dal->GetUserInfo( $id );
+	$user = $userDao->GetUserInfo( $id );
 	$forceset = 1;
 } else {
-	$user = $dal->GetUserInfo( $user_id );
+	$user = $userDao->GetUserInfo( $user_id );
 }
 
 ?>

@@ -528,7 +528,7 @@ wikimania-scholarships@wikimedia.org</p>
 	}
 }
 
-// $dal = new DataAccessLayer;
+// $dal = new Dao;
 // p1 reject
 	/*$schols = $dal->GetPhase1EarlyRejects();
 	$schols = $dal->GetPhase1EarlyRejectsTemp();*/

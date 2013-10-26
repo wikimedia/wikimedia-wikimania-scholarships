@@ -4,7 +4,7 @@
 
 //This code is error
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $query_res = $dal->GetListofCountries();
 
 $COUNTRY_NAMES[] = "Unspecified";

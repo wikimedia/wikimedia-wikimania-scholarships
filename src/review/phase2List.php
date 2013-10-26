@@ -7,7 +7,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 $partial = $_GET['partial'] ? $_GET['partial'] : 0;
 $regionSelected = $_GET['regionSelected'] ? $_GET['regionSelected'] : 'All';
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $regionList = $dal->GetRegionListNoCount();
 array_push( $regionList, array( 'region' => 'All' ) );
 

@@ -33,7 +33,7 @@ function GetScholarshipId() {
 
 function RankDropdownList( $criterion, $scholarship_id ) {
 	global $user_id;
-	$dal = new DataAccessLayer();
+	$dal = new Dao();
 	$rank = $dal->getRankingOfUser( $user_id, $scholarship_id, $criterion );
 	$ret = sprintf( '<select id="%s" name="%s">', $criterion, $criterion );
 

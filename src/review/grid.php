@@ -11,20 +11,19 @@ if ( isset( $_GET['apps'] ) ) {
 	}
 }
 
-$items = $default_pp;
-$p = 0;
 
 if ( isset( $_GET['items'] ) )  {
 	$items = intval( $_GET['items'] );
-}
-else
+} else {
 	$items = 30;
+}
 
+$p = 0;
 if ( isset( $_GET['p'] ) )  {
 	$p = intval( $_GET['p'] );
 }
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $params = array(
 	'min' => isset( $_GET['min'] ) ? $_GET['min'] : -2,
 	'max' => isset( $_GET['max'] ) ? $_GET['max'] : 999,

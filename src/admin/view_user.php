@@ -13,8 +13,8 @@ else if ( $_POST['id'] )
 else
 	$id = 'new';
 
-$dal = new DataAccessLayer();
-$username = $dal->GetUsername( $_SESSION['user_id'] );
+$userDao = new User();
+$username = $userDao->GetUsername( $_SESSION['user_id'] );
 
 if ( isset( $_POST['save'] ) ) {
 	$fieldnames = array( "username", "password", "email", "reviewer", "isvalid", "isadmin", "blocked" );
@@ -23,14 +23,14 @@ if ( isset( $_POST['save'] ) ) {
 	}
 	if ( $_POST['formstate'] == 'new' ) {
 		$answers['password'] = Password::encodePassword( $_POST['password'] );
-		$id = $dal->NewUserCreate( $answers );
+		$id = $userDao->NewUserCreate( $answers );
 	} else {
-		$dal->UpdateUserInfo( $answers, $_POST['id'] );
+		$userDao->UpdateUserInfo( $answers, $_POST['id'] );
 	}
 }
 
 if ( $id != "new" )
-	$user = $dal->GetUserInfo( $id );
+	$user = $userDao->GetUserInfo( $id );
 
 ?>
 <?php include "templates/header_review.php" ?>
@@ -38,8 +38,8 @@ if ( $id != "new" )
 <form method="post" action="<?php echo $BASEURL; ?>user/view">
 <h1>View User Info</h1>
 <?php include "templates/admin_nav.php";
-$isadmin =
-	$dal->IsSysAdmin( $_SESSION['user_id'] ); if ( $isadmin == 1 ) { ?>
+$isadmin = $userDao->IsSysAdmin( $_SESSION['user_id'] );
+if ( $isadmin == 1 ) { ?>
 <fieldset><input type="hidden" name="id" id="id"
 	value="<?= $user['id'] ?>" /> <input type="hidden" name="formstate"
 	id="formstate" value="<?= ( $id == "new" ) ? "new" : "" ; ?>" />

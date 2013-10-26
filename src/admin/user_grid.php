@@ -6,7 +6,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 
 $state = ( isset( $_GET['state'] ) ) ? $_GET['state']:'all';
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $users = $dal->GetListofUsers( $state );
 
 $rowstyleeven = 0;

@@ -11,12 +11,14 @@ if ( isset( $_GET['phase'] ) && is_numeric( $_GET['phase'] ) ) {
 	$phase = $_POST['phase'];
 }
 
-$dal = new DataAccessLayer();
+$dao = new Dao();
+$userDao = new User();
+//FIXME: stick a user object in the session?
 $user_id = $_SESSION['user_id'];
-$username = $dal->GetUsername( $user_id );
-$isadmin = $dal->IsSysAdmin( $user_id );
+$username = $userDao->GetUsername( $user_id );
+$isadmin = $userDao->IsSysAdmin( $user_id );
 
-$unreviewed = $dal->myUnreviewed( $user_id, $phase );
+$unreviewed = $dao->myUnreviewed( $user_id, $phase );
 
 $id = min( $unreviewed );
 if ( isset( $_GET['id'] ) ) {
@@ -26,31 +28,28 @@ if ( $id == '' or $id < 0 ) {
 	echo( '<script>alert("please click Phase ' . $phase . ' to return the list")</script>' );
 }
 
-$myscorings = $dal->myRankings( $id, $user_id, $phase );
-$allscorings = $dal->allRankings( $id, $phase );
-$reviewers = $dal->getReviewers( $id, $phase );
+$myscorings = $dao->myRankings( $id, $user_id, $phase );
+$allscorings = $dao->allRankings( $id, $phase );
+$reviewers = $dao->getReviewers( $id, $phase );
 
 if ( isset( $_POST['save'] ) ) {
 	$criteria = array( 'valid', 'onwiki', 'offwiki', 'future', 'program', 'englishAbility' );
 	$id = isset( $_POST['scholid'] ) ? $_POST['scholid'] : $id;
 	foreach ( $criteria as $c ) {
 		if ( isset( $_POST[$c] ) ) {
-			$dal->InsertOrUpdateRanking( $user_id, $id, $c, $_POST[$c] );
+			$dao->InsertOrUpdateRanking( $user_id, $id, $c, $_POST[$c] );
 		}
 	}
 	if ( isset( $_POST['notes'] ) && strlen( $_POST['notes'] ) > 0 ) {
-		$dal->UpdateNotes( $id, $_POST['notes'] );
+		$dao->UpdateNotes( $id, $_POST['notes'] );
 	}
 
-	// $nextid = $dal->getNextId($user_id, $id, $phase);
-	// $_SESSION['prev_id'] = $id;
-	// header('Location: ' . $BASEURL . 'review/view?id=' . $nextid . '&phase=' . $phase);
 	header( 'Location: ' . $BASEURL . 'review/view?id=' . $id . '&phase=' . $phase );
 	exit();
 }
 
-$skipid = $dal->skipApp( $user_id, $id, $phase );
-$schol = $dal->GetScholarship( $id );
+$skipid = $dao->skipApp( $user_id, $id, $phase );
+$schol = $dao->GetScholarship( $id );
 ?>
 <?php include "templates/header_review.php" ?>
 <div id="form-container" class="fourteen columns">

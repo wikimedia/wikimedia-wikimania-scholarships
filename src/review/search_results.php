@@ -4,7 +4,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 	exit();
 }
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $params = array(
 	'baseurl' => $BASEURL,
 	'phase' => 2,

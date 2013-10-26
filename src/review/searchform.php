@@ -3,7 +3,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 	header( 'location: ' . $BASEURL . 'user/login' );
 	exit();
 }
-$dal = new DataAccessLayer();
+$dal = new Dao();
 ?>
 <?php include "templates/header_review.php" ?>
 <h2>Scholarship Applications</h2>

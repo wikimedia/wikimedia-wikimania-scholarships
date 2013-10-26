@@ -4,7 +4,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 	exit();
 }
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $schols = $dal->GetPhase1Success();
 
 if ( $_GET["action"] == "export" ) {

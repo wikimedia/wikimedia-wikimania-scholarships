@@ -6,8 +6,8 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 
 $user_id = $_SESSION['user_id'];
 
-$dal = new DataAccessLayer();
-$username = $dal->GetUsername( $_SESSION['user_id'] );
+$userDao = new User();
+$username = $userDao->GetUsername( $_SESSION['user_id'] );
 
 include 'templates/header_review.php';
 include 'templates/admin_nav.php';
@@ -27,7 +27,7 @@ if ( isset( $_POST['save'] ) ) {
 			$answers[$i] = mysql_real_escape_string( $_POST[$i] );
 		}
 		$answers['password'] = Password::encodePassword( $_POST['password'] );
-		$res = $dal->NewUserCreate( $answers );
+		$res = $userDao->NewUserCreate( $answers );
 		if ( $res === false ) {
 			echo "<strong>Error: User already exists</strong>";
 		} else {
@@ -52,7 +52,7 @@ if ( isset( $_POST['save'] ) ) {
 			<?
 	} ?>
 		<?php
-		$isadmin = $dal->IsSysAdmin( $_SESSION['user_id'] );
+		$isadmin = $userDao->IsSysAdmin( $_SESSION['user_id'] );
 	if ( $isadmin == 1 ) {
 		$randpass = substr( str_shuffle( str_repeat( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$^&*~?/><01234567890123456789', 9 ) ), 0, 9 );
 		?>

@@ -1,5 +1,6 @@
 <?php
-$isadmin = $dal->IsSysAdmin( $_SESSION['user_id'] );
+$userDao = new User();
+$isadmin = $userDao->IsSysAdmin( $_SESSION['user_id'] );
 ?>
 <div id="tabsnav" class="clearfix">
 <ul id="review-tabs">

@@ -1,93 +1,115 @@
 <?php
 
-class User {
-	protected $db;
+class User extends AbstractDao {
 
-	function __construct() {
-		global $db_driver, $db_user, $db_pass, $db_host, $db_name;
-		$dsn = $db_driver . '://' . $db_user . ':' . $db_pass . '@'
-			. $db_host . '/' . $db_name;
-		$this->db = &DB::Connect( $dsn );
-
-		if ( PEAR::isError( $this->db ) ) {
-			die( $this->db->getMessage() );
-		}
-
-		$this->db->setFetchMode( DB_FETCHMODE_ASSOC );
+	public function __construct() {
+		parent::__construct();
 	}
 
-	function __destruct() {
-		if ( DB::isError( $this->db ) ) {
-			die( 'Could not connect to database!' );
-		}
-
-		$this->db->disconnect();
+	public function GetUser( $username ) {
+		return $this->fetch(
+			'SELECT * FROM users WHERE username = ? AND isvalid = 1',
+			array( $username )
+		);
 	}
 
-	function GetUser( $username ) {
-		return $this->db->query( 'select id, username, password, email, reviewer from users where username = ? and isvalid = 1',
-			array( $username ) )->fetchRow();
+	public function GetUsername( $id ) {
+		return $this->fetch(
+			'SELECT username FROM users WHERE id = ?',
+			array( $id )
+		);
 	}
 
-	function GetUsername( $id ) {
-		return $this->db->query( 'select username from users where id = ?', array( $id ) )->fetchRow();
-	}
-
-	function GetListofUsers( $state ) {
+	public function GetListofUsers( $state ) {
 		switch ( $state ) {
-			case "all":
-				return $this->db->getAll( "select * from users" );
+			case 'all':
+				return $this->fetchAll( 'SELECT * FROM users' );
 				break;
-			case "reviewer":
-				return $this->db->getAll( "select * from users where `reviewer` = 1" );
+
+			case 'reviewer':
+				return $this->fetchAll( 'SELECT * FROM users WHERE reviewer = 1' );
 				break;
 		}
 	}
 
-	function GetUserInfo( $user_id ) {
-		return $this->db->query( "select * from `users` where `id` = ?", array( $user_id ) )->fetchrow();
+	public function GetUserInfo( $user_id ) {
+		return $this->fetch(
+			"SELECT * FROM users WHERE id = ?",
+			array( $user_id )
+		);
 	}
 
-	function IsSysAdmin( $user_id ) {
-		$res = $this->db->query( "select `isadmin` from `users` where `id` = ?", array( $user_id ) )->fetchrow();
+	public function IsSysAdmin( $user_id ) {
+		$res = $this->fetch(
+			"SELECT isadmin FROM users WHERE id = ?",
+			array( $user_id )
+		);
 		return $res['isadmin'];
 	}
 
-	function NewUserCreate( $answers ) {
-		$fieldnames = array( "username", "password", "email", "reviewer", "isvalid", "isadmin" );
-		$this->db->query(
-			sprintf( "insert into users (%s) values ('%s')", join( $fieldnames, ', ' ), join( $answers, "', '" ) )
-		);
-		$res = $this->db->insert_id;
-		return $res;
+	public function NewUserCreate( $answers ) {
+		// FIXME: yuck, order matters in $answers!
+		$fields = array( 'username', 'password', 'email', 'reviewer', 'isvalid', 'isadmin' );
+		$sql = 'INSERT INTO users (' .
+			implode( ', ', $fields ) . ') VALUES (' .
+			implode( ',', array_fill( 0, count( $fields ), '?' ) ) . ')';
+
+		// FIXME: prior implementation died on error, fix callers
+		return $this->insert( $sql, $answers );
 	}
 
-	function UpdateUserInfo( $answers, $id ) {
-		$fieldnames = array( "username", "email", "reviewer", "isvalid", "isadmin" );
-		$query = "update users set ";
-
-		for ( $i = 0; $i <= 4; $i++ ) {
-			$field = $fieldnames[$i];
-			$query .= ( $i === 0 ) ? '' : ',';
-			$query .= '`' . $field . '`="' . $answers[$field] . '" ';
+	public function UpdateUserInfo( $answers, $id ) {
+		$fields = array( 'username', 'email', 'reviewer', 'isvalid', 'isadmin' );
+		$placeholders = array();
+		foreach ( $fields as $field ) {
+			$placeholders[] = "{$field} = :{$field}";
 		}
+		$stmt = $this->dbh->prepare(
+			'UPDATE users SET ' .
+			implode( ', ', $placeholders ) .
+			' WHERE id = :id'
+		);
 
-		$query .= "where `id` = ?";
-		$this->db->query( $query, array( $id ) );
+		$answers['id'] = $id;
+		try {
+			$this->dbh->beginTransaction();
+			$stmt->execute( $answers );
+			$this->dbh->commit();
+		} catch ( PDOException $e) {
+			$this->dbh->rollback();
+			// FIXME
+			die( "Fatal Error: {$e->getMessage()}" );
+		}
 	}
 
-	function UpdatePassword( $oldpw, $newpw, $id, $force = null ) {
-		if ( $force === 1 ) {
-			$this->db->query( "update users set password = ? where id = ?", array( sha1( $newpw ), $id ) );
-			return 1;
-		} else {
-			$userdata = $this->db->query( 'select password from users where id = ?', array( $id ) )->fetchRow();
-			if ( $userdata['password'] == sha1( $oldpw ) ) {
-				$this->db->query( "update users set password = ? where id = ?", array( sha1( $newpw ), $id ) );
-				return 1;
-			} else {
-				return 0;
+	public function UpdatePassword( $oldpw, $newpw, $id, $force = null ) {
+		if ( !$force ) {
+			$res = $this->fetch(
+				'SELECT password FROM users WHERE id = ?',
+				array( $id )
+			);
+			if ( !Password::comparePasswordToHash( $oldpw, $res['password'] ) ) {
+				// passsword doesn't match expected
+				return false;
 			}
 		}
+
+		$stmt = $this->dbh->prepare( 'UPDATE users SET password = ? WHERE id = ?' );
+		try {
+			$this->dbh->beginTransaction();
+			$stmt->execute( array( Password::encodePassword( $newpw ), $id ) );
+			$this->dbh->commit();
+			return true;
+		} catch ( PDOException $e) {
+			$this->dbh->rollback();
+			//FIXME: logging
+			return false;
+		}
 	}
+
+	public function UserIsBlocked( $id ) {
+		$res = $this->query( "SELECT blocked FROM users WHERE id = ?", array( $id ) );
+		return $res['blocked'];
+	}
+
 }

@@ -21,7 +21,7 @@ class Pagination {
 
 	public function __construct( $params, $default_pp ) {
 		$this->params = $params;
-		$this->dal = new DataAccessLayer();
+		$this->dal = new Dao();
 
 		$this->default_pp = $default_pp;
 

@@ -1,11 +1,13 @@
 <?php
 // save as config.php
 
-$db_host = 'localhost';
-$db_user = '';
-$db_pass = '';
-$db_name = '';
-$db_driver = 'mysql';
+$CONFIG = array(
+	'db' => array(
+		'dsn' => 'mysql:host=localhost;dbname=REPLACE_DB',
+		'user' => '',
+		'password' => '',
+	),
+);
 
 $open_time = gmmktime( 0, 0, 0, /*january*/ 1, /*1st*/ 1, 2011 );
 $close_time = gmmktime( 0, 0, 0, /*february*/ 2, /*1st*/ 15, 2012 );

@@ -5,7 +5,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 }
 
 $user_id = $_SESSION['user_id'];
-$dal = new DataAccessLayer();
+$dal = new Dao();
 
 if ( isset( $_GET['id'] ) ) {
 	$id = $_GET['id'];

@@ -76,50 +76,46 @@ class Application {
 	}
 
 	function submit( $data ) {
-		global $db_user, $db_pass, $db_host, $db_name, $FIELDS, $columns;
-
-		$db = "mysql://$db_user:$db_pass@$db_host/$db_name";
+		global $FIELDS, $columns;
 
 		$haserrors = $this->validate( $data );
 
 		if ( ( isset( $data['submit'] ) ) && ( $haserrors === FALSE ) ) {
-			if ( !( $db = mysql_connect( $db_host, $db_user, $db_pass ) ) ) {
-				print mysql_error();
-				die( 'Could not connect: ' . mysql_error() );
-			}
-			if ( !mysql_select_db( $db_name ) ) {
-				print mysql_error();
-				die( 'Could not select DB: ' . mysql_error() );
-			}
 
-			$colnames = array( "fname", "lname", "email", "telephone", "address", "residence", "nationality",
-				"haspassport", /*"passportnum",*/ "airport", "languages", "sex", "occupation", "areaofstudy",
-				"wm05", "wm06", "wm07", "wm08", "wm09", "wm10", "wm11", "wm12", "presentation", "howheard", "why",
-				"username", "project", "projectlangs", "involvement", /*"future",*/ "englistAbility", "contribution",
-				"sincere", "willgetvisa", "willpayincidentals", "agreestotravelconditions", "chapteragree",
-				"wantspartial", "canpaydiff", "dob", "rank", "ipaddr", "presentationTopic", "wmfAgreeName" );
+			// FIXME: hardcoded columns
+			// FIXME: does this match all form fields
+			$colnames = array(
+				"fname", "lname", "email", "telephone", "address", "residence",
+				"nationality", "haspassport", "airport", "languages", "sex",
+				"occupation", "areaofstudy", "wm05", "wm06", "wm07", "wm08",
+				"wm09", "wm10", "wm11", "wm12", "presentation", "howheard",
+				"why", "username", "project", "projectlangs", "involvement",
+				"englistAbility", "contribution", "sincere", "willgetvisa",
+				"willpayincidentals", "agreestotravelconditions", "chapteragree",
+				"wantspartial", "canpaydiff", "dob", "rank", "ipaddr",
+				"presentationTopic", "wmfAgreeName" );
 
 			foreach ( $colnames as $i ) {
-				if ( ( isset( $data[$i] ) ) and ( ( $i == 'residence' ) or ( $i == 'nationality' ) ) ) {
-					if ( $data[$i] == 'Unspecified' ) {
+				if ( $i == 'residence' || $i == 'nationality' ) {
+					if ( isset( $data[$i] ) && $data[$i] == 'Unspecified' ) {
 						$data[$i] = NULL;
 					}
 				}
-				if ( ( isset( $data[$i] ) ) or ( $i == 'dob' ) ) {
-					if ( ( $i == 'dob' ) && ( isset( $data['yy'] ) ) && ( isset( $data['mm'] ) ) && ( isset( $data['dd'] ) ) ) {
+
+				if ( isset( $data[$i] ) || $i == 'dob' ) {
+					if ( $i == 'dob' && isset( $data['yy'] ) &&
+							 isset( $data['mm'] ) && isset( $data['dd'] ) ) {
 						$date = sprintf( "%d-%d-%d", $data['yy'], $data['mm'], $data['dd'] );
 						$time = strtotime( $date );
-						if ( ( $time < strtotime( '2013-12-31' ) ) && ( $time > strtotime( '1882-01-01' ) ) ) {
+						if ( $time < strtotime( '2013-12-31' ) &&
+								 $time > strtotime( '1882-01-01' ) ) {
 							$answers['dob'] = $date;
 						} else {
 							$answers['dob'] = NULL;
 						}
-					} elseif ( strlen( $data[$i] ) > 0 ) {
-						$answers[$i] = mysql_real_escape_string( $data[$i] );
-					} elseif ( is_int( $data[$i] ) ) {
-						$answers[$i] = $data[$i];
+
 					} else {
-						$answers[$i] = NULL;
+						$answers[$i] = ( strlen( $data[$i] ) > 0 ) ? $data[$i] : null;
 					}
 				}
 			}
@@ -127,45 +123,18 @@ class Application {
 			$answers['rank'] = 1;
 			$answers['ipaddr'] = $_SERVER['REMOTE_ADDR'];
 
-			$fields = array();
-			$subst = '';
-			$values = array();
-			foreach ( $colnames as $c ) {
-				if ( isset( $answers[$c] ) ) {
-					if ( in_array( $columns[$c]['type'], array( 'varchar', 'text', 'date', 'varbinary' ) ) ) {
-						array_push( $fields, $c );
-						$subst .= "'%s', ";
-						array_push( $values, $answers[$c] );
-					} elseif ( ( $columns[$c]['type'] == 'tinyint' ) or ( $columns[$c]['type'] == 'int' ) ) {
-						array_push( $fields, $c );
-						$subst .= "%d, ";
-						array_push( $values, $answers[$c] );
-					} elseif ( ( $columns[$c]['type'] == 'enum' ) and ( in_array( trim( $answers[$c] ), $columns[$c]['options'] ) ) ) {
-						array_push( $fields, $c );
-						$subst .= "'%s', ";
-						array_push( $values, $answers[$c] );
-					}
-				}
+			$dao = new Dao();
+			//FIXME: error handling
+			$appId = $dao->saveApplication( $answers );
+			if ( $appId !== false ) {
+				$this->emailResponse( $answers );
 			}
-			$fieldnames = join( $fields, ", " );
-			$subst = rtrim( $subst, ', ' );
-			$prepare = "insert into scholarships (%s) values($subst)";
-
-			$query = vsprintf( $prepare,
-				array_merge( array( $fieldnames ), $values ) );
-
-			if ( !mysql_query( $query ) ) die( 'Could not perform query: ' . mysql_error() );
-			mysql_close( $db );
-
-			$this->emailResponse( $answers );
-
-			$this->success = TRUE;
+			$this->success = ( $appId !== false );
 		}
 	}
 
 	function emailResponse( $answers ) {
 		global $wgLang;
-
 
 		$message = $wgLang->message( 'form-email-response' );
 		$message = preg_replace( '/\$1/', $answers['fname'] . ' ' . $answers['lname'], $message );

@@ -30,7 +30,7 @@ else if ( $_POST['id'] )
 else
 	die( "No ID supplied!" );
 
-$dal = new DataAccessLayer();
+$dal = new Dao();
 $username = $dal->GetUsername( $_SESSION['user_id'] );
 
 if ( isset( $_POST['up'] ) ) {
