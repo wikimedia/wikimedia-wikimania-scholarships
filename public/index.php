@@ -28,6 +28,8 @@
 
 require_once '../src/init.php';
 
+$wgLang = new Lang();
+
 $router = new Router( $BASEURL, $routes, $defaultRoute );
 $path = $router->route();
 $basepath = array_search( $path, $routes );

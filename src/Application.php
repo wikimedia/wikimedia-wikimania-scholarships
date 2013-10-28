@@ -76,8 +76,6 @@ class Application {
 	}
 
 	function submit( $data ) {
-		global $FIELDS, $columns;
-
 		$haserrors = $this->validate( $data );
 
 		if ( ( isset( $data['submit'] ) ) && ( $haserrors === FALSE ) ) {
@@ -139,6 +137,7 @@ class Application {
 		$message = $wgLang->message( 'form-email-response' );
 		$message = preg_replace( '/\$1/', $answers['fname'] . ' ' . $answers['lname'], $message );
 
+		//FIXME: using mail directly?
 		mail( $answers['email'],
 			$wgLang->message( 'form-email-subject' ),
 			wordwrap( $message, 72 ),
@@ -147,16 +146,4 @@ class Application {
 			"Content-type: text/plain; charset=utf-8\r\n" .
 			"Content-Transfer-Encoding: 8bit" );
 	}
-
-	function isOpen() {
-		$close_time = gmmktime( 0, 0, 0, /*Feb*/ 2, /*23rd*/ 23, 2013 );
-		if ( time() > $close_time ) {
-			if ( $chapters_application ) {
-				$COUNTRY_NAMES = $COUNTRY_NAMES_CHAPTERS;
-			} else 	{
-				return 'done';
-			}
-		}
-	}
-
 }

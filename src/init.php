@@ -12,7 +12,6 @@ require_once 'config.php';
 require_once 'helper.php';
 require_once 'routes.php';
 require_once 'variables.php';
-require_once 'schema.php';
 
 require_once 'AbstractDao.php';
 require_once 'Common.php';
@@ -26,4 +25,3 @@ require_once 'TemplateHelper.php';
 require_once 'Password.php';
 require_once 'User.php';
 
-$wgLang = new Lang();

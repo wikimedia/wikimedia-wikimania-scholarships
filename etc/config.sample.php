@@ -14,11 +14,10 @@ $close_time = gmmktime( 0, 0, 0, /*february*/ 2, /*1st*/ 15, 2012 );
 
 $email_from = 'wikimania-scholarships@wikimedia.org';
 
-$chapters_application = FALSE;
-
 $TEMPLATEDIR = BASEDIR . '/templates/';
 $TEMPLATEBASE = '/templates/';
 $BASEURL = "/";
 $TEMPLATEBASE_REVIEW = $BASEURL . 'templates/';
 
+// Is this a live site or just a testing mock?
 $mock = true;
