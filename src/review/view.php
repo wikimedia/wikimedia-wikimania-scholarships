@@ -133,7 +133,7 @@ Notes:<br/>
 <li>Date of birth:
 <?php
 if ( ( strtotime( $schol['dob'] ) > strtotime( '1875-01-01' ) ) &&
-	( strtotime( $schols['dob'] ) < time() ) ) {
+	( strtotime( $schol['dob'] ) < time() ) ) {
 		echo $schol['dob'] . ' (' . YearsOld( $schol['dob'] ) . ' years old)';
 	} else {
 		echo 'Not specified';
@@ -178,22 +178,6 @@ if ( ( strtotime( $schol['dob'] ) > strtotime( '1875-01-01' ) ) &&
 		<td><?= $schol['wm12'] == 1 ? 'X' : '&nbsp;' ?></td>
 	</tr>
 </table>
-<p>2012 Scholarship:
-<?php
-		if ( $schol['2012scholarship'] == "F" ) {
-			echo "Full Scholarship";
-		}
-		else if ( $schol['2012scholarship'] == "D" ) {
-			echo "Declined the full scholarship";
-		}
-		else if ( $schol['2012scholarship'] == "P" ) {
-			echo "Partial Scholarship";
-		}
-		else {
-			echo "NIL";
-		}
-?>
-</p>
 <p></p>
 
 <p>
