@@ -90,7 +90,7 @@ class Application {
 				"occupation", "areaofstudy", "wm05", "wm06", "wm07", "wm08",
 				"wm09", "wm10", "wm11", "wm12", "presentation", "howheard",
 				"why", "username", "project", "projectlangs", "involvement",
-				"englistAbility", "contribution", "sincere", "willgetvisa",
+				"englishAbility", "contribution", "sincere", "willgetvisa",
 				"willpayincidentals", "agreestotravelconditions", "chapteragree",
 				"wantspartial", "canpaydiff", "dob", "rank", "ipaddr",
 				"presentationTopic", "wmfAgreeName" );

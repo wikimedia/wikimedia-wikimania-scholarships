@@ -141,11 +141,11 @@ class Dao extends AbstractDao {
 				'coalesce(nscorers,0) as nscorers' );
 			array_push( $where, ' p1score >= 3 ' );
 			$sql = self::buildSelect( $fields ) . self::buildFrom( $tables ) . "
-				left outer join (select scholarship_id, sum(rank) as p2score from rankings where criterion in ('onwiki','offwiki', 'future', 'englistAbility') group by scholarship_id) r on s.id = r.scholarship_id
+				left outer join (select scholarship_id, sum(rank) as p2score from rankings where criterion in ('onwiki','offwiki', 'future', 'englishAbility') group by scholarship_id) r on s.id = r.scholarship_id
 				left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-				left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'program', 'englistAbility') group by scholarship_id) r3 on s.id = r3.scholarship_id
+				left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'program', 'englishAbility') group by scholarship_id) r3 on s.id = r3.scholarship_id
 				left outer join countries c on s.residence = c.id
-				LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion IN ('onwiki', 'offwiki', 'future', 'englistAbility') AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id "
+				LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion IN ('onwiki', 'offwiki', 'future', 'englishAbility') AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id "
 				. $this->buildWhere( $where ) . "
 				group by s.id, s.fname, s.lname, s.email, s.residence
 				order by s.id $limit $offset;";
@@ -215,7 +215,7 @@ class Dao extends AbstractDao {
 	public function myUnreviewed( $myid, $phase ) {
 		$where = array();
 		$sql = "SELECT s.id FROM scholarships s
-			LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion IN ('onwiki', 'offwiki', 'future', 'program', 'englistAbility') AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id
+			LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion IN ('onwiki', 'offwiki', 'future', 'program', 'englishAbility') AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id
 			WHERE mycount IS NULL;";
 
 		$res = $this->fetchAll( $sql );

@@ -269,11 +269,11 @@ echo $temp;
 <?php endif; ?></fieldset>
 
 <fieldset><legend>English Ability <br />(Question: Hong Kong is an international gourmet paradise. Please use less than 200 words to describe your favourite dish of food.)</legend>
-<?php if ( strlen( $schol['englistAbility'] ) > 0 ): ?>
-<!--<p><?= $schol['englistAbility'] ?></p>-->
+<?php if ( strlen( $schol['englishAbility'] ) > 0 ): ?>
+<!--<p><?= $schol['englishAbility'] ?></p>-->
 <p>
 <?php
-$temp = str_replace( "\n", "<br />", $schol['englistAbility'] );
+$temp = str_replace( "\n", "<br />", $schol['englishAbility'] );
 echo $temp;
 ?>
 </p>

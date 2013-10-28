@@ -164,7 +164,7 @@ $columns = array(
 		'null' => TRUE,
 		'default' => NULL
 	),
-	'englistAbility' => array(
+	'englishAbility' => array(
 		'type' => 'text',
 		'null' => TRUE,
 		'default' => NULL

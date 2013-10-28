@@ -306,7 +306,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , howheard                    TEXT
   , why                         TEXT
   , future                      TEXT
-  , englistAbility              TEXT
+  , englishAbility              TEXT
   , username                    VARCHAR(64) DEFAULT NULL
   , project                     TEXT
   , projectlangs                TEXT
