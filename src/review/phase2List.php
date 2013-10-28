@@ -4,8 +4,8 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 	exit();
 }
 
-$partial = $_GET['partial'] ? $_GET['partial'] : 0;
-$regionSelected = $_GET['regionSelected'] ? $_GET['regionSelected'] : 'All';
+$partial = isset( $_GET['partial'] ) ? $_GET['partial'] : 0;
+$regionSelected = isset( $_GET['regionSelected'] ) ? $_GET['regionSelected'] : 'All';
 
 $dal = new Dao();
 $regionList = $dal->GetRegionListNoCount();
@@ -13,7 +13,7 @@ array_push( $regionList, array( 'region' => 'All' ) );
 
 $schols = $dal->GetP2List( $partial, $regionSelected );
 
-if ( $_GET["action"] == "export" ) {
+if ( isset( $_GET['action'] ) && $_GET['action'] == 'export' ) {
 	$partialName = "";
 	if ( $partial == 0 )
 		$partialName = "full";

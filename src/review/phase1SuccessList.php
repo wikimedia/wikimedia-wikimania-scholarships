@@ -7,7 +7,7 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 $dal = new Dao();
 $schols = $dal->GetPhase1Success();
 
-if ( $_GET["action"] == "export" ) {
+if ( isset( $_GET['action'] ) && $_GET['action'] === 'export' ) {
 	header( 'Content-type: text/download; charset=utf-8' );
 	header( 'Content-Disposition: attachment; filename="p1success_' . gmdate( 'ymd_Hi', time() ) . '.csv"' );
 	echo "id,name,email,p1score\n";

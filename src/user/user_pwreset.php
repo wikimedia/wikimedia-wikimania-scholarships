@@ -6,15 +6,18 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 
 $user_id = $_SESSION['user_id'];
 
-if ( $_GET['id'] )
+if ( isset( $_GET['id'] ) && $_GET['id'] ) {
 	$id = $_GET['id'];
-else if ( $_POST['id'] )
+} elseif ( isset( $_POST['id'] ) && $_POST['id'] ) {
 	$id = $_POST['id'];
+}
 
 $userDao = new User();
 $username = $userDao->GetUsername( $_SESSION['user_id'] );
 $isadmin = $userDao->IsSysAdmin( $_SESSION['user_id'] );
 
+$reset = false;
+$errmsg = '';
 if ( isset( $_POST['save'] ) ) {
 	if ( $_POST['force'] == 1 ) {
 		$reset = $userDao->UpdatePassword( NULL, $_POST['newpw1'], $_POST['id'], 1 );
@@ -33,6 +36,7 @@ if ( isset( $_POST['save'] ) ) {
 
 }
 
+$forceset = false;
 if ( ( $isadmin == 1 ) && ( isset( $_GET['id'] ) ) ) {
 	$user = $userDao->GetUserInfo( $id );
 	$forceset = 1;

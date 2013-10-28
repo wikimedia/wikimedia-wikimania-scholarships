@@ -82,7 +82,7 @@ if ( $row['p1count'] == 0 ) {
 </table>
 	</form>
 	<?php
-$pager = new Pagination( $params, $default_pp );
+$pager = new Pagination( $params, $items );
 $pager->render();
 ?>
 

@@ -4,21 +4,26 @@ if ( !isset( $_SESSION['user_id'] ) ) {
 	exit();
 }
 
+if ( isset( $_GET['items'] ) )  {
+	if ( $_GET['items'] != 'all' ) {
+		$items = intval( $_GET['items'] );
+	} else {
+		$items = 'all';
+	}
+} else {
+	$items = 30;
+}
+
 $dal = new Dao();
 $params = array(
 	'baseurl' => $BASEURL,
 	'phase' => 2,
-	'items' => $default_pp,
+	'items' => $items,
 	'offset' => 0,
 	'page' => 'review/search/results',
 	'searchLink' => ''
 );
 
-if ( isset( $_GET['items'] ) ) {
-	$params['items'] = $_GET['items'];
-}
-else
-	$params['items'] = 30;
 
 if ( isset( $_GET['p'] ) ) {
 	$params['offset'] = $_GET['p'];
@@ -97,7 +102,7 @@ if ( $row['p1count'] == 0 ) {
 </table>
 	</form>
 	<?php
-$pager = new Pagination( $params, $default_pp );
+$pager = new Pagination( $params, $items );
 $pager->render();
 ?>
 

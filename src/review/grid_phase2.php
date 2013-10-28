@@ -18,7 +18,6 @@ if ( isset( $_GET['items'] ) )  {
 		$items = 'all';
 	}
 } else {
-	// $items = $default_pp;
 	$items = 30;
 }
 
@@ -80,7 +79,7 @@ $schols = $dal->gridData( $params );
 </table>
 </form>
 <?php
-$pager = new Pagination( $params, $default_pp );
+$pager = new Pagination( $params, $items );
 $pager->render();
 ?>
 
