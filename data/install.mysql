@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , airport                     VARCHAR(64) DEFAULT NULL
   , languages                   VARCHAR(64) DEFAULT NULL
   , dob                         DATE DEFAULT NULL
-  , sex                         ENUM('M','F','d') DEFAULT NULL
+  , sex                         ENUM('m','f','t','d') DEFAULT NULL
   , occupation                  VARCHAR(64) DEFAULT NULL
   , areaofstudy                 VARCHAR(64) DEFAULT NULL
   , wm05                        TINYINT(1) DEFAULT NULL
