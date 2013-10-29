@@ -34,3 +34,6 @@ Icon
 # composer stuff
 /vendor/.git
 composer.phar
+
+# phpenv
+.php-version
