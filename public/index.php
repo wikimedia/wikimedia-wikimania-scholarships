@@ -26,14 +26,37 @@
  * @copyright © 2009 Wikimania 2009 Buenos Aires organizing team
  */
 
+require_once '../vendor/autoload.php';
 require_once '../src/init.php';
 
+session_name( '_s' );
+session_start();
+
 $wgLang = new Lang();
+// FIXME: make lang sticky via session
+$lang = $wgLang->setLang( $_REQUEST );
 
 $router = new Router( $BASEURL, $routes, $defaultRoute );
 $path = $router->route();
 $basepath = array_search( $path, $routes );
 
-session_name( '_s' );
-session_start();
+$twigLoader = new Twig_Loader_Filesystem( '../src/tmpl' );
+$twig = new Twig_Environment( $twigLoader, array(
+	'debug' => true,
+	'strict_variables' => true,
+	'autoescape' => true,
+));
+
+$twigCtx = array(
+	'basepath' => $basepath,
+	'BASEURL' => $BASEURL,
+	'lang' => $lang,
+	'TEMPLATEBASE' => $TEMPLATEBASE,
+	'wgLang' => $wgLang,
+);
+
+//echo $twig->render( 'base.html', $twigCtx );
+//die();
+
 include $path;
+

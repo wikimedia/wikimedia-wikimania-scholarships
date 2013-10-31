@@ -69,6 +69,11 @@ input[type="submit"], input[type="reset"] {
 label {
   font-size: 15px;
 }
+label.inline {
+  display: inline;
+  font-size: inherit;
+  font-weight: normal;
+}
 
 fieldset, body > div {
   color: #000;
@@ -176,6 +181,7 @@ ul.appform li {
   list-style-type: none;
   vertical-align: middle;
   margin: .8em 0;
+  clear:both;
 }
 
 ul.single li {
@@ -199,7 +205,7 @@ div.errorExplanation {
   border: 1px solid #AA0000;
 }
 
-li#dob select {
+li.dob select {
   float: left;
 }
 
