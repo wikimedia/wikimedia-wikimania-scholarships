@@ -2,12 +2,22 @@
 
 {# FIXME: document macro args #}
 
-{% macro startElement( ctx, mesg, name, opts = {}) %}
-{% set opts = { 'required':false, 'class':false, 'escape':true }|merge( opts ) %}
-{% set tran = ctx.wgLang.message( mesg ) %}
+{% macro li( ctx, mesg, name, opts = {}) %}
+{% set opts = { 'class':false }|merge( opts ) %}
 <li class="{{ opts['class'] ? opts['class'] ~ ' '}}{{ name in ctx.app.errors ? 'fieldWithErrors' }}">
-  <label for="{{ name }}" class="{{ opts['required'] ? 'required' }}">{% if
+{% endmacro %}
+
+{% macro label( ctx, mesg, name, opts = {}) %}
+{% set opts = { 'required':false, 'escape':true }|merge( opts ) %}
+{% set tran = ctx.wgLang.message( mesg ) %}
+<label for="{{ name }}" class="{{ opts['required'] ? 'required' }}">{% if
     opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}</label>
+{% endmacro %}
+
+{% macro startElement( ctx, mesg, name, opts = {}) %}
+{% import _self as forms %}
+{{ forms.li( ctx, mesg, name, opts ) }}
+{{ forms.label( ctx, mesg, name, opts ) }}
 {% endmacro %}
 
 {% macro endElement() %}
@@ -32,9 +42,10 @@
 
 {% macro countrySelect( ctx, mesg, name, value = null, opts = {} ) %}
 {% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
-<select id="{{ name }}" name="{{ name }}">
-  <option value="0">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+<select id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
+  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
   {% for idx, country in ctx.countries %}
     {% if idx != 0 %}
     <option value="{{ idx }}" {{ idx == value ? 'selected="selected"' }}>{{ country }}</option>
@@ -84,8 +95,9 @@
 
 {% macro i18nSelect( ctx, mesg, name, options, value = null, opts = {} ) %}
 {% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
-<select id="{{ name }}" name="{{ name }}">
+<select id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
   <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
   {% for label, val in options %}
   <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ ctx.wgLang.message( label ) }}</option>
@@ -99,7 +111,7 @@
 {{ forms.startElement( ctx, mesg, '', opts ) }}
 <ul class="appform single">
   {% for name, label in options %}
-  <li>
+  {{ forms.li( ctx, mesg, name, opts ) }}
     <input type="checkbox" id="{{ name }}" name="{{ name }}" value="1" {{ values[name] == 1 ? 'selected="selected"' }}/>&nbsp;
     <label class="inline" for="{{ name }}">{{ label }}</label>
   </li>
@@ -109,9 +121,10 @@
 {% endmacro %}
 
 {% macro checkbox( ctx, mesg, name, value = null, opts = {} ) %}
+{% import _self as forms %}
 {% set opts = { 'escape':true }|merge( opts ) %}
 {% set tran = ctx.wgLang.message( mesg ) %}
-<li>
+{{ forms.li( ctx, mesg, name, opts ) }}
   <input type="checkbox" id="{{ name }}" name="{{ name }}" value="1" {{ value == 1 ? 'selected="selected"' }}/>&nbsp;
   <label for="{{ name }}" class="inline">{% if
     opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}</label>

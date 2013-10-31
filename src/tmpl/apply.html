@@ -18,7 +18,7 @@ lang: currently selected display language
 {% spaceless %}
 {% if mock %}
 <div id="app-mock"><p>
-    {% autoescape false %}{{ wgLang.message( 'mock' ) }}{% endautoescape %}
+    {{ wgLang.message( 'mock' )|raw }}
 </p></div>
 {% endif %}
 
@@ -27,22 +27,22 @@ lang: currently selected display language
 
 {% elseif registration_closed == true %}
 <div id="app-closed" class="fourteen columns">
-  <p>{% autoescape false %}{{ wgLang.message( 'deadline-passed' ) }}{% endautoescape %}</p>
+  <p>{{ wgLang.message( 'deadline-passed'|raw ) }}</p>
 </div>
 
 {% else %}
 {% if app.success %}
 <h1>{{ wgLang.message( 'confirm-thanks' ) }}</h1>
-<div id="appresponse">{{ wgLang.message( 'confirm-text' ) }}</div>
+<div id="appresponse">{{ wgLang.message( 'confirm-text' )|raw }}</div>
 
 {% else %}
 {% if app.haserrors %}
 <div class="errorbox">{{ wgLang.message( 'form-error' ) }}</div>
 {% endif %}
 
-<div id="introtext">{% autoescape false %}{{ wgLang.message( 'text-intro' ) }}{% endautoescape %}</div>
+<div id="introtext">{{ wgLang.message( 'text-intro' )|raw }}</div>
 
-<div class="faq">{% autoescape false %}{{ wgLang.message( 'confirm-faq' ) }}{% endautoescape %}</div>
+<div class="faq">{{ wgLang.message( 'confirm-faq' )|raw }}</div>
 <form action="{{ BASEURL }}apply" method="post">
   <label class="required">{{ wgLang.message( 'required-field' ) }}</label>
   <br/><br/>
@@ -104,7 +104,7 @@ lang: currently selected display language
   <!-- partial scholarship start-->
   <fieldset>
     <legend>{{ wgLang.message( 'form-partial' ) }}</legend>
-    {% autoescape false %}{{ wgLang.message( 'form-partial-explain' ) }}{% endautoescape %}
+    {{ wgLang.message( 'form-partial-explain' )|raw }}
     <br />
     <ul class="appform">
       {{ forms.yesNo( ctx, 'form-wantspartial', 'wantspartial', values['wantspartial'] ) }}
@@ -127,13 +127,13 @@ lang: currently selected display language
   <fieldset>
     <!-- scholarship committee -->
     <legend>{{ wgLang.message( 'form-privacy' )  }}</legend>
-    <p>{% autoescape false %}{{ wgLang.message( 'form-review' ) }}{% endautoescape %}</p>
+    <p>{{ wgLang.message( 'form-review' )|raw }}</p>
     <ul class="appform">
       {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', values['chapteragree'], { 'escape':false } ) }}
     </ul>
     <p><b>{{ wgLang.message( 'form-rights-heading' ) }}</b>
       <br /><br />
-      {% autoescape false %}{{ wgLang.message( 'form-rights' ) }}{% endautoescape %}
+      {{ wgLang.message( 'form-rights' )|raw }}
     </p>
     <ul class='appform'>
       {{ forms.text( ctx, 'form-wmfAgreeName', 'wmfAgreeName', values['wmfAgreeName'], { 'required':true } ) }}

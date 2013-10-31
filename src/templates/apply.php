@@ -15,16 +15,15 @@ if ( isset( $_POST['submit'] ) ) {
 	}
 }
 
-$defaults = array(
+$defaultResponses = array(
 	'fname'                    => '',
 	'lname'                    => '',
 	'email'                    => '',
 	'telephone'                => '',
 	'address'                  => '',
-	'residence'                => 0,
+	'residence'                => '',
 	'haspassport'              => 0,
-	// 'passportnum'           => '',
-	'nationality'              => 0,
+	'nationality'              => '',
 	'airport'                  => '',
 	'languages'                 => '',
 	'yy'                       => '',
@@ -43,7 +42,6 @@ $defaults = array(
 	'presentation'             => 0,
 	'howheard'                 => '',
 	'why'                      => '',
-	// 'future'                => '',
 	'englishability'           => '',
 	'username'                 => '',
 	'project'                  => '',
@@ -69,7 +67,7 @@ $twigCtx['app'] = $app;
 $twigCtx['mock'] = $mock;
 $twigCtx['registration_open'] = time() > $open_time;
 $twigCtx['registration_closed'] = time() > $close_time && !isset( $special );
-$twigCtx['values'] = array_merge( $defaults, $_POST );
+$twigCtx['values'] = array_merge( $defaultResponses, $_POST );
 asort( $COUNTRY_NAMES );
 $twigCtx['countries'] = $COUNTRY_NAMES;
 
