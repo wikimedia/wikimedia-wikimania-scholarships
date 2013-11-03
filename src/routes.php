@@ -36,4 +36,4 @@ $routes = array(
 	'user/view'             => 'admin/view_user.php',
 );
 
-$defaultRoute = $routes['apply'];
+//$defaultRoute = $routes['apply'];

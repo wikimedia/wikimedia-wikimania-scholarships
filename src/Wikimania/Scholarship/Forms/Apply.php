@@ -23,6 +23,7 @@
 namespace Wikimania\Scholarship\Forms;
 
 use Wikimania\Scholarship\Form;
+use Wikimania\Scholarship\Dao\Apply as ApplyDao;
 
 /**
  * Collect and validate user input.
@@ -32,7 +33,15 @@ use Wikimania\Scholarship\Form;
  */
 class Apply extends Form {
 
-	public function __construct() {
+	/**
+	 * @var object $dao
+	 */
+	protected $dao;
+
+
+	public function __construct( $dao = null ) {
+		$this->dao = $dao ?: new ApplyDao();
+
 		$this->expectString( 'fname', array( 'required' => true ) );
 		$this->expectString( 'lname', array( 'required' => true ) );
 		$this->expectEmail( 'email', array( 'required' => true ) );
@@ -161,9 +170,8 @@ class Apply extends Form {
 		$answers['rank'] = 1;
 		$answers['ipaddr'] = $_SERVER['REMOTE_ADDR'];
 
-		$dao = new \Dao();
 		//FIXME: error handling
-		$appId = $dao->saveApplication( $answers );
+		$appId = $this->dao->saveApplication( $answers );
 		return $appId !== false;
 	}
 }
