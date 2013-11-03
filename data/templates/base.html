@@ -7,12 +7,13 @@
     <meta http-equiv="Content-language" content="{{ lang }}"/>
     <meta charset="utf-8"/>
     <title>{% block title %}{{ wgLang.message( 'header-title' ) }}{% endblock title %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/css/skeleton.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/css/style.css"/>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ baseUrl() }}/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ siteUrl( 'favicon.ico' ) }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/base.css' ) }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/skeleton.css' ) }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/style.css' ) }}"/>
+    {% block css %}{% endblock css %}
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="{{ baseUrl() }}/js/html5.js"></script>
+    <script type="text/javascript" src="{{ siteUrl( 'js/html5.js' ) }}"></script>
     <![endif]-->
   </head>
   <body>
@@ -25,11 +26,12 @@
           <li><a href="{{ app.request.getPath }}?uselang=ja">ja</a></li>
           <li><a href="{{ app.request.getPath }}?uselang=pl">pl</a></li>
           <li><a href="{{ app.request.getPath }}?uselang=zh">zh</a></li>
-          <li class="last"><a href="{{ baseUrl() }}/translate">{{ wgLang.message( 'help-translate' ) }}</a></li>
+          <li class="last"><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
         </ul>
       </div>
-      <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="Wikimania 2013"><img src="{{ baseUrl() }}/images/Wikimania-2013-bannerm.png" alt="Wikimania"/></a></h1>
-      {% block content %}<p>Your message here.</p>{% endblock content %}
+      <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="Wikimania 2013"><img src="{{ siteUrl( 'images/Wikimania-2013-bannerm.png' ) }}" alt="Wikimania"/></a></h1>
+      {% block menu %}{% endblock menu %}
+      {% block content %}<p>{{ app.request.getPath }}: Your message here.</p>{% endblock content %}
       <div id="footer">
         <ul id="footerlinks">
           <li><a href="http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'footer-faq' ) }}</a></li>
@@ -39,6 +41,6 @@
         </ul>
       </div>
     </div>
-    {% block footerjs %}{% endblock footerjs %}
+    {% block javascript %}{% endblock javascript %}
   </body>
 </html>

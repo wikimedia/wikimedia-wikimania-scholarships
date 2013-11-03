@@ -72,6 +72,7 @@ $app->get( '/', function () use ($app) {
 })->name( 'home' );
 Routes\Apply::addRoutes( $app );
 Routes\Auth::addRoutes( $app );
+Routes\Review::addRoutes( $app, '/review' );
 
 // run the app
 $app->run();

@@ -33,6 +33,9 @@ use \Wikimania\Scholarship\Password;
  */
 class Auth {
 
+	const NEXTPAGE_SESSION_KEY = 'NEXT_PAGE';
+	const USER_SESSION_KEY = 'AUTH_USER_ID';
+
 	/**
 	 * Add routes to the given Slim application.
 	 *
@@ -42,7 +45,11 @@ class Auth {
 	public static function addRoutes ( \Slim\Slim $app, $prefix = '' ) {
 
 		$app->map( "{$prefix}/login", function () use ($app) {
-			$next = isset( $_SESSION['NEXT_PAGE'] ) ? $_SESSION['NEXT_PAGE'] : 'phase1';
+			if ( isset( $_SESSION[Auth::NEXTPAGE_SESSION_KEY] ) ) {
+				$next = $_SESSION[Auth::NEXTPAGE_SESSION_KEY];
+			} else {
+				$next = $app->urlFor( 'review_home' );
+			}
 
 			if ( $app->request->isPost() ) {
 				$uname = $app->request->post( 'username' );
@@ -64,7 +71,7 @@ class Auth {
 						session_regenerate_id(true);
 
 						// store authed user id
-						$_SESSION['AUTH_USER_ID'] = $user['id'];
+						$_SESSION[Auth::USER_SESSION_KEY] = $user['id'];
 
 						$app->redirect( $next );
 
