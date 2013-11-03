@@ -3,9 +3,14 @@
   ,"require": {
     "php": ">=5.3.7"
     ,"twig/twig": "v1.14.1"
+    ,"slim/slim": "2.3.5"
+    ,"slim/views": "0.1.0"
   }
   ,"preferred-install": "dist"
   ,"autoload": {
-    "classmap": [ "src/" ]
+    "psr-0": {
+      "Wikimania\\Scholarship\\": "src/"
+    }
+    ,"classmap": [ "src/" ]
   }
 }

@@ -1,0 +1,142 @@
+{# Form rendering helpers #}
+
+{# FIXME: document macro args #}
+
+{% macro li( ctx, mesg, name, opts = {} ) %}
+{% set opts = { 'class':false }|merge( opts ) %}
+<li class="{{ opts['class'] ? opts['class'] ~ ' '}}{{ name in ctx.form.errors ? 'fieldWithErrors' }}">
+{% endmacro %}
+
+{% macro label( ctx, mesg, name, opts = {} ) %}
+{% set opts = { 'required':false, 'escape':true }|merge( opts ) %}
+{% set tran = ctx.wgLang.message( mesg ) %}
+<label for="{{ name }}" class="{{ opts['required'] ? 'required' }}">{% if
+    opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}</label>
+{% endmacro %}
+
+{% macro startElement( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{{ forms.li( ctx, mesg, name, opts ) }}
+{{ forms.label( ctx, mesg, name, opts ) }}
+{% endmacro %}
+
+{% macro endElement() %}
+</li>
+{% endmacro %}
+
+{% macro text( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+<input type="text" id="{{ name }}" name="{{ name }}" value="{{ value ?: '' }}" {{ opts['required'] ? 'required' }}/>
+{{ forms.endElement() }}
+{% endmacro %}
+
+{% macro textArea( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+  <textarea id="{{ name }}" name="{{ name }}" cols="80" rows="3" {{ opts['required'] ? 'required' }}>{{ value ?: '' }}</textarea>
+{{ forms.endElement() }}
+{% endmacro %}
+
+{% macro countrySelect( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+<select id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
+  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+  {% for idx, country in ctx.countries %}
+    {% if idx != 0 %}
+    <option value="{{ idx }}" {{ idx == value ? 'selected="selected"' }}>{{ country }}</option>
+    {% endif %}
+  {% endfor %}
+  </select>
+{{ forms.endElement() }}
+{% endmacro %}
+
+{% macro yesNo( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, '', opts ) }}
+  <input type="radio" id="{{ name }}-yes" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }}/>
+  <label class="inline" for="{{ name }}-yes">{{ ctx.wgLang.message( 'form-yes' ) }}</label>&nbsp;
+  <input type="radio" id="{{ name }}-no" name="{{ name }}" value="0" {{ not(value) ? 'checked="checked"' }}/>
+  <label class="inline" for="{{ name }}-no">{{ ctx.wgLang.message( 'form-no' ) }}</label>
+{{ forms.endElement() }}
+{% endmacro %}
+
+
+{% macro dob( ctx, mesg, dayName, monthName, yearName, opts = {} ) %}
+{% import _self as forms %}
+{% set dayValue = ctx.form.get( dayName ) %}
+{% set monthValue = ctx.form.get( monthName ) %}
+{% set yearValue = ctx.form.get( yearName ) %}
+{{ forms.startElement( ctx, mesg, '', { 'class':'dob' }|merge( opts ) ) }}
+  <select id="{{ dayName }}" name="{{ dayName }}">
+    <option>{{ ctx.wgLang.message( 'form-select-day' ) }}</option>
+    {% for i in 1..31 %}
+    <option value="{{ "%d"|format(i) }}" {{ i == dayValue ? 'selected="selected"' }}>{{ i }}</option>
+    {% endfor %}
+  </select>&nbsp;
+  <select id="{{ monthName }}" name="{{ monthName }}">
+    <option>{{ ctx.wgLang.message( 'form-select-month' ) }}</option>
+    {% for idx, month in ctx.wgLang.message( 'MONTH_NAMES' ) %}
+    {% set i = idx + 1 %}
+    <option value="{{ "%d"|format(i) }}" {{ i == dayValue ? 'selected="selected"' }}>{{ month }}</option>
+    {% endfor %}
+  </select>&nbsp;
+  <select id="{{ yearName }}" name="{{ yearName }}">
+    <option>{{ ctx.wgLang.message( 'form-select-year' ) }}</option>
+    {% set thisYear = 'now'|date('Y') %}
+    {# FIXME: this seems to go too far on both ends of the range #}
+    {% for i in range(thisYear, thisYear - 130, -1) %}
+    <option value="{{ i }}" {{ i == yearValue ? 'selected="selected"' }}>{{ i }}</option>
+    {% endfor %}
+  </select>
+{{ forms.endElement() }}
+{% endmacro %}
+
+{% macro i18nSelect( ctx, mesg, name, options, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+<select id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
+  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+  {% for label, val in options %}
+  <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ ctx.wgLang.message( label ) }}</option>
+  {% endfor %}
+</select>
+{{ forms.endElement() }}
+{% endmacro %}
+
+{% macro checkboxList( ctx, mesg, options, opts = {} ) %}
+{% import _self as forms %}
+{{ forms.startElement( ctx, mesg, '', opts ) }}
+<ul class="appform single">
+  {% for name, label in options %}
+  {% set value = ctx.form.get( name ) %}
+  {{ forms.li( ctx, mesg, name, opts ) }}
+    <input type="checkbox" id="{{ name }}" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }}/>&nbsp;
+    <label class="inline" for="{{ name }}">{{ label }}</label>
+  </li>
+  {% endfor %}
+</ul>
+{{ forms.endElement() }}
+{% endmacro %}
+
+{% macro checkbox( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'escape':true }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{% set tran = ctx.wgLang.message( mesg ) %}
+{{ forms.li( ctx, mesg, name, opts ) }}
+  <input type="checkbox" id="{{ name }}" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }}/>&nbsp;
+  <label for="{{ name }}" class="inline">{% if
+    opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}</label>
+</li>
+{% endmacro %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+{% spaceless %}
+<div id="translate">
+  <h2>{{ wgLang.message( 'help-translate' ) }}</h2>
+  {{ wgLang.message( 'translate-page' )|raw }}
+</div>
+{% endspaceless %}
+{% endblock content %}

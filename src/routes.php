@@ -5,11 +5,6 @@
  * @var array $routes
  */
 $routes = array(
-	'apply'                 => 'templates/apply.php',
-	'translate'             => 'templates/translate.php',
-	'credits'               => 'templates/credits.php',
-	'contact'               => 'templates/contact.php',
-	'privacy'               => 'templates/privacy.php',
 	'review'                => 'review/grid.php',
 	'review/bulkmail'       => 'admin/bulk_mail.php',
 	'review/country'        => 'review/country_grid.php',

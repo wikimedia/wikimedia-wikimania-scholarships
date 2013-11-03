@@ -26,37 +26,49 @@
  * @copyright © 2009 Wikimania 2009 Buenos Aires organizing team
  */
 
+namespace Wikimania\Scholarship;
+
 require_once '../vendor/autoload.php';
+// FIXME: this needs to go
 require_once '../src/init.php';
 
 session_name( '_s' );
+session_cache_limiter(false);
 session_start();
 
-$wgLang = new Lang();
+$app = new \Slim\Slim( array(
+	'view' => new \Slim\Views\Twig(),
+	'templates.path' => '../data/templates',
+) );
+
+$app->wgLang = new \Lang();
 // FIXME: make lang sticky via session
-$lang = $wgLang->setLang( $_REQUEST );
+$lang = $app->wgLang->setLang( $_REQUEST );
 
-$router = new Router( $BASEURL, $routes, $defaultRoute );
-$path = $router->route();
-$basepath = array_search( $path, $routes );
-
-$twigLoader = new Twig_Loader_Filesystem( '../src/tmpl' );
-$twig = new Twig_Environment( $twigLoader, array(
+// configure twig views
+$view = $app->view();
+$view->parserOptions = array(
+	// FIXME: configurable
 	'debug' => true,
 	'strict_variables' => true,
 	'autoescape' => true,
-));
-
-$twigCtx = array(
-	'basepath' => $basepath,
-	'BASEURL' => $BASEURL,
-	'lang' => $lang,
-	'TEMPLATEBASE' => $TEMPLATEBASE,
-	'wgLang' => $wgLang,
+);
+$view->parserExtensions = array(
+	new \Slim\Views\TwigExtension(),
 );
 
-//echo $twig->render( 'base.html', $twigCtx );
-//die();
+// set default view data
+$view->setData( array(
+	'app' => $app,
+	'lang' => $lang,
+	'wgLang' => $app->wgLang,
+) );
 
-include $path;
+// routes
+$app->get( '/', function () use ($app) {
+	$app->redirect( $app->urlFor( 'apply' ));
+});
+Routes\Apply::addRoutes( $app );
 
+// run the app
+$app->run();

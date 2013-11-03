@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+{% spaceless %}
+<div id="credits">
+  <h2>{{ wgLang.message( 'credits' ) }}</h2>
+  {{ wgLang.message( 'credits-page' )|raw }}
+</div>
+{% endspaceless %}
+{% endblock content %}

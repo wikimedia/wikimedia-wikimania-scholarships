@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AbstractDao' => $baseDir . '/src/AbstractDao.php',
-    'Application' => $baseDir . '/src/Application.php',
+    'Application' => $baseDir . '/src/Wikimania/Scholarship/Models/Application.php',
     'Dao' => $baseDir . '/src/Dao.php',
     'Lang' => $baseDir . '/src/Lang.php',
     'PHPMailer' => $baseDir . '/src/review/PHPMailer_5.2.4/class.phpmailer.php',
@@ -19,6 +19,7 @@ return array(
     'SMTP' => $baseDir . '/src/review/PHPMailer_5.2.4/class.smtp.php',
     'TemplateHelper' => $baseDir . '/src/TemplateHelper.php',
     'User' => $baseDir . '/src/User.php',
+    'Wikimania\\Scholarship\\Forms\\Form' => $baseDir . '/src/Wikimania/Scholarship/Forms/Form.php',
     'mailing' => $baseDir . '/src/review/mail.php',
     'phpmailerException' => $baseDir . '/src/review/PHPMailer_5.2.4/class.phpmailer.php',
 );
