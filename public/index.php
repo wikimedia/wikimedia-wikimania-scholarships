@@ -28,9 +28,11 @@
 
 namespace Wikimania\Scholarship;
 
-require_once '../vendor/autoload.php';
+$APP_ROOT = dirname( dirname( __FILE__ ) );
+
+require_once "{$APP_ROOT}/vendor/autoload.php";
 // FIXME: this needs to go
-require_once '../src/init.php';
+require_once "{$APP_ROOT}/src/init.php";
 
 session_name( '_s' );
 session_cache_limiter(false);
@@ -38,10 +40,10 @@ session_start();
 
 $app = new \Slim\Slim( array(
 	'view' => new \Slim\Views\Twig(),
-	'templates.path' => '../data/templates',
+	'templates.path' => "{$APP_ROOT}/data/templates",
 ) );
 
-$app->wgLang = new \Lang();
+$app->wgLang = new Lang( "{$APP_ROOT}/data/i18n" );
 // FIXME: make lang sticky via session
 $lang = $app->wgLang->setLang( $_REQUEST );
 

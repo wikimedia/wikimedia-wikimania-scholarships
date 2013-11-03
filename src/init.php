@@ -15,7 +15,6 @@ require_once 'variables.php';
 
 require_once 'Common.php';
 require_once 'Pagination.php';
-require_once 'Lang.php';
 require_once 'Application.php';
 require_once 'Request.php';
 require_once 'Router.php';
