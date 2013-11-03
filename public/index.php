@@ -71,6 +71,7 @@ $app->get( '/', function () use ($app) {
 	$app->redirect( $app->urlFor( 'apply' ));
 })->name( 'home' );
 Routes\Apply::addRoutes( $app );
+Routes\Auth::addRoutes( $app );
 
 // run the app
 $app->run();
