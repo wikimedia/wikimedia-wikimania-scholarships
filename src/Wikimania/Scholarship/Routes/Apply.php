@@ -87,23 +87,23 @@ class Apply {
 			asort( $countries );
 			$app->view->setData( 'countries', $countries );
 
-			$app->render( 'apply.html' );
+			$app->render( 'apply/apply.html' );
 		})->via( 'GET', 'POST' )->name( 'apply' );
 
 		$app->get( "{$prefix}/contact", function () use ($app) {
-			$app->render( 'contact.html' );
+			$app->render( 'apply/contact.html' );
 		})->name( 'contact' );
 
 		$app->get( "{$prefix}/credits", function () use ($app) {
-			$app->render( 'credits.html' );
+			$app->render( 'apply/credits.html' );
 		})->name( 'credits' );
 
 		$app->get( "{$prefix}/privacy", function () use ($app) {
-			$app->render( 'privacy.html' );
+			$app->render( 'apply/privacy.html' );
 		})->name( 'privacy' );
 
 		$app->get( "{$prefix}/translate", function () use ($app) {
-			$app->render( 'translate.html' );
+			$app->render( 'apply/translate.html' );
 		})->name( 'translate' );
 	}
 }
