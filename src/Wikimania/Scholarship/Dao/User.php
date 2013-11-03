@@ -29,6 +29,7 @@
 namespace Wikimania\Scholarship\Dao;
 
 use \PDOException;
+use \Wikimania\Scholarship\Password;
 
 /**
  * Data access object for scholarship applications.

@@ -13,5 +13,4 @@ require_once 'helper.php';
 require_once 'routes.php';
 
 require_once 'Pagination.php';
-require_once 'Password.php';
 
