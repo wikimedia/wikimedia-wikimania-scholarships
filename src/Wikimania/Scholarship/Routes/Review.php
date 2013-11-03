@@ -41,7 +41,8 @@ class Review {
 
 		$requireAuth = function () use ( $app ) {
 			if ( !isset( $_SESSION[Auth::USER_SESSION_KEY] ) ) {
-				$app->redirect( $app->urlFor( 'login' ) );
+				$_SESSION[Auth::NEXTPAGE_SESSION_KEY] = $app->request->getResourceUri();
+				$app->redirect( $app->urlFor( 'auth_login' ) );
 			}
 		};
 

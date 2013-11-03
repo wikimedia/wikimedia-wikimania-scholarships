@@ -83,7 +83,7 @@ class Auth {
 			}
 
 			$app->render( 'auth/login.html' );
-		})->via( 'GET', 'POST' )->name( 'login' );
+		})->via( 'GET', 'POST' )->name( 'auth_login' );
 
 		$app->get( "{$prefix}/logout", function () use ( $app ) {
 			foreach ( $_SESSION as $key => $value ) {
@@ -103,7 +103,70 @@ class Auth {
 			session_destroy();
 
 			$app->redirect( $app->urlFor( 'home' ) );
-		})->name( 'logout' );
+		})->name( 'auth_logout' );
+
+		$app->map( "{$prefix}/pwchange", function () use ( $app ) {
+			if ( !isset( $_SESSION[Auth::USER_SESSION_KEY] ) ) {
+				$_SESSION[Auth::NEXTPAGE_SESSION_KEY] = $app->request->getResourceUri();
+				$app->redirect( $app->urlFor( 'auth_login' ) );
+			}
+
+			$dao = new UserDao();
+			$userId = $_SESSION[Auth::USER_SESSION_KEY];
+			$isadmin = $dao->isSysAdmin( $userId );
+
+			if ( $app->request->isPost() ) {
+				$oldPass = $app->request->post( 'oldpw' );
+				$newPass = $app->request->post( 'newpw1' );
+				$repeatPass = $app->request->post( 'newpw2' );
+				$force = false;
+				$id = $userId;
+
+				if ( $newPass !== $repeatPass ) {
+					$app->flashNow( 'error', 'Passwords do not match.' );
+
+				} elseif ( empty( $newPass ) ) {
+					$app->flashNow( 'error', 'Password can not be empty.' );
+
+				} else {
+					if ( $isadmin ) {
+						$id = $app->request->post( 'id' );
+						$force = $app->request->post( 'force' );
+					}
+
+					if ( $dao->updatePassword( $oldPass, $newPass, $id, $force ) ) {
+						$app->flashNow( 'info', 'Password change successful.' );
+
+					} else {
+						$app->flashNow( 'error', 'Password change failed. Old password may be invalid.' );
+					}
+				}
+			}
+
+			$force = false;
+			$id = $userId;
+			if ( $isadmin ) {
+				$id = $app->request->params( 'id' );
+				if ( $id === null ) {
+					$id = $userId;
+
+				} elseif ( $id !== $userId ) {
+					$force = true;
+				}
+			}
+			$user = $dao->getUserInfo( $id );
+
+			if ( !$user ) {
+				$app->flash( 'error', 'Invalid user id.' );
+				$app->redirect( $app->urlFor( 'auth_pwchange' ) );
+			}
+
+			$app->view->setData( 'user', $user );
+			$app->view->setData( 'isadmin', $isadmin );
+			$app->view->setData( 'force', $force );
+
+			$app->render( 'auth/pwchange.html' );
+		})->via( 'GET', 'POST' )->name( 'auth_pwchange' );
 
 	}
 }

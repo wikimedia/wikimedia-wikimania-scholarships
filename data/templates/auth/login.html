@@ -1,16 +1,18 @@
 {% extends "base.html" %}
+{% import "inc/forms.html" as forms %}
+{% set ctx = _context %}
+
 {% block content %}
 {% spaceless %}
-<form action="{{ urlFor( 'login' ) }}" method="post">
-<fieldset>
-  <legend>Log in</legend>
-  <p class="error">{{ flash.error|default( '' ) }}</p>
-  <ul>
-    <li><label for="username">Username:</label> <input type="text" id="username" name="username" required /></li>
-    <li><label for="password">Password:</label> <input type="password" id="password" name="password" required /></li>
-  </ul>
-	<p><input type="submit" value="Log in" />
-	</fieldset>
-	</form>
+<form action="{{ urlFor( 'auth_login' ) }}" method="post">
+  <fieldset>
+    <legend>Log in</legend>
+    <ul>
+      <li><label for="username">Username:</label> <input type="text" id="username" name="username" required="required" autofocus="autofocus"/></li>
+      <li><label for="password">Password:</label> <input type="password" id="password" name="password" required="required" /></li>
+    </ul>
+  </fieldset>
+  <p><input type="submit" value="Log in" />
+</form>
 {% endspaceless %}
 {% endblock content %}

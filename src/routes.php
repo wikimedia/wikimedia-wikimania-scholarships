@@ -27,8 +27,6 @@ $routes = array(
 	'review/view'           => 'review/view.php',
 	'user/add'              => 'admin/add_user.php',
 	'user/list'             => 'admin/user_grid.php',
-	'user/password'         => 'user/user_pwreset.php',
-	'user/password/reset'   => 'user/user_pwreset.php',
 	'user/table'            => 'admin/usertable.php',
 	'user/view'             => 'admin/view_user.php',
 );

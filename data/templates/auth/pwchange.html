@@ -1,0 +1,29 @@
+{% extends "auth/base.html" %}
+{% import "inc/forms.html" as forms %}
+{% set ctx = _context %}
+{% block content %}
+{% spaceless %}
+<form action="{{ urlFor( 'auth_pwchange' ) }}" method="post">
+  <input type="hidden" name="id" value="{{ user.id }}" />
+  <input type="hidden" name="force" value="{{ force }}" />
+  <fieldset>
+    <legend>Change Password</legend>
+    <p>Username: <strong>{{ user.username }}</strong></p>
+    <ul>
+      {% if not force %}
+      <li><label for="oldpw">Old Password:</label>
+        <input type="password" name="oldpw" id="oldpw" value="" required="required"/>
+      </li>
+      {% endif %}
+      <li><label for="newpw1">New Password:</label>
+        <input type="password" name="newpw1" id="newpw1" value="" required="required"/>
+      </li>
+      <li><label for="newpw2">New Password (again):</label>
+        <input type="password" name="newpw2" id="newpw2" value="" required="required"/>
+      </li>
+    </ul>
+  </fieldset>
+  <p><input type="submit" value="save" />
+</form>
+{% endspaceless %}
+{% endblock content %}

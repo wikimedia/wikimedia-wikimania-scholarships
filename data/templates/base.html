@@ -31,6 +31,10 @@
       </div>
       <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="Wikimania 2013"><img src="{{ siteUrl( 'images/Wikimania-2013-bannerm.png' ) }}" alt="Wikimania"/></a></h1>
       {% block menu %}{% endblock menu %}
+      {% if flash|default(false) %}
+      {% if flash.error|default(false) %}<p class="error">{{ flash.error }}</p>{% endif %}
+      {% if flash.info|default(false) %}<p class="info">{{ flash.info }}</p>{% endif %}
+      {% endif %}
       {% block content %}<p>{{ app.request.getPath }}: Your message here.</p>{% endblock content %}
       <div id="footer">
         <ul id="footerlinks">

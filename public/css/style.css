@@ -338,3 +338,14 @@ div#app-closed {
   text-align: center;
   border: 2px solid #ccc;
 }
+
+p.error {
+  color: #AA0000;
+  font-weight: bold;
+  text-align: center;
+}
+p.info {
+  color: #00AA00;
+  font-weight: bold;
+  text-align: center;
+}
