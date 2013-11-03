@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6 no-js" xml:lang="<?= $lang ?>" lang="<?= $lang ?>"><![endif]-->
-<!--[if IE 7 ]><html class="ie ie7 no-js" xml:lang="<?= $lang ?>" lang="<?= $lang ?>"><![endif]-->
-<!--[if IE 8 ]><html class="ie ie8 no-js" xml:lang="<?= $lang ?>" lang="<?= $lang ?>"><![endif]-->
+<!--[if lt IE 7 ]><html class="ie ie6 no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7 no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8 no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><!--<![endif]-->
   <head>
     <meta http-equiv="Content-language" content="{{ lang }}"/>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/css/base.css"/>
     <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/css/skeleton.css"/>
     <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/css/style.css"/>
-    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ baseUrl() }}/favicon.ico"/>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="{{ baseUrl() }}/js/html5.js"></script>
     <![endif]-->
@@ -19,6 +19,7 @@
     <div class="container">
       <div id="langbar" class="fifteen columns">
         <ul class="langlist">
+          {# FIXME: generate from wgLang #}
           <li><a href="{{ app.request.getPath }}?uselang=de">de</a></li>
           <li><a href="{{ app.request.getPath }}?uselang=en">en</a></li>
           <li><a href="{{ app.request.getPath }}?uselang=ja">ja</a></li>
@@ -27,19 +28,17 @@
           <li class="last"><a href="{{ baseUrl() }}/translate">{{ wgLang.message( 'help-translate' ) }}</a></li>
         </ul>
       </div>
-      <h1><a id="banner" href="{{ baseUrl() }}/" title="Wikimania 2013"><img src="{{ baseUrl() }}/images/Wikimania-2013-bannerm.png" alt="Wikimania"/></a></h1>
-      {% block content %}
-      <p>Your message here.</p>
-      {% endblock content %}
+      <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="Wikimania 2013"><img src="{{ baseUrl() }}/images/Wikimania-2013-bannerm.png" alt="Wikimania"/></a></h1>
+      {% block content %}<p>Your message here.</p>{% endblock content %}
       <div id="footer">
         <ul id="footerlinks">
           <li><a href="http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'footer-faq' ) }}</a></li>
-          <li><a href="{{ baseUrl() }}/credits">{{ wgLang.message( 'footer-credits' ) }}</a></li>
-          <li><a href="{{ baseUrl() }}/privacy">{{ wgLang.message( 'footer-privacy' ) }}</a></li>
-          <li class="last"><a href="{{ baseUrl() }}/contact">{{ wgLang.message( 'footer-contact' ) }}</a></li>
+          <li><a href="{{ urlFor( 'credits' ) }}">{{ wgLang.message( 'footer-credits' ) }}</a></li>
+          <li><a href="{{ urlFor( 'privacy' ) }}">{{ wgLang.message( 'footer-privacy' ) }}</a></li>
+          <li class="last"><a href="{{ urlFor( 'contact' ) }}">{{ wgLang.message( 'footer-contact' ) }}</a></li>
         </ul>
       </div>
-    </div><!-- end container //-->
+    </div>
     {% block footerjs %}{% endblock footerjs %}
   </body>
 </html>

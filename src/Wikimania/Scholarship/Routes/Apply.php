@@ -76,6 +76,7 @@ class Apply {
 			$twigCtx['registration_open'] = time() > $open_time;
 			$twigCtx['registration_closed'] = time() > $close_time && !isset( $special );
  */
+			// FIXME: these need to come from config
 			$app->view->setData( 'mock', true );
 			$app->view->setData( 'registration_open', true );
 			$app->view->setData( 'registration_closed', false );
@@ -91,18 +92,18 @@ class Apply {
 
 		$app->get( "{$prefix}/contact", function () use ($app) {
 			$app->render( 'contact.html' );
-		});
+		})->name( 'contact' );
 
 		$app->get( "{$prefix}/credits", function () use ($app) {
 			$app->render( 'credits.html' );
-		});
+		})->name( 'credits' );
 
 		$app->get( "{$prefix}/privacy", function () use ($app) {
 			$app->render( 'privacy.html' );
-		});
+		})->name( 'privacy' );
 
 		$app->get( "{$prefix}/translate", function () use ($app) {
 			$app->render( 'translate.html' );
-		});
+		})->name( 'translate' );
 	}
 }

@@ -69,7 +69,7 @@ $view->setData( array(
 // routes
 $app->get( '/', function () use ($app) {
 	$app->redirect( $app->urlFor( 'apply' ));
-});
+})->name( 'home' );
 Routes\Apply::addRoutes( $app );
 
 // run the app
