@@ -47,18 +47,6 @@ class Apply extends AbstractDao {
 		}
 	}
 
-	private static function buildWhere( $where ) {
-		$sql = '';
-		for ( $i = 0; $i < count( $where ); $i++ ) {
-			if ( $i == 0 ) {
-				$sql = "WHERE " . $where[$i];
-			} else {
-				$sql = $sql . " AND " . $where[$i];
-			}
-		}
-		return $sql;
-	}
-
 	private static function buildSelect( $fields ) {
 		return 'SELECT ' . implode( ',', $fields ) . ' ';
 	}
@@ -66,9 +54,24 @@ class Apply extends AbstractDao {
 	private static function buildFrom( $tables ) {
 		$fromtables = array();
 		foreach ( $tables as $k => $v ) {
-			$fromtables[] = "{$v} as {$k}";
+			$fromtables[] = "{$v} AS {$k}";
 		}
 		return ' FROM '  . implode( ',', $fromtables ) . ' ';
+	}
+
+	private static function buildWhere( $where ) {
+		if ( $where ) {
+			return 'WHERE ' . implode( ' AND ', $where ) . ' ';
+		}
+		return '';
+	}
+
+	/**
+	 * Create a string by joining all arguments with spaces.
+	 * @return string New string
+	 */
+	private static function concat( /*varags*/ ) {
+		return implode( ' ', func_get_args() );
 	}
 
 	/**
@@ -80,106 +83,172 @@ class Apply extends AbstractDao {
 	public function saveApplication ( $answers ) {
 		$cols = array_keys( $answers );
 		$parms = array_map( function ($elm) { return ":{$elm}"; }, $cols );
-		$sql = 'INSERT INTO scholarships (' . implode( ',', $cols ) .
-			') VALUES (' . implode( ',', $parms ) . ')';
+		$sql = self::concat(
+			'INSERT INTO scholarships (',
+			implode( ',', $cols ),
+			') VALUES (',
+			implode( ',', $parms ),
+			')'
+		);
 		return $this->insert( $sql, $answers );
 	}
 
+	/**
+	 * @param array $params Query parameters
+	 */
 	public function gridData( $params ) {
-		$where = array();
-		$apps = isset( $params['apps'] ) ? $params['apps'] : 'unreviewed';
-		$myid = $this->userid ?: 0;
-		$items = ( isset( $params['items'] ) && is_int( $params['items'] ) ) ? $params['items'] : 50;
+		$defaults = array(
+			'apps'   => 'unreviewed',
+			'items'  => 50,
+			'page' => 0,
+			'min'    => -2,
+			'max'    => 999,
+			'phase'  => 1,
+		);
+		$params = array_merge( $defaults, $params );
 
-		$p = isset( $params['offset'] ) ? (int)$params['offset'] : 0;
-		$offset = " OFFSET " . ( $p * $items );
+		$where = array();
+		$myid = $this->userid ?: 0;
 
 		if ( $params['items'] == 'all' ) {
 			$limit = " ";
 			$offset = " ";
+
 		} else {
-			$limit = " LIMIT $items ";
+			$limit = " LIMIT {$params['items']} ";
+			$offset = " OFFSET " . ( (int)$params['page'] * $params['items'] );
 		}
 
+		$tables = array( 's' => 'scholarships' );
+
+		$fields = array(
+			's.id',
+			's.fname',
+			's.lname',
+			's.email',
+			's.residence',
+			's.exclude',
+			's.sex',
+			'(YEAR(NOW()) - YEAR(s.dob)) as age',
+			'(s.canpaydiff * s.wantspartial) as partial',
+			'c.country_name',
+			'COALESCE(p1score, 0) as p1score',
+			'mycount',
+		);
+
 		if ( $params['phase'] == 1 ) {
-			switch( $apps ) {
+			switch( $params['apps'] ) {
 				case 'unreviewed':
-					array_push( $where, ' p1count IS NULL ' );
+					$where[] = 'p1count IS NULL';
 					break;
 				case 'myapps':
-					array_push( $where, ' mycount IS NULL ' );
+					$where[] = 'mycount IS NULL';
 					break;
 				default:
 					break;
 			}
+
 		} else if ( $params['phase'] == 2 ) {
-			switch( $apps ) {
+			switch( $params['apps'] ) {
 				case 'unreviewed':
-					array_push( $where, ' nscorers IS NULL ' );
+					$where[] = 'nscorers IS NULL';
 					break;
 				case 'myapps':
-					array_push( $where, ' mycount IS NULL ' );
+					$where[] = 'mycount IS NULL';
 					break;
 				default:
 					break;
 			}
 		}
 
+		$p1scoreSql = self::concat(
+			"SELECT scholarship_id, SUM(rank) AS p1score",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$p1countSql = self::concat(
+			"SELECT scholarship_id, COUNT(rank) AS p1count",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$mycountSql = self::concat(
+			"SELECT scholarship_id, COUNT(rank) AS mycount",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"AND user_id = {$myid}",
+			"GROUP BY scholarship_id"
+		);
+
+		$p2scoreSql = self::concat(
+			"SELECT scholarship_id, SUM(rank) AS p2score",
+			"FROM rankings",
+			"WHERE criterion <> 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$nscorersSql = self::concat(
+			"SELECT scholarship_id, COUNT(DISTINCT user_id) AS nscorers",
+			"FROM rankings",
+			"WHERE criterion <> 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$mycount2Sql = self::concat(
+			"SELECT scholarship_id, COUNT(rank) AS mycount",
+			"FROM rankings",
+			"WHERE criterion <> 'valid'",
+			"AND user_id = {$myid}",
+			"GROUP BY scholarship_id"
+		);
+
 		if ( $params['phase'] == 1 ) {
-			$tables = array( 's' => 'scholarships' );
-			$fields = array( 's.id',
-				's.fname',
-				's.lname',
-				's.email',
-				's.residence',
-				's.exclude',
-				's.sex',
-				//FIXME hard coded year
-				'(2013 - year(s.dob)) as age',
-				'(s.canpaydiff*s.wantspartial) as partial',
-				'c.country_name',
-				'coalesce(p1score,0) as p1score',
-				'p1count',
-				'mycount'
+			$fields[] = 'p1count';
+
+			$min = (int)$params['min'];
+			$max = (int)$params['max'];
+
+			$sql = self::concat(
+				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
+				self::buildFrom( $tables ),
+				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
+				"LEFT OUTER JOIN ( {$p1countSql} ) r2 on s.id = r2.scholarship_id",
+				"LEFT OUTER JOIN ( {$mycountSql} ) r3 on s.id = r3.scholarship_id",
+				"LEFT OUTER JOIN countries c ON s.residence = c.id",
+				$this->buildWhere( $where ),
+				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
+				"HAVING p1score >= {$min} AND p1score <= {$max} AND s.exclude = 0",
+				"ORDER BY s.id",
+				$limit,
+				$offset
 			);
 
-			$sql = self::buildSelect( $fields ) . self::buildFrom( $tables ) .
-				"LEFT OUTER JOIN (select *, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-				LEFT OUTER JOIN (select scholarship_id, count(rank) as p1count from rankings where criterion = 'valid' group by scholarship_id) r3 on s.id = r3.scholarship_id
-				LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion = 'valid' AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id
-				LEFT OUTER JOIN countries c on s.residence = c.id "
-				. $this->buildWhere( $where ) . "
-				GROUP BY s.id, s.fname, s.lname, s.email, s.residence
-				HAVING p1score >= -2 and p1score <= 999 and s.exclude = 0 $limit $offset;";
 		} else {
-			$tables = array( 's' => 'scholarships' );
-			$fields = array( 's.id',
-				's.fname',
-				's.lname',
-				's.email',
-				's.residence',
-				's.exclude',
-				's.sex',
-				//FIXME hard coded year
-				'(2013 - year(s.dob)) as age',
-				'(s.canpaydiff*s.wantspartial) as partial',
-				'c.country_name',
-				'coalesce(p1score,0) as p1score',
-				'coalesce(p2score,0) as p2score',
-				'coalesce(nscorers,0) as nscorers' );
-			array_push( $where, ' p1score >= 3 ' );
-			$sql = self::buildSelect( $fields ) . self::buildFrom( $tables ) . "
-				left outer join (select scholarship_id, sum(rank) as p2score from rankings where criterion in ('onwiki','offwiki', 'future', 'englishAbility') group by scholarship_id) r on s.id = r.scholarship_id
-				left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-				left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'program', 'englishAbility') group by scholarship_id) r3 on s.id = r3.scholarship_id
-				left outer join countries c on s.residence = c.id
-				LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion IN ('onwiki', 'offwiki', 'future', 'englishAbility') AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id "
-				. $this->buildWhere( $where ) . "
-				group by s.id, s.fname, s.lname, s.email, s.residence
-				order by s.id $limit $offset;";
+			$fields[] = 'COALESCE(p2score, 0) as p2score';
+			$fields[] = 'COALESCE(nscorers, 0) as nscorers';
+
+			$where[] = 'p1score >= 3';
+
+			$sql = self::concat(
+				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
+				self::buildFrom( $tables ),
+				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
+				"LEFT OUTER JOIN ( {$p2scoreSql} ) r2 ON s.id = r2.scholarship_id",
+				"LEFT OUTER JOIN ( {$nscorersSql} ) r3 ON s.id = r3.scholarship_id",
+				"LEFT OUTER JOIN ( {$mycount2Sql} ) r4 ON s.id = r4.scholarship_id",
+				"LEFT OUTER JOIN countries c ON s.residence = c.id",
+				$this->buildWhere( $where ),
+				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
+				"ORDER BY s.id",
+				$limit,
+				$offset
+			);
 		}
 
-		return $this->fetchAll( $sql );
+		return $this->fetchAllWithFound( $sql );
 	}
 
 	public function export() {

@@ -86,6 +86,23 @@ abstract class AbstractDao {
 		return $stmt->fetchAll();
 	}
 
+	/**
+	 * Prepare and execute an SQL statement and return all results plus the
+	 * number of rows found on the server side.
+	 *
+	 * @param string $sql SQL
+	 * @param array $params Prepared statement parameters
+	 * @return object StdClass with rows and found memebers
+	 */
+	protected function fetchAllWithFound( $sql, $params = null ) {
+		$ret = new \StdClass;
+		$ret->rows = $this->fetchAll( $sql );
+
+		$ret->found = $this->fetch( 'SELECT FOUND_ROWS() AS found' );
+		$ret->found = $ret->found['found'];
+
+		return $ret;
+	}
 
 	/**
 	 * Prepare and execute an SQL statement in a transaction.

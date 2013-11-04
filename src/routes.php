@@ -5,7 +5,6 @@
  * @var array $routes
  */
 $routes = array(
-	'review'                => 'review/grid.php',
 	'review/bulkmail'       => 'admin/bulk_mail.php',
 	'review/country'        => 'review/country_grid.php',
 	'review/country/edit'   => 'review/edit_country.php',
@@ -19,8 +18,6 @@ $routes = array(
 	'review/p1/failList'    => 'review/phase1FailList.php',
 	'review/p1/successList' => 'review/phase1SuccessList.php',
 	'review/p2/list'        => 'review/phase2List.php',
-	'review/phase1'         => 'review/grid.php',
-	'review/phase2'         => 'review/grid_phase2.php',
 	'review/region'         => 'review/region_grid.php',
 	'review/search'         => 'review/searchform.php',
 	'review/search/results' => 'review/search_results.php',

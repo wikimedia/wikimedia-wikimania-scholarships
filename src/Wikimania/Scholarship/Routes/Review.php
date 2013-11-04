@@ -22,6 +22,8 @@
 
 namespace Wikimania\Scholarship\Routes;
 
+use Wikimania\Scholarship\Dao\Apply as ApplyDao;
+use Wikimania\Scholarship\Form;
 
 /**
  * Routes related to reviewing applications.
@@ -50,13 +52,51 @@ class Review {
 			$app->redirect( $app->urlFor( 'review_phase1' ) );
 		})->name( 'review_home' );
 
-		$app->get( "{$prefix}/phase1", $requireAuth, function () use ( $app ) {
-			$app->render( 'review/base.html' );
-		})->name( 'review_phase1' );
+		$phaseGrid = function ( $phase ) use ( $app ) {
+			return function () use ( $phase, $app ) {
+				$form = new Form();
+				$form->expectInArray( 'apps',
+					array( 'unreviewed', 'all', 'myapps' ),
+					array( 'default' => 'all' )
+				);
+				$form->expectInt( 'items',
+					array( 'min' => 1, 'max' => 250, 'default' => 50 )
+				);
+				$form->expectInt( 'p', array( 'min' => 0, 'default' => 0 ) );
+				$form->expectInt( 'min', array( 'default' => -2 ) );
+				$form->expectInt( 'max', array( 'default' => 999 ) );
+				$form->validate( $_GET );
 
-		$app->get( "{$prefix}/phase2", $requireAuth, function () use ( $app ) {
-			$app->render( 'review/base.html' );
-		})->name( 'review_phase2' );
+				$dao = new ApplyDao();
+				$params = array(
+					'min' => $form->get( 'min' ),
+					'max' => $form->get( 'max' ),
+					'phase' => $phase,
+					'items' => $form->get( 'items' ),
+					'page' => $form->get( 'p' ),
+					'apps' => $form->get( 'apps' ),
+				);
+				$ret = $dao->gridData( $params );
+
+				$app->view->setData( 'phase', $phase );
+				$app->view->setData( 'records', $ret->rows );
+				$app->view->setData( 'found', $ret->found );
+
+				// pagination information
+				$params['pages'] = ceil( $ret->found / $form->get( 'items' ) );
+				$params['left'] = max( 0, $params['page'] - 4 );
+				$params['right'] = min( max( 0, $params['pages'] - 1 ), $params['page'] + 4 );
+				$app->view->setData( 'params', $params );
+
+				$app->render( 'review/grid.html' );
+			};
+		};
+
+		$app->get( "{$prefix}/phase1", $requireAuth,
+			$phaseGrid( 1 ) )->name( 'review_phase1' );
+
+		$app->get( "{$prefix}/phase2", $requireAuth,
+			$phaseGrid( 2 ) )->name( 'review_phase2' );
 
 	}
 }

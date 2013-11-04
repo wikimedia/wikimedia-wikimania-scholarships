@@ -12,5 +12,3 @@ require_once 'config.php';
 require_once 'helper.php';
 require_once 'routes.php';
 
-require_once 'Pagination.php';
-

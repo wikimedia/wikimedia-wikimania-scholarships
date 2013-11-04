@@ -183,6 +183,10 @@ ul.pagerlinks li a {
   text-decoration: none;
 }
 
+ul.pagerlinks li.current a {
+  border-color: #444;
+}
+
 table.grid {
   width: 100%;
   table-layout:fixed;

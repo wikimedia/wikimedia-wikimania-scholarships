@@ -1,6 +1,4 @@
 {% extends "auth/base.html" %}
-{% import "inc/forms.html" as forms %}
-{% set ctx = _context %}
 {% block content %}
 {% spaceless %}
 <form action="{{ urlFor( 'auth_pwchange' ) }}" method="post">
