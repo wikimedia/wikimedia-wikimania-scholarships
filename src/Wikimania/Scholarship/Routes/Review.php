@@ -23,6 +23,7 @@
 namespace Wikimania\Scholarship\Routes;
 
 use Wikimania\Scholarship\Dao\Apply as ApplyDao;
+use Wikimania\Scholarship\Dao\User as UserDao;
 use Wikimania\Scholarship\Form;
 
 /**
@@ -49,11 +50,84 @@ class Review {
 				$_SESSION[Auth::NEXTPAGE_SESSION_KEY] = $app->request->getResourceUri();
 				$app->redirect( $app->urlFor( 'auth_login' ) );
 			}
+			//FIXME: stick a user object in the session?
+			$dao = new UserDao();
+			$id = $_SESSION[Auth::USER_SESSION_KEY];
+			$app->view->set( 'userId', $id );
+			$app->view->set( 'username', $dao->getUsername( $id ) );
+			$app->view->set( 'isadmin', $dao->isSysAdmin( $id ) );
 		};
+
 
 		$app->get( "{$prefix}/", $requireAuth, function () use ( $app ) {
 			$app->redirect( $app->urlFor( 'review_phase1' ) );
 		})->name( 'review_home' );
+
+
+		$app->map( "{$prefix}/view", $requireAuth, function () use ( $app ) {
+			$form = new Form();
+			$form->expectInt( 'phase',
+				array( 'min' => 0, 'max' => 2, 'default' => 2 )
+			);
+
+			$dao = new ApplyDao();
+
+			if ( $app->request->isPost() ) {
+				$form->expectInt( 'id', array( 'min' => 0, 'required' => true ) );
+				$form->expectString( 'notes' );
+
+				if ( $form->validate() ) {
+					$id = $form->get( 'id' );
+					$criteria = array(
+						'valid', 'onwiki', 'future', 'offwiki', 'program',
+						'englishAbility' );
+
+					foreach ( $criteria as $c ) {
+						$score = $app->request->post( $c );
+						if ( $score !== null ) {
+							$dao->insertOrUpdateRanking( $id, $c, $score );
+						}
+					}
+
+					if ( $form->get( 'notes' ) !== null ) {
+						$dao->updateNotes( $id, $form->get( 'notes' ) );
+					}
+					$app->flash( 'info', 'Changes saved.' );
+
+				} else {
+					// FIXME: log error(s)
+					$app->flash( 'error', 'Invalid submission' );
+				}
+				$phase = $form->get( 'phase' );
+				$app->redirect( $app->urlFor( 'review_view' ) . "?id={$id}&phase={$phase}" );
+			}
+
+			$form->validate( $_GET );
+			$phase = $form->get( 'phase' );
+			$userId = $_SESSION[Auth::USER_SESSION_KEY];
+
+
+			$id = $app->request->get( 'id' );
+			if ( $id === null || $id < 0 ) {
+				$unreviewed = $dao->myUnreviewed( $userId, $phase );
+				$id = min( $unreviewed );
+			}
+
+			if ( $id == '' or $id < 0 ) {
+				$app->flashNow( 'error', "Plase click Phase {$phase} to return to the list" );
+			}
+
+			$app->view->set( 'phase', $phase );
+			$app->view->set( 'id', $id );
+			$app->view->set( 'myscorings', $dao->myRankings( $id, $phase ) );
+			$app->view->set( 'allscorings', $dao->allRankings( $id, $phase ) );
+			$app->view->set( 'reviewers', $dao->getReviewers( $id, $phase ) );
+			$app->view->set( 'nextid', $dao->nextApp( $id, $phase ) );
+			$app->view->set( 'previd', $dao->prevApp( $id, $phase ) );
+			$app->view->set( 'schol', $dao->getScholarship( $id ) );
+
+			$app->render( 'review/view.html' );
+		})->via( 'GET', 'POST' )->name( 'review_view' );
 
 		// Route factory for phase1 & phase2 review queues
 		$phaseGrid = function ( $phase ) use ( $app ) {
@@ -82,15 +156,15 @@ class Review {
 				);
 				$ret = $dao->gridData( $params );
 
-				$app->view->setData( 'phase', $phase );
-				$app->view->setData( 'records', $ret->rows );
-				$app->view->setData( 'found', $ret->found );
+				$app->view->set( 'phase', $phase );
+				$app->view->set( 'records', $ret->rows );
+				$app->view->set( 'found', $ret->found );
 
 				// pagination information
 				$params['pages'] = ceil( $ret->found / $form->get( 'items' ) );
 				$params['left'] = max( 0, $params['page'] - 4 );
 				$params['right'] = min( max( 0, $params['pages'] - 1 ), $params['page'] + 4 );
-				$app->view->setData( 'params', $params );
+				$app->view->set( 'params', $params );
 
 				$app->render( 'review/grid.html' );
 			};
@@ -122,7 +196,7 @@ class Review {
 				}
 
 			} else {
-				$app->view->setData( 'records', $rows );
+				$app->view->set( 'records', $rows );
 				$app->render( 'review/p1/success.html' );
 			}
 		})->name( 'review_p1_success' );

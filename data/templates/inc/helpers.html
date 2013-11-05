@@ -1,0 +1,30 @@
+{# Review helpers #}
+
+{# FIXME: document macro args #}
+
+{% macro rankDropdownList( ctx, crit ) %}
+{% set opts = [ 0, 1, 2, 3, 4 ] %}
+{% if crit in [ 'valid', 'program' ] %}
+{% set opts = [ 0, 1 ] %}
+{% endif %}
+{% set r = -1 %}
+{% for score in ctx.myscorings %}
+{% if score.criterion == crit %}
+{% set r = score.rank %}
+{% endif %}
+{% endfor %}
+<select id="{{ crit }}" name="{{ crit }}">
+  {% for o in opts %}
+  <option value="{{ o }}" {{ r == o ? 'selected="selected"'}}>{{ o }}</option>
+  {% endfor %}
+</select>
+{% endmacro %}
+
+{% macro yearsOld( dob ) %}
+{{ date( dob ).diff( date( 'now' ) ).format( '%Y' ) }}
+{% endmacro %}
+
+{% macro gender( ctx, g ) %}
+{% set gmap = { 'm':'form-gender-male', 'f':'form-gender-female', 't':'form-gender-transgender', 'u':'form-gender-unspecified' } %}
+{{ ctx.wgLang.message( gmap[g]|default( 'form-gender-unspecified' ) ) }}
+{% endmacro %}

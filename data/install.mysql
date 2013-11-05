@@ -210,8 +210,7 @@ CREATE TABLE IF NOT EXISTS rankings (
     id              INT(11) NOT NULL AUTO_INCREMENT
   , user_id         INT(11) NOT NULL
   , scholarship_id  INT(11) NOT NULL
-  , criterion       ENUM('valid','onwiki','offwiki','nationality',
-                         'representation','special','future') DEFAULT NULL
+  , criterion       VARCHAR(64) NOT NULL,
   , rank            INT(11) NOT NULL DEFAULT '0'
   , entered_on      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   , PRIMARY KEY (id)

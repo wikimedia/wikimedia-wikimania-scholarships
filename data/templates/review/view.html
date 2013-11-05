@@ -1,0 +1,244 @@
+{% extends "review/base.html" %}
+{% import "inc/helpers.html" as helpers %}
+{% set ctx = _context %}
+
+{% block content %}
+{% spaceless %}
+<form method="post" action="{{ urlFor( 'review_view' ) }}">
+  <input type="hidden" name="phase" value="{{ phase }}"/>
+  <input type="hidden" name="id" value="{{ id }}"/>
+
+  {% if phase > 0 %}
+  <div id="application-view">
+    <div id="rank-box" class="clearfix">
+      <h4>Rankings <span id="rankingstoggle">[show/collapse]</span></h4>
+      <ul class="sublinks">
+        {% if previd is not empty %}
+        <li><a href="{{ urlFor( 'review_view' ) }}?id={{ previd }}&phase={{ phase }}">Previous</a></li>
+        {% else %}
+        <li>Previous</li>
+        {% endif %}
+        <li><a href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=1">Phase 1</a></li>
+        <li><a href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=2">Phase 2</a></li>
+        {% if nextid is not empty %}
+        <li><a href="{{ urlFor( 'review_view' ) }}?id={{ nextid }}&phase={{ phase }}">Next</a></li>
+        {% else %}
+        <li>Next</li>
+        {% endif %}
+      </ul>
+      <div id="rankingitems">
+        <table>
+          {% if phase == 1 %}
+          <tr>
+            <td>Valid:</td>
+            <td>{{ helpers.rankDropdownList( ctx, 'valid' ) }}</td>
+          </tr>
+          {% else %}
+          <tr>
+            <td>Future promise:
+              <td>{{ helpers.rankDropdownList( ctx, 'future' ) }}</td>
+              <td>In Wikimedia movement:</td>
+              <td>{{ helpers.rankDropdownList( ctx, 'onwiki' ) }}</td>
+            </tr>
+            <tr>
+              <td>Outside Wikimedia movement:</td>
+              <td>{{ helpers.rankDropdownList( ctx, 'offwiki' ) }}</td>
+              <td>English Ability:</td>
+              <td>{{ helpers.rankDropdownList( ctx, 'englishAbility' ) }}</td>
+            </tr>
+            <tr>
+              <td>Program:</td>
+              <td>{{ helpers.rankDropdownList( ctx, 'program' ) }}</td>
+            </tr>
+          {% endif %}
+        </table>
+          <div id="notes-box">
+            Notes:<br/>
+            <textarea id="notes" name="notes">{{ schol.notes }}</textarea>
+            <ul>
+              <li><input type="submit" id="save" name="save" value="Save" /></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <fieldset>
+        <ul id="view-name" class="appview">
+          <li>{{ schol.fname }} {{ schol.lname }}</li>
+        </ul>
+
+        <ul id="wikiuserinfo" class="appview">
+          {% if schol.username is not empty %}
+          <li>User: {{ schol.username }} (<a href="http://toolserver.org/~vvv/sulutil.php?user={{ schol.username }}" target="_blank">cross-wiki contribs</a>)</li>
+        {% else %}
+        <li>User: no username</li>
+        {% endif %}
+      </ul>
+
+      <ul id="countryinfo" class="appview">
+        <li>Residence: {{ schol.residence_name }}</li>
+        <li>Citizenship: {{ schol.country_name }}</li>
+      </ul>
+
+      <ul id="contactinfo" class="appview">
+        <li>Email: <a href="mailto:{{ schol.email }}">{{ schol.email }}</a></li>
+        <li>Phone: {{ schol.telephone }}</li>
+      </ul>
+
+      <ul id="ageinfo" class="appview">
+        <li>Date of birth:
+          {% if schol.dob is not empty %}
+          {{ schol.dob }} ({{ helpers.yearsOld( schol.dob ) }})
+          {% else %}
+          Not specified
+          {% endif %}
+        </li>
+      </ul>
+
+      <ul id="genderinfo" class="appview">
+        <li>Gender: {{ helpers.gender( ctx, schol.sex ) }}</li>
+      </ul>
+
+      <ul id="lang-job-info" class="appview">
+        <li>Speaks: {{ schol.languages }}</li>
+        {% if schol.occupation is not empty %}
+        <li>Occupation: {{ schol.occupation }}</li>
+        {% endif %}
+        {% if schol.areaofstudy is not empty %}
+        <li>Field of study: {{ schol.areaofstudy }}</li>
+        {% endif %}
+        {% if schol.occupation is empty and schol.areaofstudy is empty %}
+        <li>Did not give an occupation or field of study.</li>
+        {% endif %}
+      </ul>
+
+      <table id="past-wikimania">
+        <tr>
+          <th>2005</th>
+          <th>2006</th>
+          <th>2007</th>
+          <th>2008</th>
+          <th>2009</th>
+          <th>2010</th>
+          <th>2011</th>
+          <th>2012</th>
+          <th>2013</th>
+        </tr>
+        <tr>
+          <td>{{ schol.wm05 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm06 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm07 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm08 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm09 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm10 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm11 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm12 == 1 ? 'X' : '&nbsp;' }}</td>
+          <td>{{ schol.wm13 == 1 ? 'X' : '&nbsp;' }}</td>
+        </tr>
+      </table>
+      <p></p>
+
+      <p>
+        {% if schol.presentation %}
+        Will join 'Call for Participation' and Topic is {{ schol.presentationTopic }}
+        {% else %}
+        Will NOT join 'Call for Participation'
+        {% endif %}
+      </p>
+
+      {% if not schol.sincere or not schol.agreestotravelconditions or not schol.willgetvisa or not schol.willpayincidentals %}
+      <ul id="terms-agree">
+        {% if not schol.sincere %}
+        <li>Did not agree that they understood application.</li>
+        {% endif %}
+        {% if not schol.agreestotravelconditions %}
+        <li>Did not agree to travel conditions.</li>
+        {% endif %}
+        {% if not schol.willgetvisa %}
+        <li>Did not agree to get own visa.</li>
+        {% endif %}
+        {% if not schol.willpayincidentals %}
+        <li>Did not agree to pay incidentals</li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+      <p>Partial scholarships: <br/>
+        <p>{{ schol.wantspartial ? 'Wants partial scholarship' : 'Doesn\'t want partial scholarship' }}<br/>
+          {{ schol.canpaydiff ? 'Can pay the rest of the sum if awarded partial scholarship' : 'Cannot pay the rest of the sum if awarded partial scholarship' }}</p>
+      </fieldset>
+
+      <fieldset><legend>Why do you want to attend?</legend>
+        {% if schol.why is not empty %}
+        <pre style="white-space:pre-wrap">{{ schol.why }}</pre>
+        {% else %}
+        <p>Declined to state.</p>
+        {% endif %}
+      </fieldset>
+
+      <fieldset><legend>What is your involvement with Wikimedia?</legend>
+        {% if schol.involvement is not empty %}
+        <pre style="white-space:pre-wrap">{{ schol.involvement }}</pre>
+        {% else %}
+        <p>Declined to state.</p>
+        {% endif %}
+      </fieldset>
+
+      <fieldset><legend>What contribution have you made to free knowledge and free software?</legend>
+        {% if schol.contribution is not empty %}
+        <pre style="white-space:pre-wrap">{{ schol.contribution }}</pre>
+        {% else %}
+        <p>Declined to state.</p>
+        {% endif %}
+      </fieldset>
+
+      <fieldset><legend>English Ability <br />(Question: Hong Kong is an international gourmet paradise. Please use less than 200 words to describe your favourite dish of food.)</legend>
+        {% if schol.englishAbility is not empty %}
+        <pre style="white-space:pre-wrap">{{ schol.englishAbility }}</pre>
+        {% else %}
+        <p>Declined to state.</p>
+        {% endif %}
+      </fieldset>
+
+      <fieldset><legend>Show full dump</legend>
+        <ul>
+          {% for k,v in schol %}
+          <li><strong>{{ k }}:</strong> {{ v }}</li>
+          {% endfor %}
+        </ul>
+      </fieldset>
+
+      <fieldset><legend>Scorings</legend>
+        <div style="float: left;">
+          {% if myscorings is not empty %}
+          My scorings:<br/><br/>
+          <table id='view-scorings'>
+            <tr><th>Criteria</th><th>Rank</th></tr>
+            {% for r in myscorings %}
+            <tr><td>{{ r.criterion }}</td><td>{{ r.rank }}</td></tr>
+            {% endfor %}
+          </table>
+          {% endif %}
+        </div>
+        <div style="float: left; margin-left: 2em;">
+          {% if reviewers is not empty %}
+          Reviewers:<br/><br/>
+          <ul>
+            {% for reviewer in reviewers %}
+            <li>{{ reviewer.username }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</form>
+<dl>
+  {% for k,v in app.request.post %}
+  <dt>{{ k }}</dt><dd>{{ v }}</dd>
+{% endfor %}
+</dl>
+{% endspaceless %}
+{% endblock content %}

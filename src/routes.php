@@ -18,7 +18,6 @@ $routes = array(
 	'review/region'         => 'review/region_grid.php',
 	'review/search'         => 'review/searchform.php',
 	'review/search/results' => 'review/search_results.php',
-	'review/view'           => 'review/view.php',
 	'user/add'              => 'admin/add_user.php',
 	'user/list'             => 'admin/user_grid.php',
 	'user/table'            => 'admin/usertable.php',

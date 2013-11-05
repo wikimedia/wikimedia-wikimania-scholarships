@@ -132,7 +132,7 @@ class Form {
 	}
 
 	public function expectString( $name, $options = null ) {
-		return $this->expectRegex( $name, '/^.+$/', $options );
+		return $this->expectRegex( $name, '/^.+$/s', $options );
 	}
 
 	public function expectAnything( $name, $options = null ) {

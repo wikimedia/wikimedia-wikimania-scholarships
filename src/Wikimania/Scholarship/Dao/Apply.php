@@ -42,8 +42,8 @@ class Apply extends AbstractDao {
 		parent::__construct();
 
 		// FIXME: use this everywhere or nowhere
-		if ( isset( $_SESSION['user_id'] ) ) {
-			$this->userid = $_SESSION['user_id'];
+		if ( isset( $_SESSION['AUTH_USER_ID'] ) ) {
+			$this->userid = $_SESSION['AUTH_USER_ID'];
 		}
 	}
 
@@ -309,13 +309,14 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( $sql );
 	}
 
-	public function myUnreviewed( $myid, $phase ) {
-		$where = array();
+	public function myUnreviewed( $phase ) {
+		// FIXME: NOT IN () instead of left join? (count not used)
+		// FIXME: this isn't right, doesn't care about phase
 		$sql = "SELECT s.id FROM scholarships s
-			LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion IN ('onwiki', 'offwiki', 'future', 'program', 'englishAbility') AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id
+			LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings WHERE user_id = ? GROUP BY scholarship_id) r4 on s.id = r4.scholarship_id
 			WHERE mycount IS NULL;";
 
-		$res = $this->fetchAll( $sql );
+		$res = $this->fetchAll( $sql, array( $this->userid ) );
 		return array_map( function ($row) { return $row['id']; }, $res );
 	}
 
@@ -376,30 +377,30 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
-	public function skipApp( $userid, $id, $phase ) {
-		$j = 0;
-		$myapps = $this->myUnreviewed( $userid, $phase );
-		for ( $i = $id; $i < max( $myapps ); $i++ ) {
-			if ( in_array( $i, $myapps ) ) {
-				if ( $j == 1 ) {
-					return $i;
-				}
-				$j++;
+	/**
+	 * Find the next unreviewed id after the given id.
+	 * @return int|bool Next id or false if none available
+	 */
+	public function nextApp( $id, $phase ) {
+		// FIXME: this can probably be done in sql
+		$myapps = $this->myUnreviewed( $this->userid, $phase );
+		foreach ( $myapps as $app ) {
+			if ( $app > $id ) {
+				return $app;
 			}
 		}
 		return false;
 	}
 
-	public function prevApp( $userid, $id, $phase ) {
-		$j = 0;
-		$myapps = $this->myUnreviewed( $userid, $phase );
-		for ( $i = $id; $i > min( $myapps ); $i-- ) {
-			if ( in_array( $i, $myapps ) ) {
-				if ( $j == 1 ) {
-					return $i;
-				}
-				$j++;
+	public function prevApp( $id, $phase ) {
+		// FIXME: this can probably be done in sql
+		$myapps = $this->myUnreviewed( $this->userid, $phase );
+		$prior = false;
+		foreach ( $myapps as $app ) {
+			if ( $app >= $id ) {
+				return $prior;
 			}
+			$prior = $id;
 		}
 		return false;
 	}
@@ -438,10 +439,12 @@ class Apply extends AbstractDao {
 			where p1score >= 3 and s.exclude = 0;" );
 	}
 
-	public function InsertOrUpdateRanking( $user_id, $scholarship_id, $criterion, $rank ) {
-		$this->update(
-			'INSERT INTO rankings (user_id, scholarship_id, criterion, rank) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE rank = ?',
-			array( $user_id, $scholarship_id, $criterion, $rank, $rank )
+	public function InsertOrUpdateRanking( $scholarship_id, $criterion, $rank ) {
+		$this->update( self::concat(
+			'INSERT INTO rankings (user_id, scholarship_id, criterion, rank)',
+			'VALUES (?, ?, ?, ?)',
+			'ON DUPLICATE KEY UPDATE rank = ?, entered_on = now()' ),
+			array( $this->userid, $scholarship_id, $criterion, $rank, $rank )
 		);
 	}
 
@@ -456,7 +459,7 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( $sql, array( $id ) );
 	}
 
-	public function myRankings( $id, $userid, $phase ) {
+	public function myRankings( $id, $phase ) {
 		if ( $phase == 1 ) {
 			$sql = "select r.scholarship_id, u.username, r.rank, r.criterion from rankings r inner join users u on r.user_id = u.id where r.criterion = 'valid' and u.id = ? AND r.scholarship_id = ?";
 
@@ -465,7 +468,7 @@ class Apply extends AbstractDao {
 		} else {
 			return false;
 		}
-		return $this->fetchAll( $sql, array( $userid, $id ) );
+		return $this->fetchAll( $sql, array( $this->userid, $id ) );
 	}
 
 	public function allRankings( $id, $phase ) {
