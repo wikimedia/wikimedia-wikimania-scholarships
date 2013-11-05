@@ -41,6 +41,9 @@ class Review {
 	 */
 	public static function addRoutes ( \Slim\Slim $app, $prefix = '' ) {
 
+		/**
+		 * Simple authentication required route middleware.
+		 */
 		$requireAuth = function () use ( $app ) {
 			if ( !isset( $_SESSION[Auth::USER_SESSION_KEY] ) ) {
 				$_SESSION[Auth::NEXTPAGE_SESSION_KEY] = $app->request->getResourceUri();
@@ -52,6 +55,7 @@ class Review {
 			$app->redirect( $app->urlFor( 'review_phase1' ) );
 		})->name( 'review_home' );
 
+		// Route factory for phase1 & phase2 review queues
 		$phaseGrid = function ( $phase ) use ( $app ) {
 			return function () use ( $phase, $app ) {
 				$form = new Form();
@@ -98,5 +102,30 @@ class Review {
 		$app->get( "{$prefix}/phase2", $requireAuth,
 			$phaseGrid( 2 ) )->name( 'review_phase2' );
 
-	}
-}
+		$app->get( "{$prefix}/p1/successList", $requireAuth, function () use ( $app ) {
+
+			$dao = new ApplyDao();
+			$rows = $dao->getPhase1Success();
+
+			if ( $app->request->get( 'action' ) == 'export' ) {
+				$ts = gmdate( 'Ymd\THi' );
+				$app->response->headers->set( 'Content-type',
+					'text/download; charset=utf-8' );
+				$app->response->headers->set( 'Content-Disposition',
+					'attachment; filename="p1success_' . $ts . '.csv"' );
+
+				echo "id,name,email,p1score\n";
+				foreach ( $rows as $row ) {
+					echo "{$row['id']},{$row['fname']} {$row['lname']},{$row['email']},";
+					echo round( $row['p1score'], 4 );
+					echo "\n";
+				}
+
+			} else {
+				$app->view->setData( 'records', $rows );
+				$app->render( 'review/p1/success.html' );
+			}
+		})->name( 'review_p1_success' );
+
+	} // end addRoutes
+} // end class Review

@@ -14,7 +14,6 @@ $routes = array(
 	'review/grid/score'     => 'review/grid_score.php',
 	'review/mail'           => 'review/mail.php',
 	'review/p1/failList'    => 'review/phase1FailList.php',
-	'review/p1/successList' => 'review/phase1SuccessList.php',
 	'review/p2/list'        => 'review/phase2List.php',
 	'review/region'         => 'review/region_grid.php',
 	'review/search'         => 'review/searchform.php',

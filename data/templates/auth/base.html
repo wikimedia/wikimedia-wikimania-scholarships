@@ -14,7 +14,7 @@
     <li><a href="{{ urlFor( 'review_phase1' ) }}">Phase 1</a></li>
     <li><a href="{{ urlFor( 'review_phase2' ) }}">Phase 2</a></li>
     <li>|</li>
-    <li><a href="{{ siteUrl( 'review/p1/successList' ) }}">Phase 1 Success List</a></li>
+    <li><a href="{{ urlFor( 'review_p1_success' ) }}">Phase 1 Success List</a></li>
     <li><a href="{{ siteUrl( 'review/p1/failList' ) }}">Phase 1 Fail List</a></li>
     <li><a href="{{ siteUrl( 'review/p2/list' ) }}">Phase 2 List</a></li>
     {% if isadmin|default(true) %}{# FIXME: better auth integration (middlewear?)#}

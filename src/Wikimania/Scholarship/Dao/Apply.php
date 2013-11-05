@@ -249,7 +249,7 @@ class Apply extends AbstractDao {
 		}
 
 		return $this->fetchAllWithFound( $sql );
-	}
+	} // end gridData
 
 	public function export() {
 		$tables = array( 's' => 'scholarships' );
@@ -512,10 +512,29 @@ class Apply extends AbstractDao {
 	}
 
 	public function GetPhase1Success() {
-		return $this->fetchAll( "select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			group by s.id, s.fname, s.lname, s.email
-			having p1score >= 3 and s.exclude = 0" );
+		// FIXME: hoist and reuse
+		$p1scoreSql = self::concat(
+			"SELECT scholarship_id, SUM(rank) AS p1score",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$fields = array(
+			's.id',
+			's.fname',
+			's.lname',
+			's.email',
+			's.exclude',
+			'COALESCE(p1score, 0) as p1score',
+		);
+
+		return $this->fetchAll( self::concat(
+			"SELECT" , implode( ',', $fields ),
+			"FROM scholarships s",
+			"LEFT OUTER JOIN ( {$p1scoreSql} ) r2 ON s.id = r2.scholarship_id",
+			"GROUP BY s.id, s.fname, s.lname, s.email",
+			"HAVING p1score >= 3 AND s.exclude = 0" ) );
 	}
 
 	public function GetRegionListNoCount() {

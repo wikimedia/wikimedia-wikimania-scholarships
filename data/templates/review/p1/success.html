@@ -1,0 +1,30 @@
+{% extends "review/base.html" %}
+
+{% block content %}
+{% spaceless %}
+<h2>Phase 1 - Success List</h2>
+<form method="get" action="{{ urlFor('review_p1_success') }}">
+  <input type="hidden" name="action" value="export">
+  <input type="submit" value="Export list">
+</form>
+<p></p>
+<table style="width: 100%;" border="1">
+  <tr>
+    <th>counter</th>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>p1 score</th>
+  </tr>
+  {% for row in records %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ row.id }}</td>
+    <td><a href="{{ siteUrl( 'review/view' ) }}?id={{ row.id }}&phase=0" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
+    <td>{{ row.email }}</td>
+    <td>{{ '%.4f'|format( row.p1score ) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endspaceless %}
+{% endblock content %}
