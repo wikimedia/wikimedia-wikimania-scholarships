@@ -1,14 +1,15 @@
 {% extends "review/base.html" %}
+{% set route = app.router.getCurrentRoute.getName %}
 
 {% block content %}
 {% spaceless %}
-<h2>Phase 1 - Success List</h2>
-<form method="get" action="{{ urlFor('review_p1_success') }}">
+<h2>{{ title }}</h2>
+<form method="get" action="{{ urlFor( route ) }}">
   <input type="hidden" name="action" value="export">
   <input type="submit" value="Export list">
 </form>
 <p></p>
-<table style="width: 100%;" border="1">
+<table class="grid bordered">
   <tr>
     <th>counter</th>
     <th>id</th>

@@ -170,11 +170,14 @@ class Review {
 			};
 		};
 
+
 		$app->get( "{$prefix}/phase1", $requireAuth,
 			$phaseGrid( 1 ) )->name( 'review_phase1' );
 
+
 		$app->get( "{$prefix}/phase2", $requireAuth,
 			$phaseGrid( 2 ) )->name( 'review_phase2' );
+
 
 		$app->get( "{$prefix}/p1/successList", $requireAuth, function () use ( $app ) {
 
@@ -196,10 +199,37 @@ class Review {
 				}
 
 			} else {
+				$app->view->set( 'title', 'Phase 1 - Success List' );
 				$app->view->set( 'records', $rows );
-				$app->render( 'review/p1/success.html' );
+				$app->render( 'review/p1/list.html' );
 			}
 		})->name( 'review_p1_success' );
+
+		$app->get( "{$prefix}/p1/failList", $requireAuth, function () use ( $app ) {
+
+			$dao = new ApplyDao();
+			$rows = $dao->getPhase1EarlyRejects();
+
+			if ( $app->request->get( 'action' ) == 'export' ) {
+				$ts = gmdate( 'Ymd\THi' );
+				$app->response->headers->set( 'Content-type',
+					'text/download; charset=utf-8' );
+				$app->response->headers->set( 'Content-Disposition',
+					'attachment; filename="p1fail_' . $ts . '.csv"' );
+
+				echo "id,name,email,p1score\n";
+				foreach ( $rows as $row ) {
+					echo "{$row['id']},{$row['fname']} {$row['lname']},{$row['email']},";
+					echo round( $row['p1score'], 4 );
+					echo "\n";
+				}
+
+			} else {
+				$app->view->set( 'title', 'Phase 1 - Fail List' );
+				$app->view->set( 'records', $rows );
+				$app->render( 'review/p1/list.html' );
+			}
+		})->name( 'review_p1_fail' );
 
 	} // end addRoutes
 } // end class Review

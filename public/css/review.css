@@ -194,18 +194,24 @@ ul.pagerlinks li.current a {
 table.grid {
   width: 100%;
   table-layout:fixed;
-  overflow:hidden;
 }
 
 table.grid tr td,
 table.grid tr th {
   padding: .4em;
   font-size: 14px;
+  overflow:hidden;
 }
 
 table.grid tr th {
   text-align: left;
   font-weight: bold;
+}
+
+table.bordered,
+table.bordered td,
+table.bordered th {
+  border:1px solid black;
 }
 
 table#view-scorings th, 
