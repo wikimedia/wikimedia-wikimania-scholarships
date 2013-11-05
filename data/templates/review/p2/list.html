@@ -1,0 +1,59 @@
+{% extends "review/base.html" %}
+
+{% block content %}
+{% spaceless %}
+<h2>Phase 2 List</h2>
+<form method="get" action="{{ urlFor( 'review_p2_list' ) }}">
+  <select name="partial">
+    <option value="2" {{ partial == 2 ? 'selected="selected"' }}>All</option>
+    <option value="1" {{ partial == 1 ? 'selected="selected"' }}>Partial</option>
+    <option value="0" {{ partial == 0 ? 'selected="selected"' }}>Full</option>
+  </select>
+  <select name="region">
+    {% for r in regionList %}
+    <option value="{{ r }}" {{ r == region ? 'selected="selected"' }}>{{ r }}</option>
+    {% endfor %}
+  </select>
+  <input type="checkbox" name="export" value="1"/>
+  <label class="inline" for="export">Export as CSV</label>
+  <input type="submit" value="Submit">
+</form>
+<p></p>
+<table class="grid bordered">
+  <tr>
+    <th>counter</th>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>residence</th>
+    <th>sex</th>
+    <th>age</th>
+    <th>partial?</th>
+    <th># p2 scorers</th>
+    <th>onwiki</th>
+    <th>offwiki</th>
+    <th>future</th>
+    <th>English Ability</th>
+    <th>p2 score</th>
+  </tr>
+  {% for row in records %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ row.id }}</td>
+    <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase=2" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
+    <td>{{ row.email }}</td>
+    <td>{{ row.country_name }}</td>
+    <td>{{ row.sex }}</td>
+    <td>{{ row.age }}</td>
+    <td>{{ row.partial }}</td>
+    <td>{{ row.nscorers }}</td>
+    <td>{{ '%.3f'|format( row.onwiki ) }}</td>
+    <td>{{ '%.3f'|format( row.offwiki ) }}</td>
+    <td>{{ '%.3f'|format( row.future ) }}</td>
+    <td>{{ '%.3f'|format( row.englishAbility ) }}</td>
+    <td>{{ '%.4f'|format( row.p2score ) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endspaceless %}
+{% endblock content %}

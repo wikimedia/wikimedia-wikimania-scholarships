@@ -231,5 +231,59 @@ class Review {
 			}
 		})->name( 'review_p1_fail' );
 
+
+		$app->get( "{$prefix}/p2/list", $requireAuth, function () use ( $app ) {
+			$dao = new ApplyDao();
+			$regionList = $dao->getRegionList();
+			array_unshift( $regionList, 'All' );
+
+			$form = new Form();
+			$form->expectInt( 'partial', array( 'default' => 0 ) );
+			$form->expectInArray( 'region', $regionList, array( 'default' => 'All' ) );
+			$form->expectBool( 'export' );
+			$form->validate( $_GET );
+
+
+			$partial = $form->get( 'partial' );
+			$region = $form->get( 'region' );
+
+			$rows = $dao->getP2List( $partial, $region );
+
+			if ( $app->request->get( 'export' ) ) {
+				if ( $partial === 0 ) {
+					$partialName = 'full';
+				} elseif ( $partial == 1 ) {
+					$partialName = 'partial';
+				} else {
+					$partialName = 'all';
+				}
+
+				$ts = gmdate( 'Ymd\THi' );
+				$app->response->headers->set( 'Content-type',
+					'text/download; charset=utf-8' );
+				$app->response->headers->set( 'Content-Disposition',
+					'attachment; filename="' . "p2_{$partialName}_{$region}_{$ts}" . '.csv"' );
+
+				echo "id,name,email,residence,sex,age,partial?,# p2 scorers,onwiki,offwiki,future,English Ability,p2 score\n";
+				foreach ( $rows as $row ) {
+					echo "{$row['id']},{$row['fname']} {$row['lname']},{$row['email']},";
+					echo "{$row['country_name']},{$row['sex']},{$row['age']},";
+					echo "{$row['partial']},{$row['nscorers']},";
+					echo round( $row['onwiki'], 3 ) . ',';
+					echo round( $row['offwiki'], 3 ) . ',';
+					echo round( $row['future'], 3 ) . ',';
+					echo round( $row['englishAbility'], 3 ) . ',';
+					echo round( $row['p2score'], 4 ) . "\n";
+				}
+
+			} else {
+				$app->view->set( 'regionList', $regionList );
+				$app->view->set( 'partial', $partial );
+				$app->view->set( 'region', $region );
+				$app->view->set( 'records', $rows );
+				$app->render( 'review/p2/list.html' );
+			}
+		})->name( 'review_p2_list' );
+
 	} // end addRoutes
 } // end class Review

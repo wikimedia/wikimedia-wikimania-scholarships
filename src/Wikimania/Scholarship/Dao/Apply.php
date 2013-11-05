@@ -347,9 +347,8 @@ class Apply extends AbstractDao {
 		if ( $region != null ) {
 			array_push( $where, " c.region = '" . $region . "' " );
 		}
-		//FIXME hard coded year
 		$sql = "
-			SELECT s.id, s.fname, s.lname, s.email, s.residence, s.exclude,  s.sex, (2013 - year(s.dob)) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, c.region, coalesce(p1score,0) as p1score, p1count, mycount
+			SELECT s.id, s.fname, s.lname, s.email, s.residence, s.exclude,  s.sex, (year(now()) - year(s.dob)) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, c.region, coalesce(p1score,0) as p1score, p1count, mycount
 			FROM scholarships s
 			LEFT OUTER JOIN (select *, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
 			LEFT OUTER JOIN (select scholarship_id, count(rank) as p1count from rankings where criterion = 'valid' group by scholarship_id) r3 on s.id = r3.scholarship_id
@@ -540,13 +539,14 @@ class Apply extends AbstractDao {
 			"HAVING p1score >= 3 AND s.exclude = 0" ) );
 	}
 
-	public function GetRegionListNoCount() {
-		return $this->fetchAll( "SELECT DISTINCT region FROM countries" );
+	public function getRegionList() {
+		$res = $this->fetchAll( "SELECT DISTINCT region FROM countries" );
+		return array_map( function ($row) { return $row['region']; }, $res );
 	}
 
-	public function GetP2List( $partial, $region ) {
-		//FIXME hard coded year
-		$sql = "select s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, 2013-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s
+	public function getP2List( $partial, $region ) {
+		//FIXME make this prettier
+		$sql = "SELECT s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, year(now())-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s
 			left outer join (select scholarship_id, avg(rank) as onwiki from rankings where criterion = 'onwiki' group by scholarship_id) r on s.id = r.scholarship_id
 			left outer join (select scholarship_id, avg(rank) as offwiki from rankings where criterion = 'offwiki' group by scholarship_id) r2 on s.id = r2.scholarship_id
 			left outer join (select scholarship_id, avg(rank) as future from rankings where criterion = 'future' group by scholarship_id) r3 on s.id = r3.scholarship_id
@@ -578,8 +578,7 @@ class Apply extends AbstractDao {
 	// Final scoring
 
 	public function GetFinalScoring( $partial ) {
-		//FIXME hard coded year
-		return $this->fetchAll( "select s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, 2013-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s
+		return $this->fetchAll( "select s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, year(now())-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s
 			left outer join (select scholarship_id, avg(rank) as onwiki from rankings where criterion = 'onwiki' group by scholarship_id) r on s.id = r.scholarship_id
 			left outer join (select scholarship_id, avg(rank) as offwiki from rankings where criterion = 'offwiki' group by scholarship_id) r2 on s.id = r2.scholarship_id
 			left outer join (select scholarship_id, avg(rank) as future from rankings where criterion = 'future' group by scholarship_id) r3 on s.id = r3.scholarship_id
