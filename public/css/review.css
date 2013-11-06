@@ -230,5 +230,5 @@ fieldset.inline textarea,
 fieldset.inline select,
 fieldset.inline label {
   display:inline;
-  padding-right:.5em;
+  margin-right:.5em;
 }

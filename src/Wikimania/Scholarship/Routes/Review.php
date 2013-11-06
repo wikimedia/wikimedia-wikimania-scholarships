@@ -161,6 +161,7 @@ class Review {
 				$app->view->set( 'found', $ret->found );
 
 				// pagination information
+				// FIXME: abstract for reuse
 				$params['pages'] = ceil( $ret->found / $form->get( 'items' ) );
 				$params['left'] = max( 0, $params['page'] - 4 );
 				$params['right'] = min( max( 0, $params['pages'] - 1 ), $params['page'] + 4 );
@@ -285,5 +286,58 @@ class Review {
 			}
 		})->name( 'review_p2_list' );
 
+
+		$app->get( "{$prefix}/search", $requireAuth, function () use ( $app ) {
+			$form = new Form();
+			$form->expectString( 'l' );
+			$form->expectString( 'f' );
+			$form->expectString( 'r' );
+			$form->expectString( 'rg' );
+			$form->expectInt( 'items',
+				array( 'min' => 1, 'max' => 250, 'default' => 50 )
+			);
+			$form->expectInt( 'p', array( 'min' => 0, 'default' => 0 ) );
+			$form->validate( $_GET );
+
+			$app->view->set( 'l', $form->get( 'l' ) );
+			$app->view->set( 'f', $form->get( 'f' ) );
+			$app->view->set( 'r', $form->get( 'r' ) );
+			$app->view->set( 'rg', $form->get( 'rg' ) );
+			$app->view->set( 'items', $form->get( 'items' ) );
+			$app->view->set( 'p', $form->get( 'p' ) );
+			$app->view->set( 'found', null );
+
+			if ( $form->get( 'l' ) || $form->get( 'f' ) ||
+				$form->get( 'r' ) || $form->get( 'rg' )
+			) {
+
+				$dao = new ApplyDao();
+				$params = array(
+					'first'     => $form->get( 'f' ),
+					'last'      => $form->get( 'l' ),
+					'residence' => $form->get( 'r' ),
+					'region'    => $form->get( 'rg' ),
+					'items'     => $form->get( 'items' ),
+					'page'      => $form->get( 'p' ),
+				);
+
+				$ret = $dao->search( $params );
+				$app->view->set( 'records', $ret->rows );
+				$app->view->set( 'found', $ret->found );
+
+				// pagination information
+				$page = $form->get( 'p' );
+				$pages = ceil( $ret->found / $form->get( 'items' ) );
+				$left = max( 0, $page - 4 );
+				$right = min( max( 0, $pages - 1 ), $page + 4 );
+				$app->view->set( 'pages' , $pages );
+				$app->view->set( 'left', $left );
+				$app->view->set( 'right', $right );
+			}
+
+			$app->render( 'review/search.html' );
+		})->name( 'review_search' );
+
 	} // end addRoutes
+
 } // end class Review

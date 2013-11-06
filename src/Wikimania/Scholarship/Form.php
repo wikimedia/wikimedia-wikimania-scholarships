@@ -173,10 +173,10 @@ class Form {
 				$this->errors[] = $name;
 
 			} elseif ( is_callable( $opt['validate'] ) &&
-					call_user_func( $opt['validate'], $this->values[$name] ) === false ) {
-				$this->errors[] = $name;
-				$this->values[$name] = null;
-			}
+				call_user_func( $opt['validate'], $this->values[$name] ) === false ) {
+					$this->errors[] = $name;
+					$this->values[$name] = null;
+				}
 		}
 
 		return count( $this->errors ) === 0;
@@ -204,6 +204,45 @@ class Form {
 
 	public function hasErrors() {
 		return count( $this->errors ) !== 0;
+	}
+
+	/**
+	 * Make a URL-encoded string from a key=>value array
+	 * @param array $parms Parameter array
+	 * @return string URL-encoded message body
+	 */
+	public static function urlEncode( $parms ) {
+		$payload = array();
+
+		foreach ( $parms as $key => $value ) {
+			if ( is_array( $value ) ) {
+				foreach ( $value as $item ) {
+					$payload[] = urlencode( $key ) . '=' . urlencode( $item );
+				}
+			} else {
+				$payload[] = urlencode( $key ) . '=' . urlencode( $value );
+			}
+		}
+
+		return implode( '&', $payload );
+	} //end urlEncode
+
+	/**
+	 * Merge parameters into current query string.
+	 * @param array $parms Parameter array
+	 * @return string URL-encoded message body
+	 */
+	public static function qsMerge( $params = array() ) {
+		return self::urlEncode( array_merge( $_GET, $params ) );
+	}
+
+	/**
+	 * Remove parameters from current query string.
+	 * @param array $parms Parameters to remove
+	 * @return string URL-encoded message body
+	 */
+	public static function qsRemove( $params = array() ) {
+		return self::urlEncode( array_diff_key( $_GET, array_flip( $params ) ) );
 	}
 
 }

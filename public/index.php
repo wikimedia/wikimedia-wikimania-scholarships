@@ -57,6 +57,7 @@ $view->parserOptions = array(
 );
 $view->parserExtensions = array(
 	new \Slim\Views\TwigExtension(),
+	new \Wikimania\Scholarship\TwigExtension(),
 );
 
 // set default view data

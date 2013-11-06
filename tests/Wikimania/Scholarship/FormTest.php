@@ -72,4 +72,48 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 
+	public function testEncodeBasic () {
+		$input = array(
+			'foo' => 1,
+			'bar' => 'this=that',
+			'baz' => 'tom & jerry',
+		);
+		$output = Form::urlEncode( $input );
+		$this->assertEquals( 'foo=1&bar=this%3Dthat&baz=tom+%26+jerry', $output );
+	}
+
+	public function testEncodeArray () {
+		$input = array(
+			'foo' => array( 'a', 'b', 'c' ),
+			'bar[]' => array( 1, 2, 3 ),
+		);
+		$output = Form::urlEncode( $input );
+		$this->assertEquals(
+			'foo=a&foo=b&foo=c&bar%5B%5D=1&bar%5B%5D=2&bar%5B%5D=3', $output );
+	}
+
+	public function testQsMerge () {
+		$_GET['foo'] = 1;
+		$_GET['bar'] = 'this=that';
+		$_GET['baz'] = 'tom & jerry';
+
+		$output = Form::qsMerge();
+		$this->assertEquals( 'foo=1&bar=this%3Dthat&baz=tom+%26+jerry', $output );
+
+		$output = Form::qsMerge( array( 'foo' => 2, 'xyzzy' => 'grue' ) );
+		$this->assertEquals( 'foo=2&bar=this%3Dthat&baz=tom+%26+jerry&xyzzy=grue', $output );
+	}
+
+	public function testQsRemove () {
+		$_GET['foo'] = 1;
+		$_GET['bar'] = 'this=that';
+		$_GET['baz'] = 'tom & jerry';
+
+		$output = Form::qsRemove();
+		$this->assertEquals( 'foo=1&bar=this%3Dthat&baz=tom+%26+jerry', $output );
+
+		$output = Form::qsRemove( array( 'bar' ) );
+		$this->assertEquals( 'foo=1&baz=tom+%26+jerry', $output );
+	}
+
 } //end FormTest

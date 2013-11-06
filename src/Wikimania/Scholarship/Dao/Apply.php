@@ -321,43 +321,95 @@ class Apply extends AbstractDao {
 	}
 
 	public function search( $params ) {
-		$myid = isset( $_SESSION['user_id'] ) ? $_SESSION['user_id'] : 0;
-		$first = isset( $params['first'] ) ? mysql_real_escape_string( $params['first'] ) : null;
-		$last = isset( $params['last'] ) ? mysql_real_escape_string( $params['last'] ) : null;
-		$citizen = isset( $params['citizen'] ) ? mysql_real_escape_string( $params['citizen'] ) : null;
-		$residence = isset( $params['residence'] ) ? mysql_real_escape_string( $params['residence'] ) : null;
-		$items = isset( $params['items'] ) ? mysql_real_escape_string( $params['items'] ) : 50;
-		$region = isset( $params['region'] ) ? mysql_real_escape_string( $params['region'] ) : null;
+		$defaults = array(
+			'first' => null,
+			'last' => null,
+			'residence' => null,
+			'region' => null,
+			'items'  => 50,
+			'page' => 0,
+		);
+		$params = array_merge( $defaults, $params );
+		$myid = $this->userid ?: 0;
 
-		$p = isset( $params['offset'] ) ? $params['offset'] : 0;
-		$p = intval( $p );
-		$offset = " OFFSET " . ( $p * $items );
+		$offset = "OFFSET " . ( (int)$params['page'] * $params['items'] );
+		$limit = "LIMIT {$params['items']}";
 
-		$limit = " LIMIT $items ";
 		$where = array();
-		if ( $last != null ) {
-			array_push( $where, " s.lname = '" . $last . "' " );
+		$crit = array( ':uid' => $myid );
+		if ( $params['last'] !== null ) {
+			$where[] = "s.lname = :last";
+			$crit[':last'] = $params['last'];
 		}
-		if ( $first != null ) {
-			array_push( $where, " s.fname = '" . $first . "' " );
+		if ( $params['first'] !== null ) {
+			$where[] = "s.fname = :first";
+			$crit[':first'] = $params['first'];
 		}
-		if ( $residence != null ) {
-			array_push( $where, " c.country_name = '" . $residence . "' " );
+		if ( $params['residence'] !== null ) {
+			$where[] = "c.country_name = :residence";
+			$crit[':residence'] = $params['residence'];
 		}
-		if ( $region != null ) {
+		if ( $params['region'] !== null ) {
 			array_push( $where, " c.region = '" . $region . "' " );
+			$where[] = "c.region = :region";
+			$crit[':region'] = $params['region'];
 		}
-		$sql = "
-			SELECT s.id, s.fname, s.lname, s.email, s.residence, s.exclude,  s.sex, (year(now()) - year(s.dob)) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, c.region, coalesce(p1score,0) as p1score, p1count, mycount
-			FROM scholarships s
-			LEFT OUTER JOIN (select *, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			LEFT OUTER JOIN (select scholarship_id, count(rank) as p1count from rankings where criterion = 'valid' group by scholarship_id) r3 on s.id = r3.scholarship_id
-			LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings where criterion = 'valid' AND user_id = $myid group by scholarship_id) r4 on s.id = r4.scholarship_id
-			LEFT OUTER JOIN countries c on s.residence = c.id " .
-			$this->buildWhere( $where ) . "
-			GROUP BY s.id, s.fname, s.lname, s.email, s.residence
-			HAVING p1score >= -2 and p1score <= 999 and s.exclude = 0 $limit $offset";
-		return $this->fetchAll( $sql );
+
+		$fields = array(
+			"s.id",
+			"s.fname",
+			"s.lname",
+			"s.email",
+			"s.residence",
+			"s.exclude",
+			"s.sex",
+			"(year(now()) - year(s.dob)) as age",
+			"(s.canpaydiff*s.wantspartial) as partial",
+			"c.country_name",
+			"c.region",
+			"coalesce(p1score, 0) as p1score",
+			"p1count",
+			"mycount",
+		);
+
+		$p1scoreSql = self::concat(
+			"SELECT scholarship_id, SUM(rank) AS p1score",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$p1countSql = self::concat(
+			"SELECT scholarship_id, COUNT(rank) AS p1count",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$mycountSql = self::concat(
+			"SELECT scholarship_id, COUNT(rank) AS mycount",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"AND user_id = :uid",
+			"GROUP BY scholarship_id"
+		);
+
+			$sql = self::concat(
+				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
+				"FROM scholarships s",
+				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
+				"LEFT OUTER JOIN ( {$p1countSql} ) r2 ON s.id = r2.scholarship_id",
+				"LEFT OUTER JOIN ( {$mycountSql} ) r3 ON s.id = r3.scholarship_id",
+				"LEFT OUTER JOIN countries c ON s.residence = c.id",
+				$this->buildWhere( $where ),
+				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
+				"HAVING p1score >= -2 AND p1score <= 999 AND s.exclude = 0",
+				"ORDER BY s.id",
+				$limit,
+				$offset
+			);
+
+		return $this->fetchAllWithFound( $sql, $crit );
 	}
 
 

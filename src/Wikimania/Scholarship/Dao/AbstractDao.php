@@ -96,7 +96,7 @@ abstract class AbstractDao {
 	 */
 	protected function fetchAllWithFound( $sql, $params = null ) {
 		$ret = new \StdClass;
-		$ret->rows = $this->fetchAll( $sql );
+		$ret->rows = $this->fetchAll( $sql, $params );
 
 		$ret->found = $this->fetch( 'SELECT FOUND_ROWS() AS found' );
 		$ret->found = $ret->found['found'];

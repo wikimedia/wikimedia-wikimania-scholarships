@@ -1,0 +1,68 @@
+{% extends "review/base.html" %}
+{% set route = app.router.getCurrentRoute.getName %}
+
+{% block content %}
+{% spaceless %}
+<form method="get" action="{{ urlFor( route ) }}">
+  <fieldset class="inline">
+    <legend>Search</legend>
+    <label for="lastname">Last name</label>
+    <input name="l" id="lastname" value="{{ l }}" type="text" />
+    <label for="firstname">First name</label>
+    <input name="f" id="firstname" value="{{ f }}" type="text" />
+    <br/>
+    <label for="residence">Residence</label>
+    <input name="r" id="residence" value="{{ r }}" type="text" />
+    <label for="region">Region</label>
+    <input name="rg" id="region" value="{{ rg }}" type="text" />
+    <input type="submit" value="Go" />
+  </fieldset>
+  <input type="hidden" name="p" value="0" />
+</form>
+{% if found is not null %}
+<table id="grid" class="grid" style="width: 100%;">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>residence</th>
+    <th>sex</th>
+    <th>age</th>
+    <th>partial</th>
+    <th>p1</th>
+  </tr>
+  {% for row in records %}
+  <tr class="{{ cycle( [ 'odd', 'even' ], loop.index ) }}">
+    <td>{{ row.id }}</td>
+    <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase=2">{{ row.fname }} {{ row.lname }}</a></td>
+    <td>{{ row.email }}</td>
+    <td>{{ row.country_name }}</td>
+    <td>{{ row.sex }}</td>
+    <td>{{ row.age }}</td>
+    <td>{{ row.partial }}</td>
+    <td>{{ row.p1count ? row.p1score : '-' }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="8">No scholarsips found.</td></tr>
+  {% endfor %}
+</table>
+
+<p>Page {{ p + 1 }} of {{ pages }}</p>
+<ul class="pagerlinks">
+  {# FIXME: keep search/filter options from current query string #}
+  {# probably need to find/create a twig function for that #}
+  {% if p > 0 %}
+  <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p - 1) } ) }}" id="prev">« Previous</a></li>
+  {% endif %}
+
+  {% for i in left .. right %}
+  <li class="{{ i == p ? 'current' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
+  {% endfor %}
+
+  {% if p + 1 < pages %}
+  <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p + 1) } ) }}" id="next">Next »</a></li>
+  {% endif %}
+</ul>
+{% endif %}
+{% endspaceless %}
+{% endblock content %}
