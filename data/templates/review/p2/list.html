@@ -4,19 +4,23 @@
 {% spaceless %}
 <h2>Phase 2 List</h2>
 <form method="get" action="{{ urlFor( 'review_p2_list' ) }}">
-  <select name="partial">
-    <option value="2" {{ partial == 2 ? 'selected="selected"' }}>All</option>
-    <option value="1" {{ partial == 1 ? 'selected="selected"' }}>Partial</option>
-    <option value="0" {{ partial == 0 ? 'selected="selected"' }}>Full</option>
-  </select>
-  <select name="region">
-    {% for r in regionList %}
-    <option value="{{ r }}" {{ r == region ? 'selected="selected"' }}>{{ r }}</option>
-    {% endfor %}
-  </select>
-  <input type="checkbox" name="export" value="1"/>
-  <label class="inline" for="export">Export as CSV</label>
-  <input type="submit" value="Submit">
+  <fieldset class="inline">
+    <label for="partial">Partial?</label>
+    <select name="partial" id="partial">
+      <option value="2" {{ partial == 2 ? 'selected="selected"' }}>All</option>
+      <option value="1" {{ partial == 1 ? 'selected="selected"' }}>Partial</option>
+      <option value="0" {{ partial == 0 ? 'selected="selected"' }}>Full</option>
+    </select>
+    <label for="region">Region:</label>
+    <select name="region" id="region">
+      {% for r in regionList %}
+      <option value="{{ r }}" {{ r == region ? 'selected="selected"' }}>{{ r }}</option>
+      {% endfor %}
+    </select>
+    <input type="checkbox" name="export" id="export" value="1"/>
+    <label for="export">Export as CSV</label>
+    <input type="submit" value="Submit">
+  </fieldset>
 </form>
 <p></p>
 <table class="grid bordered">

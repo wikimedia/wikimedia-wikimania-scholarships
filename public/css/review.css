@@ -224,3 +224,11 @@ table#view-scorings td {
 table#view-scorings th {
   font-weight: bold;
 }
+
+fieldset.inline input,
+fieldset.inline textarea,
+fieldset.inline select,
+fieldset.inline label {
+  display:inline;
+  padding-right:.5em;
+}
