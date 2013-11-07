@@ -1,0 +1,18 @@
+{% extends "review/base.html" %}
+
+{% block content %}
+{% spaceless %}
+<table id="grid" class="grid">
+  <tr>
+    <th>region</th>
+    <th>scholarship count</th>
+  </tr>
+  {% for row in records %}
+  <tr>
+    <td><a href="{{ urlFor( 'review_search' ) }}?rg={{ row.region|url_encode }}">{{ row.region }}</a></td>
+    <td>{{ row.count }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endspaceless %}
+{% endblock content %}

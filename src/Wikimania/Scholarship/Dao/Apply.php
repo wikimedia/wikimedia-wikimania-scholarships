@@ -673,8 +673,13 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( $sql, array( $order ) );
 	}
 
-	public function GetListofRegions() {
-		return $this->fetchAll( "select count(*) as count, c.region from scholarships s LEFT JOIN countries c on c.id = s.residence group by region;" );
+	public function getListOfRegions() {
+		return $this->fetchAll( self::concat(
+			"SELECT count(*) as count, c.region",
+			"FROM scholarships s",
+			"LEFT JOIN countries c ON c.id = s.residence",
+			"GROUP BY region"
+		) );
 	}
 
 	public function GetPhase1EarlyRejectsTemp() {

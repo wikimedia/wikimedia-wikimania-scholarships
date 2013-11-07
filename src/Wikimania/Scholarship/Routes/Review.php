@@ -33,6 +33,7 @@ use Wikimania\Scholarship\Form;
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
 class Review {
+	// FIXME: create controller classes that are lazy loaded out of this mess
 
 	/**
 	 * Add routes to the given Slim application.
@@ -129,6 +130,7 @@ class Review {
 			$app->render( 'review/view.html' );
 		})->via( 'GET', 'POST' )->name( 'review_view' );
 
+
 		// Route factory for phase1 & phase2 review queues
 		$phaseGrid = function ( $phase ) use ( $app ) {
 			return function () use ( $phase, $app ) {
@@ -205,6 +207,7 @@ class Review {
 				$app->render( 'review/p1/list.html' );
 			}
 		})->name( 'review_p1_success' );
+
 
 		$app->get( "{$prefix}/p1/failList", $requireAuth, function () use ( $app ) {
 
@@ -353,6 +356,7 @@ class Review {
 			$app->render( 'review/countries.html' );
 		})->name( 'review_countries' );
 
+
 		$app->get( "{$prefix}/scores", $requireAuth, function () use ( $app ) {
 			$form = new Form();
 			$form->expectBool( 'partial' );
@@ -365,6 +369,15 @@ class Review {
 			$app->view->set( 'records', $rows );
 			$app->render( 'review/scores.html' );
 		})->name( 'review_scores' );
+
+
+		$app->get( "{$prefix}/regions", $requireAuth, function () use ( $app ) {
+			$dao = new ApplyDao();
+			$rows = $dao->getListOfRegions();
+
+			$app->view->set( 'records', $rows );
+			$app->render( 'review/regions.html' );
+		})->name( 'review_regions' );
 
 	} // end addRoutes
 
