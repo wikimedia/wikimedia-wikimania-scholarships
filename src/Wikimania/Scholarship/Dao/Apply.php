@@ -350,7 +350,6 @@ class Apply extends AbstractDao {
 			$crit[':residence'] = $params['residence'];
 		}
 		if ( $params['region'] !== null ) {
-			array_push( $where, " c.region = '" . $region . "' " );
 			$where[] = "c.region = :region";
 			$crit[':region'] = $params['region'];
 		}
@@ -645,7 +644,7 @@ class Apply extends AbstractDao {
 
 	// Country administration
 
-	public function GetListofCountries( $order = "country_name" ) {
+	public function getListofCountries( $order = "country_name" ) {
 		return $this->fetchAll( "select c.id, c.country_name, c.region, c.country_rank, s.sid from countries c left join (select count(id) as sid, residence as attendees from scholarships where rank = 1 and exclude = 0 group by residence) s on c.id = s.attendees order by ?;", array( $order ) );
 	}
 

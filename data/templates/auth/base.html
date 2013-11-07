@@ -17,7 +17,8 @@
     <li><a href="{{ urlFor( 'review_p1_success' ) }}">Phase 1 Success List</a></li>
     <li><a href="{{ urlFor( 'review_p1_fail' ) }}">Phase 1 Fail List</a></li>
     <li><a href="{{ urlFor( 'review_p2_list' ) }}">Phase 2 List</a></li>
-    {% if isadmin|default(true) %}{# FIXME: better auth integration #}
+    {% if isadmin|default(true) %}
+    {# FIXME: better auth integration #}
     <li>|</li>
     <li><a href="{{ siteUrl( 'review/grid/score?partial=0' ) }}">Final: Full</a></li>
     <li><a href="{{ siteUrl( 'review/grid/score?partial=1' ) }}">Final: Partial</a></li>
@@ -25,8 +26,8 @@
     <li>|</li>
     <li><a href="{{ urlFor( 'review_view' ) }}">Review</a></li>
     <li>|</li>
-    <li><a href="{{ siteUrl( 'review/search' ) }}">Search</a></li>
-    <li><a href="{{ siteUrl( 'review/country/grid' ) }}">By Country</a></li>
+    <li><a href="{{ urlFor( 'review_search' ) }}">Search</a></li>
+    <li><a href="{{ urlFor( 'review_countries' ) }}">By Country</a></li>
     <li><a href="{{ siteUrl( 'review/region' ) }}">By Region</a></li>
     <li>|</li>
     <li><a href="{{ urlFor( 'auth_pwchange' ) }}">change password</a></li>

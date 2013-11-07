@@ -338,6 +338,19 @@ class Review {
 			$app->render( 'review/search.html' );
 		})->name( 'review_search' );
 
+
+		$app->get( "{$prefix}/countries", $requireAuth, function () use ( $app ) {
+			$form = new Form();
+			$form->expectString( 'o', array( 'default' => 'country_name' ) );
+			$form->validate();
+
+			$dao = new ApplyDao();
+			$order = $form->get( 'o' );
+			$rows = $dao->getListofCountries( $order );
+
+			$app->view->set( 'records', $rows );
+			$app->render( 'review/countries.html' );
+		})->name( 'review_countries' );
 	} // end addRoutes
 
 } // end class Review
