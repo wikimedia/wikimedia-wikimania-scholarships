@@ -53,7 +53,7 @@ class Apply extends AbstractDao {
 	 * @param array $answers Application data
 	 * @return int|bool Application id or false if an exception was generated
 	 */
-	public function saveApplication ( $answers ) {
+	public function saveApplication( $answers ) {
 		$cols = array_keys( $answers );
 		$parms = array_map( function ($elm) { return ":{$elm}"; }, $cols );
 		$sql = self::concat(
@@ -385,7 +385,7 @@ class Apply extends AbstractDao {
 	}
 
 
-	public function GetScholarship( $id ) {
+	public function getScholarship( $id ) {
 		return $this->fetch( 'select *, s.id, s.residence as acountry, c.country_name, r.country_name as residence_name from scholarships s
 			left outer join countries c on s.nationality = c.id
 			left outer join countries r on s.residence = r.id
@@ -395,7 +395,7 @@ class Apply extends AbstractDao {
 	public function getNext( $userid, $id, $phase ) {
 		$nextid = $this->getNextId( $userid, $id, $phase );
 		if ( $nextid != false ) {
-			return $this->GetScholarship( $i );
+			return $this->getScholarship( $i );
 		}
 		return false;
 	}
@@ -438,31 +438,7 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
-	public function GetCountAllUnrankedPhase1( $id ) {
-		return $this->fetch( "select COUNT(*), coalesce(p1self,0) as p1self, coalesce(p1score,0) as p1score from scholarships s
-			left outer join (select scholarship_id, sum(rank) as p1self from rankings where criterion = 'valid' and user_id = ? group by scholarship_id) r on s.id = r.scholarship_id
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			where p1self is null and s.rank >=0 and ((p1score < 3 and p1score > -3)) and s.exclude = 0;", array( $id ) );
-	}
-
-	public function GetCountAllUnrankedPhase2( $id ) {
-		return  $this->fetch( "select COUNT(*), p2self, coalesce(p1score,0) as p1score from scholarships s
-			left outer join (select scholarship_id, sum(rank) as p2self from rankings where criterion in ('offwiki', 'onwiki', 'future', 'englishAbility') and user_id = ? group by scholarship_id) r on s.id = r.scholarship_id
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r3 on s.id = r3.scholarship_id
-			where p2self is null and p1score >= 3 and s.exclude = 0;", array( $id ) );
-	}
-
-	public function GetCountAllPhase1() {
-		return $this->fetch( "select COUNT(*) from scholarships s where s.exclude = 0;" );
-	}
-
-	public function GetCountAllPhase2() {
-		return  $this->fetch( "select COUNT(*), coalesce(p1score,0) as p1score from scholarships s
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r3 on s.id = r3.scholarship_id
-			where p1score >= 3 and s.exclude = 0;" );
-	}
-
-	public function InsertOrUpdateRanking( $scholarship_id, $criterion, $rank ) {
+	public function insertOrUpdateRanking( $scholarship_id, $criterion, $rank ) {
 		$this->update( self::concat(
 			'INSERT INTO rankings (user_id, scholarship_id, criterion, rank)',
 			'VALUES (?, ?, ?, ?)',
@@ -511,21 +487,11 @@ class Apply extends AbstractDao {
 		return ( count( $ret ) > 0 ) ? $ret['rank'] : 0;
 	}
 
-	public function GetPhase2Rankings( $id ) {
-		return $this->fetchAll( 'select r.scholarship_id, u.username, r.rank, r.criterion from rankings r inner join users u on r.user_id = u.id where r.scholarship_id = ? and r.criterion in ("onwiki","offwiki","future","englishAbility")', array( $id ) );
-	}
-
-	public function UpdateNotes( $id, $notes ) {
+	public function updateNotes( $id, $notes ) {
 		$this->update(
 			'update scholarships set notes = ? where id = ?',
 			array( $notes, $id )
 		);
-	}
-
-	public function UpdateField( $field, $id, $value ) {
-		// FIXME: whitelist field
-		$query = "update scholarships set {$field} = ? where id  = ?";
-		$this->update( $query, array( $value, $id ) );
 	}
 
 	// Phase List
@@ -705,10 +671,6 @@ class Apply extends AbstractDao {
 			"ORDER BY ?"
 		);
 		return $this->fetchAll( $sql, array( $order ) );
-	}
-
-	public function GetCountryInfo( $country_id ) {
-		return $this->fetch( "select * from countries where id = ?", array( $country_id ) );
 	}
 
 	public function GetListofRegions() {
