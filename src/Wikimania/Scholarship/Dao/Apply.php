@@ -47,33 +47,6 @@ class Apply extends AbstractDao {
 		}
 	}
 
-	private static function buildSelect( $fields ) {
-		return 'SELECT ' . implode( ',', $fields ) . ' ';
-	}
-
-	private static function buildFrom( $tables ) {
-		$fromtables = array();
-		foreach ( $tables as $k => $v ) {
-			$fromtables[] = "{$v} AS {$k}";
-		}
-		return ' FROM '  . implode( ',', $fromtables ) . ' ';
-	}
-
-	private static function buildWhere( $where ) {
-		if ( $where ) {
-			return 'WHERE ' . implode( ' AND ', $where ) . ' ';
-		}
-		return '';
-	}
-
-	/**
-	 * Create a string by joining all arguments with spaces.
-	 * @return string New string
-	 */
-	private static function concat( /*varags*/ ) {
-		return implode( ' ', func_get_args() );
-	}
-
 	/**
 	 * Save a new application.
 	 *
@@ -118,8 +91,6 @@ class Apply extends AbstractDao {
 			$limit = " LIMIT {$params['items']} ";
 			$offset = " OFFSET " . ( (int)$params['page'] * $params['items'] );
 		}
-
-		$tables = array( 's' => 'scholarships' );
 
 		$fields = array(
 			's.id',
@@ -213,7 +184,7 @@ class Apply extends AbstractDao {
 
 			$sql = self::concat(
 				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
-				self::buildFrom( $tables ),
+				"FROM scholarships s",
 				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
 				"LEFT OUTER JOIN ( {$p1countSql} ) r2 on s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 on s.id = r3.scholarship_id",
@@ -234,7 +205,7 @@ class Apply extends AbstractDao {
 
 			$sql = self::concat(
 				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
-				self::buildFrom( $tables ),
+				"FROM scholarships s",
 				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
 				"LEFT OUTER JOIN ( {$p2scoreSql} ) r2 ON s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$nscorersSql} ) r3 ON s.id = r3.scholarship_id",
@@ -297,15 +268,17 @@ class Apply extends AbstractDao {
 			's.willpayincidentals',
 			's.notes'
 		);
-		$sql = self::buildSelect( $fields ) . self::buildFrom( $tables ) . "
-			LEFT JOIN (select scholarship_id, avg(rank) as onwiki from rankings where criterion IN ('onwiki') group by scholarship_id) ow ON (ow.scholarship_id = s.id)
+		$sql = self::concat(
+			"SELECT " . implode( ',', $fields ),
+			"FROM scholarships s",
+			"LEFT JOIN (select scholarship_id, avg(rank) as onwiki from rankings where criterion IN ('onwiki') group by scholarship_id) ow ON (ow.scholarship_id = s.id)
 			LEFT JOIN (select scholarship_id, avg(rank) as offwiki from rankings where criterion IN ('offwiki') group by scholarship_id) ofw ON (ofw.scholarship_id = s.id)
 			LEFT JOIN (select scholarship_id, avg(rank) as future from rankings where criterion IN ('future') group by scholarship_id) f ON (f.scholarship_id = s.id)
 			LEFT JOIN (select scholarship_id, avg(rank) as englishAbility from rankings where criterion IN ('englishAbility') group by scholarship_id) ea ON (ea.scholarship_id = s.id)
 			LEFT JOIN (select scholarship_id, count(rank) as numranks from rankings where criterion IN ('future') group by scholarship_id) ct ON (ct.scholarship_id  = s.id)
 			LEFT OUTER JOIN countries c ON s.residence = c.id
 			LEFT OUTER JOIN countries c2 ON s.nationality = c2.id
-			order by s.id limit 20";
+			order by s.id limit 20");
 		return $this->fetchAll( $sql );
 	}
 
@@ -628,28 +601,110 @@ class Apply extends AbstractDao {
 
 	// Final scoring
 
-	public function GetFinalScoring( $partial ) {
-		return $this->fetchAll( "select s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, year(now())-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s
-			left outer join (select scholarship_id, avg(rank) as onwiki from rankings where criterion = 'onwiki' group by scholarship_id) r on s.id = r.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as offwiki from rankings where criterion = 'offwiki' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as future from rankings where criterion = 'future' group by scholarship_id) r3 on s.id = r3.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as englishAbility from rankings where criterion = 'englishAbility' group by scholarship_id) r6 on s.id = r6.scholarship_id
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r4 on s.id = r4.scholarship_id
-			left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'englishAbility') group by scholarship_id) r5 on s.id = r5.scholarship_id
-			left outer join countries c on s.residence = c.id
-			group by s.id, s.fname, s.lname, s.email, s.residence
-			having p1score >= 3 and s.exclude = 0 and partial = ?
-			order by p2score desc", array( $partial ) );
+	public function getFinalScoring( $partial ) {
+		$fields = array(
+			"s.id",
+			"s.fname",
+			"s.lname",
+			"s.email",
+			"s.residence",
+			"s.exclude",
+			"s.sex",
+			"YEAR(NOW())-YEAR(s.dob) AS age",
+			"(s.canpaydiff * s.wantspartial) AS partial",
+			"c.country_name",
+			"coalesce(p1score, 0) AS p1score",
+			"coalesce(nscorers, 0) AS nscorers",
+			"r.onwiki AS onwiki",
+			"r2.offwiki AS offwiki",
+			"r3.future AS future",
+			"r6.englishAbility AS englishAbility",
+			"0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score",
+		);
+
+		$sqlRankOnwiki = self::concat(
+			"SELECT scholarship_id, AVG(rank) AS onwiki",
+			"FROM rankings",
+			"WHERE criterion = 'onwiki'",
+			"GROUP BY scholarship_id"
+		);
+
+		$sqlRankOffwiki = self::concat(
+			"SELECT scholarship_id, AVG(rank) AS offwiki",
+			"FROM rankings",
+			"WHERE criterion = 'offwiki'",
+			"GROUP BY scholarship_id"
+		);
+
+		$sqlRankFuture = self::concat(
+			"SELECT scholarship_id, AVG(rank) AS future",
+			"FROM rankings",
+			"WHERE criterion = 'future'",
+			"GROUP BY scholarship_id"
+		);
+
+		$sqlRankEnglish = self::concat(
+			"SELECT scholarship_id, AVG(rank) AS englishAbility",
+			"FROM rankings",
+			"WHERE criterion = 'englishAbility'",
+			"GROUP BY scholarship_id"
+		);
+
+		$sqlRankP1 = self::concat(
+			"SELECT scholarship_id, AVG(rank) AS p1score",
+			"FROM rankings",
+			"WHERE criterion = 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$sqlNScores = self::concat(
+			"SELECT scholarship_id, COUNT(DISTINCT user_id) AS nscorers",
+			"FROM rankings",
+			"WHERE criterion IN ('onwiki','offwiki','future','englishAbility')",
+			"GROUP BY scholarship_id"
+		);
+
+		$sql = self::concat(
+			"SELECT " . implode( ',', $fields),
+			"FROM scholarships s",
+			"LEFT OUTER JOIN ( {$sqlRankOnwiki} ) r ON s.id = r.scholarship_id",
+			"LEFT OUTER JOIN ( {$sqlRankOffwiki} ) r2 on s.id = r2.scholarship_id",
+			"LEFT OUTER JOIN ( {$sqlRankFuture} ) r3 on s.id = r3.scholarship_id",
+			"LEFT OUTER JOIN ( {$sqlRankEnglish} ) r6 on s.id = r6.scholarship_id",
+			"LEFT OUTER JOIN ( {$sqlRankP1} ) r4 on s.id = r4.scholarship_id",
+			"LEFT OUTER JOIN ( {$sqlNScores} ) r5 on s.id = r5.scholarship_id",
+			"LEFT OUTER JOIN countries c ON s.residence = c.id",
+			"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
+			"HAVING p1score >= 3 AND s.exclude = 0 AND partial = ?",
+			"ORDER BY p2score desc"
+		);
+
+		return $this->fetchAll( $sql, array( $partial ) );
 	}
 
 	// Country administration
 
-	public function getListofCountries( $order = "country_name" ) {
-		return $this->fetchAll( "select c.id, c.country_name, c.region, c.country_rank, s.sid from countries c left join (select count(id) as sid, residence as attendees from scholarships where rank = 1 and exclude = 0 group by residence) s on c.id = s.attendees order by ?;", array( $order ) );
-	}
-
-	public function UpdateCountryRank( $id, $newrank ) {
-		$this->update( "update countries set country_rank = ? where id = ?", array( $newrank, $id ) );
+	public function getListOfCountries( $order = "country_name" ) {
+		$fields = array(
+			"c.id",
+			"c.country_name",
+			"c.region",
+			"s.sid",
+		);
+		$sqlCountByResidence = self::concat(
+			"SELECT COUNT(id) AS sid, residence AS attendees",
+			"FROM scholarships",
+			"WHERE rank = 1",
+			"AND exclude = 0",
+			"GROUP BY residence"
+		);
+		$sql = self::concat(
+			"SELECT " . implode( ',', $fields ),
+			"FROM countries c",
+			"LEFT JOIN ( {$sqlCountByResidence} ) s ON c.id = s.attendees",
+			"ORDER BY ?"
+		);
+		return $this->fetchAll( $sql, array( $order ) );
 	}
 
 	public function GetCountryInfo( $country_id ) {

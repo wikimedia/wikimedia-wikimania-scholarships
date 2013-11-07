@@ -1,0 +1,42 @@
+{% extends "review/base.html" %}
+
+{% block content %}
+{% spaceless %}
+<table id="grid" class="grid">
+  <tr>
+    <th>counter</th>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>residence</th>
+    <th>sex</th>
+    <th>age</th>
+    <th>partial?</th>
+    <th># p2 scorers</th>
+    <th>onwiki</th>
+    <th>offwiki</th>
+    <th>future</th>
+    <th>English Ability</th>
+    <th>p2 score</th>
+  </tr>
+  {% for row in records %}
+  <tr class="{{ cycle( [ 'odd', 'even' ], loop.index ) }}">
+    <td>{{ row.id }}</td>
+    <td>{{ row.id }}</td>
+    <td><a href="{{ siteUrl( 'review/view' ) }}?id={{ row.id }}&phase=0" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
+    <td>{{ row.email }}</td>
+    <td>{{ row.country_name }}</td>
+    <td>{{ row.sex }}</td>
+    <td>{{ row.age }}</td>
+    <td>{{ row.partial }}</td>
+    <td>{{ row.nscorers }}</td>
+    <td>{{ '%.3f'|format( row.onwiki ) }}</td>
+    <td>{{ '%.3f'|format( row.offwiki ) }}</td>
+    <td>{{ '%.3f'|format( row.future ) }}</td>
+    <td>{{ '%.3f'|format( row.englishAbility ) }}</td>
+    <td>{{ '%.4f'|format( row.p2score ) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endspaceless %}
+{% endblock content %}

@@ -149,4 +149,25 @@ abstract class AbstractDao {
 		}
 	}
 
+	/**
+	 * Construct a where clause.
+	 * @param array $where List of conditions
+	 * @param string $conjunction Joining operation ('and' or 'or')
+	 * @return string Where clause or empty string
+	 */
+	protected static function buildWhere( array $where, $conjunction = 'AND' ) {
+		if ( $where ) {
+			return 'WHERE ' . implode( " {$conjunction} ", $where ) . ' ';
+		}
+		return '';
+	}
+
+	/**
+	 * Create a string by joining all arguments with spaces.
+	 * @return string New string
+	 */
+	protected static function concat( /*varags*/ ) {
+		return implode( ' ', func_get_args() );
+	}
+
 } //end AbstractDao

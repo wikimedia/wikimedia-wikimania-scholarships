@@ -346,11 +346,26 @@ class Review {
 
 			$dao = new ApplyDao();
 			$order = $form->get( 'o' );
-			$rows = $dao->getListofCountries( $order );
+			$rows = $dao->getListOfCountries( $order );
 
+			$app->view->set( 'order', $order );
 			$app->view->set( 'records', $rows );
 			$app->render( 'review/countries.html' );
 		})->name( 'review_countries' );
+
+		$app->get( "{$prefix}/scores", $requireAuth, function () use ( $app ) {
+			$form = new Form();
+			$form->expectBool( 'partial' );
+			$form->validate( $_GET );
+
+			$dao = new ApplyDao();
+			$partial = $form->get( 'partial' );
+			$rows = $dao->getFinalScoring( $partial );
+
+			$app->view->set( 'records', $rows );
+			$app->render( 'review/scores.html' );
+		})->name( 'review_scores' );
+
 	} // end addRoutes
 
 } // end class Review

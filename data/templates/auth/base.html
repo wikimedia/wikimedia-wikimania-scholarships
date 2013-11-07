@@ -20,8 +20,8 @@
     {% if isadmin|default(true) %}
     {# FIXME: better auth integration #}
     <li>|</li>
-    <li><a href="{{ siteUrl( 'review/grid/score?partial=0' ) }}">Final: Full</a></li>
-    <li><a href="{{ siteUrl( 'review/grid/score?partial=1' ) }}">Final: Partial</a></li>
+    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=0">Final: Full</a></li>
+    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=1">Final: Partial</a></li>
     {% endif %}
     <li>|</li>
     <li><a href="{{ urlFor( 'review_view' ) }}">Review</a></li>
