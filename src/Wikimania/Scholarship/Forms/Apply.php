@@ -66,7 +66,7 @@ class Apply extends Form {
 		$this->expectString( 'projectlangs' );
 		$this->expectString( 'involvement', array( 'required' => true ) );
 		$this->expectString( 'contribution', array( 'required' => true ) );
-		$this->expectString( 'englishability', array( 'required' => true ) );
+		$this->expectString( 'englishAbility', array( 'required' => true ) );
 
 		$this->expectBool( 'wm05' );
 		$this->expectBool( 'wm06' );
