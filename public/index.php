@@ -32,7 +32,10 @@ $APP_ROOT = dirname( dirname( __FILE__ ) );
 
 require_once "{$APP_ROOT}/vendor/autoload.php";
 // FIXME: this needs to go
-require_once "{$APP_ROOT}/src/init.php";
+require_once "{$APP_ROOT}/src/config.php";
+
+// FIXME: should be done in php/apache config
+date_default_timezone_set( 'UTC' );
 
 session_name( '_s' );
 session_cache_limiter(false);
@@ -50,7 +53,7 @@ $lang = $app->wgLang->setLang( $_REQUEST );
 // configure twig views
 $view = $app->view();
 $view->parserOptions = array(
-	// FIXME: configurable
+	// FIXME: configurable?
 	'debug' => true,
 	'strict_variables' => true,
 	'autoescape' => true,

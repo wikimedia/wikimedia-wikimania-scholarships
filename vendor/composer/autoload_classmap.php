@@ -6,10 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PHPMailer' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
-    'POP3' => $vendorDir . '/phpmailer/phpmailer/class.pop3.php',
-    'Pagination' => $baseDir . '/src/Pagination.php',
-    'SMTP' => $vendorDir . '/phpmailer/phpmailer/class.smtp.php',
     'Wikimania\\Scholarship\\Countries' => $baseDir . '/src/Wikimania/Scholarship/Countries.php',
     'Wikimania\\Scholarship\\Dao\\AbstractDao' => $baseDir . '/src/Wikimania/Scholarship/Dao/AbstractDao.php',
     'Wikimania\\Scholarship\\Dao\\Apply' => $baseDir . '/src/Wikimania/Scholarship/Dao/Apply.php',
@@ -18,9 +14,10 @@ return array(
     'Wikimania\\Scholarship\\Forms\\Apply' => $baseDir . '/src/Wikimania/Scholarship/Forms/Apply.php',
     'Wikimania\\Scholarship\\Lang' => $baseDir . '/src/Wikimania/Scholarship/Lang.php',
     'Wikimania\\Scholarship\\Password' => $baseDir . '/src/Wikimania/Scholarship/Password.php',
+    'Wikimania\\Scholarship\\Routes\\Admin' => $baseDir . '/src/Wikimania/Scholarship/Routes/Admin.php',
     'Wikimania\\Scholarship\\Routes\\Apply' => $baseDir . '/src/Wikimania/Scholarship/Routes/Apply.php',
     'Wikimania\\Scholarship\\Routes\\Auth' => $baseDir . '/src/Wikimania/Scholarship/Routes/Auth.php',
     'Wikimania\\Scholarship\\Routes\\Review' => $baseDir . '/src/Wikimania/Scholarship/Routes/Review.php',
+    'Wikimania\\Scholarship\\TwigExtension' => $baseDir . '/src/Wikimania/Scholarship/TwigExtension.php',
     'mailing' => $baseDir . '/src/review/mail.php',
-    'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
 );
