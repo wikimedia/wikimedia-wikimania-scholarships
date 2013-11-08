@@ -74,6 +74,7 @@ $app->get( '/', function () use ($app) {
 Routes\Apply::addRoutes( $app );
 Routes\Auth::addRoutes( $app );
 Routes\Review::addRoutes( $app, '/review' );
+Routes\Admin::addRoutes( $app, '/admin' );
 
 // run the app
 $app->run();

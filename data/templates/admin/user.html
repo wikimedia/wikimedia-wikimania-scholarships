@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+{% spaceless %}
+<form method="post" action="{{ urlFor( 'admin_user', { 'id':id } ) }}">
+  <fieldset>
+    <legend>Id: {{ id }}</legend>
+    <ul>
+      <li><label for"username">Username:</label>
+        <input type="text" name="username" id="username" value="{{ u.username }}" />
+      </li>
+      {% if id == 'new' %}
+      <li><label for="password">Password:</label>
+          <input type="text" name="password" id="password" value="{{ u.password }}" />
+      </li>
+      {% endif %}
+      <li><label for="email">Email:</label>
+        <input type="text" name="email" id="email" value="{{ u.email }}"/ >
+      </li>
+      <li><label for="reviewer" class="inline">Is Reviewer?:</label>
+        <input type="checkbox" name="reviewer" id="reviewer" value="1" {{ u.reviewer == 1 ? 'checked="checked"' }}/>
+      </li>
+      <li><label for="isvalid" class="inline">Is Valid?:</label>
+        <input type="checkbox" name="isvalid" id="isvalid" value="1" {{ u.isvalid == 1 ? 'checked="checked"' }}/>
+      </li>
+      <li><label for="isadmin" class="inline">Is Admin?:</label>
+        <input type="checkbox" name="isadmin" id="isadmin" value="1" {{ u.isadmin == 1 ? 'checked="checked"' }}/>
+      </li>
+      <li><label for="blocked" class="inline">Blocked?:</label>
+        <input type="checkbox" name="blocked" id="blocked" value="1" {{ u.blocked == 1 ? 'checked="checked"' }}/>
+      </li>
+    </ul>
+  </fieldset>
+  <input type="submit" id="save" name="save" value="Save"/>
+</form>
+{% endspaceless %}
+{% endblock content %}
+

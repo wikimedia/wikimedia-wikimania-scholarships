@@ -139,8 +139,9 @@ abstract class AbstractDao {
 		try {
 			$this->dbh->beginTransaction();
 			$stmt->execute( $params );
+			$rowid = $this->dbh->lastInsertId();
 			$this->dbh->commit();
-			return $this->dbh->lastInsertId();
+			return $rowid;
 		} catch ( PDOException $e) {
 			$this->dbh->rollback();
 			// FIXME: logging

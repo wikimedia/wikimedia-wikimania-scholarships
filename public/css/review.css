@@ -193,7 +193,7 @@ ul.pagerlinks li.current a {
 
 table.grid {
   width: 100%;
-  table-layout:fixed;
+  /*table-layout:fixed;*/
 }
 
 table.grid tr td,

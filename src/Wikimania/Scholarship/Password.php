@@ -176,6 +176,46 @@ class Password {
 			substr( $hash, 0, $peek ) == self::BLOWFISH_PREFIX;
 	}
 
+
+	const CHARSET_PRINTABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
+	const CHARSET_UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	const CHARSET_LOWER = 'abcdefghijklmnopqrstuvwxyz';
+	const CHARSET_DIGIT = '0123456789';
+	const CHARSET_ALPHANUM = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	const CHARSET_SYMBOL = '!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
+
+
+	/**
+	 * Generate a random password.
+	 *
+	 * Note: This is not the worlds greatest password generation algorithm. It
+	 * uses a selection technique that has some bias based on modulo
+	 * arithmetic. If you need a truely random password you'll need to look
+	 * somewhere else. If you just need a temporary password to email to a user
+	 * who will promptly log in and change their password to 'god', this should
+	 * be good enough.
+	 *
+	 * @param int $len Length of password desired
+	 * @param string $cs Symbol set to select password characters from
+	 * @return string Password
+	 */
+	public static function randomPassword( $len, $cs = null ) {
+		if ( $cs === null ) {
+			$cs = self::CHARSET_PRINTABLE;
+		}
+		$csLen = strlen( $cs );
+
+		$random = self::getBytes( $len );
+		$password = '';
+
+		foreach( range( 0, $len - 1 ) as $i ) {
+			$password .= $cs[ ord( $random[$i] ) % $csLen ];
+		}
+
+		return $password;
+	}
+
+
 	/**
 	 * Construction of utility class is not allowed.
 	 */

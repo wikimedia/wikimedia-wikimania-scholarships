@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+{% spaceless %}
+<table class="grid">
+  <tr>
+    <th>id</th>
+    <th>username</th>
+    <th>email</th>
+    <th>reviewer?</th>
+    <th>valid?</th>
+    <th>admin?</th>
+    <th>blocked?</th>
+  </tr>
+  {% for row in records %}
+  <tr class="{{ cycle( [ 'oddrow', 'evenrow' ], loop.index ) }}">
+    <td>{{ row.id }}</td>
+    <td><a href="{{ urlFor( 'admin_user', { 'id':row.id} ) }}">{{ row.username }}</a></td>
+    <td><a href="mailto:{{ row.email|url_encode }}">{{ row.email }}</a></td>
+    <td>{{ row.reviewer ? 'yes' : 'no' }}</td>
+    <td>{{ row.isvalid ? 'yes' : 'no' }}</td>
+    <td>{{ row.isadmin ? 'yes' : 'no' }}</td>
+    <td>{{ row.blocked ? 'yes' : 'no' }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% if isadmin %}
+<p><a href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">New user</a></p>
+{% endif %}
+{% endspaceless %}
+{% endblock content %}

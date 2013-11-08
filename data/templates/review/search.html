@@ -32,7 +32,7 @@
     <th>p1</th>
   </tr>
   {% for row in records %}
-  <tr class="{{ cycle( [ 'odd', 'even' ], loop.index ) }}">
+  <tr class="{{ cycle( [ 'oddrow', 'evenrow' ], loop.index ) }}">
     <td>{{ row.id }}</td>
     <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase=2">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>

@@ -51,15 +51,7 @@ class User extends AbstractDao {
 	}
 
 	public function getListofUsers( $state ) {
-		switch ( $state ) {
-			case 'all':
-				return $this->fetchAll( 'SELECT * FROM users' );
-				break;
-
-			case 'reviewer':
-				return $this->fetchAll( 'SELECT * FROM users WHERE reviewer = 1' );
-				break;
-		}
+		return $this->fetchAll( 'SELECT * FROM users' );
 	}
 
 	public function getUserInfo( $user_id ) {
@@ -80,16 +72,23 @@ class User extends AbstractDao {
 	public function newUserCreate( $answers ) {
 		// FIXME: yuck, order matters in $answers!
 		$fields = array( 'username', 'password', 'email', 'reviewer', 'isvalid', 'isadmin' );
+		$placeholders = array();
+		$vals = array();
+		foreach ( $fields as $field ) {
+			$placeholders[] = ":{$field}";
+			$vals[$field] = $answers[$field];
+		}
+
 		$sql = 'INSERT INTO users (' .
 			implode( ', ', $fields ) . ') VALUES (' .
-			implode( ',', array_fill( 0, count( $fields ), '?' ) ) . ')';
+			implode( ',', $placeholders ) . ')';
 
 		// FIXME: prior implementation died on error, fix callers
-		return $this->insert( $sql, $answers );
+		return $this->insert( $sql, $vals );
 	}
 
 	public function updateUserInfo( $answers, $id ) {
-		$fields = array( 'username', 'email', 'reviewer', 'isvalid', 'isadmin' );
+		$fields = array( 'username', 'email', 'reviewer', 'isvalid', 'isadmin', 'blocked' );
 		$placeholders = array();
 		foreach ( $fields as $field ) {
 			$placeholders[] = "{$field} = :{$field}";
@@ -99,8 +98,8 @@ class User extends AbstractDao {
 			implode( ', ', $placeholders ) .
 			' WHERE id = :id'
 		);
-
 		$answers['id'] = $id;
+
 		try {
 			$this->dbh->beginTransaction();
 			$stmt->execute( $answers );

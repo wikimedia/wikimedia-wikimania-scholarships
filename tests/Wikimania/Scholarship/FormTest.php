@@ -27,6 +27,9 @@ namespace Wikimania\Scholarship;
  */
 class FormTest extends \PHPUnit_Framework_TestCase {
 
+	/**
+	 * @covers Form
+	 */
 	public function testRequired () {
 		$form = new Form();
 		$form->expectString( 'foo', array( 'required' => true ) );
@@ -38,6 +41,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertContains( 'foo', $form->getErrors() );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testDefaultWhenEmpty () {
 		$form = new Form();
 		$form->expectString( 'foo', array( 'default' => 'bar' ) );
@@ -49,6 +55,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testNotInArray () {
 		$form = new Form();
 		$form->expectInArray( 'foo', array( 'bar' ) );
@@ -60,6 +69,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertContains( 'foo', $form->getErrors() );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testInArray () {
 		$_POST['foo'] = 'bar';
 		$form = new Form();
@@ -72,6 +84,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testEncodeBasic () {
 		$input = array(
 			'foo' => 1,
@@ -82,6 +97,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'foo=1&bar=this%3Dthat&baz=tom+%26+jerry', $output );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testEncodeArray () {
 		$input = array(
 			'foo' => array( 'a', 'b', 'c' ),
@@ -92,6 +110,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 			'foo=a&foo=b&foo=c&bar%5B%5D=1&bar%5B%5D=2&bar%5B%5D=3', $output );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testQsMerge () {
 		$_GET['foo'] = 1;
 		$_GET['bar'] = 'this=that';
@@ -104,6 +125,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'foo=2&bar=this%3Dthat&baz=tom+%26+jerry&xyzzy=grue', $output );
 	}
 
+	/**
+	 * @covers Form
+	 */
 	public function testQsRemove () {
 		$_GET['foo'] = 1;
 		$_GET['bar'] = 'this=that';
