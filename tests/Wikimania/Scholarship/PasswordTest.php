@@ -29,6 +29,25 @@ namespace Wikimania\Scholarship;
 class PasswordTest extends \PHPUnit_Framework_TestCase {
 
 	/**
+	 * @covers Password::encodePassword
+	 * @covers Password::blowfishSalt
+	 */
+	public function testUniqueEncoding() {
+		$enc = Password::encodePassword( 'password' );
+		$enc2 = Password::encodePassword( 'password' );
+		$this->assertNotEquals( $enc, $enc2 );
+	}
+
+	/**
+	 * @covers Password::comparePasswordToHash
+	 */
+	public function testComparePasswordToHash() {
+		$enc = Password::encodePassword( 'password' );
+		$this->assertTrue( Password::comparePasswordToHash( 'password', $enc ) );
+		$this->assertFalse( Password::comparePasswordToHash( 'Password', $enc ) );
+	}
+
+	/**
 	 * @covers Password::randomPassword
 	 */
 	public function testRandomPassword() {

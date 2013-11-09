@@ -126,25 +126,36 @@ class Password {
 	 */
 	public static function getBytes( $count ) {
 
+		if ( function_exists( 'mcrypt_create_iv' ) ) {
+			$bytes = mcrypt_create_iv( $count, MCRYPT_DEV_URANDOM );
+
+			if ( strlen( $bytes ) === $count ) {
+				return $bytes;
+			}
+		}
+
 		if ( function_exists( 'openssl_random_pseudo_bytes' ) ) {
 			$bytes = openssl_random_pseudo_bytes( $count, $strong );
 
-			if ( $strong && strlen( $bytes ) == $count ) {
+			if ( $strong && strlen( $bytes ) === $count ) {
 				return $bytes;
 			}
 		} // end if openssl_random_pseudo_bytes
 
 		if ( is_readable( '/dev/urandom' ) ) {
 			$fh = @fopen( '/dev/urandom', 'rb' );
-			if ( false === $fh ) {
-				return false;
-			}
+			if ( false !== $fh ) {
+				$bytes = '';
+				$have = 0;
+				while ( $have < $count ) {
+					$bytes .= fread( $fh, $count - $have );
+					$have = strlen( $bytes );
+				}
+				fclose( $fh );
 
-			$bytes = fread( $fh, $count );
-			fclose( $fh );
-
-			if ( strlen( $bytes ) == $count ) {
-				return $bytes;
+				if ( strlen( $bytes ) === $count ) {
+					return $bytes;
+				}
 			}
 		} // end if /dev/urandom
 
