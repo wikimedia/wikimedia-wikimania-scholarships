@@ -11,6 +11,5 @@
     "psr-0": {
       "Wikimania\\Scholarship\\": "src/"
     }
-    ,"classmap": [ "src/" ]
   }
 }
