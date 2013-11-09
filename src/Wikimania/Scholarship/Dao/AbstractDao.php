@@ -22,6 +22,8 @@
 
 namespace Wikimania\Scholarship\Dao;
 
+use Wikimania\Scholarship\Config;
+
 use \PDO;
 use \PDOException;
 
@@ -40,11 +42,9 @@ abstract class AbstractDao {
 
 
 	public function __construct() {
-		// FIXME: yuck
-		global $CONFIG;
 		try {
-			$this->dbh = new PDO( $CONFIG['db']['dsn'],
-				$CONFIG['db']['user'], $CONFIG['db']['password'],
+			$this->dbh = new PDO( Config::get( 'db_dsn' ),
+				Config::get( 'db_user' ), Config::get( 'db_pass' ),
 				array(
 					PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 					PDO::ATTR_PERSISTENT => true, //FIXME: good idea?
@@ -53,7 +53,7 @@ abstract class AbstractDao {
 			);
 		} catch ( PDOException $e ) {
 			// FIXME: yuck
-			error_log( __METHOD__ . " [{$sql}]: {$e}" );
+			error_log( __METHOD__ . ": {$e}" );
 			die( "Failed to connect to database" );
 		}
 	}

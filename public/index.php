@@ -31,8 +31,6 @@ namespace Wikimania\Scholarship;
 $APP_ROOT = dirname( dirname( __FILE__ ) );
 
 require_once "{$APP_ROOT}/vendor/autoload.php";
-// FIXME: this needs to go
-require_once "{$APP_ROOT}/src/config.php";
 
 // FIXME: should be done in php/apache config
 date_default_timezone_set( 'UTC' );
@@ -45,6 +43,8 @@ $app = new \Slim\Slim( array(
 	'view' => new \Slim\Views\Twig(),
 	'templates.path' => "{$APP_ROOT}/data/templates",
 ) );
+
+$app->mock = Config::get( 'mock' );
 
 $app->wgLang = new Lang( "{$APP_ROOT}/data/i18n" );
 // FIXME: make lang sticky via session

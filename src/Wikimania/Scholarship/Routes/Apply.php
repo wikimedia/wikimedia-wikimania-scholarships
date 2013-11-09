@@ -22,6 +22,7 @@
 
 namespace Wikimania\Scholarship\Routes;
 
+use Wikimania\Scholarship\Config;
 use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Forms\Apply as ApplyForm;
 
@@ -67,19 +68,13 @@ class Apply {
 				}
 			}
 
-/*
-			if ( isset( $_GET['special'] ) ) {
-				$special = true;
-			}
+			$openTime = Config::get( 'application_open' );
+			$closeTime = Config::get( 'application_close' );
+			$now = time();
 
-			$twigCtx['mock'] = $mock;
-			$twigCtx['registration_open'] = time() > $open_time;
-			$twigCtx['registration_closed'] = time() > $close_time && !isset( $special );
- */
-			// FIXME: these need to come from config
-			$app->view->setData( 'mock', true );
-			$app->view->setData( 'registration_open', true );
-			$app->view->setData( 'registration_closed', false );
+			$app->view->setData( 'registration_open', $now > $openTime || $app->mock );
+			// FIXME: legay app allowed '?special' to override
+			$app->view->setData( 'registration_closed', $now > $closeTime && !$app->mock );
 
 			$app->view->setData( 'form', $form );
 			$app->view->setData( 'submitted', $submitted );

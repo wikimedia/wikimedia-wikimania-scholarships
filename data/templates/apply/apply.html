@@ -17,7 +17,7 @@ lang: currently selected display language
 {% block content %}
 {% spaceless %}
 
-{% if mock %}
+{% if app.mock %}
 <div id="app-mock"><p>{{ wgLang.message( 'mock' )|raw }}</p></div>
 {% endif %}
 
