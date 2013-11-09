@@ -1,6 +1,3 @@
-# Don't put config file in git!
-/src/config.php
-
 # vim temp files
 *.s[a-w][a-z]
 *.un~
@@ -33,7 +30,10 @@ Icon
 
 # composer stuff
 /vendor/.git
-composer.phar
+/composer.phar
 
 # phpenv
-.php-version
+/.php-version
+
+# testing environment
+/.env
