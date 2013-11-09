@@ -115,6 +115,7 @@ class Admin {
 							$app->flash( 'info', "User {$newId} created." );
 							$id = $newId;
 
+							//FIXME: using mail directly?
 							mail( $user['email'],
 								$app->wgLang->message( 'new-account-subject' ),
 								wordwrap(
