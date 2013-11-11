@@ -37,3 +37,6 @@ Icon
 
 # testing environment
 /.env
+
+# cache directory
+/data/cache
