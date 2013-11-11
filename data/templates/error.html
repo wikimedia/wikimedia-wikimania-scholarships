@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+{% spaceless %}
+<div id="error">
+  <h2>System error</h2>
+  <p>An unexpected error has occurred and we are working to fix the problem.</p>
+  <p>Please try again in a moment.</p>
+  {% if requestId|default(false) %}
+  <p>Request id: {{ requestId }}</p>
+  {% endif %}
+</div>
+{% endspaceless %}
+{% endblock content %}
+

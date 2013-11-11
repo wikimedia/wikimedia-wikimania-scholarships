@@ -23,6 +23,7 @@
 namespace Wikimania\Scholarship;
 
 /**
+ * Wikimania scholarships.
  *
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
@@ -39,83 +40,159 @@ class App {
 	 */
 	protected $slim;
 
+	/**
+	 * @param string $deployDir Full path to code deployment
+	 */
 	public function __construct( $deployDir ) {
 		$this->deployDir = $deployDir;
 
+		// Common configuration
 		$this->slim = new \Slim\Slim( array(
+			'mode' => 'production',
+			'debug' => false,
+			'log.level' => \Psr\Log\LogLevel::ERROR,
+			'log.buffer' => 25,
 			'view' => new \Slim\Views\Twig(),
+			'view.cache' => "{$this->deployDir}/data/cache",
 			'templates.path' => "{$this->deployDir}/data/templates",
 			'i18n.path' => "{$this->deployDir}/data/i18n",
-		) );
+		));
 
-		$di = $this->slim->container;
+		$slim = $this->slim;
 
-		$di->singleton( 'userDao', function ( $c ) {
-			return new \Wikimania\Scholarship\Dao\User();
+		// Production configuration that should not be shared with development
+		// Enabled by default or SLIM_MODE=production in environment
+		$this->slim->configureMode( 'production', function () use ( $slim ) {
+			// Install a custom error handler
+			$slim->error( function ( \Exception $e ) use ( $slim ) {
+				$requestId = substr( session_id(), 0, 8 ) . '-' . substr(uniqid(), -8);
+				$slim->log->critical( $e, array(
+					'ip' => $slim->request->getIp(),
+					'mode' => $slim->request->getMethod(),
+					'url' => $slim->request->getUrl(),
+					'ua' => $slim->request->getUserAgent(),
+					'requestId' => $requestId,
+				));
+				$slim->view->set( 'requestId', $requestId );
+				$slim->render( 'error.html' );
+			});
 		});
 
-		$di->singleton( 'authManager', function ( $c ) {
-			return new \Wikimania\Scholarship\AuthManager( $c['userDao'] );
+		// Development configuration
+		// Enable by setting SLIM_MODE=development in environment
+		$this->slim->configureMode( 'development', function () use ( $slim ) {
+			$slim->config( array(
+				'debug' => true,
+				'log.level' => \Psr\Log\LogLevel::DEBUG,
+				'view.cache' => false,
+			) );
 		});
 
-		$di->singleton( 'applyDao', function ( $c ) {
-			$uid = $c->authManager->getUserId();
-			return new \Wikimania\Scholarship\Dao\Apply( $uid );
-		});
-
-		$di->singleton( 'wgLang', function ( $c ) {
-			return new Lang( $c['settings']['i18n.path'] );
-		});
-
-		$di->singleton( 'applyForm', function ( $c ) {
-			$dao = $c->applyDao;
-			return new \Wikimania\Scholarship\Forms\Apply( $dao );
-		});
-
+		$this->configureIoc();
+		$this->configureView();
+		$this->configureRoutes();
 	}
+
 
 	/**
 	 * Main entry point for all requests.
 	 */
 	public function run () {
+
 		session_name( '_s' );
 		session_cache_limiter(false);
 		session_start();
 
-		$slim = $this->slim;
+		$this->slim->mock = Config::get( 'mock' );
 
-		$slim->mock = Config::get( 'mock' );
-		$lang = $slim->wgLang->setLang( $_REQUEST );
+		// run the app
+		$this->slim->run();
+	}
 
+
+	/**
+	 * Configure inversion of control/dependency injection container.
+	 */
+	protected function configureIoc() {
+		$container = $this->slim->container;
+
+		$container->singleton( 'userDao', function ( $c ) {
+			return new \Wikimania\Scholarship\Dao\User();
+		});
+
+		$container->singleton( 'authManager', function ( $c ) {
+			return new \Wikimania\Scholarship\AuthManager( $c['userDao'] );
+		});
+
+		$container->singleton( 'applyDao', function ( $c ) {
+			$uid = $c->authManager->getUserId();
+			return new \Wikimania\Scholarship\Dao\Apply( $uid );
+		});
+
+		$container->singleton( 'wgLang', function ( $c ) {
+			return new Lang( $c['settings']['i18n.path'] );
+		});
+
+		$container->singleton( 'applyForm', function ( $c ) {
+			$dao = $c->applyDao;
+			return new \Wikimania\Scholarship\Forms\Apply( $dao );
+		});
+
+		// replace default logger with monolog
+		$container->singleton( 'log', function ( $c ) {
+			$log = new \Monolog\Logger( 'wikimania-scholarship' );
+			$handler = new \Monolog\Handler\StreamHandler( 'php://stderr' );
+			$handler->setFormatter(
+				new \Monolog\Formatter\LogstashFormatter( 'wikimania-scholarship')
+			);
+			$log->pushHandler( new \Monolog\Handler\FingersCrossedHandler(
+				$handler,
+				new \Monolog\Handler\FingersCrossed\ErrorLevelActivationStrategy(
+					$c['settings']['log.level']
+				),
+				$c['settings']['log.buffer']
+			));
+			return $log;
+		});
+	}
+
+
+	/**
+	 * Configure view behavior.
+	 */
+	protected function configureView() {
 		// configure twig views
-		$view = $slim->view();
+		$view = $this->slim->view;
+
 		$view->parserOptions = array(
-			// FIXME: configurable?
 			'charset' => 'utf-8',
-			'debug' => true,
-			'strict_variables' => true,
+			'cache' => $this->slim->config( 'view.cache' ),
+			'debug' => $this->slim->config( 'debug' ),
+			'auto_reload' => true,
+			'strict_variables' => !$this->slim->config( 'debug' ),
 			'autoescape' => true,
 		);
+
+		// install twig parser extensions
 		$view->parserExtensions = array(
 			new \Slim\Views\TwigExtension(),
 			new TwigExtension(),
 		);
 
 		// set default view data
+		// FIXME: move wgLang to extension
 		$view->replace( array(
-			'app' => $slim,
-			'lang' => $lang,
-			'wgLang' => $slim->wgLang,
+			'app' => $this->slim,
+			'wgLang' => $this->slim->wgLang,
+			'lang' => $this->slim->wgLang->setLang( $_REQUEST ),
 		) );
-
-		$this->addRoutes();
-
-		// run the app
-		$slim->run();
 	}
 
 
-	protected function addRoutes() {
+	/**
+	 * Configure routes to be handled by application.
+	 */
+	protected function configureRoutes() {
 		$slim = $this->slim;
 
 		// "Root" routes for non-autenticated users
@@ -315,6 +392,10 @@ class App {
 				$page();
 			})->name( 'admin_user_post' );
 
+		});
+
+		$slim->notFound( function () use ( $slim ) {
+			$slim->render( '404.html' );
 		});
 	}
 

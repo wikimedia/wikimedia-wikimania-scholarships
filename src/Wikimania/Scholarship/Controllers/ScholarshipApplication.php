@@ -43,6 +43,11 @@ class ScholarshipApplication extends Controller {
 			$submitted = false;
 
 			if ( $this->slim->request->isPost() ) {
+				// FIXME: get/post should be split and use redirects but I'm too lazy
+				// to do that right now. It would be nice if Controller handled most
+				// of the heavy lifting for that. Slim's `flash` is nice but rigged to
+				// be very view specific rather than a generic internally data passing
+				// system.
 				if ( $this->form->validate() ) {
 					// input is valid, save to database
 					if ( $this->form->save() ) {
