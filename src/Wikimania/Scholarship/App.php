@@ -142,9 +142,6 @@ class App {
 		$container->singleton( 'log', function ( $c ) {
 			$log = new \Monolog\Logger( 'wikimania-scholarship' );
 			$handler = new \Monolog\Handler\StreamHandler( 'php://stderr' );
-			$handler->setFormatter(
-				new \Monolog\Formatter\LogstashFormatter( 'wikimania-scholarship')
-			);
 			$log->pushHandler( new \Monolog\Handler\FingersCrossedHandler(
 				$handler,
 				new \Monolog\Handler\FingersCrossed\ErrorLevelActivationStrategy(
