@@ -42,7 +42,7 @@ lang: currently selected display language
 <div id="introtext">{{ wgLang.message( 'text-intro' )|raw }}</div>
 
 <div class="faq">{{ wgLang.message( 'confirm-faq' )|raw }}</div>
-<form action="{{ urlFor( 'apply' ) }}" method="post">
+<form action="{{ urlFor( 'apply_post' ) }}" method="post">
   <label class="required">{{ wgLang.message( 'required-field' ) }}</label>
   <br/><br/>
   <input type="hidden" name="lang" id="lang" value="{{ lang }}" />

@@ -18,30 +18,29 @@
  * <http://www.gnu.org/licenses/>.
  *
  * @file
- * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
- * @copyright © 2013 Calvin W. F. Siu, Wikimania 2013 Hong Kong organizing team
- * @copyright © 2012-2013 Katie Filbert, Wikimania 2012 Washington DC organizing team
- * @copyright © 2011 Harel Cain, Wikimania 2011 Haifa organizing team
- * @copyright © 2010 Wikimania 2010 Gdansk organizing team
- * @copyright © 2009 Wikimania 2009 Buenos Aires organizing team
  */
 
-if ( !defined( 'APP_ROOT' ) ) {
-	define( 'APP_ROOT', dirname( __DIR__ ) );
-}
-require_once APP_ROOT . '/vendor/autoload.php';
+namespace Wikimania\Scholarship\Controllers\Review;
 
-// Ensure that a default timezone is set
-set_error_handler(function ($errno, $errstr) {
-	throw new Exception( $errstr );
-});
-try {
-	date_default_timezone_get();
-} catch( Exception $e ) {
-	// Use UTC if not specified anywhere in .ini
-	date_default_timezone_set( 'UTC' );
-}
-restore_error_handler();
+use Wikimania\Scholarship\Controller;
 
-$app = new \Wikimania\Scholarship\App( APP_ROOT );
-$app->run();
+/**
+ * List applications by score.
+ *
+ * @author Bryan Davis <bd808@wikimedia.org>
+ * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
+ */
+class Scores extends Controller {
+
+	protected function handleGet() {
+		$this->form->expectBool( 'partial' );
+		$this->form->validate( $_GET );
+
+		$partial = $this->form->get( 'partial' );
+		$rows = $this->dao->getFinalScoring( $partial );
+
+		$this->view->set( 'records', $rows );
+		$this->render( 'review/scores.html' );
+	}
+
+}

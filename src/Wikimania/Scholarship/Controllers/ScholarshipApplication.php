@@ -20,43 +20,40 @@
  * @file
  */
 
-namespace Wikimania\Scholarship\Routes;
+namespace Wikimania\Scholarship\Controllers;
 
 use Wikimania\Scholarship\Config;
+use Wikimania\Scholarship\Controller;
 use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Forms\Apply as ApplyForm;
 
 /**
- * Routes related to applying for a scholarship.
+ * Process a scholarship application.
  *
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
-class Apply {
+class ScholarshipApplication extends Controller {
 
-	/**
-	 * Add routes to the given Slim application.
-	 *
-	 * @param \Slim\Slim $app Application
-	 * @param string $prefix Route prefix
-	 */
-	public static function addRoutes ( \Slim\Slim $app, $prefix = '' ) {
-		$app->map( "{$prefix}/apply", function () use ($app) {
-			$form = new ApplyForm();
+	public function __construct(\Slim\Slim $slim = null ) {
+		parent::__construct( $slim );
+	}
 
+	protected function handle() {
 			$submitted = false;
-			if ( $app->request->isPost() ) {
-				if ( $form->validate() ) {
-					// input is valid, save to database
-					if ( $form->save() ) {
-						// send confirmation email
-						$message = $app->wgLang->message( 'form-email-response' );
-						$message = preg_replace( '/\$1/',
-							"{$form->get('fname')} {$form->get('lname')}", $message );
 
-						//FIXME: using mail directly?
-						mail( $form->get('email'),
-							$app->wgLang->message( 'form-email-subject' ),
+			if ( $this->slim->request->isPost() ) {
+				if ( $this->form->validate() ) {
+					// input is valid, save to database
+					if ( $this->form->save() ) {
+						// send confirmation email
+						$message = $this->slim->wgLang->message( 'form-email-response' );
+						$message = preg_replace( '/\$1/',
+							"{$this->form->get('fname')} {$this->form->get('lname')}", $message );
+
+						//FIXME: using mail directly seems wrong
+						mail( $this->form->get('email'),
+							$this->slim->wgLang->message( 'form-email-subject' ),
 							wordwrap( $message, 72 ),
 							"From: Wikimania Scholarships <wikimania-scholarships@wikimedia.org>\r\n" .
 							"MIME-Version: 1.0\r\n" .
@@ -72,33 +69,17 @@ class Apply {
 			$closeTime = Config::get( 'application_close' );
 			$now = time();
 
-			$app->view->setData( 'registration_open', $now > $openTime || $app->mock );
-			// FIXME: legay app allowed '?special' to override
-			$app->view->setData( 'registration_closed', $now > $closeTime && !$app->mock );
+			$this->slim->view->setData( 'registration_open', $now > $openTime || $this->slim->mock );
+			// FIXME: legacy app allowed '?special' to override
+			$this->slim->view->setData( 'registration_closed', $now > $closeTime && !$this->slim->mock );
 
-			$app->view->setData( 'form', $form );
-			$app->view->setData( 'submitted', $submitted );
+			$this->slim->view->setData( 'form', $this->form );
+			$this->slim->view->setData( 'submitted', $submitted );
 			$countries = Countries::$COUNTRY_NAMES;
 			asort( $countries );
-			$app->view->setData( 'countries', $countries );
+			$this->slim->view->setData( 'countries', $countries );
 
-			$app->render( 'apply/apply.html' );
-		})->via( 'GET', 'POST' )->name( 'apply' );
-
-		$app->get( "{$prefix}/contact", function () use ($app) {
-			$app->render( 'apply/contact.html' );
-		})->name( 'contact' );
-
-		$app->get( "{$prefix}/credits", function () use ($app) {
-			$app->render( 'apply/credits.html' );
-		})->name( 'credits' );
-
-		$app->get( "{$prefix}/privacy", function () use ($app) {
-			$app->render( 'apply/privacy.html' );
-		})->name( 'privacy' );
-
-		$app->get( "{$prefix}/translate", function () use ($app) {
-			$app->render( 'apply/translate.html' );
-		})->name( 'translate' );
+			$this->slim->render( 'apply.html' );
 	}
-}
+
+} //end Apply

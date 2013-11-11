@@ -46,16 +46,14 @@
 
   <p>Page {{ params.page + 1 }} of {{ params.pages }}</p>
   <ul class="pagerlinks">
-    {# FIXME: keep search/filter options from current query string #}
-    {# probably need to find/create a twig function for that #}
     {% if params.page > 0 %}
     <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(params.page - 1) } ) }}" id="prev">« Previous</a></li>
     {% endif %}
-
+    {% if params.left > 0 %}<li>&hellip;</li>{% endif %}
     {% for i in params.left .. params.right %}
     <li class="{{ i == params.page ? 'current' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
     {% endfor %}
-
+    {% if params.right < params.pages - 1 %}<li>&hellip;</li>{% endif %}
     {% if params.page + 1 < params.pages %}
     <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(params.page + 1) } ) }}" id="next">Next »</a></li>
     {% endif %}

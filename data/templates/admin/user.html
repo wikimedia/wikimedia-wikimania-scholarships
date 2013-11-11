@@ -1,21 +1,27 @@
 {% extends "admin/base.html" %}
 
+{% set errors = flash.form_errors|default([]) %}
+{% if flash.form_defaults|default(false) %}
+{% set u = flash.form_defaults %}
+{% endif %}
+
 {% block content %}
 {% spaceless %}
-<form method="post" action="{{ urlFor( 'admin_user', { 'id':id } ) }}">
+<form method="post" action="{{ urlFor( 'admin_user_post' ) }}">
+  <input type="hidden" name="id" value="{{ id }}"/>
   <fieldset>
     <legend>Id: {{ id }}</legend>
     <ul>
-      <li><label for"username">Username:</label>
-        <input type="text" name="username" id="username" value="{{ u.username }}" />
+      <li {{ 'username' in errors ? 'class="fieldWithErrors"' }}><label for"username">Username:</label>
+        <input type="text" name="username" id="username" value="{{ u.username }}" required="required"/>
       </li>
       {% if id == 'new' %}
-      <li><label for="password">Password:</label>
-          <input type="text" name="password" id="password" value="{{ u.password }}" />
+      <li {{ 'password' in errors ? 'class="fieldWithErrors"' }}><label for="password">Password:</label>
+        <input type="text" name="password" id="password" value="{{ u.password }}" required="required"/>
       </li>
       {% endif %}
-      <li><label for="email">Email:</label>
-        <input type="text" name="email" id="email" value="{{ u.email }}"/ >
+      <li {{ 'email' in errors ? 'class="fieldWithErrors"' }}><label for="email">Email:</label>
+        <input type="text" name="email" id="email" value="{{ u.email }}" required="required"/>
       </li>
       <li><label for="reviewer" class="inline">Is Reviewer?:</label>
         <input type="checkbox" name="reviewer" id="reviewer" value="1" {{ u.reviewer == 1 ? 'checked="checked"' }}/>

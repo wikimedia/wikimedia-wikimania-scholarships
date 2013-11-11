@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% import "inc/forms.html" as forms %}
-{% set ctx = _context %}
 
 {% block content %}
 {% spaceless %}
-<form action="{{ urlFor( 'auth_login' ) }}" method="post">
+<form action="{{ urlFor( 'login_post' ) }}" method="post">
   <fieldset>
     <legend>Log in</legend>
     <ul>

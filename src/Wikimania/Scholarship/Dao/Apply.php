@@ -38,13 +38,9 @@ class Apply extends AbstractDao {
 	 */
 	protected $userid;
 
-	public function __construct() {
+	public function __construct( $uid = false ) {
 		parent::__construct();
-
-		// FIXME: use this everywhere or nowhere
-		if ( isset( $_SESSION['AUTH_USER_ID'] ) ) {
-			$this->userid = $_SESSION['AUTH_USER_ID'];
-		}
+		$this->userid = $uid;
 	}
 
 	/**

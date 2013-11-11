@@ -4,7 +4,7 @@
 
 {% block content %}
 {% spaceless %}
-<form method="post" action="{{ urlFor( 'review_view' ) }}">
+<form method="post" action="{{ urlFor( 'review_view_post' ) }}">
   <input type="hidden" name="phase" value="{{ phase }}"/>
   <input type="hidden" name="id" value="{{ id }}"/>
 
