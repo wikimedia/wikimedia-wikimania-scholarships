@@ -72,7 +72,7 @@ following variables are expected to be provided:
 
 ### Apache
 ````
-SetEnv DB_DSN mysql:host=localhost;dbname=scholarships
+SetEnv DB_DSN mysql:host=localhost;dbname=scholarships;charset=utf8
 SetEnv DB_USER my_database_user
 SetEnv DB_PASS "super secret password"
 SetEnv APPLICATION_OPEN 2013-01-01T00:00:00Z
@@ -82,7 +82,7 @@ SetEnv MOCK 1
 
 ### Nginx
 ````
-env DB_DSN=mysql:host=localhost;dbname=scholarships
+env DB_DSN=mysql:host=localhost;dbname=scholarships;charset=utf8
 env DB_USER=my_database_user
 env DB_PASS="super secret password"
 env APPLICATION_OPEN=2013-01-01T00:00:00Z
