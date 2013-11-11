@@ -237,7 +237,7 @@ class App {
 		// middlewear route that requires authentication
 		$requireUser = function () use ( $slim ) {
 			if ( $slim->authManager->isAnonymous() ) {
-				$uri = $slim->request->getpathInfo();
+				$uri = $slim->request->getPath();
 				$qs = \Wikimania\Scholarship\Form::qsMerge();
 				if ( $qs ) {
 					$uri = "{$uri}?{$qs}";
@@ -357,7 +357,7 @@ class App {
 		// middlewear that requires admin rights
 		$requireAdmin = function () use ( $slim ) {
 			if ( !$slim->authManager->isAdmin() ) {
-				$uri = $slim->request->getpathInfo();
+				$uri = $slim->request->getPath();
 				$qs = \Wikimania\Scholarship\Form::qsMerge();
 				if ( $qs ) {
 					$uri = "{$uri}?{$qs}";
