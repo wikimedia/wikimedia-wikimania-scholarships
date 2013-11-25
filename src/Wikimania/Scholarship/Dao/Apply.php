@@ -184,7 +184,7 @@ class Apply extends AbstractDao {
 				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
 				"LEFT OUTER JOIN ( {$p1countSql} ) r2 on s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 on s.id = r3.scholarship_id",
-				"LEFT OUTER JOIN countries c ON s.residence = c.id",
+				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 				$this->buildWhere( $where ),
 				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
 				"HAVING p1score >= {$min} AND p1score <= {$max} AND s.exclude = 0",
@@ -206,7 +206,7 @@ class Apply extends AbstractDao {
 				"LEFT OUTER JOIN ( {$p2scoreSql} ) r2 ON s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$nscorersSql} ) r3 ON s.id = r3.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycount2Sql} ) r4 ON s.id = r4.scholarship_id",
-				"LEFT OUTER JOIN countries c ON s.residence = c.id",
+				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 				$this->buildWhere( $where ),
 				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
 				"ORDER BY s.id",
@@ -272,8 +272,8 @@ class Apply extends AbstractDao {
 			LEFT JOIN (select scholarship_id, avg(rank) as future from rankings where criterion IN ('future') group by scholarship_id) f ON (f.scholarship_id = s.id)
 			LEFT JOIN (select scholarship_id, avg(rank) as englishAbility from rankings where criterion IN ('englishAbility') group by scholarship_id) ea ON (ea.scholarship_id = s.id)
 			LEFT JOIN (select scholarship_id, count(rank) as numranks from rankings where criterion IN ('future') group by scholarship_id) ct ON (ct.scholarship_id  = s.id)
-			LEFT OUTER JOIN countries c ON s.residence = c.id
-			LEFT OUTER JOIN countries c2 ON s.nationality = c2.id
+			LEFT OUTER JOIN iso_countries c ON s.residence = c.code
+			LEFT OUTER JOIN iso_countries c2 ON s.nationality = c2.code
 			order by s.id limit 20");
 		return $this->fetchAll( $sql );
 	}
@@ -368,7 +368,7 @@ class Apply extends AbstractDao {
 				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
 				"LEFT OUTER JOIN ( {$p1countSql} ) r2 ON s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 ON s.id = r3.scholarship_id",
-				"LEFT OUTER JOIN countries c ON s.residence = c.id",
+				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 				$this->buildWhere( $where ),
 				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
 				"HAVING p1score >= -2 AND p1score <= 999 AND s.exclude = 0",
@@ -383,8 +383,8 @@ class Apply extends AbstractDao {
 
 	public function getScholarship( $id ) {
 		return $this->fetch( 'select *, s.id, s.residence as acountry, c.country_name, r.country_name as residence_name from scholarships s
-			left outer join countries c on s.nationality = c.id
-			left outer join countries r on s.residence = r.id
+			left outer join iso_countries c on s.nationality = c.code
+			left outer join iso_countries r on s.residence = r.code
 			where s.id = ?', array( $id ) );
 	}
 
@@ -526,7 +526,7 @@ class Apply extends AbstractDao {
 	}
 
 	public function getRegionList() {
-		$res = $this->fetchAll( "SELECT DISTINCT region FROM countries" );
+		$res = $this->fetchAll( "SELECT DISTINCT region FROM iso_countries" );
 		return array_map( function ($row) { return $row['region']; }, $res );
 	}
 
@@ -539,13 +539,13 @@ class Apply extends AbstractDao {
 			left outer join (select scholarship_id, avg(rank) as englishAbility from rankings where criterion = 'englishAbility' group by scholarship_id) r6 on s.id = r6.scholarship_id
 			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r4 on s.id = r4.scholarship_id
 			left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'englishAbility') group by scholarship_id) r5 on s.id = r5.scholarship_id
-			left outer join countries c on s.residence = c.id ";
+			left outer join iso_countries c on s.residence = c.code ";
 
 		$params = array();
 
 		if ( $region != 'All' ) {
 			$params[] = $region;
-			$sql .= 'inner join countries c1 on c.region = ? ';
+			$sql .= 'inner join iso_countries c1 on c.region = ? ';
 		}
 
 		if ( $partial == 2 ) {
@@ -635,7 +635,7 @@ class Apply extends AbstractDao {
 			"LEFT OUTER JOIN ( {$sqlRankEnglish} ) r6 on s.id = r6.scholarship_id",
 			"LEFT OUTER JOIN ( {$sqlRankP1} ) r4 on s.id = r4.scholarship_id",
 			"LEFT OUTER JOIN ( {$sqlNScores} ) r5 on s.id = r5.scholarship_id",
-			"LEFT OUTER JOIN countries c ON s.residence = c.id",
+			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 			"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
 			"HAVING p1score >= 3 AND s.exclude = 0 AND partial = ?",
 			"ORDER BY p2score desc"
@@ -648,7 +648,7 @@ class Apply extends AbstractDao {
 
 	public function getListOfCountries( $order = "country_name" ) {
 		$fields = array(
-			"c.id",
+			"c.code",
 			"c.country_name",
 			"c.region",
 			"s.sid",
@@ -662,8 +662,8 @@ class Apply extends AbstractDao {
 		);
 		$sql = self::concat(
 			"SELECT " . implode( ',', $fields ),
-			"FROM countries c",
-			"LEFT JOIN ( {$sqlCountByResidence} ) s ON c.id = s.attendees",
+			"FROM iso_countries c",
+			"LEFT JOIN ( {$sqlCountByResidence} ) s ON c.code = s.attendees",
 			"ORDER BY ?"
 		);
 		return $this->fetchAll( $sql, array( $order ) );
@@ -673,7 +673,7 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( self::concat(
 			"SELECT count(*) as count, c.region",
 			"FROM scholarships s",
-			"LEFT JOIN countries c ON c.id = s.residence",
+			"LEFT JOIN iso_countries c ON c.code = s.residence",
 			"GROUP BY region"
 		) );
 	}

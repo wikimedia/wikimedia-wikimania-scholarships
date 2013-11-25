@@ -49,10 +49,8 @@
 {{ forms.startElement( ctx, mesg, name, opts ) }}
 <select id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
   <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
-  {% for idx, country in ctx.countries %}
-    {% if idx != 0 %}
-    <option value="{{ idx }}" {{ idx == value ? 'selected="selected"' }}>{{ country }}</option>
-    {% endif %}
+  {% for code, country in ctx.countries %}
+    <option value="{{ code }}" {{ code == value ? 'selected="selected"' }}>{{ country }}</option>
   {% endfor %}
   </select>
 {{ forms.endElement() }}

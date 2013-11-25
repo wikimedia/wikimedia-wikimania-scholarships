@@ -1,84 +1,7 @@
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- Add iso_countries table and migrate legacy data
+-- Bug: 57547
 
-CREATE TABLE IF NOT EXISTS rankings (
-    id              INT(11) NOT NULL AUTO_INCREMENT
-  , user_id         INT(11) NOT NULL
-  , scholarship_id  INT(11) NOT NULL
-  , criterion       VARCHAR(64) NOT NULL
-  , rank            INT(11) NOT NULL DEFAULT '0'
-  , entered_on      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  , PRIMARY KEY (id)
-  , UNIQUE rank_by_user (user_id, scholarship_id, criterion)
-  , KEY scholarship_id (scholarship_id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
-
-CREATE TABLE IF NOT EXISTS scholarships (
-    id                          INT(11) NOT NULL AUTO_INCREMENT
-  , fname                       VARCHAR(32) DEFAULT NULL
-  , lname                       VARCHAR(32) DEFAULT NULL
-  , email                       VARCHAR(64) DEFAULT NULL
-  , telephone                   VARCHAR(16) DEFAULT NULL
-  , address                     TEXT
-  , nationality                 CHAR(2) DEFAULT NULL
-  , residence                   CHAR(2) DEFAULT NULL
-  , haspassport                 TINYINT(1) DEFAULT NULL
-  , airport                     VARCHAR(64) DEFAULT NULL
-  , languages                   VARCHAR(64) DEFAULT NULL
-  , dob                         DATE DEFAULT NULL
-  , sex                         ENUM('m','f','t','d') DEFAULT NULL
-  , occupation                  VARCHAR(64) DEFAULT NULL
-  , areaofstudy                 VARCHAR(64) DEFAULT NULL
-  , wm05                        TINYINT(1) DEFAULT NULL
-  , wm06                        TINYINT(1) DEFAULT NULL
-  , wm07                        TINYINT(1) DEFAULT NULL
-  , wm08                        TINYINT(1) DEFAULT NULL
-  , wm09                        TINYINT(1) DEFAULT NULL
-  , wm10                        TINYINT(1) DEFAULT NULL
-  , wm11                        TINYINT(1) DEFAULT NULL
-  , wm12                        TINYINT(1) DEFAULT NULL
-  , wm13                        TINYINT(1) DEFAULT NULL
-  , presentation                TINYINT(1) DEFAULT NULL
-  , presentationTopic           TEXT
-  , howheard                    TEXT
-  , why                         TEXT
-  , future                      TEXT
-  , englishAbility              TEXT
-  , username                    VARCHAR(64) DEFAULT NULL
-  , project                     TEXT
-  , projectlangs                TEXT
-  , involvement                 TEXT
-  , contribution                TEXT
-  , wantspartial                TINYINT(1) NOT NULL DEFAULT '0'
-  , canpaydiff                  TINYINT(1) NOT NULL DEFAULT '0'
-  , sincere                     TINYINT(1) NOT NULL DEFAULT '0'
-  , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
-  , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
-  , willpayincidentals          TINYINT(1) NOT NULL DEFAULT '0'
-  , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
-  , wmfAgreeName                TEXT
-  , rank                        INT(11) NOT NULL DEFAULT '0'
-  , notes                       TEXT
-  , exclude                     TINYINT(1) NOT NULL DEFAULT '0'
-  , confirmed                   TINYINT(1) NOT NULL DEFAULT '0'
-  , confhash                    VARCHAR(8) DEFAULT NULL
-  , entered_on                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  , ipaddr                      VARBINARY(16) DEFAULT 2130706433 -- 127.0.0.1
-  , PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
-
-CREATE TABLE IF NOT EXISTS users (
-    id          INT(11) NOT NULL AUTO_INCREMENT
-  , username    VARCHAR(20) DEFAULT NULL
-  , password    VARCHAR(255) DEFAULT NULL
-  , email       VARCHAR(255) DEFAULT NULL
-  , reviewer    TINYINT(1) DEFAULT NULL
-  , isvalid     TINYINT(1) DEFAULT NULL
-  , isadmin     TINYINT(1) DEFAULT NULL
-  , blocked     TINYINT(1) DEFAULT 0
-  , PRIMARY KEY (id)
-  , UNIQUE KEY username (username)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 AUTO_INCREMENT=1000 ;
-
+DROP TABLE IF EXISTS iso_countries;
 CREATE TABLE IF NOT EXISTS iso_countries (
     code CHAR(2) NOT NULL COMMENT 'ISO 3166-1 alpha-2 country code'
   , country_name VARCHAR(255) NOT NULL
@@ -337,3 +260,30 @@ INSERT IGNORE INTO iso_countries (code, country_name, region) VALUES
 ,('ZA','South Africa','Sub-Saharan Africa')
 ,('ZM','Zambia','Sub-Saharan Africa')
 ,('ZW','Zimbabwe','Sub-Saharan Africa');
+
+-- Convert scholarships data
+UPDATE scholarships
+SET nationality = (
+    SELECT i.code
+    FROM iso_countries i
+    LEFT JOIN countries c ON i.country_name = c.country_name
+    WHERE c.id = nationality
+);
+
+UPDATE scholarships
+SET residence = (
+    SELECT i.code
+    FROM iso_countries i
+    LEFT JOIN countries c ON i.country_name = c.country_name
+    WHERE c.id = residence
+);
+
+-- Update scholarships DDL to new standard
+ALTER TABLE scholarships
+MODIFY COLUMN nationality CHAR(2) DEFAULT NULL;
+
+ALTER TABLE scholarships
+MODIFY COLUMN residence CHAR(2) DEFAULT NULL;
+
+-- Get rid of the old countries table
+DROP TABLE countries;

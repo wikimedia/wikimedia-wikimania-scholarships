@@ -80,9 +80,7 @@ class ScholarshipApplication extends Controller {
 
 			$this->slim->view->setData( 'form', $this->form );
 			$this->slim->view->setData( 'submitted', $submitted );
-			$countries = Countries::$COUNTRY_NAMES;
-			asort( $countries );
-			$this->slim->view->setData( 'countries', $countries );
+			$this->slim->view->setData( 'countries', Countries::$COUNTRY_NAMES );
 
 			$this->slim->render( 'apply.html' );
 	}
