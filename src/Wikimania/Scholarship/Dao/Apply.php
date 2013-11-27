@@ -38,10 +38,16 @@ class Apply extends AbstractDao {
 	 */
 	protected $userid;
 
-	public function __construct( $uid = false ) {
-		parent::__construct();
+
+	/**
+	 * @param int|bool $uid Authenticated user
+	 * @param LoggerInterface $logger Log channel
+	 */
+	public function __construct( $uid = false, $logger = null ) {
+		parent::__construct( $logger );
 		$this->userid = $uid;
 	}
+
 
 	/**
 	 * Save a new application.
@@ -62,6 +68,7 @@ class Apply extends AbstractDao {
 		return $this->insert( $sql, $answers );
 	}
 
+
 	/**
 	 * @param array $params Query parameters
 	 */
@@ -77,15 +84,18 @@ class Apply extends AbstractDao {
 		$params = array_merge( $defaults, $params );
 
 		$where = array();
-		$myid = $this->userid ?: 0;
+		$bindVars = array();
+		$bindVars['int_userid'] = $this->userid ?: 0;
 
 		if ( $params['items'] == 'all' ) {
-			$limit = " ";
-			$offset = " ";
+			$limit = '';
+			$offset = '';
 
 		} else {
-			$limit = " LIMIT {$params['items']} ";
-			$offset = " OFFSET " . ( (int)$params['page'] * $params['items'] );
+			$bindVars['int_limit'] = (int)$params['items'];
+			$bindVars['int_offset'] = (int)$params['page'] * (int)$params['items'];
+			$limit = 'LIMIT :int_limit';
+			$offset = 'OFFSET :int_offset';
 		}
 
 		$fields = array(
@@ -128,25 +138,14 @@ class Apply extends AbstractDao {
 			}
 		}
 
-		$p1scoreSql = self::concat(
-			"SELECT scholarship_id, SUM(rank) AS p1score",
-			"FROM rankings",
-			"WHERE criterion = 'valid'",
-			"GROUP BY scholarship_id"
-		);
-
-		$p1countSql = self::concat(
-			"SELECT scholarship_id, COUNT(rank) AS p1count",
-			"FROM rankings",
-			"WHERE criterion = 'valid'",
-			"GROUP BY scholarship_id"
-		);
+		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
+		$p1countSql = $this->makeAggregateRankSql( 'valid', 'COUNT', 'p1count' );
 
 		$mycountSql = self::concat(
 			"SELECT scholarship_id, COUNT(rank) AS mycount",
 			"FROM rankings",
 			"WHERE criterion = 'valid'",
-			"AND user_id = {$myid}",
+			"AND user_id = :int_userid",
 			"GROUP BY scholarship_id"
 		);
 
@@ -168,126 +167,85 @@ class Apply extends AbstractDao {
 			"SELECT scholarship_id, COUNT(rank) AS mycount",
 			"FROM rankings",
 			"WHERE criterion <> 'valid'",
-			"AND user_id = {$myid}",
+			"AND user_id = :int_userid",
 			"GROUP BY scholarship_id"
 		);
+
+		$joins = array(
+			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
+			"LEFT OUTER JOIN ({$p1scoreSql}) r1 ON s.id = r1.scholarship_id",
+		);
+
+		$havingExtra = '';
 
 		if ( $params['phase'] == 1 ) {
 			$fields[] = 'p1count';
 
-			$min = (int)$params['min'];
-			$max = (int)$params['max'];
-
-			$sql = self::concat(
-				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
-				"FROM scholarships s",
-				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
-				"LEFT OUTER JOIN ( {$p1countSql} ) r2 on s.id = r2.scholarship_id",
+			$joins = array_merge( $joins, array(
+				"LEFT OUTER JOIN ({$p1countSql}) r2 on s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 on s.id = r3.scholarship_id",
-				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
-				$this->buildWhere( $where ),
-				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
-				"HAVING p1score >= {$min} AND p1score <= {$max} AND s.exclude = 0",
-				"ORDER BY s.id",
-				$limit,
-				$offset
-			);
+			) );
+
+			$havingExtra = "AND p1score >= :int_min AND p1score <= :int_max";
+			$bindVars['int_min'] = (int)$params['min'];
+			$bindVars['int_max'] = (int)$params['max'];
 
 		} else {
 			$fields[] = 'COALESCE(p2score, 0) as p2score';
 			$fields[] = 'COALESCE(nscorers, 0) as nscorers';
 
+			//FIXME: hardcoded scoring
 			$where[] = 'p1score >= 3';
 
-			$sql = self::concat(
-				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
-				"FROM scholarships s",
-				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
-				"LEFT OUTER JOIN ( {$p2scoreSql} ) r2 ON s.id = r2.scholarship_id",
-				"LEFT OUTER JOIN ( {$nscorersSql} ) r3 ON s.id = r3.scholarship_id",
-				"LEFT OUTER JOIN ( {$mycount2Sql} ) r4 ON s.id = r4.scholarship_id",
-				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
-				$this->buildWhere( $where ),
-				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
-				"ORDER BY s.id",
-				$limit,
-				$offset
-			);
+			$joins = array_merge( $joins, array(
+				"LEFT OUTER JOIN ({$p2scoreSql}) r2 ON s.id = r2.scholarship_id",
+				"LEFT OUTER JOIN ({$nscorersSql}) r3 ON s.id = r3.scholarship_id",
+				"LEFT OUTER JOIN ({$mycount2Sql}) r4 ON s.id = r4.scholarship_id",
+			) );
 		}
 
-		return $this->fetchAllWithFound( $sql );
+		$sql = self::concat(
+			"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
+			"FROM scholarships s",
+			$joins,
+			self::buildWhere( $where ),
+			"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
+			"HAVING s.exclude = 0", $havingExtra,
+			"ORDER BY s.id",
+			$limit,
+			$offset
+		);
+
+
+		return $this->fetchAllWithFound( $sql, $bindVars );
 	} // end gridData
 
-	public function export() {
-		$tables = array( 's' => 'scholarships' );
-		$fields = array( 's.id',
-			'c.country_name', // residence
-			'ow.onwiki',
-			'ofw.offwiki',
-			'f.future',
-			'ct.numranks',
-			's.fname',
-			's.lname',
-			's.dob',
-			's.sex',
-			's.email',
-			's.telephone',
-			's.address',
-			'c2.country_name', // nationality
-			's.haspassport',
-			's.airport',
-			's.languages',
-			's.occupation',
-			's.areaofstudy',
-			's.wm05',
-			's.wm06',
-			's.wm07',
-			's.wm08',
-			's.wm09',
-			's.wm10',
-			's.wm11',
-			's.wm12',
-			's.howheard',
-			's.why',
-			's.future',
-			's.involvement',
-			's.contribution',
-			'ea.englishAbility',
-			's.username',
-			's.project',
-			's.projectlangs',
-			's.wantspartial',
-			's.canpaydiff',
-			's.sincere',
-			's.agreestotravelconditions',
-			's.willgetvisa',
-			's.willpayincidentals',
-			's.notes'
-		);
-		$sql = self::concat(
-			"SELECT " . implode( ',', $fields ),
-			"FROM scholarships s",
-			"LEFT JOIN (select scholarship_id, avg(rank) as onwiki from rankings where criterion IN ('onwiki') group by scholarship_id) ow ON (ow.scholarship_id = s.id)
-			LEFT JOIN (select scholarship_id, avg(rank) as offwiki from rankings where criterion IN ('offwiki') group by scholarship_id) ofw ON (ofw.scholarship_id = s.id)
-			LEFT JOIN (select scholarship_id, avg(rank) as future from rankings where criterion IN ('future') group by scholarship_id) f ON (f.scholarship_id = s.id)
-			LEFT JOIN (select scholarship_id, avg(rank) as englishAbility from rankings where criterion IN ('englishAbility') group by scholarship_id) ea ON (ea.scholarship_id = s.id)
-			LEFT JOIN (select scholarship_id, count(rank) as numranks from rankings where criterion IN ('future') group by scholarship_id) ct ON (ct.scholarship_id  = s.id)
-			LEFT OUTER JOIN iso_countries c ON s.residence = c.code
-			LEFT OUTER JOIN iso_countries c2 ON s.nationality = c2.code
-			order by s.id limit 20");
-		return $this->fetchAll( $sql );
-	}
 
 	public function myUnreviewed( $phase ) {
-		// FIXME: NOT IN () instead of left join? (count not used)
-		// FIXME: this isn't right, doesn't care about phase
-		$sql = "SELECT s.id FROM scholarships s
-			LEFT OUTER JOIN (select scholarship_id, count(rank) as mycount from rankings WHERE user_id = ? GROUP BY scholarship_id) r4 on s.id = r4.scholarship_id
-			WHERE mycount IS NULL;";
+		if ( $phase == 1 ) {
+			$crit = 'valid';
+		} else {
+			$crit = 'future';
+		}
 
-		$res = $this->fetchAll( $sql, array( $this->userid ) );
+		$sql = self::concat(
+			"SELECT s.id",
+			"FROM scholarships s",
+			"WHERE s.id NOT IN (",
+			"SELECT scholarship_id",
+			"FROM rankings",
+			"WHERE user_id = :int_uid",
+			"AND criterion = :crit)",
+			"ORDER BY s.id"
+		);
+
+		$res = $this->fetchAll( $sql, array(
+			'int_uid' => $this->userid,
+			'crit' => $crit,
+		) );
 		return array_map( function ($row) { return $row['id']; }, $res );
 	}
+
 
 	public function search( $params ) {
 		$defaults = array(
@@ -299,29 +257,36 @@ class Apply extends AbstractDao {
 			'page' => 0,
 		);
 		$params = array_merge( $defaults, $params );
-		$myid = $this->userid ?: 0;
-
-		$offset = "OFFSET " . ( (int)$params['page'] * $params['items'] );
-		$limit = "LIMIT {$params['items']}";
 
 		$where = array();
-		$crit = array( ':uid' => $myid );
+		$crit = array(
+			'int_uid' => $this->userid ?: 0,
+		);
+
+		$limit = "LIMIT :int_limit";
+		$crit['int_limit'] = $params['items'];
+
+		$offset = "OFFSET :int_offset";
+		$crit['int_offset'] = (int)$params['page'] * (int)$params['items'];
+
 		if ( $params['last'] !== null ) {
 			$where[] = "s.lname = :last";
-			$crit[':last'] = $params['last'];
+			$crit['last'] = $params['last'];
 		}
 		if ( $params['first'] !== null ) {
 			$where[] = "s.fname = :first";
-			$crit[':first'] = $params['first'];
+			$crit['first'] = $params['first'];
 		}
 		if ( $params['residence'] !== null ) {
 			$where[] = "c.country_name = :residence";
-			$crit[':residence'] = $params['residence'];
+			$crit['residence'] = $params['residence'];
 		}
 		if ( $params['region'] !== null ) {
 			$where[] = "c.region = :region";
-			$crit[':region'] = $params['region'];
+			$crit['region'] = $params['region'];
 		}
+
+		$where[] = "s.exclude = 0";
 
 		$fields = array(
 			"s.id",
@@ -331,34 +296,23 @@ class Apply extends AbstractDao {
 			"s.residence",
 			"s.exclude",
 			"s.sex",
-			"(year(now()) - year(s.dob)) as age",
-			"(s.canpaydiff*s.wantspartial) as partial",
+			"(YEAR(NOW()) - YEAR(s.dob)) AS age",
+			"(s.canpaydiff * s.wantspartial) AS partial",
 			"c.country_name",
 			"c.region",
-			"coalesce(p1score, 0) as p1score",
+			"COALESCE(p1score, 0) AS p1score",
 			"p1count",
 			"mycount",
 		);
 
-		$p1scoreSql = self::concat(
-			"SELECT scholarship_id, SUM(rank) AS p1score",
-			"FROM rankings",
-			"WHERE criterion = 'valid'",
-			"GROUP BY scholarship_id"
-		);
-
-		$p1countSql = self::concat(
-			"SELECT scholarship_id, COUNT(rank) AS p1count",
-			"FROM rankings",
-			"WHERE criterion = 'valid'",
-			"GROUP BY scholarship_id"
-		);
+		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
+		$p1countSql = $this->makeAggregateRankSql( 'valid', 'COUNT', 'p1count' );
 
 		$mycountSql = self::concat(
 			"SELECT scholarship_id, COUNT(rank) AS mycount",
 			"FROM rankings",
 			"WHERE criterion = 'valid'",
-			"AND user_id = :uid",
+			"AND user_id = :int_uid",
 			"GROUP BY scholarship_id"
 		);
 
@@ -369,9 +323,7 @@ class Apply extends AbstractDao {
 				"LEFT OUTER JOIN ( {$p1countSql} ) r2 ON s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 ON s.id = r3.scholarship_id",
 				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
-				$this->buildWhere( $where ),
-				"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
-				"HAVING p1score >= -2 AND p1score <= 999 AND s.exclude = 0",
+				self::buildWhere( $where ),
 				"ORDER BY s.id",
 				$limit,
 				$offset
@@ -382,27 +334,23 @@ class Apply extends AbstractDao {
 
 
 	public function getScholarship( $id ) {
-		return $this->fetch( 'select *, s.id, s.residence as acountry, c.country_name, r.country_name as residence_name from scholarships s
-			left outer join iso_countries c on s.nationality = c.code
-			left outer join iso_countries r on s.residence = r.code
-			where s.id = ?', array( $id ) );
+		$sql = self::concat(
+			'SELECT *, s.id, c.country_name, r.country_name AS residence_name',
+			'FROM scholarships s',
+			'LEFT OUTER JOIN iso_countries c ON s.nationality = c.code',
+			'LEFT OUTER JOIN iso_countries r ON s.residence = r.code',
+			'WHERE s.id = :int_id'
+		);
+		return $this->fetch( $sql, array( 'int_id' => $id ) );
 	}
 
-	public function getNext( $userid, $id, $phase ) {
-		$nextid = $this->getNextId( $userid, $id, $phase );
-		if ( $nextid != false ) {
-			return $this->getScholarship( $i );
-		}
-		return false;
-	}
 
 	/**
 	 * Find the next unreviewed id after the given id.
 	 * @return int|bool Next id or false if none available
 	 */
 	public function nextApp( $id, $phase ) {
-		// FIXME: this can probably be done in sql
-		$myapps = $this->myUnreviewed( $this->userid, $phase );
+		$myapps = $this->myUnreviewed( $phase );
 		foreach ( $myapps as $app ) {
 			if ( $app > $id ) {
 				return $app;
@@ -411,103 +359,87 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
+
 	public function prevApp( $id, $phase ) {
-		// FIXME: this can probably be done in sql
-		$myapps = $this->myUnreviewed( $this->userid, $phase );
+		$myapps = $this->myUnreviewed( $phase );
 		$prior = false;
 		foreach ( $myapps as $app ) {
 			if ( $app >= $id ) {
 				return $prior;
 			}
-			$prior = $id;
+			$prior = $app;
 		}
 		return false;
 	}
 
-	public function getNextId( $userid, $id, $phase ) {
-		$myapps = $this->myUnreviewed( $userid, $phase );
-		for ( $i = $id; $i < max( $myapps ); $i++ ) {
-			if ( in_array( $i, $myapps ) ) {
-				return $i;
-			}
-		}
-		return false;
-	}
 
 	public function insertOrUpdateRanking( $scholarship_id, $criterion, $rank ) {
-		$this->update( self::concat(
+		$sql = self::concat(
 			'INSERT INTO rankings (user_id, scholarship_id, criterion, rank)',
-			'VALUES (?, ?, ?, ?)',
-			'ON DUPLICATE KEY UPDATE rank = ?, entered_on = now()' ),
-			array( $this->userid, $scholarship_id, $criterion, $rank, $rank )
+			'VALUES (:int_uid, :int_sid, :str_crit, :int_rank)',
+			'ON DUPLICATE KEY UPDATE rank = :int_rank, entered_on = now()'
 		);
+
+		return $this->update( $sql, array(
+			'int_uid' => $this->userid,
+			'int_sid' => $scholarship_id,
+			'str_crit' => $criterion,
+			'int_rank' => $rank,
+		) );
 	}
+
 
 	public function getReviewers( $id, $phase ) {
-		$where = array( "r.scholarship_id = ?" );
+		$where = array( "r.scholarship_id = :int_sid" );
 		if ( $phase == 1 ) {
-			array_push( $where, "r.criterion IN ('valid')" );
+			$where[] = "r.criterion = 'valid'";
 		} else {
-			array_push( $where, "r.criterion IN ('future', 'onwiki', 'offwiki', 'englishAbility')" );
+			$where[] = "r.criterion = 'future'";
 		}
-		$sql = "select distinct(u.username) as username from rankings r inner join users u on r.user_id = u.id " . $this->buildWhere( $where ) . " order by u.username";
-		return $this->fetchAll( $sql, array( $id ) );
+
+		$sql = self::concat(
+			"SELECT DISTINCT(u.username) AS username",
+			"FROM rankings r",
+			"INNER JOIN users u ON r.user_id = u.id",
+			self::buildWhere( $where ),
+			"ORDER BY u.username"
+		);
+		return $this->fetchAll( $sql, array( 'int_sid' => $id ) );
 	}
+
 
 	public function myRankings( $id, $phase ) {
+		$where = array( "r.scholarship_id = :int_sid" );
 		if ( $phase == 1 ) {
-			$sql = "select r.scholarship_id, u.username, r.rank, r.criterion from rankings r inner join users u on r.user_id = u.id where r.criterion = 'valid' and u.id = ? AND r.scholarship_id = ?";
+			$where[] = "r.criterion = 'valid'";
 
-		} else if ( $phase == 2 ) {
-			$sql = "select r.scholarship_id, u.username, r.rank, r.criterion from rankings r inner join users u on r.user_id = u.id where r.criterion IN ('onwiki', 'future', 'offwiki', 'program', 'englishAbility') and u.id = ? and r.scholarship_id = ? order by r.criterion, u.username, r.rank";
 		} else {
-			return false;
+			$where[] = "r.criterion <> 'valid'";
 		}
-		return $this->fetchAll( $sql, array( $this->userid, $id ) );
-	}
+		$where[] = "u.id = :int_uid";
 
-	public function allRankings( $id, $phase ) {
-		if ( $phase == 1 ) {
-			$sql = 'select r.scholarship_id, u.username, r.rank, r.criterion from rankings r inner join users u on r.user_id = u.id where r.criterion = "valid" and r.scholarship_id = ?';
-		} else if ( $phase == 2 ) {
-			$sql = "select r.scholarship_id, u.username, r.rank, r.criterion from rankings r inner join users u on r.user_id = u.id where r.criterion IN ('onwiki', 'future', 'offwiki', 'program', 'englishAbility') and r.scholarship_id = ? order by r.criterion, u.username, r.rank";
-		} else {
-			return false;
-		}
-		return $this->fetchAll( $sql, array( $id ) );
-	}
-
-	public function getRankingOfUser( $user_id, $scholarship_id, $criterion ) {
-		$sql = 'select rank from rankings where user_id = ? and scholarship_id = ? and criterion = ?';
-		$ret = $this->fetch( $sql, array( $user_id, $scholarship_id, $criterion ) );
-		return ( count( $ret ) > 0 ) ? $ret['rank'] : 0;
-	}
-
-	public function updateNotes( $id, $notes ) {
-		$this->update(
-			'update scholarships set notes = ? where id = ?',
-			array( $notes, $id )
+		$sql = self::concat(
+			"SELECT r.scholarship_id, u.username, r.rank, r.criterion",
+			"FROM rankings r",
+			"INNER JOIN users u ON r.user_id = u.id",
+			self::buildWhere( $where ),
+			"ORDER BY r.criterion, r.rank"
 		);
+		return $this->fetchAll( $sql, array(
+			'int_sid' => $id,
+			'int_uid' => $this->userid,
+		) );
 	}
 
-	// Phase List
 
-	public function GetPhase1EarlyRejects() {
-		return$this->fetchAll( "select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			group by s.id, s.fname, s.lname, s.email
-			having p1score < 3 and s.exclude = 0" );
-	}
-
-	public function GetPhase1Success() {
-		// FIXME: hoist and reuse
-		$p1scoreSql = self::concat(
-			"SELECT scholarship_id, SUM(rank) AS p1score",
-			"FROM rankings",
-			"WHERE criterion = 'valid'",
-			"GROUP BY scholarship_id"
-		);
-
+	/**
+	 * Get a list of scholarships at the close of phase 1 screening.
+	 *
+	 * @param bool $success True to get phase 2 eligable applicants, false for
+	 * rejects
+	 * @return array Query results
+	 */
+	protected function getPhase1List( $success ) {
 		$fields = array(
 			's.id',
 			's.fname',
@@ -517,53 +449,40 @@ class Apply extends AbstractDao {
 			'COALESCE(p1score, 0) as p1score',
 		);
 
+		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
+
+		$op = ( $success ) ? '>=' : '<' ;
+
 		return $this->fetchAll( self::concat(
 			"SELECT" , implode( ',', $fields ),
 			"FROM scholarships s",
-			"LEFT OUTER JOIN ( {$p1scoreSql} ) r2 ON s.id = r2.scholarship_id",
+			"LEFT OUTER JOIN ({$p1scoreSql}) r2 ON s.id = r2.scholarship_id",
 			"GROUP BY s.id, s.fname, s.lname, s.email",
-			"HAVING p1score >= 3 AND s.exclude = 0" ) );
+			//FIXME: hardcoded score
+			"HAVING p1score {$op} 3 AND s.exclude = 0"
+		) );
 	}
+
+
+	public function getPhase1EarlyRejects() {
+		return $this->getPhase1List( false );
+	}
+
+
+	public function getPhase1Success() {
+		return $this->getPhase1List( true );
+	}
+
 
 	public function getRegionList() {
 		$res = $this->fetchAll( "SELECT DISTINCT region FROM iso_countries" );
 		return array_map( function ($row) { return $row['region']; }, $res );
 	}
 
-	public function getP2List( $partial, $region ) {
-		//FIXME make this prettier
-		$sql = "SELECT s.id, s.fname, s.lname, s.email, s.residence, s.exclude, s.sex, year(now())-year(s.dob) as age, (s.canpaydiff*s.wantspartial) as partial, c.country_name, coalesce(p1score,0) as p1score, coalesce(nscorers,0) as nscorers, r.onwiki as onwiki, r2.offwiki as offwiki, r3.future as future, r6.englishAbility as englishAbility, 0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score from scholarships s
-			left outer join (select scholarship_id, avg(rank) as onwiki from rankings where criterion = 'onwiki' group by scholarship_id) r on s.id = r.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as offwiki from rankings where criterion = 'offwiki' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as future from rankings where criterion = 'future' group by scholarship_id) r3 on s.id = r3.scholarship_id
-			left outer join (select scholarship_id, avg(rank) as englishAbility from rankings where criterion = 'englishAbility' group by scholarship_id) r6 on s.id = r6.scholarship_id
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r4 on s.id = r4.scholarship_id
-			left outer join (select scholarship_id, count(distinct user_id) as nscorers from rankings where criterion in ('onwiki','offwiki', 'future', 'englishAbility') group by scholarship_id) r5 on s.id = r5.scholarship_id
-			left outer join iso_countries c on s.residence = c.code ";
 
+	public function getP2List( $partial, $region ) {
 		$params = array();
 
-		if ( $region != 'All' ) {
-			$params[] = $region;
-			$sql .= 'inner join iso_countries c1 on c.region = ? ';
-		}
-
-		if ( $partial == 2 ) {
-			$sql .= "group by s.id, s.fname, s.lname, s.email, s.residence
-				having p1score >= 3 and s.exclude = 0 order by p2score desc";
-
-		} else {
-			$params[] = $partial;
-			$sql .= 'group by s.id, s.fname, s.lname, s.email, s.residence
-				having p1score >= 3 and s.exclude = 0 and partial = ? order by p2score desc';
-		}
-
-		return $this->fetchAll( $sql, $params );
-	}
-
-	// Final scoring
-
-	public function getFinalScoring( $partial ) {
 		$fields = array(
 			"s.id",
 			"s.fname",
@@ -572,102 +491,85 @@ class Apply extends AbstractDao {
 			"s.residence",
 			"s.exclude",
 			"s.sex",
-			"YEAR(NOW())-YEAR(s.dob) AS age",
+			"YEAR(NOW()) - YEAR(s.dob) AS age",
 			"(s.canpaydiff * s.wantspartial) AS partial",
 			"c.country_name",
-			"coalesce(p1score, 0) AS p1score",
-			"coalesce(nscorers, 0) AS nscorers",
-			"r.onwiki AS onwiki",
-			"r2.offwiki AS offwiki",
-			"r3.future AS future",
-			"r6.englishAbility AS englishAbility",
-			"0.5*r.onwiki + 0.15*r2.offwiki + 0.25*r3.future + 0.1*r6.englishAbility as p2score",
+			"COALESCE(p1score, 0) AS p1score",
+			"COALESCE(nscorers, 0) AS nscorers",
+			"ow.onwiki AS onwiki",
+			"ofw.offwiki AS offwiki",
+			"f.future AS future",
+			"ea.englishAbility AS englishAbility",
+			// FIXME: hardcoded scoring formula
+			"((0.5 * ow.onwiki) + (0.15 * ofw.offwiki) + (0.25 * f.future) + (0.1 * ea.englishAbility)) as p2score",
 		);
 
-		$sqlRankOnwiki = self::concat(
-			"SELECT scholarship_id, AVG(rank) AS onwiki",
-			"FROM rankings",
-			"WHERE criterion = 'onwiki'",
-			"GROUP BY scholarship_id"
-		);
+		$sqlOnWiki = $this->makeAggregateRankSql( 'onwiki', 'AVG' );
+		$sqlOffWiki = $this->makeAggregateRankSql( 'offwiki', 'AVG' );
+		$sqlFuture = $this->makeAggregateRankSql( 'future', 'AVG' );
+		$sqlEnglish = $this->makeAggregateRankSql( 'englishAbility', 'AVG' );
+		$sqlP1Score = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 
-		$sqlRankOffwiki = self::concat(
-			"SELECT scholarship_id, AVG(rank) AS offwiki",
-			"FROM rankings",
-			"WHERE criterion = 'offwiki'",
-			"GROUP BY scholarship_id"
-		);
-
-		$sqlRankFuture = self::concat(
-			"SELECT scholarship_id, AVG(rank) AS future",
-			"FROM rankings",
-			"WHERE criterion = 'future'",
-			"GROUP BY scholarship_id"
-		);
-
-		$sqlRankEnglish = self::concat(
-			"SELECT scholarship_id, AVG(rank) AS englishAbility",
-			"FROM rankings",
-			"WHERE criterion = 'englishAbility'",
-			"GROUP BY scholarship_id"
-		);
-
-		$sqlRankP1 = self::concat(
-			"SELECT scholarship_id, AVG(rank) AS p1score",
-			"FROM rankings",
-			"WHERE criterion = 'valid'",
-			"GROUP BY scholarship_id"
-		);
-
-		$sqlNScores = self::concat(
+		$sqlNumScorers = self::concat(
 			"SELECT scholarship_id, COUNT(DISTINCT user_id) AS nscorers",
 			"FROM rankings",
-			"WHERE criterion IN ('onwiki','offwiki','future','englishAbility')",
+			"WHERE criterion <> 'valid'",
 			"GROUP BY scholarship_id"
 		);
 
+		if ( $region != 'All' ) {
+			$params['region'] = $region;
+			$regionJoin = 'INNER JOIN iso_countries c1 ON c.region = :region';
+		} else {
+			$regionJoin = '';
+		}
+
+		if ( $partial == 2 ) {
+			$havingPartial = '';
+
+		} else {
+			$params['int_partial'] = $partial;
+			$havingPartial = 'AND partial = :int_partial';
+		}
+
 		$sql = self::concat(
-			"SELECT " . implode( ',', $fields),
+			"SELECT", implode( ',', $fields ),
 			"FROM scholarships s",
-			"LEFT OUTER JOIN ( {$sqlRankOnwiki} ) r ON s.id = r.scholarship_id",
-			"LEFT OUTER JOIN ( {$sqlRankOffwiki} ) r2 on s.id = r2.scholarship_id",
-			"LEFT OUTER JOIN ( {$sqlRankFuture} ) r3 on s.id = r3.scholarship_id",
-			"LEFT OUTER JOIN ( {$sqlRankEnglish} ) r6 on s.id = r6.scholarship_id",
-			"LEFT OUTER JOIN ( {$sqlRankP1} ) r4 on s.id = r4.scholarship_id",
-			"LEFT OUTER JOIN ( {$sqlNScores} ) r5 on s.id = r5.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlOnWiki}) ow ON s.id = ow.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlOffWiki}) ofw ON s.id = ofw.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlFuture}) f ON s.id = f.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlEnglish}) ea ON s.id = ea.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlP1Score}) p1 ON s.id = p1.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlNumScorers}) ns ON s.id = ns.scholarship_id",
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
-			"GROUP BY s.id, s.fname, s.lname, s.email, s.residence",
-			"HAVING p1score >= 3 AND s.exclude = 0 AND partial = ?",
-			"ORDER BY p2score desc"
+			$regionJoin,
+			'GROUP BY s.id, s.fname, s.lname, s.email, s.residence',
+			//FIXME: hardcoded score
+			'HAVING p1score >= 3 AND s.exclude = 0',
+			$havingPartial,
+			'ORDER BY p2score DESC'
 		);
 
-		return $this->fetchAll( $sql, array( $partial ) );
+		return $this->fetchAll( $sql, $params );
 	}
+
+
+	// Final scoring
+	public function getFinalScoring( $partial ) {
+		return $this->getP2List( $partial, 'All' );
+	}
+
 
 	// Country administration
-
 	public function getListOfCountries( $order = "country_name" ) {
-		$fields = array(
-			"c.code",
-			"c.country_name",
-			"c.region",
-			"s.sid",
-		);
-		$sqlCountByResidence = self::concat(
-			"SELECT COUNT(id) AS sid, residence AS attendees",
-			"FROM scholarships",
-			"WHERE rank = 1",
-			"AND exclude = 0",
-			"GROUP BY residence"
-		);
-		$sql = self::concat(
-			"SELECT " . implode( ',', $fields ),
-			"FROM iso_countries c",
-			"LEFT JOIN ( {$sqlCountByResidence} ) s ON c.code = s.attendees",
-			"ORDER BY ?"
-		);
-		return $this->fetchAll( $sql, array( $order ) );
+		return $this->fetchAll( self::concat(
+			"SELECT count(*) as sid, c.country_name, c.region",
+			"FROM scholarships s",
+			"LEFT JOIN iso_countries c ON c.code = s.residence",
+			"GROUP BY c.country_name"
+		) );
 	}
+
 
 	public function getListOfRegions() {
 		return $this->fetchAll( self::concat(
@@ -678,10 +580,28 @@ class Apply extends AbstractDao {
 		) );
 	}
 
-	public function GetPhase1EarlyRejectsTemp() {
-		$res = $this->fetchAll( "select s.id, s.fname, s.lname, s.email, s.exclude, coalesce(p1score,0) as p1score from scholarships s
-			left outer join (select scholarship_id, sum(rank) as p1score from rankings where criterion = 'valid' group by scholarship_id) r2 on s.id = r2.scholarship_id
-			group by s.id, s.fname, s.lname, s.email
-			having p1score < 3 and s.exclude = 0 and s.id>305" );
+
+	/**
+	 * Create an SQL query that will compute an aggregate value for all rankings
+	 * of a given criterion.
+	 *
+	 * @param string $criterion Ranking criterion to aggregate
+	 * @param string $func Aggregate function (AVG,SUM,MAX,MIN,...)
+	 * @param string $alias Aggregate column alias
+	 * @return string SQL to compute the desired aggregate for all scholarships
+	 */
+	protected function makeAggregateRankSql(
+		$criterion, $func, $alias = null ) {
+		$alias = $alias ?: $criterion;
+		// $criterion isn't user input but we'll be paranoid anyway
+		$criterion = $this->dbh->quote( $criterion );
+
+		return self::concat(
+			"SELECT scholarship_id, {$func}(rank) AS {$alias}",
+			"FROM rankings",
+			"WHERE criterion = {$criterion}",
+			"GROUP BY scholarship_id"
+		);
 	}
+
 }

@@ -108,8 +108,11 @@ class User extends Controller {
 				}
 
 			} else {
-				$this->dao->updateUserInfo( $user, $id );
-				$this->flash( 'info', 'Changes saved.' );
+				if ( $this->dao->updateUserInfo( $user, $id ) ) {
+					$this->flash( 'info', 'Changes saved.' );
+				} else {
+					$this->flash( 'error', 'Save failed. Check logs.' );
+				}
 			}
 
 		} else {
