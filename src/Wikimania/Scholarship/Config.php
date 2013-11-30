@@ -88,4 +88,32 @@ class Config {
 		return strtotime( self::getStr( $name ) );
 	}
 
+
+	/**
+	 * Load configuration data from file
+	 *
+	 * Reads ini file style configuration settings from the given file and
+	 * loads the values into the application's environment. This is useful in
+	 * deployments where the use of the container environment for configuration
+	 * is discouraged.
+	 *
+	 * @param string $file Path to config file
+	 */
+	public static function load( $file ) {
+		if ( !is_readable( $file ) ) {
+			throw new \InvalidArgumentException( "File '{$file}' is not readable." );
+		}
+
+		$settings = parse_ini_file( $file );
+
+		foreach ( $settings as $key => $value ) {
+				// Store in super globals
+				$_ENV[$key] = $value;
+				$_SERVER[$key] = $value;
+
+				// Also store in process env vars
+				putenv( "{$key}={$value}" );
+		} //end foreach settings
+	}
+
 } //end Config

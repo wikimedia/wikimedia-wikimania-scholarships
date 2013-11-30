@@ -43,5 +43,10 @@ try {
 }
 restore_error_handler();
 
+// Load environment settings from .env if present
+if ( is_readable( APP_ROOT . '/.env' ) ) {
+	\Wikimania\Scholarship\Config::load( APP_ROOT . '/.env' );
+}
+
 $app = new \Wikimania\Scholarship\App( APP_ROOT );
 $app->run();
