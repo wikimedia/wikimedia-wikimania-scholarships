@@ -50,8 +50,8 @@ class App {
 		$this->slim = new \Slim\Slim( array(
 			'mode' => 'production',
 			'debug' => false,
-			'log.level' => \Psr\Log\LogLevel::ERROR,
-			'log.buffer' => 25,
+			'log.level' => self::config( 'LOG_LEVEL', \Psr\Log\LogLevel::NOTICE ),
+			'log.file' => self::config( 'LOG_FILE', 'php://stderr' ),
 			'view' => new \Slim\Views\Twig(),
 			'view.cache' => "{$this->deployDir}/data/cache",
 			'templates.path' => "{$this->deployDir}/data/templates",
@@ -65,17 +65,15 @@ class App {
 		$this->slim->configureMode( 'production', function () use ( $slim ) {
 			// Install a custom error handler
 			$slim->error( function ( \Exception $e ) use ( $slim ) {
-				$requestId = substr( session_id(), 0, 8 ) . '-' . substr(uniqid(), -8);
-				$slim->log->critical( $e, array(
-					'ip' => $slim->request->getIp(),
-					'mode' => $slim->request->getMethod(),
-					'url' => $slim->request->getUrl(),
+				$errorId = substr( session_id(), 0, 8 ) . '-' . substr( uniqid(), -8 );
+				$slim->log->critical( $e->getMessage(), array(
+					'exception' => $e,
 					'ua' => $slim->request->getUserAgent(),
-					'requestId' => $requestId,
-				));
-				$slim->view->set( 'requestId', $requestId );
+					'errorId' => $errorId,
+				) );
+				$slim->view->set( 'errorId', $errorId );
 				$slim->render( 'error.html' );
-			});
+			} );
 		});
 
 		// Development configuration
@@ -83,7 +81,7 @@ class App {
 		$this->slim->configureMode( 'development', function () use ( $slim ) {
 			$slim->config( array(
 				'debug' => true,
-				'log.level' => \Psr\Log\LogLevel::DEBUG,
+				'log.level' => self::config( 'LOG_LEVEL', \Psr\Log\LogLevel::DEBUG ),
 				'view.cache' => false,
 			) );
 		});
@@ -140,17 +138,19 @@ class App {
 
 		// replace default logger with monolog
 		$container->singleton( 'log', function ( $c ) {
-			$log = new \Monolog\Logger( 'wikimania-scholarship' );
-			$handler = new \Monolog\Handler\StreamHandler( 'php://stderr' );
-			$log->pushHandler( new \Monolog\Handler\FingersCrossedHandler(
-				$handler,
-				new \Monolog\Handler\FingersCrossed\ErrorLevelActivationStrategy(
-					$c['settings']['log.level']
-				),
-				$c['settings']['log.buffer']
-			));
+			$log = new \Monolog\Logger( 'scholarships' );
+			$handler = new \Monolog\Handler\StreamHandler( $c->settings['log.file'] );
+			$handler->setFormatter( new \Monolog\Formatter\LogstashFormatter(
+				'scholarships', null, null, '',
+				\Monolog\Formatter\LogstashFormatter::V1
+			) );
+			$handler->pushProcessor( new \Monolog\Processor\PsrLogMessageProcessor() );
+			$handler->pushProcessor( new \Monolog\Processor\ProcessIdProcessor() );
+			$handler->pushProcessor( new \Monolog\Processor\UidProcessor() );
+			$handler->pushProcessor( new \Monolog\Processor\WebProcessor() );
+			$log->pushHandler( $handler );
 			return $log;
-		});
+		} );
 	}
 
 
@@ -409,6 +409,25 @@ class App {
 		$slim->get( $name, function () use ( $slim, $name ) {
 			$slim->render( "{$name}.html" );
 		})->name( $routeName );
+	}
+
+
+	/**
+	 * Get the value of a environment variable.
+	 *
+	 * @param string $name Variable name
+	 * @param string $default Default value if variable is not set
+	 * @return string
+	 */
+	public static function config( $name, $default = '' ) {
+		$var = getenv( $name );
+		if ( $var === false ) {
+			$var = $default;
+		}
+		return filter_var( $var,
+			\FILTER_SANITIZE_STRING,
+			\FILTER_FLAG_STRIP_LOW | \FILTER_FLAG_STRIP_HIGH
+		);
 	}
 
 } //end App
