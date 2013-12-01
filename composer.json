@@ -6,6 +6,7 @@
     ,"slim/slim": "2.3.5"
     ,"slim/views": "0.1.0"
     ,"monolog/monolog": "1.7.0"
+    ,"phpmailer/phpmailer": "v5.2.7"
   }
   ,"preferred-install": "dist"
   ,"autoload": {
