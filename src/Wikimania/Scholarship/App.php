@@ -54,6 +54,8 @@ class App {
 			'log.buffer' => 25,
 			'view' => new \Slim\Views\Twig(),
 			'view.cache' => "{$this->deployDir}/data/cache",
+			// FIXME: allow configuration as soon as I9529988a is merged
+			'smtp.host' => 'localhost',
 			'templates.path' => "{$this->deployDir}/data/templates",
 			'i18n.path' => "{$this->deployDir}/data/i18n",
 		));
@@ -138,6 +140,15 @@ class App {
 			return new \Wikimania\Scholarship\Forms\Apply( $dao );
 		});
 
+		$container->singleton( 'mailer',  function ( $c ) {
+			return new \Wikimania\Scholarship\Mailer(
+				array(
+					'Host' => $c->settings['smtp.host'],
+				),
+				$c->log
+			);
+		});
+
 		// replace default logger with monolog
 		$container->singleton( 'log', function ( $c ) {
 			$log = new \Monolog\Logger( 'wikimania-scholarship' );
@@ -209,6 +220,7 @@ class App {
 			$slim->post( 'apply', function () use ( $slim ) {
 				$page = new Controllers\ScholarshipApplication( $slim );
 				$page->setForm( $slim->applyForm );
+				$page->setMailer( $slim->mailer );
 				$page();
 			})->name( 'apply_post' );
 
@@ -386,6 +398,7 @@ class App {
 			$slim->post( 'user.post', function () use ( $slim ) {
 				$page = new Controllers\Admin\User( $slim );
 				$page->setDao( $slim->userDao );
+				$page->setMailer( $slim->mailer );
 				$page();
 			})->name( 'admin_user_post' );
 

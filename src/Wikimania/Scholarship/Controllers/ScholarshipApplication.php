@@ -56,15 +56,11 @@ class ScholarshipApplication extends Controller {
 						$message = preg_replace( '/\$1/',
 							"{$this->form->get('fname')} {$this->form->get('lname')}", $message );
 
-						//FIXME: using mail directly seems wrong
-						mail( $this->form->get('email'),
+						$this->mailer->mail(
+							$this->form->get('email'),
 							$this->slim->wgLang->message( 'form-email-subject' ),
-							wordwrap( $message, 72 ),
-							"From: Wikimania Scholarships <wikimania-scholarships@wikimedia.org>\r\n" .
-							"MIME-Version: 1.0\r\n" .
-							"X-Mailer: Wikimania registration system\r\n" .
-							"Content-type: text/plain; charset=utf-8\r\n" .
-							"Content-Transfer-Encoding: 8bit" );
+							$message
+						);
 						$submitted = true;
 					}
 				}

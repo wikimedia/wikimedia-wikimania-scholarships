@@ -87,21 +87,20 @@ class User extends Controller {
 					$this->flash( 'info', "User {$newId} created." );
 					$id = $newId;
 
-					//FIXME: using mail directly?
-					mail( $user['email'],
+					$sent = $this->mailer->mail(
+						$user['email'],
 						$this->wgLang->message( 'new-account-subject' ),
-						wordwrap(
-							sprintf( $this->wgLang->message( 'new-account-email' ),
+						sprintf(
+							$this->wgLang->message( 'new-account-email' ),
 							$user['username'], $this->form->get( 'password' )
-						),
-						72
-					),
-					"From: Wikimania Scholarships <wikimania-scholarships@wikimedia.org>\r\n" .
-					"MIME-Version: 1.0\r\n" .
-					"X-Mailer: Wikimania registration system\r\n" .
-					"Content-type: text/plain; charset=utf-8\r\n" .
-					"Content-Transfer-Encoding: 8bit"
-				);
+						)
+					);
+					if ( !$sent ) {
+						$this->flash(
+							'error',
+							'Failed to send account creation message. Check logs.'
+						);
+					}
 
 				} else {
 					$this->flash( 'error', 'User creation failed. Check logs.' );

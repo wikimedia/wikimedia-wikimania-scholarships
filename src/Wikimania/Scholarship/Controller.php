@@ -46,8 +46,13 @@ class Controller {
 	 */
 	protected $form;
 
+	/**
+	 * @var \Wikimania\Scholarship\Mailer $mailer
+	 */
+	protected $mailer;
 
-	public function __construct(\Slim\Slim $slim = null) {
+
+	public function __construct( \Slim\Slim $slim = null ) {
 		$this->slim = $slim ?: \Slim\Slim::getInstance();
 		$this->form = new Form();
 	}
@@ -60,6 +65,11 @@ class Controller {
 
 	public function setForm( $form ) {
 		$this->form = $form;
+	}
+
+
+	public function setMailer( $mailer ) {
+		$this->mailer = $mailer;
 	}
 
 
