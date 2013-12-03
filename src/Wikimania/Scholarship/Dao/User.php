@@ -70,8 +70,9 @@ class User extends AbstractDao {
 	}
 
 	public function newUserCreate( $answers ) {
-		// FIXME: yuck, order matters in $answers!
-		$fields = array( 'username', 'password', 'email', 'reviewer', 'isvalid', 'isadmin' );
+		$fields = array(
+			'username', 'password', 'email', 'reviewer', 'isvalid', 'isadmin'
+		);
 		$placeholders = array();
 		$vals = array();
 		foreach ( $fields as $field ) {
@@ -83,31 +84,46 @@ class User extends AbstractDao {
 			implode( ', ', $fields ) . ') VALUES (' .
 			implode( ',', $placeholders ) . ')';
 
-		// FIXME: prior implementation died on error, fix callers
 		return $this->insert( $sql, $vals );
 	}
 
+	/**
+	 * @param array $answers Updated user data
+	 * @param int $id User id
+	 * @return bool True if update suceeded, false otherwise
+	 */
 	public function updateUserInfo( $answers, $id ) {
-		$fields = array( 'username', 'email', 'reviewer', 'isvalid', 'isadmin', 'blocked' );
+		$fields = array(
+			'username', 'email', 'reviewer', 'isvalid', 'isadmin', 'blocked'
+		);
 		$placeholders = array();
 		foreach ( $fields as $field ) {
 			$placeholders[] = "{$field} = :{$field}";
 		}
-		$stmt = $this->dbh->prepare(
-			'UPDATE users SET ' .
-			implode( ', ', $placeholders ) .
-			' WHERE id = :id'
+
+		$sql = self::concat(
+			'UPDATE users SET',
+			implode( ', ', $placeholders ),
+			'WHERE id = :id'
 		);
+		$stmt = $this->dbh->prepare( $sql );
 		$answers['id'] = $id;
 
 		try {
 			$this->dbh->beginTransaction();
 			$stmt->execute( $answers );
 			$this->dbh->commit();
+			return true;
+
 		} catch ( PDOException $e) {
 			$this->dbh->rollback();
-			// FIXME
-			die( "Fatal Error: {$e->getMessage()}" );
+			$this->logger->error( 'Failed to update user', array(
+				'method' => __METHOD__,
+				'exception' => $e,
+				'sql' => $sql,
+				'params' => $answers,
+			) );
+			return false;
 		}
 	}
 
@@ -117,8 +133,13 @@ class User extends AbstractDao {
 				'SELECT password FROM users WHERE id = ?',
 				array( $id )
 			);
+
 			if ( !Password::comparePasswordToHash( $oldpw, $res['password'] ) ) {
 				// passsword doesn't match expected
+				$this->logger->notice( 'Invalid old password; will not update', array(
+					'method' => __METHOD__,
+					'user' => $id,
+				) );
 				return false;
 			}
 		}
@@ -128,10 +149,18 @@ class User extends AbstractDao {
 			$this->dbh->beginTransaction();
 			$stmt->execute( array( Password::encodePassword( $newpw ), $id ) );
 			$this->dbh->commit();
+			$this->logger->notice( 'Changed password for user', array(
+					'method' => __METHOD__,
+					'user' => $id,
+			) );
 			return true;
+
 		} catch ( PDOException $e) {
 			$this->dbh->rollback();
-			//FIXME: logging
+			$this->logger->error( 'Failed to update password for user', array(
+				'method' => __METHOD__,
+				'exception' => $e,
+			) );
 			return false;
 		}
 	}

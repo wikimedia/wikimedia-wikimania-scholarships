@@ -119,20 +119,20 @@ class App {
 		$container = $this->slim->container;
 
 		$container->singleton( 'userDao', function ( $c ) {
-			return new \Wikimania\Scholarship\Dao\User();
+			return new \Wikimania\Scholarship\Dao\User( $c->log );
 		});
 
 		$container->singleton( 'authManager', function ( $c ) {
-			return new \Wikimania\Scholarship\AuthManager( $c['userDao'] );
+			return new \Wikimania\Scholarship\AuthManager( $c->userDao );
 		});
 
 		$container->singleton( 'applyDao', function ( $c ) {
 			$uid = $c->authManager->getUserId();
-			return new \Wikimania\Scholarship\Dao\Apply( $uid );
+			return new \Wikimania\Scholarship\Dao\Apply( $uid, $c->log );
 		});
 
 		$container->singleton( 'wgLang', function ( $c ) {
-			return new Lang( $c['settings']['i18n.path'] );
+			return new Lang( $c->settings['i18n.path'] );
 		});
 
 		$container->singleton( 'applyForm', function ( $c ) {

@@ -26,6 +26,7 @@ use Wikimania\Scholarship\Config;
 
 use \PDO;
 use \PDOException;
+use Psr\Log\LoggerInterface;
 
 /**
  * Base class for data access objects.
@@ -40,21 +41,75 @@ abstract class AbstractDao {
 	 */
 	protected $dbh;
 
+	/**
+	 * @var LoggerInterface $logger
+	 */
+	protected $logger;
 
-	public function __construct() {
-		try {
-			$this->dbh = new PDO( Config::get( 'db_dsn' ),
-				Config::get( 'db_user' ), Config::get( 'db_pass' ),
-				array(
-					PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_PERSISTENT => true, //FIXME: good idea?
-					PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-				)
-			);
-		} catch ( PDOException $e ) {
-			// FIXME: yuck
-			error_log( __METHOD__ . ": {$e}" );
-			die( "Failed to connect to database" );
+
+	/**
+	 * @param LoggerInterface $logger Log channel
+	 */
+	public function __construct( $logger = null ) {
+		$this->logger = $logger ?: new \Psr\Log\NullLogger();
+
+		$this->dbh = new PDO( Config::get( 'db_dsn' ),
+			Config::get( 'db_user' ), Config::get( 'db_pass' ),
+			array(
+				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+				PDO::ATTR_PERSISTENT => true, //FIXME: good idea?
+				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+			)
+		);
+	}
+
+
+	/**
+	 * Bind values to a prepared statement.
+	 *
+	 * If an associative array of values is provided, the data type to use when
+	 * binding will be inferred by looking for a "<type>_" prefix at the
+	 * beginning of the array key. This can come in very handy if you are using
+	 * parameters in places like LIMIT clauses where binding as a string (the
+	 * default type for PDO binds) will cause a syntax error.
+	 *
+	 * @param \PDOStatement $stmt Previously prepared statement
+	 * @param array $values Values to bind
+	 */
+	protected function bind( $stmt, $values ) {
+		$values = $values ?: array();
+
+		if ( (bool)count( array_filter( array_keys( $values ), 'is_string' ) ) ) {
+			// associative array provided
+			foreach ( $values as $key => $value ) {
+				// infer bind type from key prefix
+				list( $prefix, $ignored ) = explode( '_', "{$key}_", 2 );
+
+				$type = \PDO::PARAM_STR;
+				switch ( $prefix ) {
+					case 'int':
+						$type = \PDO::PARAM_INT;
+						break;
+					case 'bool':
+						$type = \PDO::PARAM_BOOL;
+						break;
+					case 'null':
+						$type = \PDO::PARAM_NULL;
+						break;
+					default:
+						$type = \PDO::PARAM_STR;
+				}
+
+				$stmt->bindValue( $key, $value, $type );
+			}
+
+		} else {
+			// vector provided
+			$idx = 1;
+			foreach ( $values as $value ) {
+				$stmt->bindValue( $idx, $value );
+				$idx++;
+			}
 		}
 	}
 
@@ -68,7 +123,8 @@ abstract class AbstractDao {
 	 */
 	protected function fetch( $sql, $params = null ) {
 		$stmt = $this->dbh->prepare( $sql );
-		$stmt->execute( $params );
+		$this->bind( $stmt, $params );
+		$stmt->execute();
 		return $stmt->fetch();
 	}
 
@@ -81,10 +137,13 @@ abstract class AbstractDao {
 	 * @return array Result rows
 	 */
 	protected function fetchAll( $sql, $params = null ) {
+		$this->logger->debug( $sql, $params ?: array() );
 		$stmt = $this->dbh->prepare( $sql );
-		$stmt->execute( $params );
+		$this->bind( $stmt, $params );
+		$stmt->execute();
 		return $stmt->fetchAll();
 	}
+
 
 	/**
 	 * Prepare and execute an SQL statement and return all results plus the
@@ -104,6 +163,7 @@ abstract class AbstractDao {
 		return $ret;
 	}
 
+
 	/**
 	 * Prepare and execute an SQL statement in a transaction.
 	 *
@@ -118,10 +178,15 @@ abstract class AbstractDao {
 			$stmt->execute( $params );
 			$this->dbh->commit();
 			return true;
+
 		} catch ( PDOException $e) {
 			$this->dbh->rollback();
-			//fixme: logging
-			error_log( __METHOD__ . " [{$sql}]: {$e}" );
+			$this->logger->error( 'Update failed.', array(
+				'method' => __METHOD__,
+				'exception' => $e,
+				'sql' => $sql,
+				'params' => $params,
+			) );
 			return false;
 		}
 	}
@@ -142,13 +207,19 @@ abstract class AbstractDao {
 			$rowid = $this->dbh->lastInsertId();
 			$this->dbh->commit();
 			return $rowid;
+
 		} catch ( PDOException $e) {
 			$this->dbh->rollback();
-			// FIXME: logging
-			error_log( __METHOD__ . " [{$sql}]: {$e}" );
+			$this->logger->error( 'Insert failed.', array(
+				'method' => __METHOD__,
+				'exception' => $e,
+				'sql' => $sql,
+				'params' => $params,
+			) );
 			return false;
 		}
 	}
+
 
 	/**
 	 * Construct a where clause.
@@ -158,17 +229,31 @@ abstract class AbstractDao {
 	 */
 	protected static function buildWhere( array $where, $conjunction = 'AND' ) {
 		if ( $where ) {
-			return 'WHERE ' . implode( " {$conjunction} ", $where ) . ' ';
+			return 'WHERE (' . implode( ") {$conjunction} (", $where ) . ') ';
 		}
 		return '';
 	}
 
+
 	/**
 	 * Create a string by joining all arguments with spaces.
+	 *
+	 * If one or more of the arguments are arrays each element of the array will
+	 * be included independently.
+	 *
 	 * @return string New string
 	 */
 	protected static function concat( /*varags*/ ) {
-		return implode( ' ', func_get_args() );
+		$args = array();
+		foreach ( func_get_args() as $arg ) {
+			if ( is_array( $arg ) ) {
+				$args = array_merge( $args, $arg );
+			} else {
+				$args[] = $arg;
+			}
+		}
+
+		return implode( ' ', $args );
 	}
 
 } //end AbstractDao

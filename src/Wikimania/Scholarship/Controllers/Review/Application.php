@@ -42,7 +42,7 @@ class Application extends Controller {
 
 		$id = $this->request->get( 'id' );
 		if ( $id === null || $id < 0 ) {
-			$unreviewed = $this->dao->myUnreviewed( $userId, $phase );
+			$unreviewed = $this->dao->myUnreviewed( $phase );
 			$id = min( $unreviewed );
 		}
 
@@ -53,7 +53,6 @@ class Application extends Controller {
 		$this->view->set( 'phase', $phase );
 		$this->view->set( 'id', $id );
 		$this->view->set( 'myscorings', $this->dao->myRankings( $id, $phase ) );
-		$this->view->set( 'allscorings', $this->dao->allRankings( $id, $phase ) );
 		$this->view->set( 'reviewers', $this->dao->getReviewers( $id, $phase ) );
 		$this->view->set( 'nextid', $this->dao->nextApp( $id, $phase ) );
 		$this->view->set( 'previd', $this->dao->prevApp( $id, $phase ) );
@@ -73,17 +72,22 @@ class Application extends Controller {
 				'valid', 'onwiki', 'future', 'offwiki', 'program',
 				'englishAbility' );
 
+			$success = true;
 			foreach ( $criteria as $c ) {
 				$score = $this->request->post( $c );
 				if ( $score !== null ) {
-					$this->dao->insertOrUpdateRanking( $id, $c, $score );
+					$success &= $this->dao->insertOrUpdateRanking( $id, $c, $score );
 				}
 			}
 
 			if ( $this->form->get( 'notes' ) !== null ) {
-				$this->dao->updateNotes( $id, $this->form->get( 'notes' ) );
+				$success &= $this->dao->updateNotes( $id, $this->form->get( 'notes' ) );
 			}
-			$this->flash( 'info', 'Changes saved.' );
+			if ( $success ) {
+				$this->flash( 'info', 'Changes saved.' );
+			} else {
+				$this->flash( 'error', 'Error(s) saving changes. See logs.' );
+			}
 
 		} else {
 			// FIXME: log error(s)
