@@ -70,6 +70,11 @@ following variables are expected to be provided:
 * APPLICATION_CLOSE = Date/time that scholarship application period closes
 * MOCK = Is this application is testing/development mode?
 
+The following variables can be optionally provided:
+
+* LOG_FILE = fopen()-compatible filename or stream URI (default: `php://stderr`)
+* LOG_LEVEL = PSR-3 logging level (default: `notice`)
+
 ### Apache
 ````
 SetEnv DB_DSN mysql:host=localhost;dbname=scholarships;charset=utf8
