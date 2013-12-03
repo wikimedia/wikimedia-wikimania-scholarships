@@ -201,8 +201,8 @@
         {% endif %}
       </fieldset>
 
-      <fieldset><legend>Show full dump</legend>
-        <ul>
+      <fieldset><legend id="showfulldump">Show full dump</legend>
+        <ul id="dump">
           {% for k,v in schol %}
           <li><strong>{{ k }}:</strong> {{ v }}</li>
           {% endfor %}
