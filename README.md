@@ -1,4 +1,4 @@
-Wikimania Scholarship Application
+Wikimania Scholarships Application
 =================================
 
 Collect information from scholarship applicants and provide a review
@@ -9,52 +9,48 @@ System Requirements
 -------------------
 * PHP >= 5.3.7
 
-
 Setup
 -----
 
 ### Sample Apache .htaccess file
 
-```
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule .* index.php/$0 [L,PT]
-</IfModule>
-```
+    <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule .* index.php/$0 [L,PT]
+    </IfModule>
+
 
 ### Sample Nginx config
 
-```
-server {
-  listen     80;
-  server_name  scholarships;
-  error_log  /opt/local/var/log/nginx/error.log debug;
-  root /Library/WebServer/Documents/scholarships;
+    server {
+        listen     80;
+        server_name  scholarships;
+        error_log  /opt/local/var/log/nginx/error.log debug;
+        root /Library/WebServer/Documents/scholarships;
 
-  location = / {
-    try_files @site @site;
-  }
+        location = / {
+            try_files @site @site;
+        }
 
-  location / {
-    try_files $uri @site;
-  }
+        location / {
+            try_files $uri @site;
+        }
 
-  location ~ \.php$ {
-    index  index.php index.html index.htm;
-    fastcgi_pass   127.0.0.1:9000;
-    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-    fastcgi_param  PHP_VALUE "error_log=/var/log/nginx/scholarships.log";
-    include     fastcgi_params;
-  }
+        location ~ \.php$ {
+            index  index.php index.html index.htm;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            fastcgi_param  PHP_VALUE "error_log=/var/log/nginx/scholarships.log";
+            include     fastcgi_params;
+        }
 
-  location @site {
-    rewrite ^ /index.php;
-  }
-}
-```
+        location @site {
+            rewrite ^ /index.php;
+        }
+    }
 
 Configuration
 -------------
@@ -68,32 +64,46 @@ following variables are expected to be provided:
 * DB_PASS = PDO password
 * APPLICATION_OPEN = Date/time that scholarship application period opens
 * APPLICATION_CLOSE = Date/time that scholarship application period closes
-* MOCK = Is this application is testing/development mode?
 
 The following variables can be optionally provided:
 
+* MOCK = Is this application is testing/development mode? (default: `0`)
 * LOG_FILE = fopen()-compatible filename or stream URI (default: `php://stderr`)
 * LOG_LEVEL = PSR-3 logging level (default: `notice`)
+* SMTP_HOST = SMTP mail server (default: `localhost`)
 
 ### Apache
-````
-SetEnv DB_DSN mysql:host=localhost;dbname=scholarships;charset=utf8
-SetEnv DB_USER my_database_user
-SetEnv DB_PASS "super secret password"
-SetEnv APPLICATION_OPEN 2013-01-01T00:00:00Z
-SetEnv APPLICATION_CLOSE 2013-02-01T00:00:00Z
-SetEnv MOCK 1
-````
+
+    SetEnv DB_DSN mysql:host=localhost;dbname=scholarships;charset=utf8
+    SetEnv DB_USER my_database_user
+    SetEnv DB_PASS "super secret password"
+    SetEnv APPLICATION_OPEN 2013-01-01T00:00:00Z
+    SetEnv APPLICATION_CLOSE 2013-02-01T00:00:00Z
+    SetEnv MOCK 1
+
 
 ### Nginx
-````
-env DB_DSN=mysql:host=localhost;dbname=scholarships;charset=utf8
-env DB_USER=my_database_user
-env DB_PASS="super secret password"
-env APPLICATION_OPEN=2013-01-01T00:00:00Z
-env APPLICATION_CLOSE=2013-02-01T00:00:00Z
-env MOCK=1
-````
+
+    env DB_DSN=mysql:host=localhost;dbname=scholarships;charset=utf8
+    env DB_USER=my_database_user
+    env DB_PASS="super secret password"
+    env APPLICATION_OPEN=2013-01-01T00:00:00Z
+    env APPLICATION_CLOSE=2013-02-01T00:00:00Z
+    env MOCK=1
+
+### .env file
+
+For environments where container based configuration isn't possible or
+desired, a `.env` file can be placed in the root of the project. This file
+will be parsed using PHP's `parse_ini_file()` function and the resulting
+settings will be injected into the application environment.
+
+    DB_DSN="mysql:host=localhost;dbname=scholarships;charset=utf8"
+    DB_USER=my_database_user
+    DB_PASS="super secret password"
+    APPLICATION_OPEN=2013-01-01T00:00:00Z
+    APPLICATION_CLOSE=2013-02-01T00:00:00Z
+    MOCK=1
 
 Authors
 -------

@@ -54,8 +54,7 @@ class App {
 			'log.file' => self::config( 'LOG_FILE', 'php://stderr' ),
 			'view' => new \Slim\Views\Twig(),
 			'view.cache' => "{$this->deployDir}/data/cache",
-			// FIXME: allow configuration as soon as I9529988a is merged
-			'smtp.host' => 'localhost',
+			'smtp.host' => self::config( 'SMTP_HOST', 'localhost' ),
 			'templates.path' => "{$this->deployDir}/data/templates",
 			'i18n.path' => "{$this->deployDir}/data/i18n",
 		));
