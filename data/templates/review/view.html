@@ -4,6 +4,9 @@
 
 {% block content %}
 {% spaceless %}
+{% if schol == false %}
+<p>Application not found.</p>
+{% else %}
 <form method="post" action="{{ urlFor( 'review_view_post' ) }}">
   <input type="hidden" name="phase" value="{{ phase }}"/>
   <input type="hidden" name="id" value="{{ id }}"/>
@@ -240,5 +243,6 @@
   <dt>{{ k }}</dt><dd>{{ v }}</dd>
 {% endfor %}
 </dl>
+{% endif %}
 {% endspaceless %}
 {% endblock content %}

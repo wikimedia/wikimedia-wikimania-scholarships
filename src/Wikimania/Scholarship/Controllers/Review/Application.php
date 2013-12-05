@@ -41,22 +41,33 @@ class Application extends Controller {
 		$userId = $this->authManager->getuserId();
 
 		$id = $this->request->get( 'id' );
-		if ( $id === null || $id < 0 ) {
-			$unreviewed = $this->dao->myUnreviewed( $phase );
-			$id = min( $unreviewed );
-		}
 
-		if ( $id == '' or $id < 0 ) {
-			$this->flashNow( 'error', "Plase click Phase {$phase} to return to the list" );
+		if ( $id === null || $id < 0 ) {
+			// Attempt to find first unreviewed application for the current user
+			$unreviewed = $this->dao->myUnreviewed( $phase );
+			if ( $unreviewed ) {
+				$id = min( $unreviewed );
+			}
 		}
 
 		$this->view->set( 'phase', $phase );
 		$this->view->set( 'id', $id );
-		$this->view->set( 'myscorings', $this->dao->myRankings( $id, $phase ) );
-		$this->view->set( 'reviewers', $this->dao->getReviewers( $id, $phase ) );
-		$this->view->set( 'nextid', $this->dao->nextApp( $id, $phase ) );
-		$this->view->set( 'previd', $this->dao->prevApp( $id, $phase ) );
-		$this->view->set( 'schol', $this->dao->getScholarship( $id ) );
+
+		$schol = false;
+		if ( $id !== '' && $id >= 0 ) {
+			$schol = $this->dao->getScholarship( $id );
+		}
+		$this->view->set( 'schol', $schol );
+
+		if ( $schol === false ) {
+			$this->flashNow( 'error', 'Application not found' );
+
+		} else {
+			$this->view->set( 'myscorings', $this->dao->myRankings( $id, $phase ) );
+			$this->view->set( 'reviewers', $this->dao->getReviewers( $id, $phase ) );
+			$this->view->set( 'nextid', $this->dao->nextApp( $id, $phase ) );
+			$this->view->set( 'previd', $this->dao->prevApp( $id, $phase ) );
+		}
 
 		$this->render( 'review/view.html' );
 	}
