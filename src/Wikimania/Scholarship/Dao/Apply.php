@@ -389,6 +389,17 @@ class Apply extends AbstractDao {
 	}
 
 
+	public function updateNotes( $id, $notes ) {
+		return $this->update(
+			'update scholarships set notes = :notes where id = :int_id',
+			array(
+				'int_id' => $id,
+				'notes' => $notes,
+			)
+		);
+	}
+
+
 	public function getReviewers( $id, $phase ) {
 		$where = array( "r.scholarship_id = :int_sid" );
 		if ( $phase == 1 ) {
