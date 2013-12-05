@@ -87,6 +87,20 @@ class App {
 			) );
 		});
 
+		// Slim does not natively understand being behind a proxy
+		// If not corrected template links created via siteUrl() may use the wrong
+		// protocol (http instead of https).
+		if ( getenv( 'HTTP_X_FORWARDED_PROTO' ) ) {
+			$proto = getenv( 'HTTP_X_FORWARDED_PROTO' );
+			$this->slim->environment['slim.url_scheme'] = $proto;
+
+			$port = getenv( 'HTTP_X_FORWARDED_PORT' );
+			if ( $port === false ) {
+				$port = ( $proto == 'https' ) ? '443' : '80';
+			}
+			$this->slim->environment['SERVER_PORT'] = $port;
+		}
+
 		$this->configureIoc();
 		$this->configureView();
 		$this->configureRoutes();
