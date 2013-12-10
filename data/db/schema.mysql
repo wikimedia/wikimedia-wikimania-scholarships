@@ -44,7 +44,9 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , future                      TEXT
   , englishAbility              TEXT
   , username                    VARCHAR(64) DEFAULT NULL
-  , project                     TEXT
+  , project                     VARCHAR(255) DEFAULT NULL
+  , project2                    VARCHAR(255) DEFAULT NULL
+  , project3                    VARCHAR(255) DEFAULT NULL
   , projectlangs                TEXT
   , involvement                 TEXT
   , contribution                TEXT
