@@ -63,11 +63,17 @@ class Phase1List extends Controller {
 				'attachment; filename="p1' . $this->type . '_' . $ts . '.csv"' );
 
 			echo "id,name,email,p1score\n";
+			$fp = fopen( 'php://output', 'w' );
 			foreach ( $rows as $row ) {
-				echo "{$row['id']},{$row['fname']} {$row['lname']},{$row['email']},";
-				echo round( $row['p1score'], 4 );
-				echo "\n";
+				$csv = array(
+					(int)$row['id'],
+					ltrim( "{$row['fname']} {$row['lname']}", '=@' ),
+					ltrim( $row['email'], '=@' ),
+					round( $row['p1score'], 4 ),
+				);
+				fputcsv( $fp, $csv );
 			}
+			fclose( $fp );
 
 		} else {
 			$this->view->set( 'title',

@@ -62,17 +62,28 @@ class Phase2List extends Controller {
 			$this->response->headers->set( 'Content-Disposition',
 				'attachment; filename="' . "p2_{$partialName}_{$region}_{$ts}" . '.csv"' );
 
-			echo "id,name,email,residence,sex,age,partial?,# p2 scorers,onwiki,offwiki,future,English Ability,p2 score\n";
+			echo 'id,name,email,residence,sex,age,"partial?","# p2 scorers",onwiki,offwiki,future,"English Ability","p2 score"', "\n";
+
+			$fp = fopen( 'php://output', 'w' );
 			foreach ( $rows as $row ) {
-				echo "{$row['id']},{$row['fname']} {$row['lname']},{$row['email']},";
-				echo "{$row['country_name']},{$row['sex']},{$row['age']},";
-				echo "{$row['partial']},{$row['nscorers']},";
-				echo round( $row['onwiki'], 3 ) . ',';
-				echo round( $row['offwiki'], 3 ) . ',';
-				echo round( $row['future'], 3 ) . ',';
-				echo round( $row['englishAbility'], 3 ) . ',';
-				echo round( $row['p2score'], 4 ) . "\n";
+				$csv = array(
+					(int)$row['id'],
+					ltrim( "{$row['fname']} {$row['lname']}", '=@' ),
+					ltrim( $row['email'], '=@' ),
+					ltrim( $row['country_name'], '=@' ),
+					ltrim( $row['sex'], '=@' ),
+					(int)$row['age'],
+					(int)$row['partial'],
+					(int)$row['nscorers'],
+					round( $row['onwiki'], 3 ),
+					round( $row['offwiki'], 3 ),
+					round( $row['future'], 3 ),
+					round( $row['englishAbility'], 3 ),
+					round( $row['p1score'], 4 ),
+				);
+				fputcsv( $fp, $csv );
 			}
+			fclose( $fp );
 
 		} else {
 			$this->view->set( 'regionList', $regionList );
