@@ -33,16 +33,16 @@ use Wikimania\Scholarship\Controller;
 class Application extends Controller {
 
 	protected function handleGet() {
+		$this->form->expectInt( 'id', array( 'min_range' => 0 ) );
 		$this->form->expectInt( 'phase',
 			array( 'min_range' => 0, 'max_range' => 2, 'default' => 2 )
 		);
 		$this->form->validate( $_GET );
+		$id = $this->form->get( 'id' );
 		$phase = $this->form->get( 'phase' );
 		$userId = $this->authManager->getuserId();
 
-		$id = $this->request->get( 'id' );
-
-		if ( $id === null || $id < 0 ) {
+		if ( $id === null ) {
 			// Attempt to find first unreviewed application for the current user
 			$unreviewed = $this->dao->myUnreviewed( $phase );
 			if ( $unreviewed ) {
@@ -54,7 +54,7 @@ class Application extends Controller {
 		$this->view->set( 'id', $id );
 
 		$schol = false;
-		if ( $id !== '' && $id >= 0 ) {
+		if ( $id !== null && $id >= 0 ) {
 			$schol = $this->dao->getScholarship( $id );
 		}
 		$this->view->set( 'schol', $schol );
