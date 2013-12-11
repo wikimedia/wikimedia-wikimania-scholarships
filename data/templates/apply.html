@@ -14,6 +14,17 @@ lang: currently selected display language
 {% import "inc/forms.html" as forms %}
 {% set ctx = _context %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/chosen.min.css' ) }}" />
+{% endblock css %}
+{% block javascript %}
+<script src="{{ siteUrl( 'js/jquery-1.7.1.min.js' ) }}"></script>
+<script src="{{ siteUrl( 'js/chosen.jquery.js' ) }}"></script>
+<script type="text/javascript">(function( $, document ) {
+    $( document ).ready( function() { $('.chosen-select').chosen({'search_contains':true}); });
+})( jQuery, document );</script>
+{% endblock javascript %}
+
 {% block content %}
 {% spaceless %}
 
@@ -80,9 +91,9 @@ lang: currently selected display language
     <legend>{{ wgLang.message( 'form-participation' ) }}</legend>
     <ul class="appform">
       {{ forms.text( ctx, 'form-username', 'username' ) }}
-      {{ forms.text( ctx, 'form-primary-project', 'project' ) }}
-      {{ forms.text( ctx, 'form-secondary-project', 'project2' ) }}
-      {{ forms.text( ctx, 'form-tertiary-project', 'project3' ) }}
+      {{ forms.wikiSelect( ctx, 'form-primary-project', 'project', wikilist ) }}
+      {{ forms.wikiSelect( ctx, 'form-secondary-project', 'project2', wikilist ) }}
+      {{ forms.wikiSelect( ctx, 'form-tertiary-project', 'project3', wikilist ) }}
       {{ forms.text( ctx, 'form-lang-version', 'projectlangs' ) }}
       {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
       {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true } ) }}

@@ -26,6 +26,7 @@ use Wikimania\Scholarship\Config;
 use Wikimania\Scholarship\Controller;
 use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Forms\Apply as ApplyForm;
+use Wikimania\Scholarship\Wikis;
 
 /**
  * Process a scholarship application.
@@ -77,6 +78,7 @@ class ScholarshipApplication extends Controller {
 			$this->slim->view->setData( 'form', $this->form );
 			$this->slim->view->setData( 'submitted', $submitted );
 			$this->slim->view->setData( 'countries', Countries::$COUNTRY_NAMES );
+			$this->slim->view->setData( 'wikilist', Wikis::$WIKI_NAMES );
 
 			$this->slim->render( 'apply.html' );
 	}

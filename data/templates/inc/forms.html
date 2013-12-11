@@ -112,6 +112,20 @@
 {{ forms.endElement() }}
 {% endmacro %}
 
+{% macro wikiSelect( ctx, mesg, name, options, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+<select id="{{ name }}" name="{{ name }}" class="chosen-select" {{ opts['required'] ? 'required' }}>
+  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+  {% for val in options %}
+  <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ val }}</option>
+  {% endfor %}
+</select>
+{{ forms.endElement() }}
+{% endmacro %}
+
 {% macro checkboxList( ctx, mesg, options, opts = {} ) %}
 {% import _self as forms %}
 {{ forms.startElement( ctx, mesg, '', opts ) }}

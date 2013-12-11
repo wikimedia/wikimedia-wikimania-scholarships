@@ -25,6 +25,7 @@ namespace Wikimania\Scholarship\Forms;
 use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Dao\Apply as ApplyDao;
 use Wikimania\Scholarship\Form;
+use Wikimania\Scholarship\Wikis;
 
 /**
  * Collect and validate user input.
@@ -43,6 +44,7 @@ class Apply extends Form {
 	public function __construct( $dao = null ) {
 		$this->dao = $dao ?: new ApplyDao();
 		$validCountries = array_keys( Countries::$COUNTRY_NAMES );
+		$validWikis = Wikis::$WIKI_NAMES;
 
 		$this->expectString( 'fname', array( 'required' => true ) );
 		$this->expectString( 'lname', array( 'required' => true ) );
@@ -64,9 +66,9 @@ class Apply extends Form {
 		$this->expectString( 'areaofstudy' );
 
 		$this->expectString( 'username' );
-		$this->expectString( 'project' );
-		$this->expectString( 'project2' );
-		$this->expectString( 'project3' );
+		$this->expectInArray( 'project', $validWikis );
+		$this->expectInArray( 'project2', $validWikis );
+		$this->expectInArray( 'project3', $validWikis );
 		$this->expectString( 'projectlangs' );
 		$this->expectString( 'involvement', array( 'required' => true ) );
 		$this->expectString( 'contribution', array( 'required' => true ) );
