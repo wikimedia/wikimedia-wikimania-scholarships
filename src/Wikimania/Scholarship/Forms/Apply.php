@@ -133,7 +133,7 @@ class Apply extends Form {
 			
 			'chapteragree', 'wmfAgreeName',
 
-			'rank', 'ipaddr',
+			'rank',
 		);
 
 		$answers = array();
@@ -170,9 +170,7 @@ class Apply extends Form {
 		}
 
 		$answers['rank'] = 1;
-		$answers['ipaddr'] = $_SERVER['REMOTE_ADDR'];
 
-		//FIXME: error handling
 		$appId = $this->dao->saveApplication( $answers );
 		return $appId !== false;
 	}
