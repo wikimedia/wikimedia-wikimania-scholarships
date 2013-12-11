@@ -1,0 +1,10 @@
+ALTER TABLE scholarships
+  MODIFY COLUMN project VARCHAR(255) DEFAULT NULL;
+
+ALTER TABLE scholarships
+  ADD COLUMN project2 VARCHAR(255) DEFAULT NULL
+  AFTER project;
+
+ALTER TABLE scholarships
+  ADD COLUMN project3 VARCHAR(255) DEFAULT NULL
+  AFTER project2;

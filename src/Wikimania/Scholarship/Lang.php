@@ -101,8 +101,12 @@ class Lang {
 		if ( isset( $this->messages[$this->lang][$key] ) ) {
 			return $this->messages[$this->lang][$key];
 
-		} else {
+		} elseif ( isset( $this->messages['en'][$key] ) ) {
 			return $this->messages['en'][$key];
+
+		} else {
+			// FIXME: log missing translation
+			return $key;
 		}
 	}
 

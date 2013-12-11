@@ -65,6 +65,8 @@ class Apply extends Form {
 
 		$this->expectString( 'username' );
 		$this->expectString( 'project' );
+		$this->expectString( 'project2' );
+		$this->expectString( 'project3' );
 		$this->expectString( 'projectlangs' );
 		$this->expectString( 'involvement', array( 'required' => true ) );
 		$this->expectString( 'contribution', array( 'required' => true ) );
@@ -120,8 +122,8 @@ class Apply extends Form {
 			'haspassport', 'nationality', 'airport', 'languages', 'dob', 'sex',
 			'occupation', 'areaofstudy',
 
-			'username', 'project', 'projectlangs', 'involvement', 'contribution',
-			'englishAbility',
+			'username', 'project', 'project2', 'project3', 'projectlangs',
+			'involvement', 'contribution', 'englishAbility',
 
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13',
 			'presentation', 'presentationTopic', 'howheard', 'why',
