@@ -262,12 +262,14 @@ class App {
 		// middlewear route that requires authentication
 		$requireUser = function () use ( $slim ) {
 			if ( $slim->authManager->isAnonymous() ) {
-				$uri = $slim->request->getPath();
-				$qs = \Wikimania\Scholarship\Form::qsMerge();
-				if ( $qs ) {
-					$uri = "{$uri}?{$qs}";
+				if ( $slim->request->isGet() ) {
+					$uri = $slim->request->getPath();
+					$qs = \Wikimania\Scholarship\Form::qsMerge();
+					if ( $qs ) {
+						$uri = "{$uri}?{$qs}";
+					}
+					$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
 				}
-				$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
 				$slim->flash( 'error', 'Login required' );
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'login' ) );
@@ -382,12 +384,14 @@ class App {
 		// middlewear that requires admin rights
 		$requireAdmin = function () use ( $slim ) {
 			if ( !$slim->authManager->isAdmin() ) {
-				$uri = $slim->request->getPath();
-				$qs = \Wikimania\Scholarship\Form::qsMerge();
-				if ( $qs ) {
-					$uri = "{$uri}?{$qs}";
+				if ( $slim->request->isGet() ) {
+					$uri = $slim->request->getPath();
+					$qs = \Wikimania\Scholarship\Form::qsMerge();
+					if ( $qs ) {
+						$uri = "{$uri}?{$qs}";
+					}
+					$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
 				}
-				$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
 				$slim->flash( 'error', 'Admin rights required' );
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'login' ) );

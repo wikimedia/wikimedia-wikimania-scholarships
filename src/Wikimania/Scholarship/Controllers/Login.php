@@ -38,10 +38,13 @@ class Login extends Controller {
 	}
 
 	protected function handlePost() {
+		$next = false;
 		if ( isset( $_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] ) ) {
 			$next = $_SESSION[AuthManager::NEXTPAGE_SESSION_KEY];
+			$next = filter_var( $next, \FILTER_VALIDATE_URL, \FILTER_FLAG_PATH_REQUIRED );
+		}
 
-		} else {
+		if ( $next === false ) {
 			$next = $this->urlFor( 'review_home' );
 		}
 
