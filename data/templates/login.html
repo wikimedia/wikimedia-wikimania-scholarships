@@ -5,10 +5,10 @@
 {% spaceless %}
 <form action="{{ urlFor( 'login_post' ) }}" method="post">
   <fieldset>
-    <legend>Log in</legend>
+    <legend>{{ wgLang.message( 'login' ) }}</legend>
     <ul>
-      <li><label for="username">Username:</label> <input type="text" id="username" name="username" required="required" autofocus="autofocus"/></li>
-      <li><label for="password">Password:</label> <input type="password" id="password" name="password" required="required" /></li>
+      <li><label for="username">{{ wgLang.message( 'username' ) }}</label> <input type="text" id="username" name="username" required="required" autofocus="autofocus"/></li>
+      <li><label for="password">{{ wgLang.message( 'password' ) }}</label> <input type="password" id="password" name="password" required="required" /></li>
     </ul>
   </fieldset>
   <p><input type="submit" value="Log in" />

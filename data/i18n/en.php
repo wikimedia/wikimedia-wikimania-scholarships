@@ -155,4 +155,8 @@ $messages['en'] = array(
 	'footer-privacy' => "privacy",
 	'footer-contact' => "contact",
 	'MONTH_NAMES' =>  array( 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ),
+
+	'login' => "Log in",
+	'username' => "Username:",
+	'password' => "Password:",
 );
