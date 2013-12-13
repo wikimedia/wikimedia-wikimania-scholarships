@@ -11,27 +11,27 @@
 <div id="form-container" class="fourteen columns">
 <div id="tabsnav" class="clearfix">
   <ul id="review-tabs">
-    <li><a href="{{ urlFor( 'review_phase1' ) }}">Phase 1</a></li>
-    <li><a href="{{ urlFor( 'review_phase2' ) }}">Phase 2</a></li>
+    <li><a href="{{ urlFor( 'review_phase1' ) }}">{{ wgLang.message( 'phase-1' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_phase2' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
     <li>|</li>
-    <li><a href="{{ urlFor( 'review_p1_success' ) }}">Phase 1 Success List</a></li>
-    <li><a href="{{ urlFor( 'review_p1_fail' ) }}">Phase 1 Fail List</a></li>
-    <li><a href="{{ urlFor( 'review_p2_list' ) }}">Phase 2 List</a></li>
+    <li><a href="{{ urlFor( 'review_p1_success' ) }}">{{ wgLang.message( 'phase-1-success' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_p1_fail' ) }}">{{ wgLang.message( 'phase-1-fail' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_p2_list' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
     {% if isadmin|default(true) %}
     {# FIXME: better auth integration #}
     <li>|</li>
-    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=0">Final: Full</a></li>
-    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=1">Final: Partial</a></li>
+    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=0">{{ wgLang.message( 'final-full' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=1">{{ wgLang.message( 'final-partial' ) }}</a></li>
     {% endif %}
     <li>|</li>
-    <li><a href="{{ urlFor( 'review_view' ) }}">Review</a></li>
+    <li><a href="{{ urlFor( 'review_view' ) }}">{{ wgLang.message( 'review' ) }}</a></li>
     <li>|</li>
-    <li><a href="{{ urlFor( 'review_search' ) }}">Search</a></li>
-    <li><a href="{{ urlFor( 'review_countries' ) }}">By Country</a></li>
-    <li><a href="{{ urlFor( 'review_regions' ) }}">By Region</a></li>
+    <li><a href="{{ urlFor( 'review_search' ) }}">{{ wgLang.message( 'search' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_countries' ) }}">{{ wgLang.message( 'by-country' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_regions' ) }}">{{ wgLang.message( 'by-region' ) }}</a></li>
     <li>|</li>
-    <li><a href="{{ urlFor( 'user_changepassword' ) }}">change password</a></li>
-    <li><a href="{{ urlFor( 'logout' ) }}">logout</a></li>
+    <li><a href="{{ urlFor( 'user_changepassword' ) }}">{{ wgLang.message( 'change-password' ) }}</a></li>
+    <li><a href="{{ urlFor( 'logout' ) }}">{{ wgLang.message( 'logout' ) }}</a></li>
   </ul>
 </div>
 {{ parent() }}
