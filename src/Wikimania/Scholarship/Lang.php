@@ -95,19 +95,38 @@ class Lang {
 	 * Get a message string.
 	 *
 	 * @param string $key Message name
+	 * @param array $params Parameters to add to the message
 	 * @return string Message
 	 */
-	public function message( $key ) {
+	public function message( $key, $params = array() ) {
+		// Try the language, then english, then fail
 		if ( isset( $this->messages[$this->lang][$key] ) ) {
-			return $this->messages[$this->lang][$key];
+			$msg = $this->messages[$this->lang][$key];
 
 		} elseif ( isset( $this->messages['en'][$key] ) ) {
-			return $this->messages['en'][$key];
+			$msg = $this->messages['en'][$key];
 
 		} else {
 			// FIXME: log missing translation
-			return $key;
+			$msg = $key;
 		}
+
+		// Replace any $1, $2 style parameters
+		$replace = array();
+		foreach( $params as $n => $p ) {
+			$replace['$' . ( $n + 1 )] = $param;
+		}
+
+		if ( is_array( $msg ) ) {
+			foreach ( $msg as $key => $value ) {
+				$msg[$key] = strtr( $msg[$key], $replace );
+			}
+
+		} else {
+			$msg = strtr( $msg, $replace );
+		}
+
+		return $msg;
 	}
 
 }
