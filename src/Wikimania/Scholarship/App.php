@@ -148,10 +148,11 @@ class App {
 
 		$container->singleton( 'applyDao', function ( $c ) {
 			$uid = $c->authManager->getUserId();
+			// FIXME: pass in settings
 			return new \Wikimania\Scholarship\Dao\Apply(
 				$c->settings['db.dsn'],
 				$c->settings['db.user'], $c->settings['db.pass'],
-				$uid, $c->log );
+				$uid, null, $c->log );
 		});
 
 		$container->singleton( 'wgLang', function ( $c ) {

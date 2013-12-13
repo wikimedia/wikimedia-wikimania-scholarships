@@ -38,17 +38,33 @@ class Apply extends AbstractDao {
 	 */
 	protected $userid;
 
+	/**
+	 * @var array $settings
+	 */
+	protected $settings = array(
+		'phase1pass'    => 3,     // p1score needed to pass into phase2
+		'weightonwiki'  => 0.5,   // contribution of onwiki to final score
+		'weightoffwiki' => 0.15,  // contribution of offwiki to final score
+		'weightfuture'  => 0.25,  // contribution of future to final score
+		'weightenglish' => 0.1,   // contribution of englishAbility to final score
+	);
+
 
 	/**
 	 * @param string $dsn PDO data source name
 	 * @param string $user Database user
 	 * @param string $pass Database password
 	 * @param int|bool $uid Authenticated user
+	 * @param array $settings Configuration settings
 	 * @param LoggerInterface $logger Log channel
 	 */
-	public function __construct( $dsn, $user, $pass, $uid = false, $logger = null ) {
+	public function __construct( $dsn, $user, $pass,
+		$uid = false, $settings = null, $logger = null
+	) {
 		parent::__construct( $dsn, $user, $pass, $logger );
 		$this->userid = $uid;
+		$settings = is_array( $settings ) ? $settings : array();
+		$this->settings = array_merge( $this->settings, $settings );
 	}
 
 
@@ -197,8 +213,8 @@ class Apply extends AbstractDao {
 			$fields[] = 'COALESCE(p2score, 0) as p2score';
 			$fields[] = 'COALESCE(nscorers, 0) as nscorers';
 
-			//FIXME: hardcoded scoring
-			$where[] = 'p1score >= 3';
+			$where[] = 'p1score >= :int_phase1pass';
+			$bindVars['int_phase1pass'] = (int)$this->settings['phase1pass'];
 
 			$joins = array_merge( $joins, array(
 				"LEFT OUTER JOIN ({$p2scoreSql}) r2 ON s.id = r2.scholarship_id",
@@ -472,8 +488,9 @@ class Apply extends AbstractDao {
 			"FROM scholarships s",
 			"LEFT OUTER JOIN ({$p1scoreSql}) r2 ON s.id = r2.scholarship_id",
 			"GROUP BY s.id, s.fname, s.lname, s.email",
-			//FIXME: hardcoded score
-			"HAVING p1score {$op} 3 AND s.exclude = 0"
+			"HAVING p1score {$op} :int_phase1pass AND s.exclude = 0"
+		), array(
+			'int_phase1pass' => (int)$this->settings['phase1pass'],
 		) );
 	}
 
@@ -514,9 +531,16 @@ class Apply extends AbstractDao {
 			"ofw.offwiki AS offwiki",
 			"f.future AS future",
 			"ea.englishAbility AS englishAbility",
-			// FIXME: hardcoded scoring formula
-			"((0.5 * ow.onwiki) + (0.15 * ofw.offwiki) + (0.25 * f.future) + (0.1 * ea.englishAbility)) as p2score",
+			"((:weightonwiki * ow.onwiki) + " .
+			"(:weightoffwiki * ofw.offwiki) + " .
+			"(:weightfuture * f.future) + " .
+			"(:weightenglish * ea.englishAbility)) as p2score",
 		);
+
+		$params['weightonwiki'] = (float)$this->settings['weightonwiki'];
+		$params['weightoffwiki'] = (float)$this->settings['weightoffwiki'];
+		$params['weightfuture'] = (float)$this->settings['weightfuture'];
+		$params['weightenglish'] = (float)$this->settings['weightenglish'];
 
 		$sqlOnWiki = $this->makeAggregateRankSql( 'onwiki', 'AVG' );
 		$sqlOffWiki = $this->makeAggregateRankSql( 'offwiki', 'AVG' );
@@ -558,11 +582,12 @@ class Apply extends AbstractDao {
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 			$regionJoin,
 			'GROUP BY s.id, s.fname, s.lname, s.email, s.residence',
-			//FIXME: hardcoded score
-			'HAVING p1score >= 3 AND s.exclude = 0',
+			'HAVING p1score >= :int_phase1pass AND s.exclude = 0',
 			$havingPartial,
 			'ORDER BY p2score DESC'
 		);
+
+		$params['int_phase1pass'] = (int)$this->settings['phase1pass'];
 
 		return $this->fetchAll( $sql, $params );
 	}
