@@ -20,12 +20,9 @@
     <div class="container">
       <div id="langbar" class="fifteen columns">
         <ul class="langlist">
-          {# FIXME: generate from wgLang #}
-          <li><a href="{{ app.request.getPath }}?uselang=de">de</a></li>
-          <li><a href="{{ app.request.getPath }}?uselang=en">en</a></li>
-          <li><a href="{{ app.request.getPath }}?uselang=ja">ja</a></li>
-          <li><a href="{{ app.request.getPath }}?uselang=pl">pl</a></li>
-          <li><a href="{{ app.request.getPath }}?uselang=zh">zh</a></li>
+          {% for lang in wgLang.getLangs %}
+          <li><a href="{{ app.request.getPath }}?uselang={{ lang }}">{{ lang }}</a></li>
+          {% endfor %}
           <li class="last"><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
         </ul>
       </div>
