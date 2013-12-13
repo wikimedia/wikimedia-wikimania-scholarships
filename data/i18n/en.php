@@ -159,4 +159,8 @@ $messages['en'] = array(
 	'login' => "Log in",
 	'username' => "Username:",
 	'password' => "Password:",
+
+	'error-heading' => "System error",
+	'error-message' => "An unexpected error has occurred and we are working to fix the problem. Please try again in a moment.",
+	'error-id' => 'Error ID: $1',
 );

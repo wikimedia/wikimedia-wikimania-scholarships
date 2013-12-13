@@ -2,11 +2,10 @@
 {% block content %}
 {% spaceless %}
 <div id="error">
-  <h2>System error</h2>
-  <p>An unexpected error has occurred and we are working to fix the problem.</p>
-  <p>Please try again in a moment.</p>
+  <h2>{{ wgLang.message( 'error-heading' ) }}</h2>
+  <p>{{ wgLang.message( 'error-message' ) }}</p>
   {% if errorId|default(false) %}
-  <p>Error ID: {{ errorId }}</p>
+  <p>{{ wgLang.message( 'error-id', [ errorId ] ) }}</p>
   {% endif %}
 </div>
 {% endspaceless %}

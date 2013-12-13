@@ -114,7 +114,7 @@ class Lang {
 		// Replace any $1, $2 style parameters
 		$replace = array();
 		foreach( $params as $n => $p ) {
-			$replace['$' . ( $n + 1 )] = $param;
+			$replace['$' . ( $n + 1 )] = $p;
 		}
 
 		if ( is_array( $msg ) ) {
