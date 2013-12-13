@@ -169,4 +169,18 @@ $messages['en'] = array(
 	'404-header' => "Page not found",
 	'404-message' => "The page you requested cannot be found. Please check the link/URL and try
   again.",
+
+	'phase-1' => "Phase 1",
+	'phase-2' => "Phase 2",
+	'phase-1-success' => "Phase 1 success list",
+	'phase-1-fail' => "Phase 1 fail list",
+	'phase-2-list' => "Phase 2 list",
+	'final-full' => "Final: Full",
+	'final-partial' => "Final: Partial",
+	'review' => "Review",
+	'search' => "Search",
+	'by-country' => "By country",
+	'by-region' => "By region",
+	'change-password' => "Change password",
+	'logout' => "Logout",
 );
