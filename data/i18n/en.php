@@ -183,4 +183,10 @@ $messages['en'] = array(
 	'by-region' => "By region",
 	'change-password' => "Change password",
 	'logout' => "Logout",
+
+	'password-username' => 	'Username: <strong>$1</strong>',
+	'old-password' => "Old password:",
+	'new-password' => "New password:",
+	'new-password-again' => "New password (again):",
+	'save-password' => "Save password",
 );
