@@ -29,7 +29,7 @@
           <li class="last"><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
         </ul>
       </div>
-      <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="Wikimania 2013"><img src="{{ siteUrl( 'images/Wikimania-2013-bannerm.png' ) }}" alt="Wikimania"/></a></h1>
+      <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="{{ wgLang.message( 'header-title' ) }}"><img src="{{ siteUrl( 'images/Wikimania-2013-bannerm.png' ) }}" alt="{{ wgLang.message( 'wikimania' ) }}"/></a></h1>
       {% block pre_content %}
       {% if flash|default(false) %}
       {% if flash.error|default(false) %}<p class="error">{{ flash.error }}</p>{% endif %}

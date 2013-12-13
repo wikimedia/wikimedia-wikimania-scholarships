@@ -1,5 +1,6 @@
 <?php
 $messages['en'] = array(
+	'wikimania' => "Wikimania",
 	'header-title' => "Wikimania 2013 - Scholarship application",
 	'page-header' => "Wikimania 2013 travel scholarships",
 	'text-intro' => "
