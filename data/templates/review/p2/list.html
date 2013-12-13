@@ -18,27 +18,27 @@
       {% endfor %}
     </select>
     <input type="checkbox" name="export" id="export" value="1"/>
-    <label for="export">Export as CSV</label>
+    <label for="export">{{ wgLang.message( 'review-list-export-csv' ) }}</label>
     <input type="submit" value="Submit">
   </fieldset>
 </form>
 <p></p>
 <table class="grid bordered">
   <tr>
-    <th>counter</th>
-    <th>id</th>
-    <th>name</th>
-    <th>email</th>
-    <th>residence</th>
-    <th>sex</th>
-    <th>age</th>
-    <th>partial?</th>
-    <th># p2 scorers</th>
-    <th>onwiki</th>
-    <th>offwiki</th>
-    <th>future</th>
-    <th>English Ability</th>
-    <th>p2 score</th>
+    <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-residence' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-sex' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-age' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-partial' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-num-p2' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-onwiki' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-offwiki' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-future' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-en-ability' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-p1-score' ) }}</th>
   </tr>
   {% for row in records %}
   <tr>

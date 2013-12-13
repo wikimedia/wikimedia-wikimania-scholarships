@@ -4,9 +4,9 @@
 {% spaceless %}
 <table id="grid" class="grid">
   <tr>
-    <th>country</th>
-    <th>region</th>
-    <th>scholarship count</th>
+    <th>{{ wgLang.message( 'review-countries-country' ) }}</th>
+    <th>{{ wgLang.message( 'review-countries-region' ) }}</th>
+    <th>{{ wgLang.message( 'review-countries-count' ) }}</th>
   </tr>
   {% for row in records %}
   <tr>

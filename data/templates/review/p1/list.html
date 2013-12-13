@@ -6,16 +6,16 @@
 <h2>{{ title }}</h2>
 <form method="get" action="{{ urlFor( route ) }}">
   <input type="hidden" name="action" value="export">
-  <input type="submit" value="Export list">
+  <input type="submit" value="{{ wgLang.message( 'review-list-export' ) }}">
 </form>
 <p></p>
 <table class="grid bordered">
   <tr>
-    <th>counter</th>
-    <th>id</th>
-    <th>name</th>
-    <th>email</th>
-    <th>p1 score</th>
+    <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-p1-score' ) }}</th>
   </tr>
   {% for row in records %}
   <tr>
