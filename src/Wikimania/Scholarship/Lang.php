@@ -47,12 +47,18 @@ class Lang {
 	protected $langDir;
 
 	/**
-	 * @param string $dir Directory containing language files
+	 * @param string $defaultLang
 	 */
-	public function __construct( $dir ) {
+	protected $defaultLang;
+
+	/**
+	 * @param string $dir Directory containing language files
+	 * @param string $default Default language
+	 */
+	public function __construct( $dir, $default = 'en' ) {
 		// TODO: assert that the dir exists
 		$this->langDir = $dir;
-		$this->lang = 'en';
+		$this->defaultLang = $default;
 
 		$messages = array();
 		foreach ( glob( "{$this->langDir}/*.php" ) as $file ) {
@@ -72,20 +78,26 @@ class Lang {
 	}
 
 	/**
-	 * Set the active language.
-	 * @param array $req Request data
-	 * @param string $default Default language
+	 * Get the active language.
 	 * @return string Selected language
 	 */
-	public function setLang( $req, $default = 'en' ) {
-		if ( isset( $req['uselang'] ) &&
-			in_array( $req['uselang'], $this->getLangs() )
-		) {
-			$lang = $req['uselang'];
+	public function getLang() {
+		if ( isset( $_REQUEST['uselang'] ) ) {
+			$lang = $_REQUEST['uselang'];
+
+		} elseif ( isset( $_SESSION['uselang'] ) ) {
+			$lang = $_SESSION['uselang'];
 
 		} else {
-			$lang = $default;
+			$lang = $this->defaultLang;
 		}
+
+		if ( !in_array( $lang, $this->getLangs() ) ) {
+			$lang = $this->defaultLang;
+		}
+
+		// remember this language selection for future requests
+		$_SESSION['uselang'] = $lang;
 
 		$this->lang = $lang;
 		return $lang;
@@ -99,6 +111,10 @@ class Lang {
 	 * @return string Message
 	 */
 	public function message( $key, $params = array() ) {
+		if ( $this->lang === null ) {
+			$this->getLang();
+		}
+
 		// Try the language, then english, then fail
 		if ( isset( $this->messages[$this->lang][$key] ) ) {
 			$msg = $this->messages[$this->lang][$key];

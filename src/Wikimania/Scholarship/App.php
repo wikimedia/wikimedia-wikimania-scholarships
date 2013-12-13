@@ -57,6 +57,7 @@ class App {
 			'smtp.host' => self::config( 'SMTP_HOST', 'localhost' ),
 			'templates.path' => "{$this->deployDir}/data/templates",
 			'i18n.path' => "{$this->deployDir}/data/i18n",
+			'i18n.default' => 'en',
 		));
 
 		$slim = $this->slim;
@@ -143,7 +144,7 @@ class App {
 		});
 
 		$container->singleton( 'wgLang', function ( $c ) {
-			return new Lang( $c->settings['i18n.path'] );
+			return new Lang( $c->settings['i18n.path'], $c->settings['i18n.default'] );
 		});
 
 		$container->singleton( 'applyForm', function ( $c ) {
@@ -205,7 +206,6 @@ class App {
 		$view->replace( array(
 			'app' => $this->slim,
 			'wgLang' => $this->slim->wgLang,
-			'lang' => $this->slim->wgLang->setLang( $_REQUEST ),
 		) );
 	}
 
