@@ -10,34 +10,34 @@
 <form method="post" action="{{ urlFor( 'admin_user_post' ) }}">
   <input type="hidden" name="id" value="{{ id }}"/>
   <fieldset>
-    <legend>Id: {{ id }}</legend>
+    <legend>{{ wgLang.message( 'admin-user-id', [ id ] ) }}
     <ul>
-      <li {{ 'username' in errors ? 'class="fieldWithErrors"' }}><label for"username">Username:</label>
+      <li {{ 'username' in errors ? 'class="fieldWithErrors"' }}><label for"username">{{ wgLang.message( 'username' ) }}</label>
         <input type="text" name="username" id="username" value="{{ u.username }}" required="required"/>
       </li>
       {% if id == 'new' %}
-      <li {{ 'password' in errors ? 'class="fieldWithErrors"' }}><label for="password">Password:</label>
+      <li {{ 'password' in errors ? 'class="fieldWithErrors"' }}><label for="password">{{ wgLang.message( 'password' ) }}</label>
         <input type="text" name="password" id="password" value="{{ u.password }}" required="required"/>
       </li>
       {% endif %}
-      <li {{ 'email' in errors ? 'class="fieldWithErrors"' }}><label for="email">Email:</label>
+      <li {{ 'email' in errors ? 'class="fieldWithErrors"' }}><label for="email">{{ wgLang.message( 'admin-user-email' ) }}</label>
         <input type="text" name="email" id="email" value="{{ u.email }}" required="required"/>
       </li>
-      <li><label for="reviewer" class="inline">Is Reviewer?:</label>
+      <li><label for="reviewer" class="inline">{{ wgLang.message( 'admin-user-reviewer' ) }}</label>
         <input type="checkbox" name="reviewer" id="reviewer" value="1" {{ u.reviewer == 1 ? 'checked="checked"' }}/>
       </li>
-      <li><label for="isvalid" class="inline">Is Valid?:</label>
+      <li><label for="isvalid" class="inline">{{ wgLang.message( 'admin-user-valid' ) }}</label>
         <input type="checkbox" name="isvalid" id="isvalid" value="1" {{ u.isvalid == 1 ? 'checked="checked"' }}/>
       </li>
-      <li><label for="isadmin" class="inline">Is Admin?:</label>
+      <li><label for="isadmin" class="inline">{{ wgLang.message( 'admin-user-admin' ) }}</label>
         <input type="checkbox" name="isadmin" id="isadmin" value="1" {{ u.isadmin == 1 ? 'checked="checked"' }}/>
       </li>
-      <li><label for="blocked" class="inline">Blocked?:</label>
+      <li><label for="blocked" class="inline">{{ wgLang.message( 'admin-user-blocked' ) }}</label>
         <input type="checkbox" name="blocked" id="blocked" value="1" {{ u.blocked == 1 ? 'checked="checked"' }}/>
       </li>
     </ul>
   </fieldset>
-  <input type="submit" id="save" name="save" value="Save"/>
+  <input type="submit" id="save" name="save" value="{{ wgLang.message( 'admin-user-save' ) }}"/>
 </form>
 {% endspaceless %}
 {% endblock content %}
