@@ -50,14 +50,19 @@ class App {
 		$this->slim = new \Slim\Slim( array(
 			'mode' => 'production',
 			'debug' => false,
-			'log.level' => self::config( 'LOG_LEVEL', \Psr\Log\LogLevel::NOTICE ),
-			'log.file' => self::config( 'LOG_FILE', 'php://stderr' ),
+			'log.level' => Config::getStr( 'LOG_LEVEL', \Psr\Log\LogLevel::NOTICE ),
+			'log.file' => Config::getStr( 'LOG_FILE', 'php://stderr' ),
 			'view' => new \Slim\Views\Twig(),
 			'view.cache' => "{$this->deployDir}/data/cache",
-			'smtp.host' => self::config( 'SMTP_HOST', 'localhost' ),
+			'smtp.host' => Config::getStr( 'SMTP_HOST', 'localhost' ),
 			'templates.path' => "{$this->deployDir}/data/templates",
 			'i18n.path' => "{$this->deployDir}/data/i18n",
 			'i18n.default' => 'en',
+			'db.dsn' => Config::getStr( 'DB_DSN' ),
+			'db.user' => Config::getStr( 'DB_USER' ),
+			'db.pass' => Config::getStr( 'DB_PASS' ),
+			'period.open' => Config::getDate( 'APPLICATION_OPEN' ),
+			'period.close' => Config::getDate( 'APPLICATION_CLOSE' ),
 		));
 
 		$slim = $this->slim;
@@ -83,7 +88,7 @@ class App {
 		$this->slim->configureMode( 'development', function () use ( $slim ) {
 			$slim->config( array(
 				'debug' => true,
-				'log.level' => self::config( 'LOG_LEVEL', \Psr\Log\LogLevel::DEBUG ),
+				'log.level' => Config::getStr( 'LOG_LEVEL', \Psr\Log\LogLevel::DEBUG ),
 				'view.cache' => false,
 			) );
 		});
@@ -117,7 +122,7 @@ class App {
 		session_cache_limiter(false);
 		session_start();
 
-		$this->slim->mock = Config::get( 'mock' );
+		$this->slim->mock = Config::getBool( 'MOCK' );
 
 		// run the app
 		$this->slim->run();
@@ -131,7 +136,10 @@ class App {
 		$container = $this->slim->container;
 
 		$container->singleton( 'userDao', function ( $c ) {
-			return new \Wikimania\Scholarship\Dao\User( $c->log );
+			return new \Wikimania\Scholarship\Dao\User(
+				$c->settings['db.dsn'],
+				$c->settings['db.user'], $c->settings['db.pass'],
+				$c->log );
 		});
 
 		$container->singleton( 'authManager', function ( $c ) {
@@ -140,7 +148,10 @@ class App {
 
 		$container->singleton( 'applyDao', function ( $c ) {
 			$uid = $c->authManager->getUserId();
-			return new \Wikimania\Scholarship\Dao\Apply( $uid, $c->log );
+			return new \Wikimania\Scholarship\Dao\Apply(
+				$c->settings['db.dsn'],
+				$c->settings['db.user'], $c->settings['db.pass'],
+				$uid, $c->log );
 		});
 
 		$container->singleton( 'wgLang', function ( $c ) {
@@ -225,13 +236,19 @@ class App {
 			})->name( 'home' );
 
 			$slim->get( 'apply', function () use ( $slim ) {
-				$page = new Controllers\ScholarshipApplication( $slim );
+				$page = new Controllers\ScholarshipApplication(
+					$slim->config( 'period.open' ),
+					$slim->config( 'period.close' ),
+					$slim );
 				$page->setForm( $slim->applyForm );
 				$page();
 			})->name( 'apply' );
 
 			$slim->post( 'apply', function () use ( $slim ) {
-				$page = new Controllers\ScholarshipApplication( $slim );
+				$page = new Controllers\ScholarshipApplication(
+					$slim->config( 'period.open' ),
+					$slim->config( 'period.close' ),
+					$slim );
 				$page->setForm( $slim->applyForm );
 				$page->setMailer( $slim->mailer );
 				$page();
@@ -439,25 +456,6 @@ class App {
 		$slim->get( $name, function () use ( $slim, $name ) {
 			$slim->render( "{$name}.html" );
 		})->name( $routeName );
-	}
-
-
-	/**
-	 * Get the value of a environment variable.
-	 *
-	 * @param string $name Variable name
-	 * @param string $default Default value if variable is not set
-	 * @return string
-	 */
-	public static function config( $name, $default = '' ) {
-		$var = getenv( $name );
-		if ( $var === false ) {
-			$var = $default;
-		}
-		return filter_var( $var,
-			\FILTER_SANITIZE_STRING,
-			\FILTER_FLAG_STRIP_LOW | \FILTER_FLAG_STRIP_HIGH
-		);
 	}
 
 } //end App

@@ -22,7 +22,6 @@
 
 namespace Wikimania\Scholarship\Controllers;
 
-use Wikimania\Scholarship\Config;
 use Wikimania\Scholarship\Controller;
 use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Forms\Apply as ApplyForm;
@@ -36,8 +35,26 @@ use Wikimania\Scholarship\Wikis;
  */
 class ScholarshipApplication extends Controller {
 
-	public function __construct(\Slim\Slim $slim = null ) {
+	/**
+	 * @var int $applicationOpen
+	 */
+	protected $periodOpen;
+
+	/**
+	 * @var int $applicationClose
+	 */
+	protected $periodClose;
+
+
+	/**
+	 * @param int $open Unix timestanp that applications will first be accepted
+	 * @param int $close Unix timestamp that applications will last be accepted
+	 * @param \Slim\Slim $slim Slim application
+	 */
+	public function __construct( $open, $close, \Slim\Slim $slim = null ) {
 		parent::__construct( $slim );
+		$this->periodOpen = $open;
+		$this->periodClose = $close;
 	}
 
 	protected function handle() {
@@ -67,13 +84,13 @@ class ScholarshipApplication extends Controller {
 				}
 			}
 
-			$openTime = Config::get( 'application_open' );
-			$closeTime = Config::get( 'application_close' );
 			$now = time();
 
-			$this->slim->view->setData( 'registration_open', $now > $openTime || $this->slim->mock );
+			$this->slim->view->setData( 'registration_open',
+				$now > $this->periodOpen || $this->slim->mock );
 			// FIXME: legacy app allowed '?special' to override
-			$this->slim->view->setData( 'registration_closed', $now > $closeTime && !$this->slim->mock );
+			$this->slim->view->setData( 'registration_closed',
+				$now > $this->periodClose && !$this->slim->mock );
 
 			$this->slim->view->setData( 'form', $this->form );
 			$this->slim->view->setData( 'submitted', $submitted );

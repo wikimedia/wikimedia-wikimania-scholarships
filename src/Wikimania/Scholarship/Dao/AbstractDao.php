@@ -22,8 +22,6 @@
 
 namespace Wikimania\Scholarship\Dao;
 
-use Wikimania\Scholarship\Config;
-
 use \PDO;
 use \PDOException;
 use Psr\Log\LoggerInterface;
@@ -48,13 +46,15 @@ abstract class AbstractDao {
 
 
 	/**
+	 * @param string $dsn PDO data source name
+	 * @param string $user Database user
+	 * @param string $pass Database password
 	 * @param LoggerInterface $logger Log channel
 	 */
-	public function __construct( $logger = null ) {
+	public function __construct( $dsn, $user, $pass, $logger = null ) {
 		$this->logger = $logger ?: new \Psr\Log\NullLogger();
 
-		$this->dbh = new PDO( Config::get( 'db_dsn' ),
-			Config::get( 'db_user' ), Config::get( 'db_pass' ),
+		$this->dbh = new PDO( $dsn, $user, $pass,
 			array(
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_PERSISTENT => true, //FIXME: good idea?

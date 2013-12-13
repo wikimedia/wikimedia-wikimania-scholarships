@@ -30,61 +30,40 @@ namespace Wikimania\Scholarship;
 class Config {
 
 	/**
-	 * @var array $settings
+	 * Get a boolean value
+	 * @param string $name Setting name
+	 * @param bool $default Default value if none found
+	 * @return bool Value
 	 */
-	protected $settings;
-
-	protected function __construct() {
-
-		$this->settings = array(
-			'mock' => self::getBool( 'MOCK' ),
-			'application_open' => self::getDate( 'APPLICATION_OPEN' ),
-			'application_close' => self::getDate( 'APPLICATION_CLOSE' ),
-			'db_dsn' => self::getStr( 'DB_DSN' ),
-			'db_user' => self::getStr( 'DB_USER' ),
-			'db_pass' => self::getStr( 'DB_PASS' ),
-		);
+	public static function getBool( $name, $default = false ) {
+		$var = getenv( $name );
+		$val = filter_var( $var, \FILTER_VALIDATE_BOOLEAN, \FILTER_NULL_ON_FAILURE  );
+		return ( $val === null ) ? $default : $val;
 	}
 
 
 	/**
-	 * Get a configuration setting.
-	 * @param string $name Setting
-	 * @return mixed Configuration value
+	 * Get a string value
+	 * @param string $name Setting name
+	 * @param string $default Default value if none found
+	 * @return string Value
 	 */
-	public static function get( $name ) {
-		static $conf;
-		if ( $conf === null ) {
-			$conf = new self();
-		}
-		return $conf->getSetting( $name );
-	}
-
-
-	protected function getSetting ( $name ) {
-		if ( array_key_exists( $name, $this->settings ) ) {
-			return $this->settings[$name];
-		}
-		return null;
-	}
-
-
-	protected static function getBool( $name ) {
+	public static function getStr( $name, $default = '' ) {
 		$var = getenv( $name );
-		return filter_var( $var, \FILTER_VALIDATE_BOOLEAN  );
-	}
-
-
-	protected static function getStr( $name ) {
-		$var = getenv( $name );
-		return filter_var( $var,
+		$val = filter_var( $var,
 			\FILTER_SANITIZE_STRING,
 			\FILTER_FLAG_STRIP_LOW | \FILTER_FLAG_STRIP_HIGH
 		);
+		return ( $val === false ) ? $default : $val;
 	}
 
 
-	protected static function getDate( $name ) {
+	/**
+	 * Get a date value
+	 * @param string $name Setting name
+	 * @return int|bool Unix timestamp or false if not found
+	 */
+	public static function getDate( $name ) {
 		return strtotime( self::getStr( $name ) );
 	}
 

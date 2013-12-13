@@ -40,11 +40,14 @@ class Apply extends AbstractDao {
 
 
 	/**
+	 * @param string $dsn PDO data source name
+	 * @param string $user Database user
+	 * @param string $pass Database password
 	 * @param int|bool $uid Authenticated user
 	 * @param LoggerInterface $logger Log channel
 	 */
-	public function __construct( $uid = false, $logger = null ) {
-		parent::__construct( $logger );
+	public function __construct( $dsn, $user, $pass, $uid = false, $logger = null ) {
+		parent::__construct( $dsn, $user, $pass, $logger );
 		$this->userid = $uid;
 	}
 
