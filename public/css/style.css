@@ -120,6 +120,16 @@ div#langbar {
   padding: 1em 1em 0 1em;
   border: none;
   text-align: right;
+  overflow: auto;
+  width: 100%;
+}
+
+.langlabel {
+  margin-right:.5em;
+  display: none;
+}
+.langselect {
+  float:right;
 }
 
 div#footer {
@@ -130,6 +140,7 @@ ul#footerlinks,
 ul.langlist {
   list-style: none;
   padding-left: 0;
+  display: inline;
 }
 
 ul#footerlinks li,

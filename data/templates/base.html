@@ -20,9 +20,10 @@
   <body>
     <div class="container">
       <div id="langbar" class="fifteen columns">
+        <span class="langlabel">{{ wgLang.message( 'language' ) }}</span>
         <ul class="langlist">
-          {% for lang in wgLang.getLangs %}
-          <li><a href="{{ app.request.getPath }}?uselang={{ lang }}">{{ lang }}</a></li>
+          {% for l in wgLang.getLangs %}
+          <li><a href="{{ app.request.getPath }}?uselang={{ l }}" {{ l == lang ? 'class="selected"' }}>{{ l }}</a></li>
           {% endfor %}
           <li class="last"><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
         </ul>
@@ -45,6 +46,8 @@
         </ul>
       </div>
     </div>
+    <script src="{{ siteUrl( 'js/jquery-1.7.1.min.js' ) }}"></script>
+    <script src="{{ siteUrl( 'js/site.js' ) }}"></script>
     {% block javascript %}{% endblock javascript %}
   </body>
 </html>
