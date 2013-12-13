@@ -164,4 +164,8 @@ $messages['en'] = array(
 	'error-heading' => "System error",
 	'error-message' => "An unexpected error has occurred and we are working to fix the problem. Please try again in a moment.",
 	'error-id' => 'Error ID: $1',
+
+	'404-header' => "Page not found",
+	'404-message' => "The page you requested cannot be found. Please check the link/URL and try
+  again.",
 );
