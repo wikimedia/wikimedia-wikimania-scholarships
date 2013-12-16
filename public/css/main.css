@@ -1,0 +1,105 @@
+body {
+  padding-top: 48px;
+  padding-bottom: 20px;
+}
+
+a {
+  color: #00f;
+}
+a:visited {
+  color: #800080;
+}
+
+.navbar-brand {
+  padding: 6px;
+}
+.navbar-text {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.site-banner {
+  padding: 0;
+  margin: 0 0 1em 0;
+  background-color: inherit;
+  background: url(../images/background.svg);
+}
+.site-banner .container {
+  padding: 22px 0;
+}
+.site-banner h2 {
+  font-size:30pt;
+  line-height: 4px;
+  text-transform: uppercase;
+}
+.site-banner h3 {
+  font-size: 11pt;
+  line-height: 30px;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+}
+.footer-links li {
+  display: inline;
+  margin: 0;
+}
+.footer-links li:after {
+ content: '·';
+ padding: 0 .5em;
+}
+.footer-links li.last:after {
+ content: '';
+ padding: 0;
+}
+
+.langlabel {
+  display: none;
+  margin-right:.5em;
+}
+
+.hr {
+  background: #fff url(../images/hrule.png) no-repeat scroll center;
+  height: 21px;
+  margin-top: .5em;
+}
+.hr hr {
+  display: none;
+}
+
+.required:after {
+  content: ' *';
+}
+
+.chosen-container {
+  margin-bottom: .5em;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.form-inline .form-group,
+.form-inline .checkbox {
+  margin-right: .5em;
+}
+
+@media (min-width: 768px) {
+  .dl-horizontal.wide dt {
+    width: 200px;
+  }
+  .dl-horizontal.wide dd {
+    margin-left: 220px;
+  }
+}
+
+.panel-collapse > .table,
+.panel-body > dl {
+  margin-bottom: 0;
+}
+
+.panel-body > dl + .well {
+  margin-top: 15px;
+}
