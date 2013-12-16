@@ -60,7 +60,7 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testNotInArray () {
 		$form = new Form();
-		$form->expectInArray( 'foo', array( 'bar' ) );
+		$form->expectInArray( 'foo', array( 'bar' ), array( 'required' => true ) );
 
 		$this->assertFalse( $form->validate(), 'Form should be invalid' );
 		$vals = $form->getValues();
@@ -75,12 +75,27 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 	public function testInArray () {
 		$_POST['foo'] = 'bar';
 		$form = new Form();
-		$form->expectInArray( 'foo', array( 'bar' ) );
+		$form->expectInArray( 'foo', array( 'bar' ), array( 'required' => true ) );
 
 		$this->assertTrue( $form->validate(), 'Form should be valid' );
 		$vals = $form->getValues();
 		$this->assertArrayHasKey( 'foo', $vals );
 		$this->assertEquals( 'bar', $vals['foo'] );
+		$this->assertNotContains( 'foo', $form->getErrors() );
+	}
+
+	/**
+	 * @covers Form
+	 */
+	public function testNotInArrayNotRequired () {
+		unset( $_POST['foo'] );
+		$form = new Form();
+		$form->expectInArray( 'foo', array( 'bar' ) );
+
+		$this->assertTrue( $form->validate(), 'Form should be valid' );
+		$vals = $form->getValues();
+		$this->assertArrayHasKey( 'foo', $vals );
+		$this->assertEquals( '', $vals['foo'] );
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 

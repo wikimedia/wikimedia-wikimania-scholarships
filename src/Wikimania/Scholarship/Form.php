@@ -141,8 +141,9 @@ class Form {
 
 	public function expectInArray( $name, $valids, $options = null ) {
 		$options = ( is_array( $options ) ) ? $options : array();
-		$options['validate'] = function ($val) use ($valids) {
-			return in_array( $val, $valids );
+		$required = isset( $options['required'] ) ? $options['required'] : false;
+		$options['validate'] = function ($val) use ($valids, $required) {
+			return ( !$required && empty( $val ) ) || in_array( $val, $valids );
 		};
 		return $this->expectAnything( $name, $options );
 	}
