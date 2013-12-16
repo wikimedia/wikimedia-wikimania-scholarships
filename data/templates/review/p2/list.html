@@ -9,14 +9,6 @@
 
 <form class="form-inline" method="get" action="{{ urlFor( 'review_p2_list' ) }}" role="form">
   <div class="form-group">
-    <label for="partial">Partial?</label>
-    <select class="form-control input-sm" name="partial" id="partial">
-      <option value="2" {{ partial == 2 ? 'selected="selected"' }}>All</option>
-      <option value="1" {{ partial == 1 ? 'selected="selected"' }}>Partial</option>
-      <option value="0" {{ partial == 0 ? 'selected="selected"' }}>Full</option>
-    </select>
-  </div>
-  <div class="form-group">
     <label for="region">Region:</label>
     <select class="form-control input-sm" name="region" id="region">
       {% for r in regionList %}
@@ -43,15 +35,13 @@
     <th>{{ wgLang.message( 'review-list-name' ) }}</th>
     <th>{{ wgLang.message( 'review-list-email' ) }}</th>
     <th>{{ wgLang.message( 'review-list-residence' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-sex' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-gender' ) }}</th>
     <th>{{ wgLang.message( 'review-list-age' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-partial' ) }}</th>
     <th>{{ wgLang.message( 'review-list-num-p2' ) }}</th>
     <th>{{ wgLang.message( 'review-list-onwiki' ) }}</th>
     <th>{{ wgLang.message( 'review-list-offwiki' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-future' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-en-ability' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-p1-score' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-interest' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-p2-score' ) }}</th>
   </tr>
   {% for row in records %}
   <tr>
@@ -60,16 +50,16 @@
     <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase=2" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>
     <td>{{ row.country_name }}</td>
-    <td>{{ row.sex }}</td>
+    <td>{{ row.gender }}</td>
     <td>{{ row.age }}</td>
-    <td>{{ row.partial }}</td>
     <td>{{ row.nscorers }}</td>
     <td>{{ '%.3f'|format( row.onwiki ) }}</td>
     <td>{{ '%.3f'|format( row.offwiki ) }}</td>
-    <td>{{ '%.3f'|format( row.future ) }}</td>
-    <td>{{ '%.3f'|format( row.englishAbility ) }}</td>
+    <td>{{ '%.3f'|format( row.interest ) }}</td>
     <td>{{ '%.4f'|format( row.p2score ) }}</td>
   </tr>
+  {% else %}
+  <tr><td colspan="12">No results found</td></tr>
   {% endfor %}
 </table>
 {% endspaceless %}

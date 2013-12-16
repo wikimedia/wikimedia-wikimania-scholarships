@@ -17,17 +17,22 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , fname                       VARCHAR(32) DEFAULT NULL
   , lname                       VARCHAR(32) DEFAULT NULL
   , email                       VARCHAR(64) DEFAULT NULL
-  , telephone                   VARCHAR(16) DEFAULT NULL
-  , address                     TEXT
-  , nationality                 CHAR(2) DEFAULT NULL
   , residence                   CHAR(2) DEFAULT NULL
   , haspassport                 TINYINT(1) DEFAULT NULL
+  , nationality                 CHAR(2) DEFAULT NULL
   , airport                     VARCHAR(64) DEFAULT NULL
   , languages                   VARCHAR(64) DEFAULT NULL
   , dob                         DATE DEFAULT NULL
-  , sex                         ENUM('m','f','t','d') DEFAULT NULL
+  , gender                      ENUM('m','f','o','d') DEFAULT NULL
+  , gender_other                VARCHAR(64) DEFAULT NULL
   , occupation                  VARCHAR(64) DEFAULT NULL
   , areaofstudy                 VARCHAR(64) DEFAULT NULL
+  , username                    VARCHAR(64) DEFAULT NULL
+  , project                     VARCHAR(255) DEFAULT NULL
+  , project2                    VARCHAR(255) DEFAULT NULL
+  , project3                    VARCHAR(255) DEFAULT NULL
+  , involvement                 TEXT
+  , contribution                TEXT
   , wm05                        TINYINT(1) DEFAULT NULL
   , wm06                        TINYINT(1) DEFAULT NULL
   , wm07                        TINYINT(1) DEFAULT NULL
@@ -39,30 +44,16 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , wm13                        TINYINT(1) DEFAULT NULL
   , presentation                TINYINT(1) DEFAULT NULL
   , presentationTopic           TEXT
-  , howheard                    TEXT
+  , howheard                    VARCHAR(64) DEFAULT NULL
   , why                         TEXT
-  , future                      TEXT
-  , englishAbility              TEXT
-  , username                    VARCHAR(64) DEFAULT NULL
-  , project                     VARCHAR(255) DEFAULT NULL
-  , project2                    VARCHAR(255) DEFAULT NULL
-  , project3                    VARCHAR(255) DEFAULT NULL
-  , projectlangs                TEXT
-  , involvement                 TEXT
-  , contribution                TEXT
-  , wantspartial                TINYINT(1) NOT NULL DEFAULT '0'
-  , canpaydiff                  TINYINT(1) NOT NULL DEFAULT '0'
-  , sincere                     TINYINT(1) NOT NULL DEFAULT '0'
-  , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
   , willpayincidentals          TINYINT(1) NOT NULL DEFAULT '0'
+  , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
   , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
-  , wmfAgreeName                TEXT
-  , rank                        INT(11) NOT NULL DEFAULT '0'
+  , wmfAgreeName                VARCHAR(255)
+  , wmfAgreeGuardian            VARCHAR(255) DEFAULT NULL
   , notes                       TEXT
   , exclude                     TINYINT(1) NOT NULL DEFAULT '0'
-  , confirmed                   TINYINT(1) NOT NULL DEFAULT '0'
-  , confhash                    VARCHAR(8) DEFAULT NULL
   , entered_on                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   , PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;

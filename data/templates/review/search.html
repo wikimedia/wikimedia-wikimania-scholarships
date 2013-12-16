@@ -40,9 +40,8 @@
     <th>name</th>
     <th>email</th>
     <th>residence</th>
-    <th>sex</th>
+    <th>gender</th>
     <th>age</th>
-    <th>partial</th>
     <th>p1</th>
   </tr>
   {% for row in records %}
@@ -51,9 +50,8 @@
     <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase=2">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>
     <td>{{ row.country_name }}</td>
-    <td>{{ row.sex }}</td>
+    <td>{{ row.gender }}</td>
     <td>{{ row.age }}</td>
-    <td>{{ row.partial }}</td>
     <td>{{ row.p1count ? row.p1score : '-' }}</td>
   </tr>
   {% else %}

@@ -30,8 +30,7 @@
     <li><a href="{{ urlFor( 'review_p2_list' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
     {% if isadmin|default(false) %}
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=0">{{ wgLang.message( 'final-full' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_scores' ) }}?partial=1">{{ wgLang.message( 'final-partial' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_scores' ) }}">{{ wgLang.message( 'final-full' ) }}</a></li>
     {% endif %}
   </ul>
 </li>

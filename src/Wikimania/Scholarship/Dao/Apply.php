@@ -42,11 +42,10 @@ class Apply extends AbstractDao {
 	 * @var array $settings
 	 */
 	protected $settings = array(
-		'phase1pass'    => 3,     // p1score needed to pass into phase2
-		'weightonwiki'  => 0.5,   // contribution of onwiki to final score
-		'weightoffwiki' => 0.15,  // contribution of offwiki to final score
-		'weightfuture'  => 0.25,  // contribution of future to final score
-		'weightenglish' => 0.1,   // contribution of englishAbility to final score
+		'phase1pass'     => 3,     // p1score needed to pass into phase2
+		'weightonwiki'   => 0.5,   // contribution of onwiki to final score
+		'weightoffwiki'  => 0.2,   // contribution of offwiki to final score
+		'weightinterest' => 0.3,   // contribution of interest to final score
 	);
 
 
@@ -124,9 +123,8 @@ class Apply extends AbstractDao {
 			's.email',
 			's.residence',
 			's.exclude',
-			's.sex',
+			's.gender',
 			'(YEAR(NOW()) - YEAR(s.dob)) as age',
-			'(s.canpaydiff * s.wantspartial) as partial',
 			'c.country_name',
 			'COALESCE(p1score, 0) as p1score',
 			'mycount',
@@ -244,7 +242,7 @@ class Apply extends AbstractDao {
 		if ( $phase == 1 ) {
 			$crit = 'valid';
 		} else {
-			$crit = 'future';
+			$crit = 'onwiki';
 		}
 
 		$sql = self::concat(
@@ -314,9 +312,8 @@ class Apply extends AbstractDao {
 			"s.email",
 			"s.residence",
 			"s.exclude",
-			"s.sex",
+			"s.gender",
 			"(YEAR(NOW()) - YEAR(s.dob)) AS age",
-			"(s.canpaydiff * s.wantspartial) AS partial",
 			"c.country_name",
 			"c.region",
 			"COALESCE(p1score, 0) AS p1score",
@@ -424,7 +421,7 @@ class Apply extends AbstractDao {
 		if ( $phase == 1 ) {
 			$where[] = "r.criterion = 'valid'";
 		} else {
-			$where[] = "r.criterion = 'future'";
+			$where[] = "r.criterion = 'onwiki'";
 		}
 
 		$sql = self::concat(
@@ -511,7 +508,7 @@ class Apply extends AbstractDao {
 	}
 
 
-	public function getP2List( $partial, $region ) {
+	public function getP2List( $region = 'All' ) {
 		$params = array();
 
 		$fields = array(
@@ -521,31 +518,26 @@ class Apply extends AbstractDao {
 			"s.email",
 			"s.residence",
 			"s.exclude",
-			"s.sex",
+			"s.gender",
 			"YEAR(NOW()) - YEAR(s.dob) AS age",
-			"(s.canpaydiff * s.wantspartial) AS partial",
 			"c.country_name",
 			"COALESCE(p1score, 0) AS p1score",
 			"COALESCE(nscorers, 0) AS nscorers",
-			"ow.onwiki AS onwiki",
-			"ofw.offwiki AS offwiki",
-			"f.future AS future",
-			"ea.englishAbility AS englishAbility",
-			"((:weightonwiki * ow.onwiki) + " .
-			"(:weightoffwiki * ofw.offwiki) + " .
-			"(:weightfuture * f.future) + " .
-			"(:weightenglish * ea.englishAbility)) as p2score",
+			"rk_ow.onwiki AS onwiki",
+			"rk_ofw.offwiki AS offwiki",
+			"rk_i.interest AS interest",
+			"(COALESCE(:weightonwiki * rk_ow.onwiki, 0) + " .
+			"COALESCE(:weightoffwiki * rk_ofw.offwiki, 0) + " .
+			"COALESCE(:weightinterest * rk_i.interest, 0)) as p2score",
 		);
 
 		$params['weightonwiki'] = (float)$this->settings['weightonwiki'];
 		$params['weightoffwiki'] = (float)$this->settings['weightoffwiki'];
-		$params['weightfuture'] = (float)$this->settings['weightfuture'];
-		$params['weightenglish'] = (float)$this->settings['weightenglish'];
+		$params['weightinterest'] = (float)$this->settings['weightinterest'];
 
 		$sqlOnWiki = $this->makeAggregateRankSql( 'onwiki', 'AVG' );
 		$sqlOffWiki = $this->makeAggregateRankSql( 'offwiki', 'AVG' );
-		$sqlFuture = $this->makeAggregateRankSql( 'future', 'AVG' );
-		$sqlEnglish = $this->makeAggregateRankSql( 'englishAbility', 'AVG' );
+		$sqlInterest = $this->makeAggregateRankSql( 'interest', 'AVG' );
 		$sqlP1Score = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 
 		$sqlNumScorers = self::concat(
@@ -562,40 +554,24 @@ class Apply extends AbstractDao {
 			$regionJoin = '';
 		}
 
-		if ( $partial == 2 ) {
-			$havingPartial = '';
-
-		} else {
-			$params['int_partial'] = $partial;
-			$havingPartial = 'AND partial = :int_partial';
-		}
-
 		$sql = self::concat(
 			"SELECT", implode( ',', $fields ),
 			"FROM scholarships s",
-			"LEFT OUTER JOIN ({$sqlOnWiki}) ow ON s.id = ow.scholarship_id",
-			"LEFT OUTER JOIN ({$sqlOffWiki}) ofw ON s.id = ofw.scholarship_id",
-			"LEFT OUTER JOIN ({$sqlFuture}) f ON s.id = f.scholarship_id",
-			"LEFT OUTER JOIN ({$sqlEnglish}) ea ON s.id = ea.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlOnWiki}) rk_ow ON s.id = rk_ow.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlOffWiki}) rk_ofw ON s.id = rk_ofw.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlInterest}) rk_i ON s.id = rk_i.scholarship_id",
 			"LEFT OUTER JOIN ({$sqlP1Score}) p1 ON s.id = p1.scholarship_id",
 			"LEFT OUTER JOIN ({$sqlNumScorers}) ns ON s.id = ns.scholarship_id",
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 			$regionJoin,
 			'GROUP BY s.id, s.fname, s.lname, s.email, s.residence',
 			'HAVING p1score >= :int_phase1pass AND s.exclude = 0',
-			$havingPartial,
-			'ORDER BY p2score DESC'
+			'ORDER BY p2score DESC, s.id ASC'
 		);
 
 		$params['int_phase1pass'] = (int)$this->settings['phase1pass'];
 
 		return $this->fetchAll( $sql, $params );
-	}
-
-
-	// Final scoring
-	public function getFinalScoring( $partial ) {
-		return $this->getP2List( $partial, 'All' );
 	}
 
 

@@ -20,9 +20,8 @@
     <th class="name">name</th>
     <th class="email">email</th>
     <th class="residence">residence</th>
-    <th class="sex">sex</th>
+    <th class="gender">gender</th>
     <th class="age">age</th>
-    <th class="partial">partial</th>
     <th class="p1">p1</th>
     {% if phase == 2 %}
     <th class="p2">#p2</th>
@@ -34,9 +33,8 @@
     <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase={{ phase }}">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>
     <td>{{ row.country_name }}</td>
-    <td>{{ row.sex }}</td>
+    <td>{{ row.gender }}</td>
     <td>{{ row.age }}</td>
-    <td>{{ row.partial }}</td>
     {% if phase == 2 %}
     <td>{{ row.p1score }}</td>
     <td>{{ row.nscorers }}</td>
@@ -44,6 +42,8 @@
     <td>{{ row.p1count ? row.p1score : '-' }}</td>
     {% endif %}
   </tr>
+  {% else %}
+  <tr><td colspan="8">No results found</td></tr>
   {% endfor %}
 </table>
 

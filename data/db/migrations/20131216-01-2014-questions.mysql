@@ -1,0 +1,35 @@
+-- Alter schema for 2014 questions
+
+-- Rename sex to gender and update ENUM values
+ALTER TABLE scholarships CHANGE sex gender ENUM('m','f','o','d') DEFAULT NULL;
+
+-- Add new gender_column
+ALTER TABLE scholarships
+  ADD COLUMN gender_other VARCHAR(64) DEFAULT NULL
+  AFTER gender;
+
+-- Convert howheard from clob to varchar
+ALTER TABLE scholarships CHANGE howheard howheard VARCHAR(64) DEFAULT NULL;
+
+-- Convert wmfAgreeName from clob to varchar
+ALTER TABLE scholarships CHANGE wmfAgreeName wmfAgreeName VARCHAR(255);
+
+-- Add guardian signature
+ALTER TABLE scholarships
+  ADD COLUMN wmfAgreeGuardian VARCHAR(255) DEFAULT NULL
+  AFTER wmfAgreeName;
+
+-- Drop unused columns
+ALTER TABLE scholarships DROP COLUMN telephone;
+ALTER TABLE scholarships DROP COLUMN address;
+ALTER TABLE scholarships DROP COLUMN future;
+ALTER TABLE scholarships DROP COLUMN englishAbility;
+ALTER TABLE scholarships DROP COLUMN projectlangs;
+ALTER TABLE scholarships DROP COLUMN wantspartial;
+ALTER TABLE scholarships DROP COLUMN canpaydiff;
+ALTER TABLE scholarships DROP COLUMN sincere;
+ALTER TABLE scholarships DROP COLUMN rank;
+ALTER TABLE scholarships DROP COLUMN confirmed;
+ALTER TABLE scholarships DROP COLUMN confhash;
+
+

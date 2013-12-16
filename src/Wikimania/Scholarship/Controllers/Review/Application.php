@@ -79,9 +79,7 @@ class Application extends Controller {
 
 		if ( $this->form->validate() ) {
 			$id = $this->form->get( 'id' );
-			$criteria = array(
-				'valid', 'onwiki', 'future', 'offwiki', 'program',
-				'englishAbility' );
+			$criteria = array( 'valid', 'onwiki', 'offwiki', 'interest' );
 
 			$success = true;
 			foreach ( $criteria as $c ) {

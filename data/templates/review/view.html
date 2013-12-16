@@ -67,9 +67,9 @@
               {% endif %}
             </dd>
             <dt>Gender:</dt>
-            <dd>{{ helpers.gender( ctx, schol.sex ) }}</dd>
-            {% if 'gender_other' in schol and schol.gender_other %}
-            <dd>{{ schol.gender_other }}</dd>
+            <dd>{{ helpers.gender( ctx, schol.gender ) }}</dd>
+            {% if schol.gender_other is not empty %}
+            <dd>( {{ schol.gender_other }} )</dd>
             {% endif %}
             {% if schol.occupation is not empty %}
             <dt>Occupation:</dt>

@@ -4,7 +4,7 @@
 {% spaceless %}
 <ol class="breadcrumb">
   <li>{{ wgLang.message( 'nav-reports' ) }}</li>
-  <li>{{ wgLang.message( partial ? 'final-partial' : 'final-full' ) }}</li>
+  <li>{{ wgLang.message( 'final-full' ) }}</li>
 </ol>
 
 <table class="table table-striped table-hover table-condensed table-responsive">
@@ -14,14 +14,12 @@
     <th>name</th>
     <th>email</th>
     <th>residence</th>
-    <th>sex</th>
+    <th>gender</th>
     <th>age</th>
-    <th>partial?</th>
     <th># p2 scorers</th>
     <th>onwiki</th>
     <th>offwiki</th>
-    <th>future</th>
-    <th>English Ability</th>
+    <th>interest</th>
     <th>p2 score</th>
   </tr>
   {% for row in records %}
@@ -31,16 +29,16 @@
     <td><a href="{{  urlFor( 'review_view' ) }}?id={{ row.id }}&phase=0" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>
     <td>{{ row.country_name }}</td>
-    <td>{{ row.sex }}</td>
+    <td>{{ row.gender }}</td>
     <td>{{ row.age }}</td>
-    <td>{{ row.partial }}</td>
     <td>{{ row.nscorers }}</td>
     <td>{{ '%.3f'|format( row.onwiki ) }}</td>
     <td>{{ '%.3f'|format( row.offwiki ) }}</td>
-    <td>{{ '%.3f'|format( row.future ) }}</td>
-    <td>{{ '%.3f'|format( row.englishAbility ) }}</td>
+    <td>{{ '%.3f'|format( row.interest ) }}</td>
     <td>{{ '%.4f'|format( row.p2score ) }}</td>
   </tr>
+  {% else %}
+  <tr><td colspan="12">No results found</td></tr>
   {% endfor %}
 </table>
 {% endspaceless %}

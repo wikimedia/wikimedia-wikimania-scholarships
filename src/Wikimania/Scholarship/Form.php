@@ -180,7 +180,16 @@ class Form {
 				}
 		}
 
+		$this->customValidationHook();
+
 		return count( $this->errors ) === 0;
+	}
+
+	/**
+	 * Stub method that can be extended by subclasses to add additional
+	 * validation logic.
+	 */
+	protected function customValidationHook () {
 	}
 
 	public function get( $name ) {

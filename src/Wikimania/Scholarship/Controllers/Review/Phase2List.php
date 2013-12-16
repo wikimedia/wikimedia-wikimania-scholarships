@@ -36,33 +36,24 @@ class Phase2List extends Controller {
 		$regionList = $this->dao->getRegionList();
 		array_unshift( $regionList, 'All' );
 
-		$this->form->expectInt( 'partial', array( 'default' => 0 ) );
-		$this->form->expectInArray( 'region', $regionList, array( 'default' => 'All' ) );
+		$this->form->expectInArray( 'region', $regionList, array(
+			'default' => 'All',
+			'required' => true,
+		) );
 		$this->form->expectBool( 'export' );
 		$this->form->validate( $_GET );
 
-
-		$partial = $this->form->get( 'partial' );
 		$region = $this->form->get( 'region' );
-
-		$rows = $this->dao->getP2List( $partial, $region );
+		$rows = $this->dao->getP2List( $region );
 
 		if ( $this->request->get( 'export' ) ) {
-			if ( $partial === 0 ) {
-				$partialName = 'full';
-			} elseif ( $partial == 1 ) {
-				$partialName = 'partial';
-			} else {
-				$partialName = 'all';
-			}
-
 			$ts = gmdate( 'Ymd\THi' );
 			$this->response->headers->set( 'Content-type',
 				'text/download; charset=utf-8' );
 			$this->response->headers->set( 'Content-Disposition',
-				'attachment; filename="' . "p2_{$partialName}_{$region}_{$ts}" . '.csv"' );
+				'attachment; filename="' . "p2_{$region}_{$ts}" . '.csv"' );
 
-			echo 'id,name,email,residence,sex,age,"partial?","# p2 scorers",onwiki,offwiki,future,"English Ability","p2 score"', "\n";
+			echo 'id,name,email,residence,gender,age,"# p2 scorers",onwiki,offwiki,interest,"p2 score"', "\n";
 
 			$fp = fopen( 'php://output', 'w' );
 			foreach ( $rows as $row ) {
@@ -71,15 +62,13 @@ class Phase2List extends Controller {
 					ltrim( "{$row['fname']} {$row['lname']}", '=@' ),
 					ltrim( $row['email'], '=@' ),
 					ltrim( $row['country_name'], '=@' ),
-					ltrim( $row['sex'], '=@' ),
+					ltrim( $row['gender'], '=@' ),
 					(int)$row['age'],
-					(int)$row['partial'],
 					(int)$row['nscorers'],
 					round( $row['onwiki'], 3 ),
 					round( $row['offwiki'], 3 ),
-					round( $row['future'], 3 ),
-					round( $row['englishAbility'], 3 ),
-					round( $row['p1score'], 4 ),
+					round( $row['interest'], 3 ),
+					round( $row['p2score'], 4 ),
 				);
 				fputcsv( $fp, $csv );
 			}
@@ -87,7 +76,6 @@ class Phase2List extends Controller {
 
 		} else {
 			$this->view->set( 'regionList', $regionList );
-			$this->view->set( 'partial', $partial );
 			$this->view->set( 'region', $region );
 			$this->view->set( 'records', $rows );
 			$this->render( 'review/p2/list.html' );

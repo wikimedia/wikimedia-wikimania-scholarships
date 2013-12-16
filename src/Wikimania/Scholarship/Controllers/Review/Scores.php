@@ -33,13 +33,7 @@ use Wikimania\Scholarship\Controller;
 class Scores extends Controller {
 
 	protected function handleGet() {
-		$this->form->expectInt( 'partial', array( 'required' => true ) );
-		$this->form->validate( $_GET );
-
-		$partial = $this->form->get( 'partial' );
-		$rows = $this->dao->getP2List( $partial, 'All' );
-
-		$this->view->set( 'partial', $partial );
+		$rows = $this->dao->getP2List( 'All' );
 		$this->view->set( 'records', $rows );
 		$this->render( 'review/scores.html' );
 	}

@@ -83,23 +83,32 @@
 {% set dayValue = ctx.form.get( dayName ) %}
 {% set monthValue = ctx.form.get( monthName ) %}
 {% set yearValue = ctx.form.get( yearName ) %}
-{{ forms.startElement( ctx, mesg, '', { 'class':'dob','required':false }|merge( opts ) ) }}
+{% if dayName in ctx.form.errors or monthName in ctx.form.errors or yearName
+in ctx.form.errors %}
+{% set class = 'dob has-error' %}
+{% else %}
+{% set class = 'dob' %}
+{% endif %}
+{% set opts = { 'class':class, 'required':false }|merge( opts ) %}
+{% set required = opts['required'] ? 'required' : '' %}
+
+{{ forms.startElement( ctx, mesg, '', opts ) }}
   <div class="form-inline">
-  <select class="form-control" id="{{ dayName }}" name="{{ dayName }}" {{ opts['required'] ? 'required' }}>
-    <option>{{ ctx.wgLang.message( 'form-select-day' ) }}</option>
+  <select class="form-control" id="{{ dayName }}" name="{{ dayName }}" {{ required }}>
+    <option value="">{{ ctx.wgLang.message( 'form-select-day' ) }}</option>
     {% for i in 1..31 %}
     <option value="{{ "%d"|format(i) }}" {{ i == dayValue ? 'selected="selected"' }}>{{ i }}</option>
     {% endfor %}
   </select>&nbsp;
-  <select class="form-control" id="{{ monthName }}" name="{{ monthName }}" {{ opts['required'] ? 'required' }}>
-    <option>{{ ctx.wgLang.message( 'form-select-month' ) }}</option>
+  <select class="form-control" id="{{ monthName }}" name="{{ monthName }}" {{ required }}>
+    <option value="">{{ ctx.wgLang.message( 'form-select-month' ) }}</option>
     {% for idx, month in ctx.wgLang.message( 'MONTH_NAMES' ) %}
     {% set i = idx + 1 %}
-    <option value="{{ "%d"|format(i) }}" {{ i == dayValue ? 'selected="selected"' }}>{{ month }}</option>
+    <option value="{{ "%d"|format(i) }}" {{ i == monthValue ? 'selected="selected"' }}>{{ month }}</option>
     {% endfor %}
   </select>&nbsp;
-  <select class="form-control" id="{{ yearName }}" name="{{ yearName }}" {{ opts['required'] ? 'required' }}>
-    <option>{{ ctx.wgLang.message( 'form-select-year' ) }}</option>
+  <select class="form-control" id="{{ yearName }}" name="{{ yearName }}" {{ required }}>
+    <option value="">{{ ctx.wgLang.message( 'form-select-year' ) }}</option>
     {% set thisYear = 'now'|date('Y') %}
     {% for i in range(thisYear, thisYear - 130, -1) %}
     <option value="{{ i }}" {{ i == yearValue ? 'selected="selected"' }}>{{ i }}</option>
