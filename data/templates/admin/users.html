@@ -2,7 +2,12 @@
 
 {% block content %}
 {% spaceless %}
-<table class="grid">
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-admin' ) }}</li>
+  <li>{{ wgLang.message( 'nav-users' ) }}</li>
+</ol>
+
+<table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
     <th>{{ wgLang.message( 'admin-users-id' ) }}</th>
     <th>{{ wgLang.message( 'admin-users-username' ) }}</th>
@@ -17,15 +22,15 @@
     <td>{{ row.id }}</td>
     <td><a href="{{ urlFor( 'admin_user', { 'id':row.id} ) }}">{{ row.username }}</a></td>
     <td><a href="mailto:{{ row.email|url_encode }}">{{ row.email }}</a></td>
-    <td>{{ row.reviewer ? {{ wgLang.message( 'admin-users-yes' ) }} : {{ wgLang.message( 'admin-users-no' ) }} }}</td>
-    <td>{{ row.isvalid ? {{ wgLang.message( 'admin-users-yes' ) }} : {{ wgLang.message( 'admin-users-no' ) }} }}</td>
-    <td>{{ row.isadmin ? {{ wgLang.message( 'admin-users-yes' ) }} : {{ wgLang.message( 'admin-users-no' ) }} }}</td>
-    <td>{{ row.blocked ? {{ wgLang.message( 'admin-users-yes' ) }} : {{ wgLang.message( 'admin-users-no' ) }} }}</td>
+    <td>{{ row.reviewer ? wgLang.message( 'admin-users-yes' ) : wgLang.message( 'admin-users-no' ) }}</td>
+    <td>{{ row.isvalid ? wgLang.message( 'admin-users-yes' ) : wgLang.message( 'admin-users-no' ) }}</td>
+    <td>{{ row.isadmin ? wgLang.message( 'admin-users-yes' ) : wgLang.message( 'admin-users-no' ) }}</td>
+    <td>{{ row.blocked ? wgLang.message( 'admin-users-yes' ) : wgLang.message( 'admin-users-no' ) }}</td>
   </tr>
   {% endfor %}
 </table>
-{% if isadmin %}
-<p><a href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">{{ wgLang.message( 'admin-users-add' ) }}</a></p>
+{% if isadmin|default(false) %}
+<p><a class="btn btn-default" href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">{{ wgLang.message( 'admin-users-add' ) }}</a></p>
 {% endif %}
 {% endspaceless %}
 {% endblock content %}

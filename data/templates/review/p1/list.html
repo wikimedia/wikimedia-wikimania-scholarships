@@ -3,13 +3,19 @@
 
 {% block content %}
 {% spaceless %}
-<h2>{{ title }}</h2>
-<form method="get" action="{{ urlFor( route ) }}">
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-reports' ) }}</li>
+  <li>{{ title }}</li>
+</ol>
+
+<form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
   <input type="hidden" name="action" value="export">
-  <input type="submit" value="{{ wgLang.message( 'review-list-export' ) }}">
+  <div class="form-group">
+    <input type="submit" class="btn btn-sm btn-default" value="{{ wgLang.message( 'review-list-export' ) }}" />
+  </div>
 </form>
 <p></p>
-<table class="grid bordered">
+<table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
     <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
     <th>{{ wgLang.message( 'review-list-id' ) }}</th>

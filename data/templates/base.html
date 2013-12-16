@@ -1,52 +1,90 @@
 {% set lang = wgLang.getLang %}
+{% set page = null %}
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6 no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><![endif]-->
-<!--[if IE 7 ]><html class="ie ie7 no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><![endif]-->
-<!--[if IE 8 ]><html class="ie ie8 no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" xml:lang="{{ lang }}" lang="{{ lang }}"><!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ lang }}"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="{{ lang }}"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="{{ lang }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ lang }}"> <!--<![endif]-->
   <head>
     <meta http-equiv="Content-language" content="{{ lang }}"/>
     <meta charset="utf-8"/>
     <title>{% block title %}{{ wgLang.message( 'header-title' ) }}{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" type="image/x-icon" href="{{ siteUrl( 'favicon.ico' ) }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/base.css' ) }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/skeleton.css' ) }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/style.css' ) }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/vendor/bootstrap.css' ) }}">
+    <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/main.css' ) }}">
     {% block css %}{% endblock css %}
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="{{ siteUrl( 'js/html5.js' ) }}"></script>
-    <![endif]-->
+    <script type="text/javascript" src="{{ siteUrl( 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' ) }}"></script>
   </head>
   <body>
-    <div class="container">
-      <div id="langbar" class="fifteen columns">
-        <span class="langlabel">{{ wgLang.message( 'language' ) }}</span>
-        <ul class="langlist">
-          {% for l in wgLang.getLangs %}
-          <li><a href="{{ app.request.getPath }}?uselang={{ l }}" {{ l == lang ? 'class="selected"' }}>{{ l }}</a></li>
-          {% endfor %}
-          <li class="last"><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
-        </ul>
+    <header class="navbar navbar-default navbar-fixed-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ urlFor( 'home') }}" title="{{ wgLang.message( 'header-title' ) }}"><img src="{{ siteUrl( 'images/brand.png' ) }}" width="32" height="36" alt="{{ wgLang.message( 'wikimania' ) }}"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% block navbar %}
+            <li {% block nav_li_apply %}{% endblock %}><a href="{{ urlFor( 'apply' ) }}">{{ wgLang.message( 'nav-apply' ) }}</a></li>
+            <li><a href="//wikimania2014.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'nav-faq' ) }}</a></li>
+            <li {% block nav_li_credits %}{% endblock %}><a href="{{ urlFor( 'credits' ) }}">{{ wgLang.message( 'nav-credits' ) }}</a></li>
+            <li {% block nav_li_privacy %}{% endblock %}><a href="{{ urlFor( 'privacy' ) }}">{{ wgLang.message( 'nav-privacy' ) }}</a></li>
+            <li {% block nav_li_contact %}{% endblock %}><a href="{{ urlFor( 'contact' ) }}">{{ wgLang.message( 'nav-contact' ) }}</a></li>
+            <li {% block nav_li_translate %}{% endblock %}><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
+            {% endblock navbar %}
+          </ul>
+          <div class="navbar-right navbar-text form-inline"><span class="langlabel">{{ wgLang.message( 'nav-language' ) }}</span>
+            <ul class="langlist footer-links">
+              {% for l in wgLang.getLangs %}
+              <li class="{{ loop.last ? 'last' }}"><a href="{{ app.request.getPath }}?uselang={{ l }}" {{ l == lang ? 'class="selected"' }}>{{ l }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          </ul>
+        </div>
       </div>
-      <h1><a id="banner" href="{{ urlFor( 'home' ) }}" title="{{ wgLang.message( 'header-title' ) }}"><img src="{{ siteUrl( 'images/Wikimania-2013-bannerm.png' ) }}" alt="{{ wgLang.message( 'wikimania' ) }}"/></a></h1>
+    </header>
+
+    {% block banner %}
+    <div class="jumbotron site-banner">
+      <div class="container text-center">
+        <img src="{{ siteUrl( 'images/logo.png' ) }}" width="118" height="137" alt="{{ wgLang.message( 'wikimania' ) }}">
+        <h2>{{ wgLang.message( 'wikimania' ) }}</h2>
+        <h3>{{ wgLang.message( 'wikimania-location-year' ) }}</h3>
+      </div>
+    </div>
+    {% endblock banner %}
+
+    <div class="container">
       {% block pre_content %}
       {% if flash|default(false) %}
-      {% if flash.error|default(false) %}<p class="error">{{ flash.error }}</p>{% endif %}
-      {% if flash.info|default(false) %}<p class="info">{{ flash.info }}</p>{% endif %}
+      {% if flash.error|default(false) %}<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ flash.error }}</div>{% endif %}
+      {% if flash.info|default(false) %}<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ flash.info }}</div>{% endif %}
       {% endif %}
       {% endblock pre_content %}
       {% block content %}<p>{{ app.request.getPath }}: Your message here.</p>{% endblock content %}
       {% block post_content %}{% endblock post_content %}
-      <div id="footer">
-        <ul id="footerlinks">
-          <li><a href="http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'footer-faq' ) }}</a></li>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <div class="hr"><hr/></div>
+      <div class="container text-right">
+        <ul class="footer-links">
+          <li><a href="http://wikimania2014.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'footer-faq' ) }}</a></li>
           <li><a href="{{ urlFor( 'credits' ) }}">{{ wgLang.message( 'footer-credits' ) }}</a></li>
           <li><a href="{{ urlFor( 'privacy' ) }}">{{ wgLang.message( 'footer-privacy' ) }}</a></li>
           <li class="last"><a href="{{ urlFor( 'contact' ) }}">{{ wgLang.message( 'footer-contact' ) }}</a></li>
         </ul>
       </div>
-    </div>
-    <script src="{{ siteUrl( 'js/jquery-1.7.1.min.js' ) }}"></script>
+    </footer>
+
+    <script src="{{ siteUrl( 'js/vendor/jquery-1.10.2.min.js' ) }}"></script>
+    <script src="{{ siteUrl( 'js/vendor/bootstrap.min.js' ) }}"></script>
     <script src="{{ siteUrl( 'js/site.js' ) }}"></script>
     {% block javascript %}{% endblock javascript %}
   </body>

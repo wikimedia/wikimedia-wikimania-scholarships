@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+
+{% block nav_li_credits %}class="active"{% endblock %}
+
 {% block content %}
 {% spaceless %}
-<div id="credits">
-  <h2>{{ wgLang.message( 'credits' ) }}</h2>
-  {{ wgLang.message( 'credits-page' )|raw }}
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>{{ wgLang.message( 'credits' ) }}</h2>
+    <p>{{ wgLang.message( 'credits-page' )|raw }}</p>
+  </div>
 </div>
 {% endspaceless %}
 {% endblock content %}

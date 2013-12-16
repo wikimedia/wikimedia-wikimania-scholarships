@@ -3,61 +3,73 @@
 
 {% block content %}
 {% spaceless %}
-<div id="form-container" class="fourteen columns">
-  <ul class="sublinks">
-    <li><a href="{{ urlFor( route ) }}?apps=all">All applications</a></li>
-    <li><a href="{{ urlFor( route ) }}?apps=unreviewed">All unreviewed</a></li>
-    <li><a href="{{ urlFor( route ) }}?apps=myapps">My unreviewed</a></li>
-  </ul>
-  <form method="get" action="{{ urlFor( route ) }}">
-    <table class="grid" id="grid" style="width: 100%;">
-      <tr>
-        <th class="id">id</th>
-        <th class="name">name</th>
-        <th class="email">email</th>
-        <th class="residence">residence</th>
-        <th class="sex">sex</th>
-        <th class="age">age</th>
-        <th class="partial">partial</th>
-        <th class="p1">p1</th>
-        {% if phase == 2 %}
-        <th class="p2">#p2</th>
-        {% endif %}
-      </tr>
-      {% for row in records %}
-      <tr class="{{ cycle( [ 'odd', 'even' ], loop.index ) }}">
-        <td>{{ row.id }}</td>
-        <td><a href="{{ siteUrl( 'review/view' ) }}?id={{ row.id }}&phase={{ phase }}">{{ row.fname }} {{ row.lname }}</a></td>
-        <td>{{ row.email }}</td>
-        <td>{{ row.country_name }}</td>
-        <td>{{ row.sex }}</td>
-        <td>{{ row.age }}</td>
-        <td>{{ row.partial }}</td>
-        {% if phase == 2 %}
-        <td>{{ row.p1score }}</td>
-        <td>{{ row.nscorers }}</td>
-        {% else %}
-        <td>{{ row.p1count ? row.p1score : '-' }}</td>
-        {% endif %}
-      </tr>
-      {% endfor %}
-    </table>
-  </form>
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-review' ) }}</li>
+  <li>{{ wgLang.message( 'phase-' ~ phase ) }}</li>
+</ol>
 
-  <p>Page {{ params.page + 1 }} of {{ params.pages }}</p>
-  <ul class="pagerlinks">
-    {% if params.page > 0 %}
-    <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(params.page - 1) } ) }}" id="prev">« Previous</a></li>
+<ul class="nav nav-tabs" role="navigation">
+  <li {{ apps == 'all' ? 'class="active"' }}><a href="{{ urlFor( route ) }}?apps=all">All applications</a></li>
+  <li {{ apps == 'unreviewed' ? 'class="active"' }}><a href="{{ urlFor( route ) }}?apps=unreviewed">All unreviewed</a></li>
+  <li {{ apps == 'myapps' ? 'class="active"' }}><a href="{{ urlFor( route ) }}?apps=myapps">My unreviewed</a></li>
+</ul>
+
+<table class="table table-striped table-hover table-condensed table-responsive">
+  <tr>
+    <th class="id">id</th>
+    <th class="name">name</th>
+    <th class="email">email</th>
+    <th class="residence">residence</th>
+    <th class="sex">sex</th>
+    <th class="age">age</th>
+    <th class="partial">partial</th>
+    <th class="p1">p1</th>
+    {% if phase == 2 %}
+    <th class="p2">#p2</th>
     {% endif %}
-    {% if params.left > 0 %}<li>&hellip;</li>{% endif %}
-    {% for i in params.left .. params.right %}
-    <li class="{{ i == params.page ? 'current' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
-    {% endfor %}
-    {% if params.right < params.pages - 1 %}<li>&hellip;</li>{% endif %}
-    {% if params.page + 1 < params.pages %}
-    <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(params.page + 1) } ) }}" id="next">Next »</a></li>
+  </tr>
+  {% for row in records %}
+  <tr>
+    <td>{{ row.id }}</td>
+    <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase={{ phase }}">{{ row.fname }} {{ row.lname }}</a></td>
+    <td>{{ row.email }}</td>
+    <td>{{ row.country_name }}</td>
+    <td>{{ row.sex }}</td>
+    <td>{{ row.age }}</td>
+    <td>{{ row.partial }}</td>
+    {% if phase == 2 %}
+    <td>{{ row.p1score }}</td>
+    <td>{{ row.nscorers }}</td>
+    {% else %}
+    <td>{{ row.p1count ? row.p1score : '-' }}</td>
     {% endif %}
-  </ul>
+  </tr>
+  {% endfor %}
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <p class="text-right">Page {{ params.page + 1 }} of {{ params.pages }}</p>
+  </div>
+  <div class="col-md-9">
+      <ul class="pagination">
+        {% if params.page > 0 %}
+        <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(params.page - 1) } ) }}" id="prev">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% if params.left > 0 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+        {% for i in params.left .. params.right %}
+        <li class="{{ i == params.page ? 'active' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
+        {% endfor %}
+        {% if params.right < params.pages - 1 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+        {% if params.page + 1 < params.pages %}
+        <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(params.page + 1) } ) }}" >&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+  </div>
 </div>
 {% endspaceless %}
 {% endblock content %}

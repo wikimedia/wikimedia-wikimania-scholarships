@@ -1,48 +1,60 @@
 {# base template for authenticated users #}
 {% extends "base.html" %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/jquery-ui.css' ) }}" />
-<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/flexigrid.css' ) }}" />
-<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/review.css' ) }}" />
-{% endblock css %}
+{% block css %}{% endblock css %}
 
-{% block pre_content %}
-<div id="form-container" class="fourteen columns">
-<div id="tabsnav" class="clearfix">
-  <ul id="review-tabs">
+{% block banner %}{% endblock %}
+
+{% block navbar %}
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-review' ) }} <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="{{ urlFor( 'review_view' ) }}">{{ wgLang.message( 'review' ) }}</a></li>
+    <li class="divider"></li>
     <li><a href="{{ urlFor( 'review_phase1' ) }}">{{ wgLang.message( 'phase-1' ) }}</a></li>
     <li><a href="{{ urlFor( 'review_phase2' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
-    <li>|</li>
+    <li class="divider"></li>
+    <li><a href="{{ urlFor( 'review_search' ) }}">{{ wgLang.message( 'search' ) }}</a></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-reports' ) }} <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="{{ urlFor( 'review_countries' ) }}">{{ wgLang.message( 'by-country' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_regions' ) }}">{{ wgLang.message( 'by-region' ) }}</a></li>
+    <li class="divider"></li>
     <li><a href="{{ urlFor( 'review_p1_success' ) }}">{{ wgLang.message( 'phase-1-success' ) }}</a></li>
     <li><a href="{{ urlFor( 'review_p1_fail' ) }}">{{ wgLang.message( 'phase-1-fail' ) }}</a></li>
+    <li class="divider"></li>
     <li><a href="{{ urlFor( 'review_p2_list' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
-    {% if isadmin|default(true) %}
-    {# FIXME: better auth integration #}
-    <li>|</li>
+    {% if isadmin|default(false) %}
+    <li class="divider"></li>
     <li><a href="{{ urlFor( 'review_scores' ) }}?partial=0">{{ wgLang.message( 'final-full' ) }}</a></li>
     <li><a href="{{ urlFor( 'review_scores' ) }}?partial=1">{{ wgLang.message( 'final-partial' ) }}</a></li>
     {% endif %}
-    <li>|</li>
-    <li><a href="{{ urlFor( 'review_view' ) }}">{{ wgLang.message( 'review' ) }}</a></li>
-    <li>|</li>
-    <li><a href="{{ urlFor( 'review_search' ) }}">{{ wgLang.message( 'search' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_countries' ) }}">{{ wgLang.message( 'by-country' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_regions' ) }}">{{ wgLang.message( 'by-region' ) }}</a></li>
-    <li>|</li>
+  </ul>
+</li>
+
+{% if isadmin|default(false) %}
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-admin' ) }} <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="{{ urlFor( 'admin_users' ) }}">{{ wgLang.message( 'nav-users' ) }}</a></li>
+    <li><a href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">{{ wgLang.message( 'admin-users-add' ) }}</a></li>
+  </ul>
+</li>
+{% endif %}
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-account' ) }} <b class="caret"></b></a>
+  <ul class="dropdown-menu">
     <li><a href="{{ urlFor( 'user_changepassword' ) }}">{{ wgLang.message( 'change-password' ) }}</a></li>
     <li><a href="{{ urlFor( 'logout' ) }}">{{ wgLang.message( 'logout' ) }}</a></li>
   </ul>
-</div>
-{{ parent() }}
-{% endblock pre_content %}
+</li>
+{% endblock navbar %}
 
 {% block post_content %}
 </div>
 {% endblock post_content %}
-
-{% block javascript %}
-<script src="{{ siteUrl( 'js/jquery-ui.min.js' ) }}"></script>
-<script src="{{ siteUrl( 'js/flexigrid.pack.js' ) }}"></script>
-<script src="{{ siteUrl( 'js/schols.js' ) }}"></script>
-{% endblock javascript %}

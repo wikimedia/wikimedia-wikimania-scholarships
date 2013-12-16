@@ -13,7 +13,7 @@
 {% set r = score.rank %}
 {% endif %}
 {% endfor %}
-<select id="{{ crit }}" name="{{ crit }}">
+<select class="form-control input-sm" id="{{ crit }}" name="{{ crit }}">
   {% for o in opts %}
   <option value="{{ o }}" {{ r == o ? 'selected="selected"'}}>{{ o }}</option>
   {% endfor %}
@@ -25,6 +25,20 @@
 {% endmacro %}
 
 {% macro gender( ctx, g ) %}
-{% set gmap = { 'm':'form-gender-male', 'f':'form-gender-female', 't':'form-gender-transgender', 'u':'form-gender-unspecified' } %}
+{% set gmap = { 'm':'form-gender-male', 'f':'form-gender-female', 'o':'form-gender-other', 'd':'form-gender-unspecified' } %}
 {{ ctx.wgLang.message( gmap[g]|default( 'form-gender-unspecified' ) ) }}
+{% endmacro %}
+
+{% macro yesNo( var ) %}
+  <span class="glyphicon glyphicon-{{ var == 1 ? 'ok' : 'remove'  }}"></span>
+{% endmacro %}
+
+{% macro participation( var ) %}
+  <td class="text-center">
+    {% if var == 1 %}
+    <span class="glyphicon glyphicon-ok"></span>
+    {% else %}
+    &nbsp;
+    {% endif %}
+  </td>
 {% endmacro %}

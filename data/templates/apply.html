@@ -14,11 +14,15 @@ lang: currently selected display language
 {% import "inc/forms.html" as forms %}
 {% set ctx = _context %}
 
+{% block nav_li_apply %}class="active"{% endblock %}
+
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/chosen.min.css' ) }}" />
+<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/vendor/chosen.css' ) }}" />
+<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/vendor/chosen-bootstrap.css' ) }}" />
 {% endblock css %}
+
 {% block javascript %}
-<script src="{{ siteUrl( 'js/chosen.jquery.js' ) }}"></script>
+<script src="{{ siteUrl( 'js/vendor/chosen.jquery.js' ) }}"></script>
 <script type="text/javascript">(function( $, document ) {
     $( document ).ready( function() { $('.chosen-select').chosen({'search_contains':true}); });
 })( jQuery, document );</script>
@@ -28,135 +32,119 @@ lang: currently selected display language
 {% spaceless %}
 
 {% if app.mock %}
-<div id="app-mock"><p>{{ wgLang.message( 'mock' )|raw }}</p></div>
+<div class="alert alert-info">
+  <p class="text-center lead">{{ wgLang.message( 'mock' ) }}</p>
+</div>
 {% endif %}
 
 {% if registration_open == false %}
-<p>{{ wgLang.message( 'not-open' ) }}</p>
+<div class="jumbotron">
+  <div class="container">
+    <p>{{ wgLang.message( 'not-open' ) }}</p>
+  </div>
+</div>
 
 {% elseif registration_closed == true %}
-<div id="app-closed" class="fourteen columns">
-  <p>{{ wgLang.message( 'deadline-passed'|raw ) }}</p>
+<div class="jumbotron">
+  <div class="container">
+    <p>{{ wgLang.message( 'deadline-passed'|raw ) }}</p>
+  </div>
 </div>
 
 {% else %}
 {% if submitted %}
 <h1>{{ wgLang.message( 'confirm-thanks' ) }}</h1>
-<div id="appresponse">{{ wgLang.message( 'confirm-text' )|raw }}</div>
+<p class="lead">{{ wgLang.message( 'confirm-text' )|raw }}</p>
 
 {% else %}
 {% if form.hasErrors %}
-<div class="errorbox">{{ wgLang.message( 'form-error' ) }}</div>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <p class="lead">{{ wgLang.message( 'form-error' ) }}</p>
+</div>
 {% endif %}
 
-<div id="introtext">{{ wgLang.message( 'text-intro' )|raw }}</div>
+<div class="jumbotron">
+  <div class="container">
+    {{ wgLang.message( 'form-intro' )|raw }}
+    <p class="text-center">{{ wgLang.message( 'form-intro-faq' )|raw }}</p>
+  </div>
+</div>
 
-<div class="faq">{{ wgLang.message( 'confirm-faq' )|raw }}</div>
-<form action="{{ urlFor( 'apply_post' ) }}" method="post">
-  <label class="required">{{ wgLang.message( 'required-field' ) }}</label>
-  <br/><br/>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+<form action="{{ urlFor( 'apply_post' ) }}" method="post" role="form">
   <input type="hidden" name="lang" id="lang" value="{{ lang }}" />
+  <div class="form-group">
+    <label class="required">{{ wgLang.message( 'required-field' ) }}</label>
+  </div>
 
-  <!-- contact information start-->
   <fieldset>
-    <legend>{{ wgLang.message( 'contact-info' ) }}</legend>
-    <ul id="form-contact-info" class="appform">
-      {{ forms.text( ctx, 'name-first', 'fname', { 'required':true } ) }}
-      {{ forms.text( ctx, 'name-last', 'lname', { 'required':true } ) }}
-      {{ forms.text( ctx, 'form-email', 'email', { 'required':true } ) }}
-      {{ forms.text( ctx, 'form-telephone', 'telephone' ) }}
-      {{ forms.textArea( ctx, 'form-mailing-address', 'address' ) }}
-      {{ forms.countrySelect( ctx, 'form-country-residence', 'residence', { 'required':true } ) }}
-    </ul>
+    <legend>{{ wgLang.message( 'form-contact-info' ) }}</legend>
+    {{ forms.text( ctx, 'form-fname', 'fname', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-lname', 'lname', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-email', 'email', { 'required':true } ) }}
+    {{ forms.countrySelect( ctx, 'form-residence', 'residence', { 'required':true } ) }}
   </fieldset>
-  <!-- contact information end-->
-  <!-- personal information start-->
+
   <fieldset>
     <legend>{{ wgLang.message( 'form-personalinfo' ) }}</legend>
-    <ul class="appform">
-      {{ forms.yesNo( ctx, 'form-haspassport', 'haspassport' ) }}
-      {{ forms.countrySelect( ctx, 'form-nationality', 'nationality', { 'required':true } ) }}
-      {{ forms.text( ctx, 'form-airport', 'airport' ) }}
-      {{ forms.text( ctx, 'form-language', 'languages' ) }}
-      {{ forms.dob( ctx, 'form-dateofbirth', 'dd', 'mm', 'yy' ) }}
-      {{ forms.i18nSelect( ctx, 'form-gender', 'sex', { 'form-gender-male': 'm', 'form-gender-female': 'f', 'form-gender-transgender': 't', 'form-gender-unspecified': 'd' },  { 'required':true } ) }}
-      {{ forms.text( ctx, 'form-occupation', 'occupation' ) }}
-      {{ forms.text( ctx, 'form-study', 'areaofstudy' ) }}
-    </ul>
+    {{ forms.yesNo( ctx, 'form-haspassport', 'haspassport' ) }}
+    {{ forms.countrySelect( ctx, 'form-nationality', 'nationality', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-airport', 'airport' ) }}
+    {{ forms.text( ctx, 'form-language', 'languages' ) }}
+    {{ forms.dob( ctx, 'form-dateofbirth', 'dd', 'mm', 'yy', { 'required':true }) }}
+    {{ forms.i18nSelect( ctx, 'form-gender', 'gender', { 'form-gender-male': 'm', 'form-gender-female': 'f', 'form-gender-other': 'o', 'form-gender-unspecified': 'd' },  { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-gender-specify', 'gender_other' ) }}
+    {{ forms.text( ctx, 'form-occupation', 'occupation' ) }}
+    {{ forms.text( ctx, 'form-study', 'areaofstudy' ) }}
   </fieldset>
-  <!-- personal information end-->
-  <!-- participation start-->
+
   <fieldset>
     <legend>{{ wgLang.message( 'form-participation' ) }}</legend>
-    <ul class="appform">
-      {{ forms.text( ctx, 'form-username', 'username' ) }}
-      {{ forms.wikiSelect( ctx, 'form-primary-project', 'project', wikilist ) }}
-      {{ forms.wikiSelect( ctx, 'form-secondary-project', 'project2', wikilist ) }}
-      {{ forms.wikiSelect( ctx, 'form-tertiary-project', 'project3', wikilist ) }}
-      {{ forms.text( ctx, 'form-lang-version', 'projectlangs' ) }}
-      {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
-      {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true } ) }}
-      {{ forms.textArea( ctx, 'form-englishability-explain', 'englishAbility', { 'required':true } ) }}
-    </ul>
-  </fieldset>
-  <!-- participation end-->
-  <!-- interest start-->
+    {{ forms.text( ctx, 'form-username', 'username' ) }}
+    {{ forms.wikiSelect( ctx, 'form-active-projects', [ 'project', 'project2', 'project3' ], wikilist ) }}
+    {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
+    {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true } ) }}
+</fieldset>
+
   <fieldset>
     <legend>{{ wgLang.message( 'form-interest' ) }}</legend>
-    <ul class="appform">
-      {{ forms.checkboxList( ctx, 'form-attended', { 'wm05':2005, 'wm06':2006, 'wm07':2007, 'wm08':2008, 'wm09':2009, 'wm10':2010, 'wm11':2011, 'wm12':2012, 'wm13':2013 } ) }}
-      {{ forms.yesNo( ctx, 'form-presenter', 'presentation', { 'escape':false } ) }}
-      {{ forms.text( ctx, 'form-presentation-topic', 'presentationTopic' ) }}
-      {{ forms.i18nSelect( ctx, 'form-howheard', 'howheard', { 'form-howheard1':1, 'form-howheard2':2, 'form-howheard3':3, 'form-howheard4':4, 'form-howheard5':5 } ) }}
-      {{ forms.textArea( ctx, 'form-enrichment', 'why', { 'required':true } ) }}
-    </ul>
-  </fieldset>
-  <!-- interest end-->
-  <!-- partial scholarship start-->
-  <fieldset>
-    <legend>{{ wgLang.message( 'form-partial' ) }}</legend>
-    {{ wgLang.message( 'form-partial-explain' )|raw }}
-    <br />
-    <ul class="appform">
-      {{ forms.yesNo( ctx, 'form-wantspartial', 'wantspartial' ) }}
-      {{ forms.yesNo( ctx, 'form-canpaydiff', 'canpaydiff' ) }}
-    </ul>
-  </fieldset>
-  <!-- partial scholarship end-->
-  <!-- agreement form start-->
+    {{ forms.checkboxList( ctx, 'form-attended', { 'wm05':2005, 'wm06':2006, 'wm07':2007, 'wm08':2008, 'wm09':2009, 'wm10':2010, 'wm11':2011, 'wm12':2012, 'wm13':2013 } ) }}
+    {{ forms.yesNo( ctx, 'form-presenter', 'presentation', { 'escape':false } ) }}
+    {{ forms.text( ctx, 'form-presentation-topic', 'presentationTopic' ) }}
+    {{ forms.i18nSelect( ctx, 'form-howheard', 'howheard', { 'form-howheard1':1, 'form-howheard2':2, 'form-howheard3':3, 'form-howheard4':4, 'form-howheard5':5 } ) }}
+    {{ forms.textArea( ctx, 'form-enrichment', 'why', { 'required':true } ) }}
+</fieldset>
+
   <fieldset>
     <legend>{{ wgLang.message( 'form-agree' ) }}</legend>
-    <ul class="appform">
-      {{ forms.checkbox( ctx, 'form-sincere', 'sincere' ) }}
-      {{ forms.checkbox( ctx, 'form-visa', 'willgetvisa', { 'escape':false } ) }}
-      {{ forms.checkbox( ctx, 'form-incidentals', 'willpayincidentals' ) }}
-      {{ forms.checkbox( ctx, 'form-travel-conditions', 'agreestotravelconditions' ) }}
-    </ul>
+    {{ forms.checkbox( ctx, 'form-visa', 'willgetvisa', { 'escape':false } ) }}
+    {{ forms.checkbox( ctx, 'form-incidentals', 'willpayincidentals' ) }}
+    {{ forms.checkbox( ctx, 'form-travel-conditions', 'agreestotravelconditions' ) }}
   </fieldset>
-  <!-- agreement form end-->
-  <!-- privacy start-->
+
   <fieldset>
-    <!-- scholarship committee -->
     <legend>{{ wgLang.message( 'form-privacy' )  }}</legend>
     <p>{{ wgLang.message( 'form-review' )|raw }}</p>
-    <ul class="appform">
-      {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false } ) }}
-    </ul>
-    <p><b>{{ wgLang.message( 'form-rights-heading' ) }}</b>
-      <br /><br />
+
+    {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false } ) }}
+    <h4>{{ wgLang.message( 'form-rights-heading' ) }}</h4>
+    <p>
       {{ wgLang.message( 'form-rights' )|raw }}
     </p>
-    <ul class='appform'>
-      {{ forms.text( ctx, 'form-wmfAgreeName', 'wmfAgreeName', { 'required':true } ) }}
-      {{ forms.checkbox( ctx, 'form-wmfagree', 'wmfagree' ) }}
-    </ul>
+
+    {{ forms.checkbox( ctx, 'form-wmfagree', 'wmfagree', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-wmfAgreeName', 'wmfAgreeName', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-wmfAgreeGuardian', 'wmfAgreeGuardian' ) }}
   </fieldset>
-  <!-- privacy end-->
-  <input type="submit" id="submit" name="submit" value="{{ wgLang.message( 'form-submit-app' ) }}" />
+
+  <input type="submit" class="btn btn-primary" id="submit" name="submit" value="{{ wgLang.message( 'form-submit-app' ) }}" />
 </form>
+</div>
+</div>
 {% endif %}
 {% endif %}
 
-<br clear="all" />
 {% endspaceless %}
 {% endblock content %}

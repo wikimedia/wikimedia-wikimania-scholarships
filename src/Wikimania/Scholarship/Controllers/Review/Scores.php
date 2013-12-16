@@ -39,6 +39,7 @@ class Scores extends Controller {
 		$partial = $this->form->get( 'partial' );
 		$rows = $this->dao->getP2List( $partial, 'All' );
 
+		$this->view->set( 'partial', $partial );
 		$this->view->set( 'records', $rows );
 		$this->render( 'review/scores.html' );
 	}

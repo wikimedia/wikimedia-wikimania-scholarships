@@ -3,24 +3,38 @@
 
 {% block content %}
 {% spaceless %}
-<form method="get" action="{{ urlFor( route ) }}">
-  <fieldset class="inline">
-    <legend>Search</legend>
-    <label for="lastname">Last name</label>
-    <input name="l" id="lastname" value="{{ l }}" type="text" />
-    <label for="firstname">First name</label>
-    <input name="f" id="firstname" value="{{ f }}" type="text" />
-    <br/>
-    <label for="residence">Residence</label>
-    <input name="r" id="residence" value="{{ r }}" type="text" />
-    <label for="region">Region</label>
-    <input name="rg" id="region" value="{{ rg }}" type="text" />
-    <input type="submit" value="Go" />
-  </fieldset>
-  <input type="hidden" name="p" value="0" />
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-review' ) }}</li>
+  <li>{{ wgLang.message( 'search' ) }}</li>
+</ol>
+
+<form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
+  <input type="hidden" name="p" value="0">
+  <div class="form-group">
+    <label class="sr-only" for="lastname">Last name</label>
+    <input type="text" name="l" id="lastname" placeholder="Last name" value="{{ l }}">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="firstname">First name</label>
+    <input type="text" name="f" id="firstname" placeholder="First name" value="{{ f }}">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="residence">Residence</label>
+    <input type="text" name="r" id="residence" placeholder="Residence" value="{{ r }}">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="region">Region</label>
+    <input type="text" name="rg" id="region" placeholder="Region" value="{{ rg }}">
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-sm btn-primary" value="Go" />
+  </div>
 </form>
+
+<p></p>
+
 {% if found is not null %}
-<table id="grid" class="grid" style="width: 100%;">
+<table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
     <th>id</th>
     <th>name</th>
@@ -32,7 +46,7 @@
     <th>p1</th>
   </tr>
   {% for row in records %}
-  <tr class="{{ cycle( [ 'oddrow', 'evenrow' ], loop.index ) }}">
+  <tr>
     <td>{{ row.id }}</td>
     <td><a href="{{ urlFor( 'review_view' ) }}?id={{ row.id }}&phase=2">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>
@@ -43,24 +57,34 @@
     <td>{{ row.p1count ? row.p1score : '-' }}</td>
   </tr>
   {% else %}
-  <tr><td colspan="8">No scholarsips found.</td></tr>
+  <tr><td colspan="8">No scholarship applications found.</td></tr>
   {% endfor %}
 </table>
 
-<p>Page {{ p + 1 }} of {{ pages }}</p>
-<ul class="pagerlinks">
-  {% if p > 0 %}
-  <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p - 1) } ) }}" id="prev">« Previous</a></li>
-  {% endif %}
-  {% if left > 0 %}<li>&hellip;</li>{% endif %}
-  {% for i in left .. right %}
-  <li class="{{ i == p ? 'current' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
-  {% endfor %}
-  {% if right < pages - 1 %}<li>&hellip;</li>{% endif %}
-  {% if p + 1 < pages %}
-  <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p + 1) } ) }}" id="next">Next »</a></li>
-  {% endif %}
-</ul>
+<div class="row">
+  <div class="col-md-3">
+    <p class="text-right">Page {{ p + 1 }} of {{ pages }}</p>
+  </div>
+  <div class="col-md-9">
+      <ul class="pagination">
+        {% if p > 0 %}
+        <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p - 1) } ) }}" id="prev">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% if left > 0 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+        {% for i in left .. right %}
+        <li class="{{ i == p ? 'active' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
+        {% endfor %}
+        {% if right < pages - 1 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+        {% if p + 1 < pages %}
+        <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p + 1) } ) }}" >&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+  </div>
+</div>
 {% endif %}
 {% endspaceless %}
 {% endblock content %}

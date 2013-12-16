@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+
+{% block nav_li_translate %}class="active"{% endblock %}
+
 {% block content %}
 {% spaceless %}
-<div id="translate">
-  <h2>{{ wgLang.message( 'help-translate' ) }}</h2>
-  {{ wgLang.message( 'translate-page' )|raw }}
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>{{ wgLang.message( 'help-translate' ) }}</h2>
+    {{ wgLang.message( 'translate-page' )|raw }}
+  </div>
 </div>
 {% endspaceless %}
 {% endblock content %}

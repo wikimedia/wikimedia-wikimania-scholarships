@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+
+{% block nav_li_contact %}class="active"{% endblock %}
+
 {% block content %}
 {% spaceless %}
-<div id="contact">
-  <h2>{{ wgLang.message( 'contact-us' ) }}</h2>
-  {{ wgLang.message( 'contact-page' )|raw }}
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>{{ wgLang.message( 'contact-us' ) }}</h2>
+    <p>{{ wgLang.message( 'contact-page' )|raw }}</p>
+  </div>
 </div>
 {% endspaceless %}
 {% endblock content %}

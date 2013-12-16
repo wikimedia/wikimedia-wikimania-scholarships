@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 {% spaceless %}
-<div id="error">
-  <h2>{{ wgLang.message( '404-header' ) }}</h2>
-  <p>{{ wgLang.message( '404-message' ) }}</p>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>{{ wgLang.message( '404-header' ) }}</h2>
+    <p>{{ wgLang.message( '404-message' ) }}</p>
+  </div>
 </div>
 {% endspaceless %}
 {% endblock content %}

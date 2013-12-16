@@ -2,28 +2,41 @@
 
 {% block content %}
 {% spaceless %}
-<h2>Phase 2 List</h2>
-<form method="get" action="{{ urlFor( 'review_p2_list' ) }}">
-  <fieldset class="inline">
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-reports' ) }}</li>
+  <li>{{ wgLang.message( 'phase-2' ) }}</li>
+</ol>
+
+<form class="form-inline" method="get" action="{{ urlFor( 'review_p2_list' ) }}" role="form">
+  <div class="form-group">
     <label for="partial">Partial?</label>
-    <select name="partial" id="partial">
+    <select class="form-control input-sm" name="partial" id="partial">
       <option value="2" {{ partial == 2 ? 'selected="selected"' }}>All</option>
       <option value="1" {{ partial == 1 ? 'selected="selected"' }}>Partial</option>
       <option value="0" {{ partial == 0 ? 'selected="selected"' }}>Full</option>
     </select>
+  </div>
+  <div class="form-group">
     <label for="region">Region:</label>
-    <select name="region" id="region">
+    <select class="form-control input-sm" name="region" id="region">
       {% for r in regionList %}
       <option value="{{ r }}" {{ r == region ? 'selected="selected"' }}>{{ r }}</option>
       {% endfor %}
     </select>
-    <input type="checkbox" name="export" id="export" value="1"/>
-    <label for="export">{{ wgLang.message( 'review-list-export-csv' ) }}</label>
-    <input type="submit" value="Submit">
-  </fieldset>
+  </div>
+  <div class="checkbox">
+    <label for="export">
+      <input type="checkbox" name="export" id="export" value="1"/>
+      {{ wgLang.message( 'review-list-export-csv' ) }}</label>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-sm btn-default" value="Go" />
+  </div>
 </form>
+
 <p></p>
-<table class="grid bordered">
+
+<table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
     <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
     <th>{{ wgLang.message( 'review-list-id' ) }}</th>

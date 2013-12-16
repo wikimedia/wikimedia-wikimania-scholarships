@@ -44,7 +44,7 @@ class PhaseGrid extends Controller {
 	protected function handleGet() {
 		$this->form->expectInArray( 'apps',
 			array( 'unreviewed', 'all', 'myapps' ),
-			array( 'default' => 'all' )
+			array( 'required' => true, 'default' => 'all' )
 		);
 		$this->form->expectInt( 'items',
 			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
@@ -64,6 +64,7 @@ class PhaseGrid extends Controller {
 		);
 		$ret = $this->dao->gridData( $params );
 
+		$this->view->set( 'apps', $this->form->get( 'apps' ) );
 		$this->view->set( 'phase', $this->phase );
 		$this->view->set( 'records', $ret->rows );
 		$this->view->set( 'found', $ret->found );

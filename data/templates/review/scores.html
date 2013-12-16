@@ -2,7 +2,12 @@
 
 {% block content %}
 {% spaceless %}
-<table id="grid" class="grid">
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-reports' ) }}</li>
+  <li>{{ wgLang.message( partial ? 'final-partial' : 'final-full' ) }}</li>
+</ol>
+
+<table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
     <th>counter</th>
     <th>id</th>
@@ -20,10 +25,10 @@
     <th>p2 score</th>
   </tr>
   {% for row in records %}
-  <tr class="{{ cycle( [ 'odd', 'even' ], loop.index ) }}">
+  <tr>
     <td>{{ row.id }}</td>
     <td>{{ row.id }}</td>
-    <td><a href="{{ siteUrl( 'review/view' ) }}?id={{ row.id }}&phase=0" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
+    <td><a href="{{  urlFor( 'review_view' ) }}?id={{ row.id }}&phase=0" target="_blank">{{ row.fname }} {{ row.lname }}</a></td>
     <td>{{ row.email }}</td>
     <td>{{ row.country_name }}</td>
     <td>{{ row.sex }}</td>
