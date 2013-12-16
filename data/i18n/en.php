@@ -230,4 +230,7 @@ The code is based on the Wikimania scholarships system used for Wikimania 2009, 
 	'review-countries-country' => "Country",
 	'review-countries-region' => "Region",
 	'review-countries-count' => "Scholarship count",
+
+	'page-of-pages' => 'Page $1 of $2',
+	'no-results' => "No results found",
 );

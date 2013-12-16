@@ -9,18 +9,18 @@
 
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>counter</th>
-    <th>id</th>
-    <th>name</th>
-    <th>email</th>
-    <th>residence</th>
-    <th>gender</th>
-    <th>age</th>
-    <th># p2 scorers</th>
-    <th>onwiki</th>
-    <th>offwiki</th>
-    <th>interest</th>
-    <th>p2 score</th>
+    <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-residence' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-gender' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-age' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-num-p2' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-onwiki' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-offwiki' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-interest' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-p2-score' ) }}</th>
   </tr>
   {% for row in records %}
   <tr>
@@ -38,7 +38,7 @@
     <td>{{ '%.4f'|format( row.p2score ) }}</td>
   </tr>
   {% else %}
-  <tr><td colspan="12">No results found</td></tr>
+  <tr><td colspan="12">{{ wgLang.message( 'no-results' ) }}</td></tr>
   {% endfor %}
 </table>
 {% endspaceless %}

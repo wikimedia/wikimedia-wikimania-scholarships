@@ -11,23 +11,23 @@
 <form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
   <input type="hidden" name="p" value="0">
   <div class="form-group">
-    <label class="sr-only" for="lastname">Last name</label>
-    <input type="text" name="l" id="lastname" placeholder="Last name" value="{{ l }}">
+    <label class="sr-only" for="lastname">{{ wgLang.message( 'form-lname' ) }}</label>
+    <input type="text" name="l" id="lastname" placeholder="{{ wgLang.message( 'form-lname' ) }}" value="{{ l }}">
   </div>
   <div class="form-group">
-    <label class="sr-only" for="firstname">First name</label>
-    <input type="text" name="f" id="firstname" placeholder="First name" value="{{ f }}">
+    <label class="sr-only" for="firstname">{{ wgLang.message( 'form-fname' ) }}</label>
+    <input type="text" name="f" id="firstname" placeholder="{{ wgLang.message( 'form-fname' ) }}" value="{{ f }}">
   </div>
   <div class="form-group">
-    <label class="sr-only" for="residence">Residence</label>
-    <input type="text" name="r" id="residence" placeholder="Residence" value="{{ r }}">
+    <label class="sr-only" for="residence">{{ wgLang.message( 'form-residence' ) }}</label>
+    <input type="text" name="r" id="residence" placeholder="{{ wgLang.message( 'form-residence' ) }}" value="{{ r }}">
   </div>
   <div class="form-group">
-    <label class="sr-only" for="region">Region</label>
-    <input type="text" name="rg" id="region" placeholder="Region" value="{{ rg }}">
+    <label class="sr-only" for="region">{{ wgLang.message( 'form-region' ) }}</label>
+    <input type="text" name="rg" id="region" placeholder="{{ wgLang.message( 'form-region' ) }}" value="{{ rg }}">
   </div>
   <div class="form-group">
-    <input type="submit" class="btn btn-sm btn-primary" value="Go" />
+    <input type="submit" class="btn btn-sm btn-primary" value="{{ wgLang.message( 'search' ) }}" />
   </div>
 </form>
 
@@ -36,13 +36,13 @@
 {% if found is not null %}
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>email</th>
-    <th>residence</th>
-    <th>gender</th>
-    <th>age</th>
-    <th>p1</th>
+    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-residence' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-gender' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-age' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-p1-score' ) }}</th>
   </tr>
   {% for row in records %}
   <tr>
@@ -55,13 +55,13 @@
     <td>{{ row.p1count ? row.p1score : '-' }}</td>
   </tr>
   {% else %}
-  <tr><td colspan="8">No scholarship applications found.</td></tr>
+  <tr><td colspan="8">{{ wgLang.message( 'no-results' ) }}</td></tr>
   {% endfor %}
 </table>
 
 <div class="row">
   <div class="col-md-3">
-    <p class="text-right">Page {{ p + 1 }} of {{ pages }}</p>
+    <p class="text-right">{{ wgLang.message( 'page-of-pages', [ p + 1, pages ] ) }}</p>
   </div>
   <div class="col-md-9">
       <ul class="pagination">

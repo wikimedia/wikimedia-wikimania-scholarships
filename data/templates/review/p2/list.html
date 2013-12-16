@@ -59,7 +59,7 @@
     <td>{{ '%.4f'|format( row.p2score ) }}</td>
   </tr>
   {% else %}
-  <tr><td colspan="12">No results found</td></tr>
+  <tr><td colspan="12">{{ wgLang.message( 'no-results' ) }}</td></tr>
   {% endfor %}
 </table>
 {% endspaceless %}

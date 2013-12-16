@@ -16,15 +16,15 @@
 
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th class="id">id</th>
-    <th class="name">name</th>
-    <th class="email">email</th>
-    <th class="residence">residence</th>
-    <th class="gender">gender</th>
-    <th class="age">age</th>
-    <th class="p1">p1</th>
+    <th class="id">{{ wgLang.message( 'review-list-id' ) }}</th>
+    <th class="name">{{ wgLang.message( 'review-list-name' ) }}</th>
+    <th class="email">{{ wgLang.message( 'review-list-email' ) }}</th>
+    <th class="residence">{{ wgLang.message( 'review-list-residence' ) }}</th>
+    <th class="gender">{{ wgLang.message( 'review-list-gender' ) }}</th>
+    <th class="age">{{ wgLang.message( 'review-list-age' ) }}</th>
+    <th class="p1">{{ wgLang.message( 'review-list-p1-score' ) }}</th>
     {% if phase == 2 %}
-    <th class="p2">#p2</th>
+    <th class="p2">{{ wgLang.message( 'review-list-num-p2' ) }}</th>
     {% endif %}
   </tr>
   {% for row in records %}
@@ -43,13 +43,13 @@
     {% endif %}
   </tr>
   {% else %}
-  <tr><td colspan="8">No results found</td></tr>
+  <tr><td colspan="8">{{ wgLang.message( 'no-results' ) }}</td></tr>
   {% endfor %}
 </table>
 
 <div class="row">
   <div class="col-md-3">
-    <p class="text-right">Page {{ params.page + 1 }} of {{ params.pages }}</p>
+    <p class="text-right">{{ wgLang.message( 'page-of-pages', [ params.page + 1, params.pages ] ) }}</p>
   </div>
   <div class="col-md-9">
       <ul class="pagination">
