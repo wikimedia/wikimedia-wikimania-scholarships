@@ -41,3 +41,6 @@ Icon
 
 # cache directory
 /data/cache
+
+# git-deploy
+/.deploy
