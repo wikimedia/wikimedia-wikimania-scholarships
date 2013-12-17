@@ -66,6 +66,18 @@ class Lang {
 				include $file;
 			}
 		}
+
+		foreach ( $messages as $lang => $strings ) {
+			if ( !$strings ) {
+				// Remove empty languages
+				unset( $messages[$lang] );
+
+			} elseif ( $lang === 'qqq' ) {
+				// Remove message documentation
+				unset( $messages[$lang] );
+			}
+		}
+
 		$this->messages = $messages;
 	}
 

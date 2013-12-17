@@ -38,12 +38,15 @@
             <li {% block nav_li_translate %}{% endblock %}><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
             {% endblock navbar %}
           </ul>
-          <div class="navbar-right navbar-text form-inline"><span class="langlabel">{{ wgLang.message( 'nav-language' ) }}</span>
+          <div class="navbar-right navbar-text form-inline">
+            {% if wgLang.getLangs|length > 1 %}
+            <span class="langlabel">{{ wgLang.message( 'nav-language' ) }}</span>
             <ul class="langlist footer-links">
               {% for l in wgLang.getLangs %}
               <li class="{{ loop.last ? 'last' }}"><a href="{{ app.request.getPath }}?uselang={{ l }}" {{ l == lang ? 'class="selected"' }}>{{ l }}</a></li>
               {% endfor %}
             </ul>
+            {% endif %}
           </div>
           </ul>
         </div>

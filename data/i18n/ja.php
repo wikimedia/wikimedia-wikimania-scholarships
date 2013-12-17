@@ -1,4 +1,0 @@
-<?php
-
-$messages['ja'] = array(
-);

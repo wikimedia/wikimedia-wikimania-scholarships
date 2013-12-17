@@ -1,3 +1,0 @@
-<?php
-$messages['pl'] = array(
-);
