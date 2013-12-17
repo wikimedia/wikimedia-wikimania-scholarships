@@ -91,6 +91,7 @@ in ctx.form.errors %}
 {% endif %}
 {% set opts = { 'class':class, 'required':false }|merge( opts ) %}
 {% set required = opts['required'] ? 'required' : '' %}
+{% set monthnames = { 1:'month-jan', 2:'month-feb', 3:'month-mar', 4:'month-apr', 5:'month-may', 6:'month-jun', 7:'month-jul', 8:'month-aug', 9:'month-sep', 10:'month-oct', 11:'month-nov', 12:'month-dec' } %}
 
 {{ forms.startElement( ctx, mesg, '', opts ) }}
   <div class="form-inline">
@@ -102,9 +103,8 @@ in ctx.form.errors %}
   </select>&nbsp;
   <select class="form-control" id="{{ monthName }}" name="{{ monthName }}" {{ required }}>
     <option value="">{{ ctx.wgLang.message( 'form-select-month' ) }}</option>
-    {% for idx, month in ctx.wgLang.message( 'MONTH_NAMES' ) %}
-    {% set i = idx + 1 %}
-    <option value="{{ "%d"|format(i) }}" {{ i == monthValue ? 'selected="selected"' }}>{{ month }}</option>
+    {% for i, month in monthnames %}
+    <option value="{{ "%d"|format(i) }}" {{ i == monthValue ? 'selected="selected"' }}>{{ ctx.wgLang.message( month ) }}</option>
     {% endfor %}
   </select>&nbsp;
   <select class="form-control" id="{{ yearName }}" name="{{ yearName }}" {{ required }}>

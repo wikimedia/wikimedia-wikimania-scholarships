@@ -156,7 +156,8 @@ class App {
 		});
 
 		$container->singleton( 'wgLang', function ( $c ) {
-			return new Lang( $c->settings['i18n.path'], $c->settings['i18n.default'] );
+			return new Lang(
+				$c->settings['i18n.path'], $c->settings['i18n.default'], $c->log );
 		});
 
 		$container->singleton( 'applyForm', function ( $c ) {

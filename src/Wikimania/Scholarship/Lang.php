@@ -28,7 +28,14 @@
 
 namespace Wikimania\Scholarship;
 
+use Psr\Log\LoggerInterface;
+
 class Lang {
+
+	/**
+	 * @var LoggerInterface $logger
+	 */
+	protected $logger;
 
 	/**
 	 * @param array $messages
@@ -54,32 +61,64 @@ class Lang {
 	/**
 	 * @param string $dir Directory containing language files
 	 * @param string $default Default language
+	 * @param LoggerInterface $logger Log channel
 	 */
-	public function __construct( $dir, $default = 'en' ) {
-		// TODO: assert that the dir exists
+	public function __construct( $dir, $default = 'en', $logger = null ) {
+		$this->logger = $logger ?: new \Psr\Log\NullLogger();
+
 		$this->langDir = $dir;
+		if ( ! is_dir( $dir ) ) {
+			$this->logger->error( 'Directory not found.', array(
+				'method' => __METHOD__,
+				'dir' => $dir,
+			) );
+		}
+
 		$this->defaultLang = $default;
 
 		$messages = array();
-		foreach ( glob( "{$this->langDir}/*.php" ) as $file ) {
-			if ( is_file( $file ) && is_readable( $file ) ) {
-				include $file;
-			}
-		}
+		foreach ( glob( "{$this->langDir}/*.json" ) as $file ) {
+			if ( is_readable( $file ) ) {
+				$json = file_get_contents( $file );
+				if ( $json === false ) {
+					$this->logger->error( 'Error reading file', array(
+						'method' => __METHOD__,
+						'file' => $file,
+					) );
+					continue;
+				}
 
-		foreach ( $messages as $lang => $strings ) {
-			if ( !$strings ) {
-				// Remove empty languages
-				unset( $messages[$lang] );
+				$data = json_decode( $json, true );
+				if ( $data === null ) {
+					$this->logger->error( 'Error parsing json', array(
+						'method' => __METHOD__,
+						'file' => $file,
+						'json_error' => json_last_error(),
+					) );
+					continue;
+				}
 
-			} elseif ( $lang === 'qqq' ) {
-				// Remove message documentation
-				unset( $messages[$lang] );
+				// Discard metadata
+				unset( $data['@metadata'] );
+
+				if ( empty( $data ) ) {
+					// Ignore empty languages
+					continue;
+				}
+
+				$lang = substr( basename( $file ), 0, -5 );
+				if ( $lang === 'qqq' ) {
+					// Ignore message documentation
+					continue;
+				}
+
+				$messages[$lang] = $data;
 			}
 		}
 
 		$this->messages = $messages;
 	}
+
 
 	/**
 	 * Get a list of available languages.
@@ -136,6 +175,12 @@ class Lang {
 
 		} else {
 			// FIXME: log missing translation
+			$this->logger->warning( 'No translation for key "{key}" in {lang} or en',
+				array(
+					'method' => __METHOD__,
+					'key' => $key,
+					'lang' => $this->lang,
+			) );
 			$msg = $key;
 		}
 
