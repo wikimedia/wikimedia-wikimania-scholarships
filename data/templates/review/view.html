@@ -30,11 +30,11 @@
       <div id="contact" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>Name:</dt>
+            <dt>{{ wgLang.message( 'review-view-name' ) }}</dt>
             <dd>{{ schol.fname }} {{ schol.lname }}</dd>
-            <dt>Email:</dt>
+            <dt>{{ wgLang.message( 'review-view-email' ) }}</dt>
             <dd><a href="mailto:{{ schol.email }}">{{ schol.email }}</a></dd>
-            <dt>Residence:</dt>
+            <dt>{{ wgLang.message( 'review-view-residence' ) }}</dt>
             <dd>{{ schol.residence_name }}</dd>
           </dl>
         </div>
@@ -52,31 +52,31 @@
       <div id="personal" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>Has passport:</dt>
+            <dt>{{ wgLang.message( 'review-view-haspassport' ) }}</dt>
             <dd>{{ helpers.yesNo( schol.haspassport ) }}</dd>
-            <dt>Citizenship:</dt>
+            <dt>{{ wgLang.message( 'review-view-nationality' ) }}</dt>
             <dd>{{ schol.country_name }}</dd>
-            <dt>Speaks:</dt>
+            <dt>{{ wgLang.message( 'review-view-language' ) }}</dt>
             <dd>{{ schol.languages }}</dd>
-            <dt>Date of birth:</dt>
+            <dt>{{ wgLang.message( 'review-view-dateofbirth' ) }}</dt>
             <dd>
               {% if schol.dob is not empty %}
               {{ schol.dob }} ({{ helpers.yearsOld( schol.dob ) }})
               {% else %}
-              Not specified
+              {{ wgLang.message( 'review-view-not-specified' ) }}
               {% endif %}
             </dd>
-            <dt>Gender:</dt>
+            <dt>{{ wgLang.message( 'review-view-gender' ) }}</dt>
             <dd>{{ helpers.gender( ctx, schol.gender ) }}</dd>
             {% if schol.gender_other is not empty %}
             <dd>( {{ schol.gender_other }} )</dd>
             {% endif %}
             {% if schol.occupation is not empty %}
-            <dt>Occupation:</dt>
+            <dt>{{ wgLang.message( 'review-view-occupation' ) }}</dt>
             <dd>{{ schol.occupation }}</dd>
             {% endif %}
             {% if schol.areaofstudy is not empty %}
-            <dt>Field of study:</dt>
+            <dt>{{ wgLang.message( 'review-view-study' ) }}</dt>
             <dd>{{ schol.areaofstudy }}</dd>
             {% endif %}
           </dl>
@@ -95,19 +95,19 @@
       <div id="participation" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>User:</dt>
+            <dt>{{ wgLang.message( 'review-view-username' ) }}</dt>
             <dd>
               {% if schol.username is not empty %}
-              {{ schol.username }} (<a href="http://toolserver.org/~vvv/sulutil.php?user={{ schol.username|escape('url') }}" target="_blank">cross-wiki contribs</a>)
+              {{ schol.username }} (<a href="http://toolserver.org/~vvv/sulutil.php?user={{ schol.username|escape( 'url' ) }}" target="_blank">cross-wiki contribs</a>)
               {% else %}
-              No username given
+              {{ wgLang.message( 'review-view-not-specified' ) }}
               {% endif %}
             </dd>
             {% if schol.alt_users is not empty %}
-            <dt>Other usernames:</dt>
+            <dt>{{ wgLang.message( 'review-view-alt-users' ) }}</dt>
             <dd>{{ schol.alt_users }}</dt>
             {% endif %}
-            <dt>Wiki(s):</dt>
+            <dt>{{ wgLang.message( 'review-view-active-projects' ) }}</dt>
             {% if schol.project %}
             <dd>{{ schol.project }}</dt>
             {% endif %}
@@ -118,25 +118,25 @@
             <dd>{{ schol.project3 }}</dt>
             {% endif %}
             {% if not(schol.project or schol.project2 or schol.project3) %}
-            <dd>No wiki selected</dd>
+            <dd>{{ wgLang.message( 'review-view-not-specified' ) }}</dd>
             {% endif %}
           </dl>
 
           <div class="well well-sm">
-            <p><strong>What is your involvement with Wikimedia?</strong></p>
+            <p><strong>{{ wgLang.message( 'review-view-involvement' ) }}</strong></p>
             {% if schol.involvement is not empty %}
             <p style="white-space:pre-wrap">{{ schol.involvement }}</p>
             {% else %}
-            <p>Declined to state.</p>
+            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
             {% endif %}
           </div>
 
           <div class="well well-sm">
-            <p><strong>What contribution have you made to free knowledge and free software?</strong></p>
+            <p><strong>{{ wgLang.message( 'review-view-contrib-explain' ) }}</strong></p>
             {% if schol.contribution is not empty %}
             <p style="white-space:pre-wrap">{{ schol.contribution }}</p>
             {% else %}
-            <p>Declined to state.</p>
+            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
             {% endif %}
           </div>
         </div>
@@ -178,15 +178,15 @@
         </table>
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>Presentation?</dt>
+            <dt>{{ wgLang.message( 'review-view-presenter' ) }}</dt>
             <dd>{{ helpers.yesNo( schol.presentation ) }}</dd>
             {% if schol.presentation %}
-            <dt>Topic:</dt>
+            <dt>{{ wgLang.message( 'review-view-presentation-topic' ) }}</dt>
             <dd>{{ schol.presentationTopic }}</dd>
             {% endif %}
           </dl>
           <div class="well well-sm">
-            <p><strong>Why are you interested in attending?</strong></p>
+            <p><strong>{{ wgLang.message( 'review-view-enrichment' ) }}</strong></p>
             <p style="white-space:pre-wrap">{{ schol.why }}</p>
           </div>
         </div>
@@ -204,11 +204,11 @@
       <div id="agree" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal wide">
-            <dt>Will get visa?</dt>
+            <dt>{{ wgLang.message( 'review-view-visa' ) }}</dt>
             <dd>{{ helpers.yesNo( schol.willgetvisa ) }}</dd>
-            <dt>Will pay incidentals?</dt>
+            <dt>{{ wgLang.message( 'review-view-incidentals' ) }}</dt>
             <dd>{{ helpers.yesNo( schol.willpayincidentals ) }}</dd>
-            <dt>Agrees to conditions?</dt>
+            <dt>{{ wgLang.message( 'review-view-travel-conditions' ) }}</dt>
             <dd>{{ helpers.yesNo( schol.agreestotravelconditions ) }}</dd>
           </dl>
         </div>
@@ -218,7 +218,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#fulldump">
-            Full dump
+            {{ wgLang.message( 'review-view-full-dump' ) }}
             </a>
           </h4>
         </div>
@@ -237,7 +237,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#scores">
-            Scorings
+            {{ wgLang.message( 'review-view-scorings' ) }}
             </a>
           </h4>
         </div>
@@ -245,7 +245,7 @@
       <div id="scores" class="panel-collapse collapse in">
         {% if myscorings is not empty %}
         <table class="table table-condensed">
-          <tr><th>Criteria</th><th>Rank</th></tr>
+          <tr><th>{{ wgLang.message( 'review-view-criteria' ) }}</th><th>{{ wgLang.message( 'review-view-rank' )}}</th></tr>
           {% for r in myscorings %}
           <tr><td>{{ r.criterion }}</td><td>{{ r.rank }}</td></tr>
           {% endfor %}
@@ -254,7 +254,7 @@
         {% if reviewers is not empty %}
         <div class="panel-body">
           <dl>
-            <dt>Reviewers:</dt>
+            <dt>{{ wgLang.message( 'review-view-reviewers' ) }}</dt>
             <dd>
               <ul>
                 {% for reviewer in reviewers %}
@@ -277,7 +277,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">
             <a data-toggle="collapse" data-parent="#review-tools" href="#rankings">
-              Rankings</a>
+              {{ wgLang.message( 'review-view-rankings' ) }}</a>
           </h3>
         </div>
         <div id="rankings" class="panel-collapse collapse in">
@@ -288,8 +288,8 @@
               {% else %}
               <span class="btn btn-default disabled">&laquo;</span>
               {% endif %}
-              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=1">Phase 1</a>
-              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=2">Phase 2</a>
+              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=1">{{ wgLang.message( 'phase-1' ) }}</a>
+              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=2">{{ wgLang.message( 'phase-2' ) }}</a>
               {% if nextid is not empty %}
               <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ nextid }}&phase={{ phase }}">&raquo;</a>
               {% else %}
@@ -303,25 +303,25 @@
               <input type="hidden" name="id" value="{{ id }}"/>
               {% if phase == 1 %}
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">Valid:</label>
+                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-valid' ) }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'valid' ) }}
                 </div>
               {% else %}
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">In Wikimedia movement:</label>
+                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-onwiki' ) }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'onwiki' ) }}
                 </div>
               </div>
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">Outside Wikimedia movement:</label>
+                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-offwiki' ) }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'offwiki' ) }}
                 </div>
               </div>
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">Interest in Wikimania:</label>
+                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-interest' ) }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'interest' ) }}
                 </div>
@@ -329,14 +329,14 @@
               </div>
 
               <div class="form-group">
-                <label for="notes" class="col-sm-2">Notes:</label>
+                <label for="notes" class="col-sm-2">{{ wgLang.message( 'review-view-notes' ) }}</label>
                 <div class="col-sm-10">
                   <textarea class="form-control" id="notes" name="notes" rows="10">{{ schol.notes }}</textarea>
                 </div>
               </div>
 
               <div class="col-sm-2 col-sm-offset-10">
-                <input type="submit" class="btn btn-primary" id="save" name="save" value="Save" />
+                <input type="submit" class="btn btn-primary" id="save" name="save" value="{{ wgLang.message( 'review-view-save' ) }}" />
               </div>
             </form>
           </div>
