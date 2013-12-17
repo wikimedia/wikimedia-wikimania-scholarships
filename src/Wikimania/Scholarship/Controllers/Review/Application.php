@@ -73,17 +73,21 @@ class Application extends Controller {
 	}
 
 	protected function handlePost() {
+		$criteria = array( 'valid', 'onwiki', 'offwiki', 'interest' );
+
 		$this->form->expectInt( 'phase', array( 'min_range' => 0, 'max_range' => 2, 'default' => 2 ) );
 		$this->form->expectInt( 'id', array( 'min_range' => 0, 'required' => true ) );
 		$this->form->expectString( 'notes' );
+		foreach ( $criteria as $c) {
+			$this->form->expectInt( $c, array( 'min_range' => 0 ) );
+		}
 
 		if ( $this->form->validate() ) {
 			$id = $this->form->get( 'id' );
-			$criteria = array( 'valid', 'onwiki', 'offwiki', 'interest' );
 
 			$success = true;
 			foreach ( $criteria as $c ) {
-				$score = $this->request->post( $c );
+				$score = $this->form->get( $c );
 				if ( $score !== null ) {
 					$success &= $this->dao->insertOrUpdateRanking( $id, $c, $score );
 				}
