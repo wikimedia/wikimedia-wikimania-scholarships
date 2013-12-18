@@ -41,7 +41,11 @@ $messages['en'] = array(
 
 	'mock' => 'This is a mock scholarship application site only, use it just for testing.',
 
-	'not-open' => "Scholarship applications are not open yet.",
+	'not-open' => 'The 2014 Wikimania Scholarship process is not yet open. For more information, see:
+<ul>
+<li><a href="https://wikimania2014.wikimedia.org/wiki/Main_Page">About Wikimania</a></li>
+<li><a href="https://wikimania2014.wikimedia.org/wiki/Scholarships">About Scholarships</a></li>
+</ul>',
 
 	'deadline-passed' => "<p>Scholarship application deadline was February 17, 2014, 23:59 UTC.</p>
 	<p>We will notify applicants in April about the result of your application.</p>
@@ -49,7 +53,7 @@ $messages['en'] = array(
 
 	'form-intro' => '<p>This is the application for sponsorship to attend <a href="http://wikimania2014.wikimedia.org">Wikimania 2014</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in London, 5-10 August 2014.</p>
 	<p>This is <strong>not</strong> a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>
-	<p>Applicants: Please carefully consider the following: your financial need, that there are limited funds available for sponsorship to attend Wikimania, and that many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>
+	<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>
 	<p>The deadline to apply is <strong>February 17, 2014, 23:59 UTC</strong>.</p>',
 	'form-intro-faq' => "<a href='http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
 
@@ -89,8 +93,8 @@ $messages['en'] = array(
 	'form-username' => "Username on your primary Wikimedia project: ",
 	'form-other-usernames' => '(If applicable) Other Wikimedia usernames used for editing:',
 	'form-active-projects' => "Most active Wikimedia projects: ",
-	'form-extent-explain' => "In the space below, please explain the extent and nature of your participation in the Wikimedia projects (Are you a chapter member? An administrator? A longtime editor? An editor on featured articles? A frequent contributor of high quality images? Etc.)",
-	'form-contrib-explain' => "In the space below, please explain the extent and nature of your participation in other free knowledge, free software, collaborative and/or educational initiatives other than the Wikimedia projects.",
+	'form-extent-explain' => "In the space below, please explain the extent and nature of your participation in the Wikimedia projects (Are you a chapter member? An administrator? A longtime editor? A contributor to featured articles? A frequent uploader of high quality images? etc.)",
+	'form-contrib-explain' => "In the space below, please explain the extent and nature of your participation in other free knowledge, free software, collaborative or educational initiatives other than the Wikimedia projects.",
 
 	'form-interest' => "Interest and involvement in Wikimania",
 	'form-attended' => "Have you attended Wikimania before?  If so, in what year or years?",
