@@ -54,6 +54,7 @@ $messages['en'] = array(
 	'form-intro-faq' => "<a href='http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
 
 	'form-error' => 'Your form has errors.  Please correct the errors and submit the form again.',
+	'form-save-error' => 'There was a system error saving your application. Please try again.',
 
 	'required-field' => "Required field",
 
