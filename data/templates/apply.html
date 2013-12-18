@@ -40,7 +40,7 @@ lang: currently selected display language
 {% if registration_open == false %}
 <div class="jumbotron">
   <div class="container">
-    <p>{{ wgLang.message( 'not-open' ) }}</p>
+    <p>{{ wgLang.message( 'not-open' )|raw }}</p>
   </div>
 </div>
 
