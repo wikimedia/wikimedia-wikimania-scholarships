@@ -80,6 +80,11 @@ class ScholarshipApplication extends Controller {
 							$message
 						);
 						$submitted = true;
+
+					} else {
+						$this->flashNow( 'error',
+							$this->slim->wgLang->message( 'form-save-error' )
+						);
 					}
 				}
 			}
