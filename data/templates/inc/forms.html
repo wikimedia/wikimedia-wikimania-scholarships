@@ -15,7 +15,7 @@
 {% macro label( ctx, mesg, name, opts = {} ) %}
 {% set opts = { 'required':false, 'escape':true }|merge( opts ) %}
 {% set tran = ctx.wgLang.message( mesg ) %}
-<label for="{{ name }}" class="{{ opts['required'] ? 'required' }}">{% if
+<label for="{{ name }}" class="control-label {{ opts['required'] ? 'required' }}">{% if
     opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}</label>
 {% endmacro %}
 
@@ -66,11 +66,11 @@
 {% set value = ctx.form.get( name ) %}
 {{ forms.startElement( ctx, mesg, '', opts ) }}
   <div class="form-inline">
-  <label class="radio-inline">
+  <label class="control-label">
     <input type="radio" id="{{ name }}-yes" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }}/>
     {{ ctx.wgLang.message( 'form-yes' ) }}
   </label>&nbsp;
-  <label class="radio-inline">
+  <label class="control-label">
     <input type="radio" id="{{ name }}-no" name="{{ name }}" value="0" {{ not(value) ? 'checked="checked"' }}/>
     {{ ctx.wgLang.message( 'form-no' ) }}
   </label>
@@ -154,7 +154,7 @@ in ctx.form.errors %}
   {% for name, label in options %}
   {% set value = ctx.form.get( name ) %}
   <div class="checkbox">
-  <label>
+  <label class="control-label">
     <input type="checkbox" id="{{ name }}" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }}/>&nbsp;
     {{ label }}
   </label>
@@ -170,7 +170,7 @@ in ctx.form.errors %}
 {% set tran = ctx.wgLang.message( mesg ) %}
 {{ forms.div( ctx, mesg, name, opts ) }}
 <div class="checkbox">
-  <label class="{{ opts['required'] ? 'required' }}">
+  <label class="control-label {{ opts['required'] ? 'required' }}">
     <input type="checkbox" id="{{ name }}" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }} {{ opts['required'] ? 'required' }}/>&nbsp;
     {% if opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}
   </label>
