@@ -99,7 +99,7 @@
 	"form-submit-app": "Submit application",
 
 	"form-email-subject": "Wikimania 2014 scholarship applications",
-	"form-email-response": "Dear $1,\n\nThis is a confirmation of your application for a scholarship to travel to Wikimania 2014.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
+	"form-email-response": "Dear $1,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania 2014.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
 
 	"confirm-thanks": "Thanks!",
 	"confirm-text": "Thank you for submitting your scholarship application for Wikimania 2014. Please contact <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> with any questions.",
