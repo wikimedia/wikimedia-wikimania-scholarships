@@ -71,6 +71,7 @@ The following variables can be optionally provided:
 * LOG_FILE = fopen()-compatible filename or stream URI (default: `php://stderr`)
 * LOG_LEVEL = PSR-3 logging level (default: `notice`)
 * SMTP_HOST = SMTP mail server (default: `localhost`)
+* CACHE_DIR = Directory to cache twig templates (default: `data/cache`)
 
 ### Apache
 
