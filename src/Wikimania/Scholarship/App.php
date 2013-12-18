@@ -53,7 +53,7 @@ class App {
 			'log.level' => Config::getStr( 'LOG_LEVEL', \Psr\Log\LogLevel::NOTICE ),
 			'log.file' => Config::getStr( 'LOG_FILE', 'php://stderr' ),
 			'view' => new \Slim\Views\Twig(),
-			'view.cache' => "{$this->deployDir}/data/cache",
+			'view.cache' => Config::getStr( 'CACHE_DIR', "{$this->deployDir}/data/cache" ),
 			'smtp.host' => Config::getStr( 'SMTP_HOST', 'localhost' ),
 			'templates.path' => "{$this->deployDir}/data/templates",
 			'i18n.path' => "{$this->deployDir}/data/i18n",
