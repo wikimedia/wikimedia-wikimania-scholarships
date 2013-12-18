@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , occupation                  VARCHAR(64) DEFAULT NULL
   , areaofstudy                 VARCHAR(64) DEFAULT NULL
   , username                    VARCHAR(64) DEFAULT NULL
+  , alt_users                   VARCHAR(255) DEFAULT NULL
   , project                     VARCHAR(255) DEFAULT NULL
   , project2                    VARCHAR(255) DEFAULT NULL
   , project3                    VARCHAR(255) DEFAULT NULL
