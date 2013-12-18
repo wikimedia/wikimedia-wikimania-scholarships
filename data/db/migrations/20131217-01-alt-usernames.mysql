@@ -1,0 +1,3 @@
+ALTER TABLE scholarships
+  ADD COLUMN alt_users VARCHAR(255) DEFAULT NULL
+  AFTER username;

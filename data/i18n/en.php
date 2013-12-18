@@ -86,6 +86,7 @@ $messages['en'] = array(
 
 	'form-participation' => "Participation in the Wikimedia projects",
 	'form-username' => "Username on your primary Wikimedia project: ",
+	'form-other-usernames' => '(If applicable) Other Wikimedia usernames used for editing:',
 	'form-active-projects' => "Most active Wikimedia projects: ",
 	'form-extent-explain' => "In the space below, please explain the extent and nature of your participation in the Wikimedia projects (Are you a chapter member? An administrator? A longtime editor? An editor on featured articles? A frequent contributor of high quality images? Etc.)",
 	'form-contrib-explain' => "In the space below, please explain the extent and nature of your participation in other free knowledge, free software, collaborative and/or educational initiatives other than the Wikimedia projects.",

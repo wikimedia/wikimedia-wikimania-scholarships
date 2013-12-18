@@ -72,6 +72,7 @@ class Apply extends Form {
 
 		// Participation in the Wikimedia projects
 		$this->expectString( 'username' );
+		$this->expectString( 'alt_users' );
 		$this->expectInArray( 'project', $validWikis );
 		$this->expectInArray( 'project2', $validWikis );
 		$this->expectInArray( 'project3', $validWikis );
@@ -196,7 +197,7 @@ class Apply extends Form {
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
 
-			'username', 'project', 'project2', 'project3',
+			'username', 'alt_users', 'project', 'project2', 'project3',
 			'involvement', 'contribution',
 
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13',

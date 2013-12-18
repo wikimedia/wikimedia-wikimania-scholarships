@@ -99,10 +99,14 @@
             <dd>
               {% if schol.username is not empty %}
               {{ schol.username }} (<a href="http://toolserver.org/~vvv/sulutil.php?user={{ schol.username|escape('url') }}" target="_blank">cross-wiki contribs</a>)
-            {% else %}
-            No username given
-            {% endif %}
+              {% else %}
+              No username given
+              {% endif %}
             </dd>
+            {% if schol.alt_users is not empty %}
+            <dt>Other usernames:</dt>
+            <dd>{{ schol.alt_users }}</dt>
+            {% endif %}
             <dt>Wiki(s):</dt>
             {% if schol.project %}
             <dd>{{ schol.project }}</dt>
