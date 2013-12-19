@@ -230,15 +230,72 @@ class App {
 	protected function configureRoutes() {
 		$slim = $this->slim;
 
+		// Add a Vary: Cookie header to all responses
+		$headerMiddleware = new HeaderMiddleware( array(
+			'Vary' => 'Cookie',
+		) );
+		$slim->add( $headerMiddleware );
+
+		$middleware = array(
+
+			'must-revalidate' => function () use ( $slim ) {
+				// We want clients to cache if they can, but force them to check for
+				// updates on subsequent hits
+				$slim->response->headers->set(
+					'Cache-Control', 'private, must-revalidate, max-age=0' );
+				$slim->response->headers->set(
+					'Expires', 'Thu, 01 Jan 1970 00:00:00 GMT' );
+			},
+
+			'require-user' => function () use ( $slim ) {
+				if ( $slim->authManager->isAnonymous() ) {
+					// redirect to login form if not authenticated
+					if ( $slim->request->isGet() ) {
+						$uri = $slim->request->getUrl() . $slim->request->getPath();
+						$qs = \Wikimania\Scholarship\Form::qsMerge();
+						if ( $qs ) {
+							$uri = "{$uri}?{$qs}";
+						}
+						$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
+					}
+					$slim->flash( 'error', 'Login required' );
+					$slim->flashKeep();
+					$slim->redirect( $slim->urlFor( 'login' ) );
+				}
+
+				$user = $slim->authManager->getUser();
+				$slim->view->set( 'user', $user );
+				$slim->view->set( 'isadmin', $slim->authManager->isAdmin() );
+			},
+
+			'require-admin' => function () use ( $slim ) {
+				if ( !$slim->authManager->isAdmin() ) {
+					// redirect to login form if not an admin user
+					if ( $slim->request->isGet() ) {
+						$uri = $slim->request->getUrl() . $slim->request->getPath();
+						$qs = \Wikimania\Scholarship\Form::qsMerge();
+						if ( $qs ) {
+							$uri = "{$uri}?{$qs}";
+						}
+						$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
+					}
+					$slim->flash( 'error', 'Admin rights required' );
+					$slim->flashKeep();
+					$slim->redirect( $slim->urlFor( 'login' ) );
+				}
+			},
+
+		);
+
 		// "Root" routes for non-autenticated users
-		$slim->group( '/', function () use ( $slim ) {
+		$slim->group( '/', function () use ( $slim, $middleware ) {
 
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'apply' ) );
 			})->name( 'home' );
 
-			$slim->get( 'apply', function () use ( $slim ) {
+			$slim->get( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\ScholarshipApplication(
 					$slim->config( 'period.open' ),
 					$slim->config( 'period.close' ),
@@ -247,7 +304,7 @@ class App {
 				$page();
 			})->name( 'apply' );
 
-			$slim->post( 'apply', function () use ( $slim ) {
+			$slim->post( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\ScholarshipApplication(
 					$slim->config( 'period.open' ),
 					$slim->config( 'period.close' ),
@@ -262,46 +319,27 @@ class App {
 			App::template( $slim, 'privacy' );
 			App::template( $slim, 'translate' );
 
-			$slim->get( 'login', function () use ( $slim ) {
+			$slim->get( 'login', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\Login( $slim );
 				$page();
 			})->name( 'login' );
 
-			$slim->post( 'login.post', function () use ( $slim ) {
+			$slim->post( 'login.post', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\Login( $slim );
 				$page();
 			})->name( 'login_post' );
 
-			$slim->get( 'logout', function () use ( $slim ) {
+			$slim->get( 'logout', $middleware['must-revalidate'], function () use ( $slim ) {
 				$slim->authManager->logout();
 				$slim->redirect( $slim->urlFor( 'home' ) );
 			})->name( 'logout' );
 
 		});
 
-		// middlewear route that requires authentication
-		$requireUser = function () use ( $slim ) {
-			if ( $slim->authManager->isAnonymous() ) {
-				if ( $slim->request->isGet() ) {
-					$uri = $slim->request->getUrl() . $slim->request->getPath();
-					$qs = \Wikimania\Scholarship\Form::qsMerge();
-					if ( $qs ) {
-						$uri = "{$uri}?{$qs}";
-					}
-					$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
-				}
-				$slim->flash( 'error', 'Login required' );
-				$slim->flashKeep();
-				$slim->redirect( $slim->urlFor( 'login' ) );
-			}
-
-			$user = $slim->authManager->getUser();
-			$slim->view->set( 'user', $user );
-			$slim->view->set( 'isadmin', $slim->authManager->isAdmin() );
-		};
-
 		// routes for authenticated users
-		$slim->group( '/user/', $requireUser, function () use ( $slim ) {
+		$slim->group( '/user/',
+			$middleware['must-revalidate'], $middleware['require-user'],
+			function () use ( $slim, $middleware ) {
 
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
@@ -322,7 +360,9 @@ class App {
 		});
 
 		// routes for reviewers
-		$slim->group( '/review/', $requireUser, function () use ( $slim ) {
+		$slim->group( '/review/',
+			$middleware['must-revalidate'], $middleware['require-user'],
+			function () use ( $slim, $middleware ) {
 
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
@@ -401,24 +441,9 @@ class App {
 
 		});
 
-		// middlewear that requires admin rights
-		$requireAdmin = function () use ( $slim ) {
-			if ( !$slim->authManager->isAdmin() ) {
-				if ( $slim->request->isGet() ) {
-					$uri = $slim->request->getUrl() . $slim->request->getPath();
-					$qs = \Wikimania\Scholarship\Form::qsMerge();
-					if ( $qs ) {
-						$uri = "{$uri}?{$qs}";
-					}
-					$_SESSION[AuthManager::NEXTPAGE_SESSION_KEY] = $uri;
-				}
-				$slim->flash( 'error', 'Admin rights required' );
-				$slim->flashKeep();
-				$slim->redirect( $slim->urlFor( 'login' ) );
-			}
-		};
-
-		$slim->group( '/admin/', $requireUser, $requireAdmin, function () use ( $slim ) {
+		$slim->group( '/admin/',
+			$middleware['must-revalidate'], $middleware['require-user'], $middleware['require-admin'],
+			function () use ( $slim ) {
 
 			$slim->get( 'users', function () use ( $slim ) {
 				$page = new Controllers\Admin\Users( $slim );
@@ -441,7 +466,7 @@ class App {
 
 		});
 
-		$slim->notFound( function () use ( $slim ) {
+		$slim->notFound( function () use ( $slim, $middleware ) {
 			$slim->render( '404.html' );
 		});
 	}
