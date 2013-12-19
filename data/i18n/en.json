@@ -8,7 +8,6 @@
 	"wikimania": "Wikimania",
 	"wikimania-location-year": "London 2014",
 	"header-title": "Wikimania 2014 - Scholarship application",
-	"page-header": "Wikimania 2014 travel scholarships",
 
 	"nav-apply": "Apply",
 	"nav-faq": "FAQ",
@@ -99,7 +98,7 @@
 	"form-submit-app": "Submit application",
 
 	"form-email-subject": "Wikimania 2014 scholarship applications",
-	"form-email-response": "Dear $1,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania 2014.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
+	"form-email-response": "Dear $1 $2,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania 2014.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
 
 	"confirm-thanks": "Thanks!",
 	"confirm-text": "Thank you for submitting your scholarship application for Wikimania 2014. Please contact <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> with any questions.",
@@ -107,7 +106,7 @@
 	"privacy-page": "<p>All personal information will be held strictly confidential by the members of the Wikimania Scholarship Committee and the <a href=\"http://wikimediafoundation.org\">Wikimedia Foundation</a>, in accordance to the Wikimedia Foundation <a href=\"http://wikimediafoundation.org/wiki/Privacy_policy\">privacy policy</a>.</p>",
 
 	"new-account-subject": "New Wikimania Scholarships account",
-	"new-account-email": "A new Wikimania Scholarships account has been created for you.\n\nYour login info is:\n\nusername: %s\npassword: %s\n\nYou may login at https://scholarships.wikimedia.org/user/login\n\nYou may change your password at https://scholarships.wikimedia.org/user/changePassword\n\nSincerely,\nWikimania 2014 Organizing Team",
+	"new-account-email": "A new Wikimania Scholarships account has been created for you.\n\nYour login info is:\n\nusername: $1\npassword: $2\n\nYou may login at: $3\n\nYou may change your password at: $4\n\nSincerely,\nWikimania 2014 Organizing Team",
 
 	"contact-us": "Contact us",
 	"contact-page": "Email: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
@@ -153,7 +152,6 @@
 	"phase-1-fail": "Phase 1 fail list",
 	"phase-2-list": "Phase 2 list",
 	"final-full": "Final: Full",
-	"final-partial": "Final: Partial",
 	"review": "Review",
 	"search": "Search",
 	"by-country": "By country",
@@ -174,6 +172,7 @@
 	"admin-user-admin": "Is admin:",
 	"admin-user-blocked": "Is blocked:",
 	"admin-user-save": "Save changes",
+
 	"admin-users-id": "id",
 	"admin-users-username": "username",
 	"admin-users-email": "email",
@@ -195,7 +194,6 @@
 	"review-list-residence": "Residence",
 	"review-list-gender": "Gender",
 	"review-list-age": "Age",
-	"review-list-partial": "Partial?",
 	"review-list-num-p2": "# p2 scorers",
 	"review-list-onwiki": "Onwiki",
 	"review-list-offwiki": "Offwiki",
@@ -232,6 +230,7 @@
 	"review-view-criteria": "Criteria",
 	"review-view-rank": "Rank",
 	"review-view-reviewers": "Reviewers:",
+
 	"review-view-rankings": "Rankings",
 	"review-view-valid": "Valid:",
 	"review-view-onwiki": "In Wikimedia movement:",

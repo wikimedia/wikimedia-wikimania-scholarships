@@ -90,10 +90,12 @@ class User extends Controller {
 					$sent = $this->mailer->mail(
 						$user['email'],
 						$this->wgLang->message( 'new-account-subject' ),
-						sprintf(
-							$this->wgLang->message( 'new-account-email' ),
-							$user['username'], $this->form->get( 'password' )
-						)
+						$this->wgLang->message( 'new-account-email', array(
+							$user['username'],
+							$this->form->get( 'password' ),
+							$this->urlFor( 'login' ),
+							$this->urlFor( 'user_changepassword' ),
+						) )
 					);
 					if ( !$sent ) {
 						$this->flash(

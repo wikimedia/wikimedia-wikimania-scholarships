@@ -143,12 +143,14 @@ class Lang {
 			$lang = $this->defaultLang;
 		}
 
-		if ( !in_array( $lang, $this->getLangs() ) ) {
-			$lang = $this->defaultLang;
-		}
+		if ( $lang !== 'qqx' ) {
+			if ( !in_array( $lang, $this->getLangs() ) ) {
+				$lang = $this->defaultLang;
+			}
 
-		// remember this language selection for future requests
-		$_SESSION['uselang'] = $lang;
+			// remember this language selection for future requests
+			$_SESSION['uselang'] = $lang;
+		}
 
 		$this->lang = $lang;
 		return $lang;
@@ -164,6 +166,10 @@ class Lang {
 	public function message( $key, $params = array() ) {
 		if ( $this->lang === null ) {
 			$this->getLang();
+		}
+
+		if ( $this->lang === 'qqx' ) {
+			return $key;
 		}
 
 		// Try the language, then english, then fail

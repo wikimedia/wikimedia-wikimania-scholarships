@@ -60,7 +60,7 @@ class ScholarshipApplication extends Controller {
 	protected function handle() {
 			$submitted = false;
 
-			if ( $this->slim->request->isPost() ) {
+			if ( $this->request->isPost() ) {
 				// FIXME: get/post should be split and use redirects but I'm too lazy
 				// to do that right now. It would be nice if Controller handled most
 				// of the heavy lifting for that. Slim's `flash` is nice but rigged to
@@ -70,20 +70,23 @@ class ScholarshipApplication extends Controller {
 					// input is valid, save to database
 					if ( $this->form->save() ) {
 						// send confirmation email
-						$message = $this->slim->wgLang->message( 'form-email-response' );
-						$message = preg_replace( '/\$1/',
-							"{$this->form->get('fname')} {$this->form->get('lname')}", $message );
+						$message = $this->wgLang->message( 'form-email-response',
+							array(
+								$this->form->get( 'fname' ),
+								$this->form->get( 'lname' ),
+							)
+						);
 
 						$this->mailer->mail(
-							$this->form->get('email'),
-							$this->slim->wgLang->message( 'form-email-subject' ),
+							$this->form->get( 'email' ),
+							$this->wgLang->message( 'form-email-subject' ),
 							$message
 						);
 						$submitted = true;
 
 					} else {
 						$this->flashNow( 'error',
-							$this->slim->wgLang->message( 'form-save-error' )
+							$this->wgLang->message( 'form-save-error' )
 						);
 					}
 				}
@@ -91,18 +94,18 @@ class ScholarshipApplication extends Controller {
 
 			$now = time();
 
-			$this->slim->view->setData( 'registration_open',
-				$now > $this->periodOpen || $this->slim->mock );
+			$this->view->setData( 'registration_open',
+				$now > $this->periodOpen || $this->mock );
 			// FIXME: legacy app allowed '?special' to override
-			$this->slim->view->setData( 'registration_closed',
-				$now > $this->periodClose && !$this->slim->mock );
+			$this->view->setData( 'registration_closed',
+				$now > $this->periodClose && !$this->mock );
 
-			$this->slim->view->setData( 'form', $this->form );
-			$this->slim->view->setData( 'submitted', $submitted );
-			$this->slim->view->setData( 'countries', Countries::$COUNTRY_NAMES );
-			$this->slim->view->setData( 'wikilist', Wikis::$WIKI_NAMES );
+			$this->view->setData( 'form', $this->form );
+			$this->view->setData( 'submitted', $submitted );
+			$this->view->setData( 'countries', Countries::$COUNTRY_NAMES );
+			$this->view->setData( 'wikilist', Wikis::$WIKI_NAMES );
 
-			$this->slim->render( 'apply.html' );
+			$this->render( 'apply.html' );
 	}
 
 } //end Apply
