@@ -177,7 +177,8 @@ class App {
 		// replace default logger with monolog
 		$container->singleton( 'log', function ( $c ) {
 			$log = new \Monolog\Logger( 'scholarships' );
-			$handler = new MwLogHandler( $c->settings['log.file'] );
+			$handler = new MwLogHandler(
+				$c->settings['log.file'], $c->settings['log.level'] );
 			$handler->setFormatter( new \Monolog\Formatter\LogstashFormatter(
 				'scholarships', null, null, '',
 				\Monolog\Formatter\LogstashFormatter::V1
