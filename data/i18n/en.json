@@ -26,7 +26,7 @@
 
 	"not-open": "The 2014 Wikimania Scholarship process is not yet open. For more information, see:\n<ul>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Main_Page\">About Wikimania</a></li>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Scholarships\">About Scholarships</a></li>\n</ul>",
 
-	"deadline-passed": "<p>Scholarship application deadline was February 17, 2014, 23:59 UTC.</p>\n<p>We will notify applicants in April about the result of your application.</p>\n<p>Please see the <a href='http://wikimania2014.wikimedia.org/wiki/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
+	"deadline-passed": "<p>Scholarship application deadline was February 17, 2014, 23:59 UTC.</p>\n<p>We will notify applicants in April 2014 about the result of their application.</p>\n<p>Please see the <a href='http://wikimania2014.wikimedia.org/wiki/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
 
 	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"http://wikimania2014.wikimedia.org\">Wikimania 2014</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in London, 5-10 August 2014.</p>\n<p>This is <strong>not</strong> a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>The deadline to apply is <strong>February 17, 2014, 23:59 UTC</strong>.</p>",
 	"form-intro-faq": "<a href='http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
@@ -76,7 +76,7 @@
 	"form-presentation-topic": "If you have or will submit a presentation, please provide a link to your presentation or proposal title:",
 	"form-howheard": "How did you hear about this opportunity?",
 	"form-howheard1": "Mailing list / e-mail",
-	"form-howheard2": "Wikimedia project Web site (incl. Wikipedia)",
+	"form-howheard2": "Wikimedia project web site (incl. Wikipedia)",
 	"form-howheard3": "Village pump / Café / Community portal",
 	"form-howheard4": "Word of mouth",
 	"form-howheard5": "Other",
@@ -147,7 +147,7 @@
 	"error-id": "Error ID: $1",
 
 	"404-header": "Page not found",
-	"404-message": "The page you requested cannot be found. Please check the link/URL and try\n  again.",
+	"404-message": "The page you requested cannot be found. Please check the link/URL and try again.",
 
 	"phase-1": "Phase 1",
 	"phase-2": "Phase 2",
