@@ -58,18 +58,18 @@ class Login extends Controller {
 			);
 
 			if ( $authed ) {
-				// FIXME: should use localization
-				$this->flash( 'info', 'Login successful.' );
+				$this->flash( 'info', $this->wgLang->message( 'login-success' ) );
 				$this->redirect( $next );
 
 			} else {
-				// FIXME: should use localization
-				$this->flash( 'error', 'Login failed.' );
+				$this->flash( 'error', $this->wgLang->message( 'login-failed' ) );
+				$this->log->info( 'Failed login attempt for {username}', array(
+					'username' => $this->form->get( 'username' ),
+				) );
 			}
 
 		} else {
-				// FIXME: should use localization
-			$this->flash( 'error', 'Username and password required.' );
+			$this->flash( 'error', $this->wgLang->message( 'login-error' ) );
 		}
 
 		$this->redirect( $this->urlFor( 'login' ) );
