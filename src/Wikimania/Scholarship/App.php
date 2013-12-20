@@ -282,7 +282,7 @@ class App {
 		$requireUser = function () use ( $slim ) {
 			if ( $slim->authManager->isAnonymous() ) {
 				if ( $slim->request->isGet() ) {
-					$uri = $slim->request->getPath();
+					$uri = $slim->request->getUrl() . $slim->request->getPath();
 					$qs = \Wikimania\Scholarship\Form::qsMerge();
 					if ( $qs ) {
 						$uri = "{$uri}?{$qs}";
@@ -404,7 +404,7 @@ class App {
 		$requireAdmin = function () use ( $slim ) {
 			if ( !$slim->authManager->isAdmin() ) {
 				if ( $slim->request->isGet() ) {
-					$uri = $slim->request->getPath();
+					$uri = $slim->request->getUrl() . $slim->request->getPath();
 					$qs = \Wikimania\Scholarship\Form::qsMerge();
 					if ( $qs ) {
 						$uri = "{$uri}?{$qs}";

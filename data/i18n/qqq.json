@@ -138,6 +138,9 @@
 	"login": "Login page heading and label for form submit button",
 	"username": "Input label, followed by text box",
 	"password": "Input label, followed by text box",
+	"login-success": "Message shown to user when authentication succeeds",
+	"login-failed": "Message shown to user when authentication fails",
+	"login-error": "Message shown to user when authentication form is submitted with incomplete data",
 
 	"error-heading": "Fatal error page heading",
 	"error-message": "Fatal error page content",
