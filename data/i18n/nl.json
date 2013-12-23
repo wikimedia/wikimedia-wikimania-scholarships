@@ -1,7 +1,8 @@
 {
     "@metadata": {
         "authors": [
-            "Siebrand"
+            "Siebrand",
+            "M!dgard"
         ]
     },
     "wikimania": "Wikimania",
@@ -65,7 +66,7 @@
     "form-howheard1": "Mailinglijst / e-mail",
     "form-howheard2": "Website van een Wikimediaproject (incl. Wikipedia)",
     "form-howheard3": "De kroeg / gemeenschapspagina",
-    "form-howheard4": "Mond-op-mondreclame",
+    "form-howheard4": "Mond-tot-mondreclame",
     "form-howheard5": "Overig",
     "form-enrichment": "Geef hieronder aan waarom u Wikimania wilt bijwonen",
     "form-agree": "Overeenkomst voor aanvragen",
