@@ -58,6 +58,7 @@ class Lang {
 	 */
 	protected $defaultLang;
 
+
 	/**
 	 * @param string $dir Directory containing language files
 	 * @param string $default Default language
@@ -106,7 +107,7 @@ class Lang {
 					continue;
 				}
 
-				$lang = substr( basename( $file ), 0, -5 );
+				$lang = strtolower( substr( basename( $file ), 0, -5 ) );
 				if ( $lang === 'qqq' ) {
 					// Ignore message documentation
 					continue;
@@ -128,6 +129,7 @@ class Lang {
 		return array_keys( $this->messages );
 	}
 
+
 	/**
 	 * Get the active language.
 	 * @return string Selected language
@@ -140,7 +142,14 @@ class Lang {
 			$lang = $_SESSION['uselang'];
 
 		} else {
-			$lang = $this->defaultLang;
+			$wants = self::parseAcceptLanguage();
+			$bestMatches = array_intersect( $wants, $this->getLangs() );
+			if ( $bestMatches ) {
+				$lang = current( $bestMatches );
+
+			} else {
+				$lang = $this->defaultLang;
+			}
 		}
 
 		if ( $lang !== 'qqx' ) {
@@ -155,6 +164,7 @@ class Lang {
 		$this->lang = $lang;
 		return $lang;
 	}
+
 
 	/**
 	 * Get a message string.
@@ -180,7 +190,6 @@ class Lang {
 			$msg = $this->messages['en'][$key];
 
 		} else {
-			// FIXME: log missing translation
 			$this->logger->warning( 'No translation for key "{key}" in {lang} or en',
 				array(
 					'method' => __METHOD__,
@@ -206,6 +215,45 @@ class Lang {
 		}
 
 		return $msg;
+	}
+
+
+	/**
+	 * Parse the Accept-Language header present in the request and return an
+	 * ordered list of languages preferred by the user-agent.
+	 *
+	 * @return array List of preferred languages
+	 */
+	public static function parseAcceptLanguage() {
+		if ( !isset( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
+			return array();
+		}
+
+		$weighted = array();
+
+		// Strip any whitespace in the header value
+		$hdr = preg_replace( '/\s+/', '', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
+		// Split on commas
+		$parts = explode( ',', $hdr );
+		foreach ( $parts as $idx => $part ) {
+			if ( strpos( $part, ';q=' ) ) {
+				// Extract relative weight from component
+				list( $lang, $weight ) = explode( ';q=', $part );
+				$weight = (float)$weight;
+
+			} else {
+				$lang = $part;
+				$weight = 1;
+			}
+
+			if ( $lang != '*' && $weight > 0 ) {
+				// Decorate the weight with the original position to make sort stable
+				$weighted[strtolower( $lang )] = array( $weight, -$idx );
+			}
+		}
+
+		arsort( $weighted );
+		return array_keys( $weighted );
 	}
 
 }
