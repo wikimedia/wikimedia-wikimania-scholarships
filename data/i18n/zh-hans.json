@@ -1,7 +1,8 @@
 {
     "@metadata": {
         "authors": [
-            "Yfdyh000"
+            "Yfdyh000",
+            "Dimension"
         ]
     },
     "nav-apply": "申请",
@@ -56,6 +57,7 @@
     "form-wmfAgreeName": "请输入你的全名：",
     "form-wmfAgreeGuardian": "如果未满十八周岁，也请输入父母或者合法监护人的全名：",
     "form-submit-app": "提交申请",
+    "confirm-thanks": "感谢！",
     "contact-us": "联系我们",
     "credits": "制作人员和授权",
     "help-translate": "帮忙翻译",
