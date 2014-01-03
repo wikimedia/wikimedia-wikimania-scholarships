@@ -74,6 +74,7 @@ lang: currently selected display language
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
 <form action="{{ urlFor( 'apply_post' ) }}" method="post" role="form">
+  <input type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
   <input type="hidden" name="lang" id="lang" value="{{ lang }}" />
   <div class="form-group">
     <label class="required">{{ wgLang.message( 'required-field' ) }}</label>

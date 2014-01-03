@@ -14,6 +14,7 @@
 </ol>
 
 <form class="form-horizontal" method="post" action="{{ urlFor( 'admin_user_post' ) }}">
+  <input type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
   <input type="hidden" name="id" value="{{ id }}"/>
   <div class="form-group">
     <label class="col-sm-2 control-label">{{ wgLang.message( 'admin-user-id') }}</label>

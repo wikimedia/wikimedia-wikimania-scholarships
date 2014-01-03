@@ -243,5 +243,8 @@
 	"review-view-save": "Save",
 
 	"page-of-pages": "Page $1 of $2",
-	"no-results": "No results found"
+	"no-results": "No results found",
+
+	"csrf-heading": "Invalid request",
+	"csrf-message": "The request that was submitted was missing the request forgery protection token. Please return to the form, reload the page and try again."
 }

@@ -299,6 +299,7 @@
             <p></p>
 
             <form class="form-horizontal" method="post" action="{{ urlFor( 'review_view_post' ) }}" role="form">
+              <input type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
               <input type="hidden" name="phase" value="{{ phase }}"/>
               <input type="hidden" name="id" value="{{ id }}"/>
               {% if phase == 1 %}

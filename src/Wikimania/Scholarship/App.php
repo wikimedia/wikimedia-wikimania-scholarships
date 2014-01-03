@@ -235,6 +235,8 @@ class App {
 			'Vary' => 'Cookie',
 		) );
 		$slim->add( $headerMiddleware );
+		// Add CSRF protection
+		$slim->add( new CsrfMiddleware() );
 
 		$middleware = array(
 
