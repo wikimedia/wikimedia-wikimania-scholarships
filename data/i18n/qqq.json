@@ -209,5 +209,7 @@
     "review-view-notes": "Input label, followed by multi-line text box.\n{{Identical|Note}}",
     "review-view-save": "Form submission button.\n{{Identical|Save}}",
     "page-of-pages": "Paginated report page indicator. Parameters:\n* $1 - current page number\n* $2 - total page count",
-    "no-results": "Content for report with no results"
+    "no-results": "Content for report with no results",
+    "csrf-heading": "Header for cross site request forgery (CSRF) error page",
+    "csrf-message": "Cross site request forgery (CSRF) error page body"
 }
