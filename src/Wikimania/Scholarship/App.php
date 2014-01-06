@@ -176,9 +176,12 @@ class App {
 
 		// replace default logger with monolog
 		$container->singleton( 'log', function ( $c ) {
+			// Convert string level to Monolog integer value
+			$level = strtoupper( $c->settings['log.level'] );
+			$level = constant( "\Monolog\Logger::{$level}" );
+
 			$log = new \Monolog\Logger( 'scholarships' );
-			$handler = new MwLogHandler(
-				$c->settings['log.file'], $c->settings['log.level'] );
+			$handler = new MwLogHandler( $c->settings['log.file'], $level );
 			$handler->setFormatter( new \Monolog\Formatter\LogstashFormatter(
 				'scholarships', null, null, '',
 				\Monolog\Formatter\LogstashFormatter::V1

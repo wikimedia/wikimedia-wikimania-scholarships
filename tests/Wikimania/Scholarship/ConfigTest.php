@@ -42,7 +42,6 @@ class ConfigTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEnv( "this isn't simple = true;", 'COMPLEX' );
 	}
 
-
 	/**
 	 * Assert that an expected value is present in getenv(), $_ENV and $_SERVER.
 	 * @param string $expect Expected value
@@ -52,6 +51,24 @@ class ConfigTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( $expect, getenv( $var ) );
 		$this->assertEquals( $expect, $_ENV[$var] );
 		$this->assertEquals( $expect, $_SERVER[$var] );
+	}
+
+
+	public function testGetStrDefault() {
+		$name = 'CONFIG_TEST_VALUE_NOT_SET';
+		putenv( $name );
+		$this->assertSame( false, getenv( $name ) );
+
+		$default = __METHOD__;
+		$this->assertSame( $default, Config::getStr( $name, $default ) );
+	}
+
+	public function testGetDateUnset() {
+		$name = 'CONFIG_TEST_VALUE_NOT_SET';
+		putenv( $name );
+		$this->assertSame( false, getenv( $name ) );
+
+		$this->assertSame( false, Config::getDate( $name ) );
 	}
 
 } //end ConfigTest

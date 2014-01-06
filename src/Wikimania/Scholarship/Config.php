@@ -50,11 +50,13 @@ class Config {
 	 */
 	public static function getStr( $name, $default = '' ) {
 		$var = getenv( $name );
-		$val = filter_var( $var,
-			\FILTER_SANITIZE_STRING,
-			\FILTER_FLAG_STRIP_LOW | \FILTER_FLAG_STRIP_HIGH
-		);
-		return ( $val === false ) ? $default : $val;
+		if ( $var !== false ) {
+			$var = filter_var( $var,
+				\FILTER_SANITIZE_STRING,
+				\FILTER_FLAG_STRIP_LOW | \FILTER_FLAG_STRIP_HIGH
+			);
+		}
+		return ( $var === false ) ? $default : $var;
 	}
 
 
