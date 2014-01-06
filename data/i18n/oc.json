@@ -1,7 +1,8 @@
 {
     "@metadata": {
         "authors": [
-            "Cedric31"
+            "Cedric31",
+            "Jfblanc"
         ]
     },
     "wikimania": "Wikimania",
@@ -21,7 +22,7 @@
     "required-field": "Camp obligatòri",
     "form-contact-info": "Informacions de contacte",
     "form-fname": "Prenom :",
-    "form-lname": "Nom (escais) :",
+    "form-lname": "Nom :",
     "form-email": "Adreça de corrièr electronic :",
     "form-personalinfo": "Entresenhas personalas",
     "form-yes": "Òc",
@@ -38,7 +39,7 @@
     "form-howheard4": "Boca a aurelha",
     "form-howheard5": "Autre",
     "form-privacy": "Vida privada",
-    "confirm-thanks": "Mercé !",
+    "confirm-thanks": "Mercés !",
     "contact-us": "Nos contactar",
     "contact-page": "Corrièr electronic : \u003Ca href=\"mailto:wikimania-scholarships@wikimedia.org\"\u003Ewikimania-scholarships@wikimedia.org\u003C/a\u003E",
     "credits": "Crèdits \u0026 licéncias",
@@ -63,7 +64,7 @@
     "username": "Nom d'utilizaire :",
     "password": "Senhal :",
     "login-success": "Connexion capitada.",
-    "login-failed": "Fracàs de connexion.",
+    "login-failed": "Error de connexion.",
     "error-heading": "Error del sistèma",
     "error-id": "ID d’error : $1",
     "404-header": "Pagina pas trobada",
@@ -72,7 +73,7 @@
     "phase-1-success": "Lista de succèsses de la fasa 1",
     "phase-1-fail": "Lista de fracasses de la fasa 1",
     "phase-2-list": "Lista de la fasa 2",
-    "final-full": "Final : Complet",
+    "final-full": "Final: Complet",
     "review": "Relegir",
     "search": "Cercar",
     "logout": "Desconnexion",
@@ -80,7 +81,7 @@
     "old-password": "Senhal ancian :",
     "new-password": "Senhal novèl :",
     "save-password": "Salvar lo senhal",
-    "admin-user-id": "ID :",
+    "admin-user-id": "Id :",
     "admin-user-email": "Adreça de corrièr electronic :",
     "admin-users-id": "id",
     "admin-users-username": "nom d’utilizaire",

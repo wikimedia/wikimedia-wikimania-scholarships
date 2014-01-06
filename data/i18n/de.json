@@ -7,7 +7,7 @@
     "wikimania": "Wikimania",
     "wikimania-location-year": "London 2014",
     "header-title": "Wikimania 2014 – Stipendienanwendung",
-    "nav-apply": "Anwenden",
+    "nav-apply": "Bewerben",
     "nav-faq": "Häufig gestellte Fragen",
     "nav-credits": "Danksagungen",
     "nav-privacy": "Datenschutz",
@@ -207,5 +207,7 @@
     "review-view-notes": "Anmerkungen:",
     "review-view-save": "Speichern",
     "page-of-pages": "Seite $1 von $2",
-    "no-results": "Keine Ergebnisse gefunden"
+    "no-results": "Keine Ergebnisse gefunden",
+    "csrf-heading": "Ungültige Anfrage",
+    "csrf-message": "Der übermittelten Anfrage fehlt der Anfragen-Fälschungsschutz-Token. Bitte kehre zurück zum Formular, lade die Seite erneut und versuche es erneut."
 }

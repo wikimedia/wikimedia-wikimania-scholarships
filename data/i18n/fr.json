@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "Gomoko",
-            "Yann.fauche"
+            "Yann.fauche",
+            "Linedwell"
         ]
     },
     "wikimania": "Wikimania",
@@ -29,7 +30,7 @@
     "required-field": "Champ obligatoire",
     "form-contact-info": "Information de contact",
     "form-fname": "Prénom :",
-    "form-lname": "Nom (surnom) :",
+    "form-lname": "Nom de famille :",
     "form-email": "Adresse de courriel :",
     "form-residence": "Pays de résidence :",
     "form-personalinfo": "Information personnelle",

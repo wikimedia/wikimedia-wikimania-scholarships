@@ -208,5 +208,7 @@
     "review-view-notes": "Opmerkingen:",
     "review-view-save": "Opslaan",
     "page-of-pages": "Pagina $1 van $2",
-    "no-results": "Geen resultaten gevonden"
+    "no-results": "Geen resultaten gevonden",
+    "csrf-heading": "Ongeldige aanvraag",
+    "csrf-message": "Aan het verzoek dat is ingediend ontbrak het beschermingstoken tegen verzoeksvervalsing. Ga terug naar het formulier, vernieuw de pagina en probeer het opnieuw."
 }
