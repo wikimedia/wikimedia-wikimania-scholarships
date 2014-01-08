@@ -97,9 +97,9 @@ class Apply extends Form {
 		$this->expectString( 'why', array( 'required' => true ) );
 
 		// Application agreement
-		$this->expectBool( 'willgetvisa' );
-		$this->expectBool( 'willpayincidentals' );
-		$this->expectBool( 'agreestotravelconditions' );
+		$this->expectTrue( 'willgetvisa' );
+		$this->expectTrue( 'willpayincidentals' );
+		$this->expectTrue( 'agreestotravelconditions' );
 
 		// Privacy
 		$this->expectBool( 'chapteragree' );
