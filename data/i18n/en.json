@@ -246,5 +246,6 @@
 	"no-results": "No results found",
 
 	"csrf-heading": "Invalid request",
-	"csrf-message": "The request that was submitted was missing the request forgery protection token. Please return to the form, reload the page and try again."
+	"csrf-message": "The request that was submitted was missing the request forgery protection token. Please return to the form, reload the page and try again.",
+	"search-region": "Geographic region:"
 }
