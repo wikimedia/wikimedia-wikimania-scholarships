@@ -212,5 +212,5 @@
     "no-results": "Content for report with no results",
     "csrf-heading": "Header for cross site request forgery (CSRF) error page",
     "csrf-message": "Cross site request forgery (CSRF) error page body",
-    "search-region": "Input label, followed by text box",
+    "search-region": "Input label, followed by text box"
 }
