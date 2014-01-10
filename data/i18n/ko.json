@@ -4,8 +4,7 @@
             "Clockoon",
             "아라",
             "Freebiekr",
-            "Hym411",
-            "Jskang"
+            "Hym411"
         ]
     },
     "wikimania": "위키매니아",
@@ -25,7 +24,7 @@
     "mock": "모의 장학금 애플리케이션 사이트만입니다, 그냥 시험 삼아 사용하세요.",
     "not-open": "2014 위키매니아 장학금 과정은 아직 열려있지 않습니다. 자세한 정보는, 참조하세요:\n\u003Cul\u003E\n\u003Cli\u003E\u003Ca href=\"https://wikimania2014.wikimedia.org/wiki/Main_Page\"\u003E위키매니아에 대해\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\"https://wikimania2014.wikimedia.org/wiki/Scholarships\"\u003E장학금에 대해\u003C/a\u003E\u003C/li\u003E\n\u003C/ul\u003E",
     "deadline-passed": "\u003Cp\u003E장학금 애플리케이션 마감일은 2월 17일, 2014년, UTC 23:59입니다.\u003C/p\u003E\n\u003Cp\u003E우리는 이들 애플리케이션에 대한 결과에 대해 신청자에게 2014년 4월에 알릴 것입니다.\u003C/p\u003E\n\u003Cp\u003E자세한 내용에 대해서는 위키에 있는 \u003Ca href='http://wikimania2014.wikimedia.org/wiki/Scholarships'\u003E장학금 문서\u003C/a\u003E를 참고해주세요.\u003C/p\u003E",
-    "form-intro-faq": "\u003Ca href='//wikimania2014.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'\u003E자주 묻는 질문\u003C/a\u003E",
+    "form-intro-faq": "\u003Ca href='http://wikimania2013.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'\u003E자주 묻는 질문\u003C/a\u003E",
     "form-error": "양식에 오류가 있습니다. 오류를 수정하고 다시 양식을 제출하세요.",
     "form-save-error": "애플리케이션을 저장하는 도중에 시스템 오류가 발생했습니다. 다시 시도하세요.",
     "required-field": "필수 필드",
@@ -62,7 +61,7 @@
     "form-contrib-explain": "아래 칸에, 자유로운 지식, 자유 소프트웨어, 위키미디어 외부에서의 공동 교육 사업에 참여한 경험을 작성해 주십시오.",
     "form-interest": "위키마니아에 대한 관심과 참여",
     "form-attended": "위키마니아에 참여한 적이 있습니까? 그렇다면 언제 참여했습니까?",
-    "form-presentation-topic": "만약 당신이 발표를 하거나 할 예정이라면, 발표나 제안 제목에 대한 링크를 제공해 주십시오:",
+    "form-presentation-topic": "만약 당신이 발표를 하거나 할 예정이라면, 발표나 제안에 관한 링크를 제공해 주십시오:",
     "form-howheard": "어떻게 이 기회에 대해 알게 되었습니까?",
     "form-howheard1": "메일링 리스트 / 이메일",
     "form-howheard2": "위키미디어 프로젝트 웹 사이트 (위키백과 포함)",
