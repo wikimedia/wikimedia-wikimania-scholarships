@@ -17,6 +17,7 @@
     "nav-admin": "Administratör",
     "nav-users": "Hantera användare",
     "nav-account": "Mitt konto",
+    "form-intro-faq": "\u003Ca href='//wikimania2014.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'\u003EVanliga frågor\u003C/a\u003E",
     "form-error": "Ditt formulär har några fel. Korrigera felen och skicka in formuläret igen.",
     "form-save-error": "Det uppstod ett systemfel när din ansökan skulle sparas. Var god försök igen.",
     "required-field": "Obligatoriskt fält",
