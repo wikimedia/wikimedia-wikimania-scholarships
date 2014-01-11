@@ -3,7 +3,8 @@
         "authors": [
             "Bryan Davis",
             "Chad Horohoe",
-            "Shirayuki"
+            "Shirayuki",
+            "BryanDavis"
         ]
     },
     "wikimania": "Used as image alt text and in the branding banner",
@@ -24,7 +25,7 @@
     "not-open": "Content for site landing page before date that scholarship request will be accepted",
     "deadline-passed": "Content for site landing page after scholarship request period has closed",
     "form-intro": "Static content to be shown at the top of the scholarship request form in a callout box",
-    "form-intro-faq": "Link to Scholarships/FAQ wiki page",
+    "form-intro-faq": "Link to Scholarships/FAQ wiki page. Do not translate URL unless you have verified that wikimania2014.wikimedia.org has localized version of FAQ page in target language.",
     "form-error": "Error message shown to user when scholarship request form submission is incomplete",
     "form-save-error": "Error message shown to user when a system error occurred saving the application data",
     "required-field": "Shown at the top of the data input form to explain the styling of required form fields to the user",
@@ -195,7 +196,7 @@
     "review-view-visa": "Report label",
     "review-view-incidentals": "Report label",
     "review-view-travel-conditions": "Report label",
-    "review-view-not-specified": "Report content indicating that an answer was not provided for an optional question",
+    "review-view-not-specified": "Report content indicating that an answer was not provided for an optional question.\n{{Identical|Not specified}}",
     "review-view-full-dump": "Report section label, section contains list of database column names and values associated with scholarship application submission",
     "review-view-scorings": "Report section label, section contains scores given to specific scholarship application submission",
     "review-view-criteria": "Table column header, scholarship application attribute rated by reviewer",
