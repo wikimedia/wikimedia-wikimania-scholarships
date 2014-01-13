@@ -181,6 +181,7 @@
 	"admin-users-email": "email",
 	"admin-users-reviewer": "reviewer?",
 	"admin-users-admin": "admin?",
+	"admin-users-valid": "valid?",
 	"admin-users-blocked": "blocked?",
 	"admin-users-yes": "yes",
 	"admin-users-no": "no",

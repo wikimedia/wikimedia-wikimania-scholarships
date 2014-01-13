@@ -151,6 +151,7 @@
     "admin-users-username": "Table column header, username.\n{{Identical|Username}}",
     "admin-users-email": "Table column header, email address.\n{{Identical|E-mail}}",
     "admin-users-reviewer": "Table column header, is user a reviewer",
+    "admin-users-valid": "Table column header, is user valid",
     "admin-users-admin": "Table column header, is user an administrator.\n{{Identical|Admin}}",
     "admin-users-blocked": "Table column header, is user blocked from authenticating",
     "admin-users-yes": "Table cell value indicating that true/false value is true.\n\nSee also:\n* {{msg-wm|Wsa-admin-users-no}}\n{{Identical|Yes}}",
