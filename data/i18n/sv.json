@@ -2,11 +2,13 @@
     "@metadata": {
         "authors": [
             "Jopparn",
-            "WikiPhoenix"
+            "WikiPhoenix",
+            "Ainali"
         ]
     },
     "wikimania": "Wikimania",
     "wikimania-location-year": "London 2014",
+    "nav-apply": "Ansök",
     "nav-faq": "Vanliga frågor",
     "nav-credits": "Erkännanden",
     "nav-privacy": "Sekretess",

@@ -191,5 +191,7 @@
     "review-view-notes": "备注：",
     "review-view-save": "保存",
     "page-of-pages": "$1/$2页",
-    "no-results": "未找到结果"
+    "no-results": "未找到结果",
+    "csrf-heading": "无效申请",
+    "search-region": "地理区域："
 }
