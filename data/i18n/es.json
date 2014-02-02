@@ -7,7 +7,8 @@
             "Salvador alc",
             "White Master King",
             "BryanDavis",
-            "Fitoschido"
+            "Fitoschido",
+            "VegaDark"
         ]
     },
     "wikimania": "Wikimanía",
@@ -156,6 +157,7 @@
     "admin-users-email": "correo electrónico",
     "admin-users-reviewer": "¿Revisor?",
     "admin-users-admin": "¿Administrador?",
+    "admin-users-valid": "¿válido?",
     "admin-users-blocked": "¿Bloqueado?",
     "admin-users-yes": "sí",
     "admin-users-no": "no",
