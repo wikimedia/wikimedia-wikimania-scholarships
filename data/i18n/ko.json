@@ -6,7 +6,8 @@
             "Freebiekr",
             "Hym411",
             "Jskang",
-            "Leehoy"
+            "Leehoy",
+            "Priviet"
         ]
     },
     "wikimania": "위키매니아",
@@ -26,7 +27,7 @@
     "mock": "모의 장학금 애플리케이션 사이트만입니다, 그냥 시험 삼아 사용하세요.",
     "not-open": "2014 위키매니아 장학금 과정은 아직 열려있지 않습니다. 자세한 정보는, 참조하세요:\n\u003Cul\u003E\n\u003Cli\u003E\u003Ca href=\"https://wikimania2014.wikimedia.org/wiki/Main_Page\"\u003E위키매니아에 대해\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\"https://wikimania2014.wikimedia.org/wiki/Scholarships\"\u003E장학금에 대해\u003C/a\u003E\u003C/li\u003E\n\u003C/ul\u003E",
     "deadline-passed": "\u003Cp\u003E장학금 애플리케이션 마감일은 2월 17일, 2014년, UTC 23:59입니다.\u003C/p\u003E\n\u003Cp\u003E우리는 이들 애플리케이션에 대한 결과에 대해 신청자에게 2014년 4월에 알릴 것입니다.\u003C/p\u003E\n\u003Cp\u003E자세한 내용에 대해서는 위키에 있는 \u003Ca href='http://wikimania2014.wikimedia.org/wiki/Scholarships'\u003E장학금 문서\u003C/a\u003E를 참고해주세요.\u003C/p\u003E",
-    "form-intro": "\u003Cp\u003E이 페이지는 위키미디어 프로젝트 중심의 연례 국제 회의인  \u003Ca href=\"http://wikimania2014.wikimedia.org\"\u003E위키매니아 2014\u003C/a\u003E 참석을 위한 후원 지원페이지 입니다.\n수상자는 회의의 등록비용, 숙소, 그리고 2014년 8월 6일~10일에 런던에서 열리는 위키매니아의 왕복비행기표를 받습니다.\u003C/p\u003E\n\u003Cp\u003E이 후원은 대학 수업을 듣기 위한 후원이 \u003Cstring\u003E아닙니다\u003C/strong\u003E. 회의와 전혀 관계가 없는 지원은 받지 않습니다.\u003C/p\u003E\n\u003Cp\u003E후원에 지원하기 전에 위키매니아에 참석하기 위한 재정적 도움의 필요성을 한번 더 생각해보새요. 지원금이 제한되어 있고 대부분의 지원자들은 이 후원을 받지 않아도 위키매니아에 참석이 가능합니다\u003C/p\u003E\n\u003Cp\u003E지원 마감일은 \u003Cstrong\u003E그리니치 기준시로 2014년 2월 17일 23시 59분\u003C/string\u003E까지 입니다.\u003C/p\u003E",
+    "form-intro": "\u003Cp\u003E이 페이지는 위키미디어 프로젝트 중심의 연례 국제 회의인  \u003Ca href=\"http://wikimania2014.wikimedia.org\"\u003E위키매니아 2014\u003C/a\u003E 참석을 위한 후원 지원페이지입니다.\n수상자는 회의의 등록비용, 숙소, 그리고 2014년 8월 6일~10일에 런던에서 열리는 위키매니아의 왕복비행기표를 받습니다.\u003C/p\u003E\n\u003Cp\u003E이 후원은 대학 수업을 듣기 위한 후원이 \u003Cstring\u003E아닙니다\u003C/strong\u003E. 회의와 전혀 관계가 없는 지원은 받지 않습니다.\u003C/p\u003E\n\u003Cp\u003E후원에 지원하기 전에 위키매니아에 참석하기 위한 재정적 도움의 필요성을 한번 더 생각해보새요. 지원금이 제한되어 있고 대부분의 지원자들은 이 후원을 받지 않아도 위키매니아에 참석이 가능합니다\u003C/p\u003E\n\u003Cp\u003E지원 마감일은 \u003Cstrong\u003E그리니치 기준시로 2014년 2월 17일 23시 59분\u003C/string\u003E까지 입니다.\u003C/p\u003E",
     "form-intro-faq": "\u003Ca href='//wikimania2014.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'\u003E자주 묻는 질문\u003C/a\u003E",
     "form-error": "양식에 오류가 있습니다. 오류를 수정하고 다시 양식을 제출하세요.",
     "form-save-error": "애플리케이션을 저장하는 도중에 시스템 오류가 발생했습니다. 다시 시도하세요.",
@@ -154,6 +155,7 @@
     "admin-users-email": "이메일",
     "admin-users-reviewer": "검토자?",
     "admin-users-admin": "관리자?",
+    "admin-users-valid": "유효합니까?",
     "admin-users-blocked": "차단됨?",
     "admin-users-yes": "예",
     "admin-users-no": "아니오",
@@ -169,6 +171,7 @@
     "review-list-residence": "거주지",
     "review-list-gender": "성별",
     "review-list-age": "나이",
+    "review-list-num-p2": "# p2 득점자",
     "review-list-onwiki": "위키 안",
     "review-list-offwiki": "위키 밖",
     "review-list-interest": "관심",

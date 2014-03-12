@@ -2,7 +2,8 @@
     "@metadata": {
         "authors": [
             "Siebrand",
-            "M!dgard"
+            "M!dgard",
+            "Southparkfan"
         ]
     },
     "wikimania": "Wikimania",
@@ -151,6 +152,7 @@
     "admin-users-email": "e-mailadres",
     "admin-users-reviewer": "beoordeelaar?",
     "admin-users-admin": "beheerder?",
+    "admin-users-valid": "geldig?",
     "admin-users-blocked": "geblokeerd?",
     "admin-users-yes": "ja",
     "admin-users-no": "nee",
