@@ -98,7 +98,7 @@
             <dt>{{ wgLang.message( 'review-view-username' ) }}</dt>
             <dd>
               {% if schol.username is not empty %}
-              {{ schol.username }} (<a href="http://toolserver.org/~vvv/sulutil.php?user={{ schol.username|escape( 'url' ) }}" target="_blank">cross-wiki contribs</a>)
+              {{ schol.username }} (<a href="https://tools.wmflabs.org/quentinv57-tools/tools/sulinfo.php?username={{ schol.username|escape( 'url' ) }}" target="_blank">cross-wiki contribs</a>)
               {% else %}
               {{ wgLang.message( 'review-view-not-specified' ) }}
               {% endif %}
