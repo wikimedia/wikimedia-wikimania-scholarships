@@ -62,6 +62,15 @@ lang: currently selected display language
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
   <p class="lead">{{ wgLang.message( 'form-error' ) }}</p>
 </div>
+
+{% for key in form.Errors %}
+  {% set errorkey = 'form-' ~ key ~ '-error' %}
+  <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p class="lead">{{ wgLang.message(errorkey) }}</p>
+  </div>
+{% endfor %}
+
 {% endif %}
 
 <div class="jumbotron">
