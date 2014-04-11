@@ -48,7 +48,6 @@ class Apply extends AbstractDao {
 		'weightinterest' => 0.3,   // contribution of interest to final score
 	);
 
-
 	/**
 	 * @param string $dsn PDO data source name
 	 * @param string $user Database user

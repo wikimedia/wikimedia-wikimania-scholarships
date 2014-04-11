@@ -330,3 +330,18 @@ INSERT IGNORE INTO iso_countries (code, country_name, region) VALUES
 ,('ZA','South Africa','Sub-Saharan Africa')
 ,('ZM','Zambia','Sub-Saharan Africa')
 ,('ZW','Zimbabwe','Sub-Saharan Africa');
+
+CREATE TABLE IF NOT EXISTS settings (
+    id              INT(11) NOT NULL AUTO_INCREMENT
+  , setting_name    VARCHAR(255) NOT NULL
+  , value           VARCHAR(255) NOT NULL DEFAULT '0'
+  , entered_on      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  , PRIMARY KEY (id)
+  , UNIQUE (setting_name)
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
+INSERT IGNORE INTO settings (setting_name, value) VALUES
+ ('phase1pass',3)
+,('weightonwiki',0.5)
+,('weightoffwiki',0.2)
+,('weightinterest',0.3);

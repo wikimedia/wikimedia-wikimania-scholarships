@@ -142,17 +142,24 @@ class App {
 				$c->log );
 		});
 
+		$container->singleton( 'settingsDao', function ( $c ) {
+			return new \Wikimania\Scholarship\Dao\Settings(
+				$c->settings['db.dsn'],
+				$c->settings['db.user'], $c->settings['db.pass'],
+				$c->log );
+		});
+
 		$container->singleton( 'authManager', function ( $c ) {
 			return new \Wikimania\Scholarship\AuthManager( $c->userDao );
 		});
 
 		$container->singleton( 'applyDao', function ( $c ) {
 			$uid = $c->authManager->getUserId();
-			// FIXME: pass in settings
+			$settings = $c->settingsDao->getSettings();
 			return new \Wikimania\Scholarship\Dao\Apply(
 				$c->settings['db.dsn'],
 				$c->settings['db.user'], $c->settings['db.pass'],
-				$uid, null, $c->log );
+				$uid, $settings, $c->log );
 		});
 
 		$container->singleton( 'wgLang', function ( $c ) {
