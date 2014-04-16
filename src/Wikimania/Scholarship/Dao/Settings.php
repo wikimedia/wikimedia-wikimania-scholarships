@@ -24,18 +24,51 @@ namespace Wikimania\Scholarship\Dao;
 
 /**
  * Data access object for Admin Settings in scholarship applications.
+ *
+ * @author Kushal Khandelwal <kushal124@wikimedia.org>
+ * @author Niharika Kohli <niharikakohli29@gmail.com>
+ * @copyright © 2014 Wikimedia Foundation and contributors.
  */
 class Settings extends AbstractDao {
 	/**
 	 * @return array Settings from DB
 	 */
-	public function getSettings(){
+	public function getSettings() {
 		$settings = array();
-		$records = $this->fetchAll( 'SELECT setting_name,value FROM settings' );
+		$records = $this->fetchAll(
+			'SELECT setting_name, value FROM settings'
+		);
 		foreach ( $records as $idx => $row ) {
-			$settings[ $row[ 'setting_name' ] ] = $row[ 'value' ];
+			$settings[$row['setting_name']] = $row['value'];
 		}
 		return $settings;
 	}
 
+	/**
+	 * @param array $settings Settings
+	 * @return bool True on success, false otherwise
+	 */
+	public function updateSettings( array $settings ) {
+		// TODO: change schema to track user changing settings
+		$stmt = $this->dbh->prepare( self::concat(
+			'REPLACE INTO settings (setting_name, value)',
+			'VALUES (:name, :value)'
+		) );
+		try {
+			$this->dbh->beginTransaction();
+			foreach ( $settings as $name => $value ) {
+				$stmt->execute( array( 'name' => $name, 'value' => $value ) );
+			}
+			$this->dbh->commit();
+			return true;
+
+		} catch ( PDOException $e) {
+			$this->dbh->rollback();
+			$this->logger->error( 'Failed to update settings', array(
+				'method' => __METHOD__,
+				'exception' => $e,
+			) );
+			return false;
+		}
+	}
 }

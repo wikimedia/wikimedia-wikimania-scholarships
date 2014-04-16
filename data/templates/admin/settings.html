@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+
+{% set errors = flash.form_errors|default([]) %}
+{% if flash.form_defaults|default(false) %}
+{% set set = flash.form_defaults %}
+{% endif %}
+
+{% block content %}
+{% spaceless %}
+<ol class="breadcrumb">
+  <li>{{ wgLang.message( 'nav-admin' ) }}</li>
+  <li>{{ wgLang.message( 'nav-settings' ) }}</li>
+</ol>
+
+<form class="form-horizontal" method="post" action="{{ urlFor( 'admin_settings_post' ) }}">
+  <input type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
+  <div class="form-group">
+    <label for="phase1pass" class="col-sm-2 control-label">
+      {{ wgLang.message( 'admin-settings-phase1pass' ) }}
+    </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="phase1pass" name="phase1pass" value="{{ set.phase1pass }}" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phase2pass" class="col-sm-2 control-label">
+      {{ wgLang.message( 'admin-settings-phase2pass' ) }}
+    </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" name="phase2pass" id="phase2pass" value="{{ set.phase2pass }}" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="weightonwiki" class="col-sm-2 control-label">
+      {{ wgLang.message( 'admin-settings-weightonwiki' ) }}
+    </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" name="weightonwiki" id="weightonwiki" value="{{ set.weightonwiki }}" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="weightoffwiki" class="col-sm-2 control-label">
+      {{ wgLang.message( 'admin-settings-weightoffwiki' ) }}
+    </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" name="weightoffwiki" id="weightoffwiki" value="{{ set.weightoffwiki }}" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="weightinterest" class="col-sm-2 control-label">
+      {{ wgLang.message( 'admin-settings-weightinterest' ) }}
+    </label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" name="weightinterest" id="weightinterest" value="{{ set.weightinterest }}" required="required">
+    </div>
+  </div>
+
+    <div class="col-sm-10 col-sm-offset-2">
+        <input type="submit" class="btn btn-default" id="save" name="save" value="{{ wgLang.message( 'review-view-save' ) }}"/>
+  </div>
+</form>
+{% endspaceless %}
+{% endblock content %}
+

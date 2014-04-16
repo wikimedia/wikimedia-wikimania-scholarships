@@ -469,6 +469,18 @@ class App {
 				$page( $id );
 			})->name( 'admin_user' );
 
+			$slim->get( 'settings', function () use ( $slim ) {
+				$page = new Controllers\Admin\Settings( $slim );
+				$page->setDao( $slim->settingsDao );
+				$page();
+			})->name( 'admin_settings' );
+
+			$slim->post( 'settings.post', function () use ( $slim ) {
+				$page = new Controllers\Admin\Settings( $slim );
+				$page->setDao( $slim->settingsDao );
+				$page();
+			})->name( 'admin_settings_post' );
+
 			$slim->post( 'user.post', function () use ( $slim ) {
 				$page = new Controllers\Admin\User( $slim );
 				$page->setDao( $slim->userDao );

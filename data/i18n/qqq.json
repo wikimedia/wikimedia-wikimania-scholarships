@@ -22,6 +22,7 @@
     "nav-admin": "Navigation menu label for list of administrative pages.\n{{Identical|Admin}}",
     "nav-users": "Navigation menu label, links to user list page",
     "nav-account": "Navigation menu label for list of pages specific to the authenticated user's account.\n{{Identical|My account}}",
+    "nav-settings": "Navigation menu label, for settings page",
     "mock": "Disclaimer shown on scholarship request form when application is being used for testing and development",
     "not-open": "Content for site landing page before date that scholarship request will be accepted",
     "deadline-passed": "Content for site landing page after scholarship request period has closed",
@@ -235,5 +236,10 @@
     "no-results": "Content for report with no results",
     "csrf-heading": "Header for cross site request forgery (CSRF) error page",
     "csrf-message": "Cross site request forgery (CSRF) error page body",
-    "search-region": "Input label, followed by text box"
+    "search-region": "Input label, followed by text box",
+    "admin-settings-phase1pass": "Input label, for phase 1 pass score",
+    "admin-settings-phase2pass": "Input label, for [hase 2 pass score",
+    "admin-settings-weightonwiki": "Input label, for weight of contributions to Wikimedia",
+    "admin-settings-weightoffwiki": "Input label, for weight of contributions other than Wikimedia",
+    "admin-settings-weightinterest": "Input label, for weight of Interest"
 }
