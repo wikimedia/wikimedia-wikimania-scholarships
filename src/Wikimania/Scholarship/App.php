@@ -61,8 +61,6 @@ class App {
 			'db.dsn' => Config::getStr( 'DB_DSN' ),
 			'db.user' => Config::getStr( 'DB_USER' ),
 			'db.pass' => Config::getStr( 'DB_PASS' ),
-			'period.open' => Config::getDate( 'APPLICATION_OPEN' ),
-			'period.close' => Config::getDate( 'APPLICATION_CLOSE' ),
 		));
 
 		$slim = $this->slim;
@@ -311,19 +309,14 @@ class App {
 			})->name( 'home' );
 
 			$slim->get( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
-				$page = new Controllers\ScholarshipApplication(
-					$slim->config( 'period.open' ),
-					$slim->config( 'period.close' ),
-					$slim );
+				$page = new Controllers\ScholarshipApplication( $slim );
+				$page->setDao( $slim->settingsDao );
 				$page->setForm( $slim->applyForm );
 				$page();
 			})->name( 'apply' );
 
 			$slim->post( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
-				$page = new Controllers\ScholarshipApplication(
-					$slim->config( 'period.open' ),
-					$slim->config( 'period.close' ),
-					$slim );
+				$page = new Controllers\ScholarshipApplication( $slim );
 				$page->setForm( $slim->applyForm );
 				$page->setMailer( $slim->mailer );
 				$page();

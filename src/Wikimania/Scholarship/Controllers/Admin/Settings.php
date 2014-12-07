@@ -46,6 +46,8 @@ class Settings extends Controller {
 		$this->form->requireFloat( 'weightonwiki' );
 		$this->form->requireFloat( 'weightoffwiki' );
 		$this->form->requireFloat( 'weightinterest' );
+		$this->form->requireDateTime( 'apply_open', 'Y-m-d' );
+		$this->form->requireDateTime( 'apply_close' , 'Y-m-d' );
 
 		if ( $this->form->validate() ) {
 			$settings = array(
@@ -54,6 +56,8 @@ class Settings extends Controller {
 				'weightonwiki' => $this->form->get( 'weightonwiki' ),
 				'weightoffwiki' => $this->form->get( 'weightoffwiki' ),
 				'weightinterest' => $this->form->get( 'weightinterest' ),
+				'apply_open' => $this->form->get( 'apply_open' )->format( 'Y-m-d' ),
+				'apply_close' => $this->form->get( 'apply_close' )->format( 'Y-m-d' ),
 			);
 
 			if ( $settings['weightonwiki'] +
@@ -64,7 +68,9 @@ class Settings extends Controller {
 
 			} else {
 				if ( $this->dao->updateSettings( $settings ) ) {
-					$this->flash( 'info', 'Settings succesfully updated.' );
+					$this->config( 'period.open', $this->form->get( 'apply_open' ) );
+					$this->config( 'period.close', $this->form->get( 'apply_close' ) );
+					$this->flash( 'info', 'Settings successfully updated.' );
 				} else {
 					$this->flash( 'error', 'Settings could not be updated. ' );
 				}

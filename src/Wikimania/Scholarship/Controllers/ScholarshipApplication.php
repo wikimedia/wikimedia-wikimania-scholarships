@@ -36,25 +36,10 @@ use Wikimania\Scholarship\Wikis;
 class ScholarshipApplication extends Controller {
 
 	/**
-	 * @var int $applicationOpen
-	 */
-	protected $periodOpen;
-
-	/**
-	 * @var int $applicationClose
-	 */
-	protected $periodClose;
-
-
-	/**
-	 * @param int $open Unix timestanp that applications will first be accepted
-	 * @param int $close Unix timestamp that applications will last be accepted
 	 * @param \Slim\Slim $slim Slim application
 	 */
-	public function __construct( $open, $close, \Slim\Slim $slim = null ) {
+	public function __construct( \Slim\Slim $slim = null ) {
 		parent::__construct( $slim );
-		$this->periodOpen = $open;
-		$this->periodClose = $close;
 	}
 
 	protected function handle() {
@@ -93,12 +78,25 @@ class ScholarshipApplication extends Controller {
 			}
 
 			$now = time();
+			$settings = $this->dao->getSettings();
+			if ( isset( $settings['apply_open'] ) ) {
+				$periodOpen = strtotime( "{$settings['apply_open']}T00:00:00" );
+			} else {
+				$this->log->error( 'Admin setting apply_open not specified.' );
+				$periodOpen = $now + 1;
+			}
+			if ( isset( $settings['apply_close'] ) ) {
+				$periodClose = strtotime( "{$settings['apply_close']}T23:59:59" );
+			} else {
+				$this->log->error( 'Admin setting apply_close not specified.' );
+				$periodClose = $now - 1;
+			}
 
 			$this->view->setData( 'registration_open',
-				$now > $this->periodOpen || $this->mock );
+				$now > $periodOpen || $this->mock );
 			// FIXME: legacy app allowed '?special' to override
 			$this->view->setData( 'registration_closed',
-				$now > $this->periodClose && !$this->mock );
+				$now > $periodClose && !$this->mock );
 
 			$this->view->setData( 'form', $this->form );
 			$this->view->setData( 'submitted', $submitted );
