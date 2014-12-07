@@ -32,7 +32,7 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testRequired () {
 		$form = new Form();
-		$form->expectString( 'foo', array( 'required' => true ) );
+		$form->requireString( 'foo' );
 
 		$this->assertFalse( $form->validate(), 'Form should be invalid' );
 		$vals = $form->getValues();
@@ -51,7 +51,8 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $form->validate(), 'Form should be valid' );
 		$vals = $form->getValues();
 		$this->assertArrayHasKey( 'foo', $vals );
-		$this->assertEquals( 'bar', $vals['foo'] );
+		$this->assertNull( $vals['foo'] );
+		$this->assertSame( 'bar', $form->get( 'foo' ) );
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 

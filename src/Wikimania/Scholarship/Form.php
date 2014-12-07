@@ -26,7 +26,7 @@ namespace Wikimania\Scholarship;
  * Collect and validate user input.
  *
  * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2014 Bryan Davis, Wikimedia Foundation and contributors.
  */
 class Form {
 
@@ -97,6 +97,10 @@ class Form {
 		return $this->expect( $name, \FILTER_VALIDATE_BOOLEAN, $options );
 	}
 
+	public function requireBool( $name, $options = null ) {
+		return $this->expectBool( $name, self::required( $options ) );
+	}
+
 	public function expectTrue( $name, $options = null ) {
 		$options = ( is_array( $options ) ) ? $options : array();
 		$options['validate'] = function ($v) {
@@ -105,20 +109,40 @@ class Form {
 		return $this->expectBool( $name, $options );
 	}
 
+	public function requireTrue( $name, $options = null ) {
+		return $this->expectTrue( $name, self::required( $options ) );
+	}
+
 	public function expectEmail( $name, $options = null ) {
 		return $this->expect( $name, \FILTER_VALIDATE_EMAIL, $options );
+	}
+
+	public function requireEmail( $name, $options = null ) {
+		return $this->expectEmail( $name, self::required( $options ) );
 	}
 
 	public function expectFloat( $name, $options = null ) {
 		return $this->expect( $name, \FILTER_VALIDATE_FLOAT, $options );
 	}
 
+	public function requireFloat( $name, $options = null ) {
+		return $this->expectFloat( $name, self::required( $options ) );
+	}
+
 	public function expectInt( $name, $options = null ) {
 		return $this->expect( $name, \FILTER_VALIDATE_INT, $options );
 	}
 
+	public function requireInt( $name, $options = null ) {
+		return $this->expectInt( $name, self::required( $options ) );
+	}
+
 	public function expectIp( $name, $options = null ) {
 		return $this->expect( $name, \FILTER_VALIDATE_IP, $options );
+	}
+
+	public function requireIp( $name, $options = null ) {
+		return $this->expectIp( $name, self::required( $options ) );
 	}
 
 	public function expectRegex( $name, $re, $options = null ) {
@@ -127,16 +151,32 @@ class Form {
 		return $this->expect( $name, \FILTER_VALIDATE_REGEXP, $options );
 	}
 
+	public function requireRegex( $name, $re, $options = null ) {
+		return $this->expectRegex( $name, $re, self::required( $options ) );
+	}
+
 	public function expectUrl( $name, $options = null ) {
 		return $this->expect( $name, \FILTER_VALIDATE_URL, $options );
+	}
+
+	public function requireUrl( $name, $options = null ) {
+		return $this->expectUrl( $name, self::required( $options ) );
 	}
 
 	public function expectString( $name, $options = null ) {
 		return $this->expectRegex( $name, '/^.+$/s', $options );
 	}
 
+	public function requireString( $name, $options = null ) {
+		return $this->expectString( $name, self::required( $options ) );
+	}
+
 	public function expectAnything( $name, $options = null ) {
 		return $this->expect( $name, \FILTER_UNSAFE_RAW, $options );
+	}
+
+	public function requireAnything( $name, $options = null ) {
+		return $this->expectAnything( $name, self::required( $options ) );
 	}
 
 	public function expectInArray( $name, $valids, $options = null ) {
@@ -146,6 +186,12 @@ class Form {
 			return ( !$required && empty( $val ) ) || in_array( $val, $valids );
 		};
 		return $this->expectAnything( $name, $options );
+	}
+
+	public function requireInArray( $name, $valids, $options = null ) {
+		return $this->expectInArray( $name, $valids,
+			self::required( $options )
+		);
 	}
 
 	/**
@@ -161,9 +207,15 @@ class Form {
 
 		foreach ( $this->params as $name => $opt ) {
 			$var = isset( $vars[$name] ) ? $vars[$name] : null;
-			$clean = filter_var( $var, $opt['filter'], $opt );
+			// Bypass filter_var if the input is null. This keeps filter_var
+			// from "helping" by converting nulls to empty strings.
+			$clean = ( $var === null )
+				? $var
+				: filter_var( $var, $opt['filter'], $opt );
 
-			if ( $clean === false && $opt['filter'] !== \FILTER_VALIDATE_BOOLEAN ) {
+			if ( $clean === false &&
+				$opt['filter'] !== \FILTER_VALIDATE_BOOLEAN
+			) {
 				$this->values[$name] = null;
 
 			} else {
@@ -174,10 +226,11 @@ class Form {
 				$this->errors[] = $name;
 
 			} elseif ( is_callable( $opt['validate'] ) &&
-				call_user_func( $opt['validate'], $this->values[$name] ) === false ) {
-					$this->errors[] = $name;
-					$this->values[$name] = null;
-				}
+				call_user_func( $opt['validate'], $this->values[$name] ) === false
+			) {
+				$this->errors[] = $name;
+				$this->values[$name] = null;
+			}
 		}
 
 		$this->customValidationHook();
@@ -253,6 +306,16 @@ class Form {
 	 */
 	public static function qsRemove( $params = array() ) {
 		return self::urlEncode( array_diff_key( $_GET, array_flip( $params ) ) );
+	}
+
+	/**
+	 * Ensure that the given options collection contains a 'required' key.
+	 *
+	 * @param array $options
+	 * @return array
+	 */
+	protected static function required( $options ) {
+		return array_merge( array( 'required' => true ), (array)$options );
 	}
 
 }
