@@ -35,11 +35,12 @@ but without the associated complexity:
     {% block content %}{% endblock %}
 
 The ``use`` statement tells Twig to import the blocks defined in
-```blocks.html`` into the current template (it's like macros, but for blocks):
+``blocks.html`` into the current template (it's like macros, but for blocks):
 
 .. code-block:: jinja
 
-    # blocks.html
+    {# blocks.html #}
+    
     {% block sidebar %}{% endblock %}
 
 In this example, the ``use`` statement imports the ``sidebar`` block into the

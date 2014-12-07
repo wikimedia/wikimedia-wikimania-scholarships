@@ -166,21 +166,6 @@ Namespaced templates can be accessed via the special
 
     $twig->render('@admin/index.html', array());
 
-``Twig_Loader_String``
-......................
-
-``Twig_Loader_String`` loads templates from strings. It's a dummy loader as
-the template reference is the template source code::
-
-    $loader = new Twig_Loader_String();
-    $twig = new Twig_Environment($loader);
-
-    echo $twig->render('Hello {{ name }}!', array('name' => 'Fabien'));
-
-This loader should only be used for unit testing as it has severe limitations:
-several tags, like ``extends`` or ``include`` do not make sense to use as the
-reference to the template is the template source code itself.
-
 ``Twig_Loader_Array``
 .....................
 
@@ -214,7 +199,7 @@ projects where storing all templates in a single PHP file might make sense.
         'base.html' => '{% block content %}{% endblock %}',
     ));
     $loader2 = new Twig_Loader_Array(array(
-        'index.html' => '{% extends "base.twig" %}{% block content %}Hello {{ name }}{% endblock %}',
+        'index.html' => '{% extends "base.html" %}{% block content %}Hello {{ name }}{% endblock %}',
         'base.html'  => 'Will never be loaded',
     ));
 
@@ -266,26 +251,6 @@ All loaders implement the ``Twig_LoaderInterface``::
          * @param timestamp $time The last modification time of the cached template
          */
         function isFresh($name, $time);
-    }
-
-As an example, here is how the built-in ``Twig_Loader_String`` reads::
-
-    class Twig_Loader_String implements Twig_LoaderInterface
-    {
-        public function getSource($name)
-        {
-          return $name;
-        }
-
-        public function getCacheKey($name)
-        {
-          return $name;
-        }
-
-        public function isFresh($name, $time)
-        {
-          return false;
-        }
     }
 
 The ``isFresh()`` method must return ``true`` if the current cached template
@@ -417,15 +382,15 @@ The escaping rules are implemented as follows:
         {{ var|upper|raw }} {# won't be escaped #}
 
 * Automatic escaping is not applied if the last filter in the chain is marked
-  safe for the current context (e.g. ``html`` or ``js``). ``escaper`` and
-  ``escaper('html')`` are marked safe for html, ``escaper('js')`` is marked
-  safe for javascript, ``raw`` is marked safe for everything.
+  safe for the current context (e.g. ``html`` or ``js``). ``escape`` and
+  ``escape('html')`` are marked safe for HTML, ``escape('js')`` is marked
+  safe for JavaScript, ``raw`` is marked safe for everything.
 
   .. code-block:: jinja
 
         {% autoescape 'js' %}
-            {{ var|escape('html') }} {# will be escaped for html and javascript #}
-            {{ var }} {# will be escaped for javascript #}
+            {{ var|escape('html') }} {# will be escaped for HTML and JavaScript #}
+            {{ var }} {# will be escaped for JavaScript #}
             {{ var|escape('js') }} {# won't be double-escaped #}
         {% endautoescape %}
 

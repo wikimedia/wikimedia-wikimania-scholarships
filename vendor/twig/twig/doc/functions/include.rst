@@ -2,7 +2,7 @@
 ===========
 
 .. versionadded:: 1.12
-    The include function was added in Twig 1.12.
+    The ``include`` function was added in Twig 1.12.
 
 The ``include`` function returns the rendered content of a template:
 
@@ -73,8 +73,8 @@ sandboxing it:
 Arguments
 ---------
 
- * ``template``:       The template to render
- * ``variables``:      The variables to pass to the template
- * ``with_context``:   Whether to pass the current context variables or not
- * ``ignore_missing``: Whether to ignore missing templates or not
- * ``sandboxed``:      Whether to sandbox the template or not
+* ``template``:       The template to render
+* ``variables``:      The variables to pass to the template
+* ``with_context``:   Whether to pass the current context variables or not
+* ``ignore_missing``: Whether to ignore missing templates or not
+* ``sandboxed``:      Whether to sandbox the template or not

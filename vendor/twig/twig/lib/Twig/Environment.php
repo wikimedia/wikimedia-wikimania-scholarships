@@ -16,7 +16,7 @@
  */
 class Twig_Environment
 {
-    const VERSION = '1.14.1';
+    const VERSION = '1.16.2';
 
     protected $charset;
     protected $loader;
@@ -44,7 +44,6 @@ class Twig_Environment
     protected $functionCallbacks;
     protected $filterCallbacks;
     protected $staging;
-    protected $templateClasses;
 
     /**
      * Constructor.
@@ -64,7 +63,7 @@ class Twig_Environment
      *
      *  * auto_reload: Whether to reload the template if the original source changed.
      *                 If you don't provide the auto_reload option, it will be
-     *                 determined automatically base on the debug value.
+     *                 determined automatically based on the debug value.
      *
      *  * strict_variables: Whether to ignore invalid variables in templates
      *                      (default to false).
@@ -108,7 +107,6 @@ class Twig_Environment
         $this->setCache($options['cache']);
         $this->functionCallbacks = array();
         $this->filterCallbacks = array();
-        $this->templateClasses = array();
 
         $this->addExtension(new Twig_Extension_Core());
         $this->addExtension(new Twig_Extension_Escaper($options['autoescape']));
@@ -156,7 +154,7 @@ class Twig_Environment
     /**
      * Checks if debug mode is enabled.
      *
-     * @return Boolean true if debug mode is enabled, false otherwise
+     * @return bool    true if debug mode is enabled, false otherwise
      */
     public function isDebug()
     {
@@ -182,7 +180,7 @@ class Twig_Environment
     /**
      * Checks if the auto_reload option is enabled.
      *
-     * @return Boolean true if auto_reload is enabled, false otherwise
+     * @return bool    true if auto_reload is enabled, false otherwise
      */
     public function isAutoReload()
     {
@@ -208,7 +206,7 @@ class Twig_Environment
     /**
      * Checks if the strict_variables option is enabled.
      *
-     * @return Boolean true if strict_variables is enabled, false otherwise
+     * @return bool    true if strict_variables is enabled, false otherwise
      */
     public function isStrictVariables()
     {
@@ -258,19 +256,13 @@ class Twig_Environment
      * Gets the template class associated with the given string.
      *
      * @param string  $name  The name for which to calculate the template class name
-     * @param integer $index The index if it is an embedded template
+     * @param int     $index The index if it is an embedded template
      *
      * @return string The template class name
      */
     public function getTemplateClass($name, $index = null)
     {
-        $suffix = null === $index ? '' : '_'.$index;
-        $cls = $name.$suffix;
-        if (isset($this->templateClasses[$cls])) {
-            return $this->templateClasses[$cls];
-        }
-
-        return $this->templateClasses[$cls] = $this->templateClassPrefix.hash('sha256', $this->getLoader()->getCacheKey($name)).$suffix;
+        return $this->templateClassPrefix.hash('sha256', $this->getLoader()->getCacheKey($name)).(null === $index ? '' : '_'.$index);
     }
 
     /**
@@ -319,7 +311,7 @@ class Twig_Environment
      * Loads a template by name.
      *
      * @param string  $name  The template name
-     * @param integer $index The index if it is an embedded template
+     * @param int     $index The index if it is an embedded template
      *
      * @return Twig_TemplateInterface A template instance representing the given template name
      *
@@ -363,7 +355,7 @@ class Twig_Environment
      * @param string    $name The template name
      * @param timestamp $time The last modification time of the cached template
      *
-     * @return Boolean true if the template is fresh, false otherwise
+     * @return bool    true if the template is fresh, false otherwise
      */
     public function isTemplateFresh($name, $time)
     {
@@ -634,7 +626,7 @@ class Twig_Environment
      *
      * @param string $name The extension name
      *
-     * @return Boolean Whether the extension is registered or not
+     * @return bool    Whether the extension is registered or not
      */
     public function hasExtension($name)
     {
@@ -802,11 +794,11 @@ class Twig_Environment
             $filter = $name;
             $name = $filter->getName();
         }
-        
+
         if ($this->extensionInitialized) {
             throw new LogicException(sprintf('Unable to add filter "%s" as extensions have already been initialized.', $name));
         }
-        
+
         $this->staging->addFilter($name, $filter);
     }
 
@@ -891,7 +883,7 @@ class Twig_Environment
             $test = $name;
             $name = $test->getName();
         }
-        
+
         if ($this->extensionInitialized) {
             throw new LogicException(sprintf('Unable to add test "%s" as extensions have already been initialized.', $name));
         }
@@ -949,11 +941,11 @@ class Twig_Environment
             $function = $name;
             $name = $function->getName();
         }
-        
+
         if ($this->extensionInitialized) {
             throw new LogicException(sprintf('Unable to add function "%s" as extensions have already been initialized.', $name));
         }
-        
+
         $this->staging->addFunction($name, $function);
     }
 

@@ -23,8 +23,8 @@ Extensions
 PEAR
 ----
 
-PEAR support will be discontinued in Twig 2.0, and no PEAR packages will be
-provided. Use Composer instead.
+PEAR support has been discontinued in Twig 1.15.1, and no PEAR packages are
+provided anymore. Use Composer instead.
 
 Filters
 -------
@@ -76,6 +76,15 @@ Tests
 * As of Twig 2.x, the ``Twig_SimpleTest`` class is deprecated and will be
   removed in Twig 3.x (use ``Twig_Test`` instead). In Twig 2.x,
   ``Twig_SimpleTest`` is just an alias for ``Twig_Test``.
+
+* The ``sameas`` and ``divisibleby`` tests are deprecated in favor of ``same
+  as`` and ``divisible by`` respectively.
+
+Nodes
+-----
+
+* As of Twig 1.x, ``Node::toXml()`` is deprecated and will be removed in Twig
+  2.0.
 
 Interfaces
 ----------
