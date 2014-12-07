@@ -1,0 +1,4 @@
+.php-version
+composer.lock
+vendor
+report

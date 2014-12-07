@@ -188,7 +188,10 @@ class App {
 			$level = constant( "\Monolog\Logger::{$level}" );
 
 			$log = new \Monolog\Logger( 'scholarships' );
-			$handler = new MwLogHandler( $c->settings['log.file'], $level );
+			$handler = new \Monolog\Handler\Udp2logHandler(
+				$c->settings['log.file'],
+				$level
+			);
 			$handler->setFormatter( new \Monolog\Formatter\LogstashFormatter(
 				'scholarships', null, null, '',
 				\Monolog\Formatter\LogstashFormatter::V1
