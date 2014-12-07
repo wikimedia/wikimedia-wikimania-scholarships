@@ -1,17 +1,20 @@
 {
-  "name": "wikimania/scholarships"
-  ,"require": {
-    "php": ">=5.3.7"
-    ,"twig/twig": "v1.14.1"
-    ,"slim/slim": "2.3.5"
-    ,"slim/views": "0.1.0"
-    ,"monolog/monolog": "1.7.0"
-    ,"phpmailer/phpmailer": "v5.2.7"
-  }
-  ,"preferred-install": "dist"
-  ,"autoload": {
-    "psr-0": {
-      "Wikimania\\Scholarship\\": "src/"
-    }
-  }
+	"name": "wikimania/scholarships",
+	"require": {
+		"php": ">=5.3.7",
+		"twig/twig": "v1.14.1",
+		"slim/slim": "2.3.5",
+		"slim/views": "0.1.0",
+		"monolog/monolog": "1.7.0",
+		"phpmailer/phpmailer": "v5.2.7"
+	},
+	"preferred-install": "dist",
+	"autoload": {
+		"psr-0": {
+			"Wikimania\\Scholarship\\": "src/"
+		}
+	},
+	"config": {
+		"optimize-autoloader": true
+	}
 }
