@@ -11,5 +11,4 @@ return array(
     'Slim\\Views' => array($vendorDir . '/slim/views'),
     'Slim' => array($vendorDir . '/slim/slim'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
-    'Monolog' => array($vendorDir . '/monolog/monolog/src'),
 );
