@@ -48,8 +48,8 @@ class Login extends Controller {
 			$next = $this->urlFor( 'review_home' );
 		}
 
-		$this->form->expectString( 'username', array( 'required' => true ) );
-		$this->form->expectString( 'password', array( 'required' => true ) );
+		$this->form->requireString( 'username' );
+		$this->form->requireString( 'password' );
 
 		if ( $this->form->validate() ) {
 			$authed = $this->authManager->authenticate(

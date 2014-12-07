@@ -76,7 +76,7 @@ class Application extends Controller {
 		$criteria = array( 'valid', 'onwiki', 'offwiki', 'interest' );
 
 		$this->form->expectInt( 'phase', array( 'min_range' => 0, 'max_range' => 2, 'default' => 2 ) );
-		$this->form->expectInt( 'id', array( 'min_range' => 0, 'required' => true ) );
+		$this->form->requireInt( 'id', array( 'min_range' => 0 ) );
 		$this->form->expectString( 'notes' );
 		foreach ( $criteria as $c) {
 			$this->form->expectInt( $c, array( 'min_range' => 0 ) );

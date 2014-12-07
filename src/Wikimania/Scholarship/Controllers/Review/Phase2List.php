@@ -36,9 +36,8 @@ class Phase2List extends Controller {
 		$regionList = $this->dao->getRegionList();
 		array_unshift( $regionList, 'All' );
 
-		$this->form->expectInArray( 'region', $regionList, array(
+		$this->form->requireInArray( 'region', $regionList, array(
 			'default' => 'All',
-			'required' => true,
 		) );
 		$this->form->expectBool( 'export' );
 		$this->form->validate( $_GET );

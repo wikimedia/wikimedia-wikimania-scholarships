@@ -39,9 +39,9 @@ class ChangePassword extends Controller {
 
 
 	protected function handlePost() {
-		$this->form->expectString( 'oldpw', array( 'required' => true ) );
-		$this->form->expectString( 'newpw1', array( 'required' => true ) );
-		$this->form->expectString( 'newpw2', array( 'required' => true ) );
+		$this->form->requireString( 'oldpw' );
+		$this->form->requireString( 'newpw1' );
+		$this->form->requireString( 'newpw2' );
 
 		if ( $this->form->validate() ) {
 			$oldPass = $this->form->get( 'oldpw' );

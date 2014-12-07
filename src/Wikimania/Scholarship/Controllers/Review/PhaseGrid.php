@@ -42,9 +42,9 @@ class PhaseGrid extends Controller {
 	}
 
 	protected function handleGet() {
-		$this->form->expectInArray( 'apps',
+		$this->form->requireInArray( 'apps',
 			array( 'unreviewed', 'all', 'myapps' ),
-			array( 'required' => true, 'default' => 'all' )
+			array( 'default' => 'all' )
 		);
 		$this->form->expectInt( 'items',
 			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )

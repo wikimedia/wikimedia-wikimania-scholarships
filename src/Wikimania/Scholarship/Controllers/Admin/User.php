@@ -58,11 +58,11 @@ class User extends Controller {
 	protected function handlePost() {
 		$id = $this->request->post( 'id' );
 
-		$this->form->expectString( 'username', array( 'required' => true ) );
+		$this->form->requireString( 'username' );
 		$this->form->expectString( 'password',
 			array( 'required' => ( $id == 'new' ) )
 		);
-		$this->form->expectEmail( 'email', array( 'required' => true ) );
+		$this->form->requireEmail( 'email' );
 		$this->form->expectBool( 'reviewer' );
 		$this->form->expectBool( 'isvalid' );
 		$this->form->expectBool( 'isadmin' );

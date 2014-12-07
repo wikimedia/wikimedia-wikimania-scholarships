@@ -41,15 +41,11 @@ class Settings extends Controller {
 
 
 	protected function handlePost() {
-		$this->form->expectInt( 'phase1pass', array( 'required' => true ) );
-		$this->form->expectInt( 'phase2pass', array( 'required' => true ) );
-		$this->form->expectFloat( 'weightonwiki', array( 'required' => true ) );
-		$this->form->expectFloat( 'weightoffwiki', array(
-			'required' => true,
-		) );
-		$this->form->expectFloat( 'weightinterest', array(
-			'required' => true,
-		) );
+		$this->form->requireInt( 'phase1pass' );
+		$this->form->requireInt( 'phase2pass' );
+		$this->form->requireFloat( 'weightonwiki' );
+		$this->form->requireFloat( 'weightoffwiki' );
+		$this->form->requireFloat( 'weightinterest' );
 
 		if ( $this->form->validate() ) {
 			$settings = array(

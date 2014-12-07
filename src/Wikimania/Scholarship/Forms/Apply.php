@@ -49,21 +49,20 @@ class Apply extends Form {
 		$validWikis = Wikis::$WIKI_NAMES;
 
 		// Contact information
-		$this->expectString( 'fname', array( 'required' => true ) );
-		$this->expectString( 'lname', array( 'required' => true ) );
-		$this->expectEmail( 'email', array( 'required' => true ) );
-		$this->expectInArray( 'residence', $validCountries, array( 'required' => true ) );
+		$this->requireString( 'fname' );
+		$this->requireString( 'lname' );
+		$this->requireEmail( 'email' );
+		$this->requireInArray( 'residence', $validCountries );
 
 		// Personal information
 		$this->expectBool( 'haspassport' );
-		$this->expectInArray( 'nationality', $validCountries, array( 'required' => true ) );
+		$this->requireInArray( 'nationality', $validCountries );
 		$this->expectString( 'airport' );
 		$this->expectString( 'languages' );
-		$this->expectInt( 'yy', array( 'required' => true ) );
-		$this->expectInt( 'mm', array( 'required' => true ) );
-		$this->expectInt( 'dd', array( 'required' => true ) );
-		$this->expectInArray( 'gender', array( 'm', 'f', 'o', 'd' ),
-			array( 'required' => true ) );
+		$this->requireInt( 'yy' );
+		$this->requireInt( 'mm' );
+		$this->requireInt( 'dd' );
+		$this->requireInArray( 'gender', array( 'm', 'f', 'o', 'd' ) );
 		$this->expectString( 'gender_other', array(
 			'validate' => array( $this, 'validateGenderOther' ),
 		) );
@@ -76,8 +75,8 @@ class Apply extends Form {
 		$this->expectInArray( 'project', $validWikis );
 		$this->expectInArray( 'project2', $validWikis );
 		$this->expectInArray( 'project3', $validWikis );
-		$this->expectString( 'involvement', array( 'required' => true ) );
-		$this->expectString( 'contribution', array( 'required' => true ) );
+		$this->requireString( 'involvement' );
+		$this->requireString( 'contribution' );
 
 		// Interest and involvement in Wikimania
 		$this->expectBool( 'wm05' );
@@ -94,7 +93,7 @@ class Apply extends Form {
 			'validate' => array( $this, 'validatePresentationTopic' ),
 		) );
 		$this->expectInt( 'howheard' );
-		$this->expectString( 'why', array( 'required' => true ) );
+		$this->requireString( 'why' );
 
 		// Application agreement
 		$this->expectTrue( 'willgetvisa' );
@@ -104,7 +103,7 @@ class Apply extends Form {
 		// Privacy
 		$this->expectBool( 'chapteragree' );
 		$this->expectTrue( 'wmfagree' );
-		$this->expectString( 'wmfAgreeName', array( 'required' => true ) );
+		$this->requireString( 'wmfAgreeName' );
 		$this->expectString( 'wmfAgreeGuardian', array(
 			'validate' => array( $this, 'validateWmfAgreeGuardian' ),
 		) );
