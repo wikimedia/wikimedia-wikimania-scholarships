@@ -52,9 +52,9 @@ class Form {
 	/**
 	 * Add an input expectation.
 	 *
-	 * @var string $name Parameter to expect
-	 * @var int $filter Validation filter(s) to apply
-	 * @var array $options Validation options
+	 * @param string $name Parameter to expect
+	 * @param int $filter Validation filter(s) to apply
+	 * @param array $options Validation options
 	 * @return Form Self, for message chaining
 	 */
 	public function expect( $name, $filter, $options = null ) {
@@ -76,6 +76,17 @@ class Form {
 		if ( isset( $options['validate'] ) ) {
 			$validate = $options['validate'];
 			unset( $options['validate'] );
+		}
+
+		if ( $filter === \FILTER_CALLBACK ) {
+			if ( !isset( $options['callback'] ) ||
+				!is_callable( $options['callback'] )
+			) {
+				throw new \InvalidArgumentException(
+					'FILTER_CALLBACK requires a valid callback.'
+				);
+			}
+			$options = $options['callback'];
 		}
 
 		$this->params[$name] = array(
@@ -190,6 +201,38 @@ class Form {
 
 	public function requireInArray( $name, $valids, $options = null ) {
 		return $this->expectInArray( $name, $valids,
+			self::required( $options )
+		);
+	}
+
+	/**
+	 * Add an input expectation for a DateTime object.
+	 *
+	 * @param string $name Parameter to expect
+	 * @param string $format Expected date/time format
+	 * @param array $options Additional options
+	 * @return Form Self, for message chaining
+	 * @see DateTime::createFromFormat
+	 */
+	public function expectDateTime( $name, $format, $options = null ) {
+		$options = ( is_array( $options ) ) ? $options : array();
+		$options['callback'] = function ( $value ) use ( $format ) {
+			try {
+				$date = \DateTime::createFromFormat( $format, $value );
+				$formatErrors = \DateTime::getLastErrors();
+				if ( $formatErrors['error_count'] == 0 &&
+					$formatErrors['warning_count'] == 0
+				) {
+					return $date;
+				}
+			} catch (\Exception $ignored) {}
+			return false;
+		};
+		return $this->expect( $name, \FILTER_CALLBACK, $options );
+	}
+
+	public function requireDateTime( $name, $format, $options = null ) {
+		return $this->expectDateTime( $name, $format,
 			self::required( $options )
 		);
 	}

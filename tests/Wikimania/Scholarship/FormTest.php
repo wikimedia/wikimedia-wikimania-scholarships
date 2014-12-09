@@ -22,14 +22,12 @@
 namespace Wikimania\Scholarship;
 
 /**
+ * @covers Form
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
 class FormTest extends \PHPUnit_Framework_TestCase {
 
-	/**
-	 * @covers Form
-	 */
 	public function testRequired () {
 		$form = new Form();
 		$form->requireString( 'foo' );
@@ -41,9 +39,6 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertContains( 'foo', $form->getErrors() );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testDefaultWhenEmpty () {
 		$form = new Form();
 		$form->expectString( 'foo', array( 'default' => 'bar' ) );
@@ -56,12 +51,9 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testNotInArray () {
 		$form = new Form();
-		$form->expectInArray( 'foo', array( 'bar' ), array( 'required' => true ) );
+		$form->requireInArray( 'foo', array( 'bar' ) );
 
 		$this->assertFalse( $form->validate(), 'Form should be invalid' );
 		$vals = $form->getValues();
@@ -70,13 +62,10 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertContains( 'foo', $form->getErrors() );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testInArray () {
 		$_POST['foo'] = 'bar';
 		$form = new Form();
-		$form->expectInArray( 'foo', array( 'bar' ), array( 'required' => true ) );
+		$form->requireInArray( 'foo', array( 'bar' ) );
 
 		$this->assertTrue( $form->validate(), 'Form should be valid' );
 		$vals = $form->getValues();
@@ -85,9 +74,6 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotContains( 'foo', $form->getErrors() );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testNotInArrayNotRequired () {
 		unset( $_POST['foo'] );
 		$form = new Form();
@@ -101,8 +87,41 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers Form
+	 * @dataProvider provideExpectDateTime
 	 */
+	public function testExpectDateTime( $input, $format, $valid ) {
+		$_POST['date'] = $input;
+		$form = new Form();
+		$form->requireDateTime( 'date', $format );
+
+		if ( $valid ) {
+			$this->assertTrue( $form->validate(), 'Form should be valid' );
+			$vals = $form->getValues();
+			$this->assertArrayHasKey( 'date', $vals );
+			$this->assertInstanceOf( 'DateTime', $vals['date'] );
+			$this->assertEquals( $input, $vals['date']->format( $format ) );
+			$this->assertNotContains( 'date', $form->getErrors() );
+		} else {
+			$this->assertFalse( $form->validate(), 'Form should be invalid' );
+			$vals = $form->getValues();
+			$this->assertArrayHasKey( 'date', $vals );
+			$this->assertNull( $vals['date'] );
+			$this->assertContains( 'date', $form->getErrors() );
+		}
+	}
+
+	public function provideExpectDateTime() {
+		return array(
+			array( '2014-12-08', 'Y-m-d', true ),
+			array( '2014-12-08 23:02', 'Y-m-d H:i', true ),
+			array( '11:37', 'H:i', true ),
+			array( '2014-13-1', 'Y-m-d', false ),
+			array( '2014-2-29', 'Y-m-d', false ),
+			array( '2014-12-08 23:02', 'Y-m-d h:i', false ),
+			array( '27:37', 'H:i', false ),
+		);
+	}
+
 	public function testEncodeBasic () {
 		$input = array(
 			'foo' => 1,
@@ -113,9 +132,6 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'foo=1&bar=this%3Dthat&baz=tom+%26+jerry', $output );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testEncodeArray () {
 		$input = array(
 			'foo' => array( 'a', 'b', 'c' ),
@@ -126,9 +142,6 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 			'foo=a&foo=b&foo=c&bar%5B%5D=1&bar%5B%5D=2&bar%5B%5D=3', $output );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testQsMerge () {
 		$_GET['foo'] = 1;
 		$_GET['bar'] = 'this=that';
@@ -141,9 +154,6 @@ class FormTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'foo=2&bar=this%3Dthat&baz=tom+%26+jerry&xyzzy=grue', $output );
 	}
 
-	/**
-	 * @covers Form
-	 */
 	public function testQsRemove () {
 		$_GET['foo'] = 1;
 		$_GET['bar'] = 'this=that';
