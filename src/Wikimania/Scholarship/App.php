@@ -323,6 +323,11 @@ class App {
 				$page();
 			})->name( 'apply_post' );
 
+			$slim->get( 'apply/revalidatecsrf', function () use ( $slim ) {
+				$page = new Controllers\RevalidateCsrf( $slim );
+				$page();
+			})->name( 'revalidatecsrf' );
+
 			App::template( $slim, 'contact' );
 			App::template( $slim, 'credits' );
 			App::template( $slim, 'privacy' );
