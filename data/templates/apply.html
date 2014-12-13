@@ -112,7 +112,7 @@ lang: currently selected display language
 
   <fieldset>
     <legend>{{ wgLang.message( 'form-participation' ) }}</legend>
-    {{ forms.text( ctx, 'form-username', 'username' ) }}
+    {{ forms.text( ctx, 'form-username', 'username', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-other-usernames', 'alt_users' ) }}
     {{ forms.wikiSelect( ctx, 'form-active-projects', [ 'project', 'project2', 'project3' ], wikilist ) }}
     {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}

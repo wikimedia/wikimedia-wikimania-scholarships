@@ -70,7 +70,7 @@ class Apply extends Form {
 		$this->expectString( 'areaofstudy' );
 
 		// Participation in the Wikimedia projects
-		$this->expectString( 'username' );
+		$this->requireString( 'username' );
 		$this->expectString( 'alt_users' );
 		$this->expectInArray( 'project', $validWikis );
 		$this->expectInArray( 'project2', $validWikis );
