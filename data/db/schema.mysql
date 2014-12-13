@@ -325,6 +325,7 @@ INSERT IGNORE INTO iso_countries (code, country_name, region) VALUES
 ,('VU','Vanuatu','Asia Pacific')
 ,('WF','Wallis and Futuna','Asia Pacific')
 ,('WS','Samoa','Asia Pacific')
+,('XK', 'Kosovo', 'N/W/S Europe')
 ,('YE','Yemen','N. Africa/W. Asia')
 ,('YT','Mayotte','Sub-Saharan Africa')
 ,('ZA','South Africa','Sub-Saharan Africa')

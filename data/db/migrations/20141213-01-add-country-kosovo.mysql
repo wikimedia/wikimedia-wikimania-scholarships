@@ -1,0 +1,5 @@
+-- Bug: T78440
+-- Add Kosovo to iso_countries table
+
+INSERT IGNORE INTO iso_countries (code, country_name, region) VALUES
+ ('XK', 'Kosovo', 'N/W/S Europe');

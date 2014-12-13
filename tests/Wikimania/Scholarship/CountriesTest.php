@@ -28,7 +28,7 @@ namespace Wikimania\Scholarship;
 class CountriesTest extends \PHPUnit_Framework_TestCase {
 
 	public function testHaveAllCountries() {
-		$this->assertCount( 249, Countries::$COUNTRY_NAMES );
+		$this->assertCount( 250, Countries::$COUNTRY_NAMES );
 	}
 
 	public function testCountryKeysAreIso2Codes() {

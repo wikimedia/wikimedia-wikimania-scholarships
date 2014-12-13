@@ -156,6 +156,7 @@ class Countries {
 		'KI' => 'Kiribati',
 		'KP' => 'Korea, Democratic People\'s Republic of',
 		'KR' => 'Korea, Republic of',
+		'XK' => 'Kosovo',
 		'KW' => 'Kuwait',
 		'KG' => 'Kyrgyz Republic',
 		'LA' => 'Lao People\'s Democratic Republic',
