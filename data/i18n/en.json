@@ -85,7 +85,7 @@
 	"form-study": "Field of study (if student):",
 
 	"form-participation": "Participation in the Wikimedia projects",
-	"form-username": "Username on your primary Wikimedia project:",
+	"form-username": "Username on your primary Wikimedia project (Please omit the 'User:' prefix before your username):",
 	"form-other-usernames": "(If applicable) Other Wikimedia usernames used for editing:",
 	"form-active-projects": "Most active Wikimedia projects:",
 	"form-extent-explain": "In the space below, please explain the extent and nature of your participation in the Wikimedia projects (Are you a chapter member? An administrator? A longtime editor? A contributor to featured articles? A frequent uploader of high quality images? etc.)",
