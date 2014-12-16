@@ -317,6 +317,7 @@ class App {
 
 			$slim->post( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\ScholarshipApplication( $slim );
+				$page->setDao( $slim->settingsDao );
 				$page->setForm( $slim->applyForm );
 				$page->setMailer( $slim->mailer );
 				$page();

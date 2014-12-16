@@ -184,7 +184,17 @@
             <dt>{{ wgLang.message( 'review-view-presentation-topic' ) }}</dt>
             <dd>{{ schol.presentationTopic }}</dd>
             {% endif %}
+            <dt>{{ wgLang.message( 'review-view-previous-scholar' ) }}</dt>
+            <dd>{{ helpers.yesNo( schol.prev_scholar ) }}</dd>
           </dl>
+
+          {% if schol.prev_scholar %}
+            <div class="well well-sm">
+                <p><strong>{{ wgLang.message( 'review-view-attending-goals' ) }}</strong></p>
+                <p style="white-space:pre-wrap">{{ schol.goals }}</p>
+            </div>
+          {% endif %}
+
           <div class="well well-sm">
             <p><strong>{{ wgLang.message( 'review-view-enrichment' ) }}</strong></p>
             <p style="white-space:pre-wrap">{{ schol.why }}</p>

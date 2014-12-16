@@ -1,0 +1,16 @@
+-- Alter schema for 2015 questions
+
+-- Add new column for attending in 2014 (y/n)
+ALTER TABLE scholarships
+  ADD COLUMN wm14 TINYINT(1) DEFAULT NULL
+  AFTER wm13;
+
+-- Add column for previous scholarship recepient (y/n)
+ALTER TABLE scholarships
+  ADD COLUMN prev_scholar TINYINT(1) DEFAULT NULL
+  AFTER wm14;
+
+-- Add column for goals for attending this year
+ALTER TABLE scholarships
+  ADD COLUMN goals TEXT DEFAULT NULL
+  AFTER prev_scholar;

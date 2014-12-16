@@ -43,6 +43,9 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , wm11                        TINYINT(1) DEFAULT NULL
   , wm12                        TINYINT(1) DEFAULT NULL
   , wm13                        TINYINT(1) DEFAULT NULL
+  , wm14                        TINYINT(1) DEFAULT NULL
+  , prev_scholar                TINYINT(1) DEFAULT NULL
+  , goals                       TEXT
   , presentation                TINYINT(1) DEFAULT NULL
   , presentationTopic           TEXT
   , howheard                    VARCHAR(64) DEFAULT NULL

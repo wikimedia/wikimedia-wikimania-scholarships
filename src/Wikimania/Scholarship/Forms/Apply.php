@@ -88,6 +88,10 @@ class Apply extends Form {
 		$this->expectBool( 'wm11' );
 		$this->expectBool( 'wm12' );
 		$this->expectBool( 'wm13' );
+		$this->requireBool( 'prev_scholar' );
+		$this->expectString( 'goals', array(
+			'validate' => array( $this, 'validatePrevScholar' )
+		) );
 		$this->expectBool( 'presentation' );
 		$this->expectString( 'presentationTopic', array(
 			'validate' => array( $this, 'validatePresentationTopic' ),
@@ -117,6 +121,16 @@ class Apply extends Form {
 	 */
 	protected function validateGenderOther ( $value ) {
 		return $this->get( 'gender' ) == 'o' ? (bool)$value : true;
+	}
+
+	/**
+	 * Validate that goals is provided if prev_scholar is set.
+	 *
+	 * @param mixed $value Value of param
+	 * @return bool True if value is valid, false otherwise
+	 */
+	protected function validatePrevScholar ( $value ) {
+		return $this->get( 'prev_scholar' ) ? (bool)$value : true;
 	}
 
 	/**
@@ -197,7 +211,7 @@ class Apply extends Form {
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
 
 			'username', 'alt_users', 'project', 'project2', 'project3',
-			'involvement', 'contribution',
+			'prev_scholar', 'goals', 'involvement', 'contribution',
 
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13',
 			'presentation', 'presentationTopic', 'howheard', 'why',
