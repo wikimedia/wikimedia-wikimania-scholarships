@@ -88,6 +88,7 @@ class Apply extends Form {
 		$this->expectBool( 'wm11' );
 		$this->expectBool( 'wm12' );
 		$this->expectBool( 'wm13' );
+		$this->expectBool( 'wm14' );
 		$this->requireBool( 'prev_scholar' );
 		$this->expectString( 'goals', array(
 			'validate' => array( $this, 'validatePrevScholar' )
@@ -213,7 +214,7 @@ class Apply extends Form {
 			'username', 'alt_users', 'project', 'project2', 'project3',
 			'prev_scholar', 'goals', 'involvement', 'contribution',
 
-			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13',
+			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14',
 			'presentation', 'presentationTopic', 'howheard', 'why',
 
 			'willgetvisa', 'willpayincidentals', 'agreestotravelconditions',
