@@ -6,8 +6,8 @@
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "London 2014",
-	"header-title": "Wikimania 2014 - Scholarship application",
+	"wikimania-location-year": "Mexico City 2015",
+	"header-title": "Wikimania 2015 - Scholarship application",
 
 	"nav-apply": "Apply",
 	"nav-faq": "FAQ",
@@ -25,12 +25,12 @@
 
 	"mock": "This is a mock scholarship application site only, use it just for testing.",
 
-	"not-open": "The 2014 Wikimania Scholarship process is not yet open. For more information, see:\n<ul>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Main_Page\">About Wikimania</a></li>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Scholarships\">About Scholarships</a></li>\n</ul>",
+	"not-open": "The 2015 Wikimania Scholarship process is not yet open. For more information, see:\n<ul>\n<li><a href=\"https://wikimania2015.wikimedia.org/wiki/Main_Page\">About Wikimania</a></li>\n<li><a href=\"https://wikimania2015.wikimedia.org/wiki/Scholarships\">About Scholarships</a></li>\n</ul>",
 
-	"deadline-passed": "<p>Scholarship application deadline was February 17, 2014, 23:59 UTC.</p>\n<p>We will notify applicants in April 2014 about the result of their application.</p>\n<p>Please see the <a href='http://wikimania2014.wikimedia.org/wiki/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
+	"deadline-passed": "<p>Scholarship application deadline was February 17, 2015, 23:59 UTC.</p>\n<p>We will notify applicants in April 2015 about the result of their application.</p>\n<p>Please see the <a href='http://wikimania2015.wikimedia.org/wiki/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
 
-	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"http://wikimania2014.wikimedia.org\">Wikimania 2014</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in London, 6-10 August 2014.</p>\n<p>This is <strong>not</strong> a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>The deadline to apply is <strong>February 17, 2014, 23:59 UTC</strong>.</p>",
-	"form-intro-faq": "<a href='//wikimania2014.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
+	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"http://wikimania2015.wikimedia.org\">Wikimania 2015</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Mexico City, 15-19 July 2015.</p>\n<p>This is <strong>not</strong> a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>The deadline to apply is <strong>February 17, 2015, 23:59 UTC</strong>.</p>",
+	"form-intro-faq": "<a href='//wikimania2015.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
 
 	"form-error": "Your form has errors.  Please correct the following errors and submit the form again.",
 	"form-save-error": "There was a system error saving your application. Please try again.",
@@ -111,7 +111,7 @@
 	"form-attended": "Have you attended Wikimania before?  If so, in what year or years?",
 	"form-prev-scholar": "Have you previously attended Wikimania on a WMF scholarship?",
 	"form-attending-goals": "If so, please use the space below to tell us about something great that happened as a result of attending Wikimania previously? What are your goals for attending Wikimania again?",
-	"form-presenter": "I have or will submit a presentation for Wikimania 2014 (<a href=\"https://wikimania2014.wikimedia.org/wiki/Call_for_participation\" target=\"_blank\">Call for Participation</a>)",
+	"form-presenter": "I have or will submit a presentation for Wikimania 2015 (<a href=\"https://wikimania2015.wikimedia.org/wiki/Submissions\" target=\"_blank\">Call for Participation</a>)",
 	"form-presentation-topic": "If you have or will submit a presentation, please provide a link to your presentation or proposal title:",
 	"form-howheard": "How did you hear about this opportunity?",
 	"form-howheard1": "Mailing list / e-mail",
@@ -122,7 +122,7 @@
 	"form-enrichment": "In the space below, please state why are you interested in attending Wikimania?",
 
 	"form-agree": "Application agreement",
-	"form-visa": "If I am awarded and accept a grant, I will be responsible for obtaining a travel visa, if necessary, prior to travel to London.",
+	"form-visa": "If I am awarded and accept a grant, I will be responsible for obtaining a travel visa, if necessary, prior to travel to Mexico City.",
 	"form-incidentals": "If I am awarded and accept a grant, I will be responsible for the cost of airport transfer, incidentals, and meals during the conference.",
 	"form-travel-conditions": "If I am awarded and accept a grant, I agree to use the travel booking service provided and paid for by the Wikimedia Foundation.",
 
@@ -130,22 +130,22 @@
 	"form-review": "All information contained in this application will be reviewed by the members of the Wikimania Scholarship Committee. All personal information will be held strictly confidential by the Committee, and the <a href=\"//wikimediafoundation.org/\">Wikimedia Foundation</a>.",
 	"form-chapteragree": "I would like to be considered for a <a href=\"https://meta.wikimedia.org/wiki/Wikimedia%20chapters\">Wikimedia chapter</a> or <a href=\"https://meta.wikimedia.org/wiki/Wikimedia_thematic_organizations\">thematic organization</a> scholarship, and agree to share my information with chapters and thematic organizations for purpose of selecting and awarding scholarships.",
 	"form-rights-heading": "Applicant Rights & Consent to Data Processing and Transfer",
-	"form-rights": "I as an applicant for a Wikimedia Foundation ('WMF') scholarship relating to my participation in the 2014 Wikimania conference hosted in London, hereby acknowledge and affirmatively consent to the following as a prerequisite to the consideration of my 2014 Wikimania scholarship application ('Application'):\n</p><p>\n(a) Any personal data or sensitive personal data that I submit as part of or in relation to my Application (collectively 'my Data') may be accessed and reviewed by: (i) WMF; (ii) members of a scholarship committee made up of Wikimedia movement members, a representative list of which can be found at: <a href=\"//wikimania2014.wikimedia.org/wiki/Scholarship_committee\">https://wikimania2014.wikimedia.org/wiki/Scholarship_committee</a> ('Scholarship Committee'); and if you indicated that you want to be considered for a WM Chapter or WM Thematic Org scholarship, (iii) official Wikimedia Chapters, a representative list of which can be found at: <a href=\"//meta.wikimedia.org/wiki/Wikimedia_chapters\">https://meta.wikimedia.org/wiki/Wikimedia_chapters</a> ('WM Chapters'), and official thematic organizations, a representative list of which can be found at: <a href=\"//meta.wikimedia.org/wiki/Wikimedia_thematic_organizations\">https://meta.wikimedia.org/wiki/Wikimedia_thematic_organizations</a> ('WM Thematic Orgs'); for the purposes of evaluating my Application.\n</p><p>\n(b) Any Data that I submit as a part of or in relation to my Application may be collected, stored, used, modified, communicated, archived, destroyed, or otherwise processed (collectively 'Processed' or 'Processing') by: (i) WMF; (ii) members of the Scholarship Committee; and if you indicated that you want to be considered for a WM Chapter or WM Thematic Org scholarship, (iii) WM Chapters and WM Thematic Orgs. My Data may be retained by WMF until I request in writing to WMF that my Data be destroyed or for as long as required by applicable law.\n</p><p>\n(c) My Data may be transmitted to or from: (i) WMF in the United States; (ii) members of the Scholarship Committee in the country which they reside; and if you indicated that you want to be considered for a WM Chapter or WM Thematic Org scholarship, (iii) WM Chapters and/or WM Thematic Orgs in the country which the organizations are based.",
+	"form-rights": "I as an applicant for a Wikimedia Foundation ('WMF') scholarship relating to my participation in the 2015 Wikimania conference hosted in Mexico City, hereby acknowledge and affirmatively consent to the following as a prerequisite to the consideration of my 2015 Wikimania scholarship application ('Application'):\n</p><p>\n(a) Any personal data or sensitive personal data that I submit as part of or in relation to my Application (collectively 'my Data') may be accessed and reviewed by: (i) WMF; (ii) members of a scholarship committee made up of Wikimedia movement members, a representative list of which can be found at: <a href=\"//wikimania2015.wikimedia.org/wiki/Scholarship_committee\">https://wikimania2015.wikimedia.org/wiki/Scholarship_committee</a> ('Scholarship Committee'); and if you indicated that you want to be considered for a WM Chapter or WM Thematic Org scholarship, (iii) official Wikimedia Chapters, a representative list of which can be found at: <a href=\"//meta.wikimedia.org/wiki/Wikimedia_chapters\">https://meta.wikimedia.org/wiki/Wikimedia_chapters</a> ('WM Chapters'), and official thematic organizations, a representative list of which can be found at: <a href=\"//meta.wikimedia.org/wiki/Wikimedia_thematic_organizations\">https://meta.wikimedia.org/wiki/Wikimedia_thematic_organizations</a> ('WM Thematic Orgs'); for the purposes of evaluating my Application.\n</p><p>\n(b) Any Data that I submit as a part of or in relation to my Application may be collected, stored, used, modified, communicated, archived, destroyed, or otherwise processed (collectively 'Processed' or 'Processing') by: (i) WMF; (ii) members of the Scholarship Committee; and if you indicated that you want to be considered for a WM Chapter or WM Thematic Org scholarship, (iii) WM Chapters and WM Thematic Orgs. My Data may be retained by WMF until I request in writing to WMF that my Data be destroyed or for as long as required by applicable law.\n</p><p>\n(c) My Data may be transmitted to or from: (i) WMF in the United States; (ii) members of the Scholarship Committee in the country which they reside; and if you indicated that you want to be considered for a WM Chapter or WM Thematic Org scholarship, (iii) WM Chapters and/or WM Thematic Orgs in the country which the organizations are based.",
 	"form-wmfagree": "I agree to the statement of 'Applicant Rights & Consent to Data Processing and Transfer'.",
 	"form-wmfAgreeName": "Please enter your full name:",
 	"form-wmfAgreeGuardian": "If under 18 years old, please have a parent or legal guardian enter his/her full name:",
 	"form-submit-app": "Submit application",
 
-	"form-email-subject": "Wikimania 2014 scholarship applications",
-	"form-email-response": "Dear $1 $2,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania 2014.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
+	"form-email-subject": "Wikimania 2015 scholarship applications",
+	"form-email-response": "Dear $1 $2,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania 2015.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
 
 	"confirm-thanks": "Thanks!",
-	"confirm-text": "Thank you for submitting your scholarship application for Wikimania 2014. Please contact <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> with any questions.",
+	"confirm-text": "Thank you for submitting your scholarship application for Wikimania 2015. Please contact <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> with any questions.",
 
 	"privacy-page": "<p>All personal information will be held strictly confidential by the members of the Wikimania Scholarship Committee and the <a href=\"http://wikimediafoundation.org\">Wikimedia Foundation</a>, in accordance to the Wikimedia Foundation <a href=\"http://wikimediafoundation.org/wiki/Privacy_policy\">privacy policy</a>.</p>",
 
 	"new-account-subject": "New Wikimania Scholarships account",
-	"new-account-email": "A new Wikimania Scholarships account has been created for you.\n\nYour login info is:\n\nusername: $1\npassword: $2\n\nYou may login at: $3\n\nYou may change your password at: $4\n\nSincerely,\nWikimania 2014 Organizing Team",
+	"new-account-email": "A new Wikimania Scholarships account has been created for you.\n\nYour login info is:\n\nusername: $1\npassword: $2\n\nYou may login at: $3\n\nYou may change your password at: $4\n\nSincerely,\nWikimania 2015 Organizing Team",
 
 	"contact-us": "Contact us",
 	"contact-page": "Email: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
