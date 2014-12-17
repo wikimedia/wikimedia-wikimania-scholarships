@@ -202,7 +202,62 @@
             <p style="white-space:pre-wrap">{{ schol.why }}</p>
           </div>
         </div>
-      </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#application" href="#engagement">
+                    {{ wgLang.message( 'review-view-engagement' ) }}
+                </a>
+            </h4>
+        </div>
+    </div>
+    <div id="engagement" class="panel-collapse collapse in">
+        <table class="table table-condensed">
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option1' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage1 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option2' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage2 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option3' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage3 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option4' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage4 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option5' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage5 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option6' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage6 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option7' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage7 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option8' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage8 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option9' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage9 ) }}</td>
+            </tr>
+            <tr>
+                <td>{{ wgLang.message( 'form-engagement-option10' ) }}</td>
+                <td>{{ helpers.yesOnly( schol.engage10 ) }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
 
       <div class="panel panel-default">
         <div class="panel-heading">

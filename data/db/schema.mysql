@@ -32,6 +32,16 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , project                     VARCHAR(255) DEFAULT NULL
   , project2                    VARCHAR(255) DEFAULT NULL
   , project3                    VARCHAR(255) DEFAULT NULL
+  , engage1                     TINYINT(1) DEFAULT NULL
+  , engage2                     TINYINT(1) DEFAULT NULL
+  , engage3                     TINYINT(1) DEFAULT NULL
+  , engage4                     TINYINT(1) DEFAULT NULL
+  , engage5                     TINYINT(1) DEFAULT NULL
+  , engage6                     TINYINT(1) DEFAULT NULL
+  , engage7                     TINYINT(1) DEFAULT NULL
+  , engage8                     TINYINT(1) DEFAULT NULL
+  , engage9                     TINYINT(1) DEFAULT NULL
+  , engage10                    TINYINT(1) DEFAULT NULL
   , involvement                 TEXT
   , contribution                TEXT
   , wm05                        TINYINT(1) DEFAULT NULL

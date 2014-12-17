@@ -115,6 +115,18 @@ lang: currently selected display language
     {{ forms.text( ctx, 'form-username', 'username', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-other-usernames', 'alt_users' ) }}
     {{ forms.wikiSelect( ctx, 'form-active-projects', [ 'project', 'project2', 'project3' ], wikilist ) }}
+    {{ forms.checkboxList( ctx, 'form-engagement', {
+        'engage1': wgLang.message( 'form-engagement-option1' ),
+        'engage2': wgLang.message( 'form-engagement-option2' ),
+        'engage3': wgLang.message( 'form-engagement-option3' ),
+        'engage4': wgLang.message( 'form-engagement-option4' ),
+        'engage5': wgLang.message( 'form-engagement-option5' ),
+        'engage6': wgLang.message( 'form-engagement-option6' ),
+        'engage7': wgLang.message( 'form-engagement-option7' ),
+        'engage8': wgLang.message( 'form-engagement-option8' ),
+        'engage9': wgLang.message( 'form-engagement-option9' ),
+        'engage10': wgLang.message( 'form-engagement-option10' )
+      } ) }}
     {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true } ) }}
 </fieldset>

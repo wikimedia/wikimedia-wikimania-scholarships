@@ -75,6 +75,16 @@ class Apply extends Form {
 		$this->expectInArray( 'project', $validWikis );
 		$this->expectInArray( 'project2', $validWikis );
 		$this->expectInArray( 'project3', $validWikis );
+		$this->expectBool( 'engage1' );
+		$this->expectBool( 'engage2' );
+		$this->expectBool( 'engage3' );
+		$this->expectBool( 'engage4' );
+		$this->expectBool( 'engage5' );
+		$this->expectBool( 'engage6' );
+		$this->expectBool( 'engage7' );
+		$this->expectBool( 'engage8' );
+		$this->expectBool( 'engage9' );
+		$this->expectBool( 'engage10' );
 		$this->requireString( 'involvement' );
 		$this->requireString( 'contribution' );
 
@@ -199,6 +209,21 @@ class Apply extends Form {
 			$this->errors[] = 'mm';
 			$this->errors[] = 'dd';
 		}
+
+		if ( !($this->get( 'engage1' ) ||
+			$this->get( 'engage2' ) ||
+			$this->get( 'engage3' ) ||
+			$this->get( 'engage4' ) ||
+			$this->get( 'engage5' ) ||
+			$this->get( 'engage6' ) ||
+			$this->get( 'engage7' ) ||
+			$this->get( 'engage8' ) ||
+			$this->get( 'engage9' ) ||
+			$this->get( 'engage10' )
+		) ) {
+			// At least one checkbox must be selected
+			$this->errors[] = 'engage10';
+		}
 	}
 
 	/**
@@ -212,8 +237,10 @@ class Apply extends Form {
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
 
 			'username', 'alt_users', 'project', 'project2', 'project3',
+			'engage1', 'engage2', 'engage3', 'engage4', 'engage6',
+			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
+			'involvement', 'contribution',
 			'prev_scholar', 'goals', 'involvement', 'contribution',
-
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14',
 			'presentation', 'presentationTopic', 'howheard', 'why',
 

@@ -34,6 +34,12 @@
   <span class="glyphicon glyphicon-{{ var == 1 ? 'ok' : 'remove'  }}"></span>
 {% endmacro %}
 
+{% macro yesOnly( var ) %}
+  {% if var == 1 %}
+  <span class="glyphicon glyphicon-ok"></span>
+  {% endif %}
+{% endmacro %}
+
 {% macro participation( var ) %}
   <td class="text-center">
     {% if var == 1 %}
