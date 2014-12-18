@@ -148,6 +148,23 @@ in ctx.form.errors %}
 {{ forms.endElement() }}
 {% endmacro %}
 
+{% macro communitySelect( ctx, mesg, name, opts = {} ) %}
+{% import _self as forms %}
+{% set opts = { 'required':false }|merge( opts ) %}
+{% set value = ctx.form.get( name ) %}
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+<select class="form-control" id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
+  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+  <option value="MULTILINGUAL">{{ ctx.wgLang.message( 'form-multilingual-community' ) }}</option>
+  {% for code, lang in ctx.communities|sort %}
+    {% if code != 'MULTILINGUAL' %}
+    <option value="{{ code }}" {{ code == value ? 'selected="selected"' }}>{{ lang }}</option>
+    {% endif %}
+  {% endfor %}
+  </select>
+{{ forms.endElement() }}
+{% endmacro %}
+
 {% macro checkboxList( ctx, mesg, options, opts = {} ) %}
 {% import _self as forms %}
 {{ forms.startElement( ctx, mesg, '', opts ) }}

@@ -23,6 +23,7 @@
 namespace Wikimania\Scholarship\Forms;
 
 use Wikimania\Scholarship\Countries;
+use Wikimania\Scholarship\Communities;
 use Wikimania\Scholarship\Dao\Apply as ApplyDao;
 use Wikimania\Scholarship\Form;
 use Wikimania\Scholarship\Wikis;
@@ -46,6 +47,7 @@ class Apply extends Form {
 	public function __construct( $dao = null ) {
 		$this->dao = $dao ?: new ApplyDao();
 		$validCountries = array_keys( Countries::$COUNTRY_NAMES );
+		$validCommunities = array_keys( Communities::$COMMUNITY_NAMES );
 		$validWikis = Wikis::$WIKI_NAMES;
 
 		// Contact information
@@ -72,6 +74,7 @@ class Apply extends Form {
 		// Participation in the Wikimedia projects
 		$this->requireString( 'username' );
 		$this->expectString( 'alt_users' );
+		$this->requireInArray( 'community', $validCommunities );
 		$this->expectInArray( 'project', $validWikis );
 		$this->expectInArray( 'project2', $validWikis );
 		$this->expectInArray( 'project3', $validWikis );
@@ -235,8 +238,8 @@ class Apply extends Form {
 
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
-
-			'username', 'alt_users', 'project', 'project2', 'project3',
+			'username', 'alt_users', 'community',
+			'project', 'project2', 'project3',
 			'engage1', 'engage2', 'engage3', 'engage4', 'engage6',
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
 			'involvement', 'contribution',

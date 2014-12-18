@@ -24,6 +24,7 @@ namespace Wikimania\Scholarship\Controllers;
 
 use Wikimania\Scholarship\Controller;
 use Wikimania\Scholarship\Countries;
+use Wikimania\Scholarship\Communities;
 use Wikimania\Scholarship\Forms\Apply as ApplyForm;
 use Wikimania\Scholarship\Wikis;
 
@@ -101,6 +102,7 @@ class ScholarshipApplication extends Controller {
 		$this->view->setData( 'form', $this->form );
 		$this->view->setData( 'submitted', $submitted );
 		$this->view->setData( 'countries', Countries::$COUNTRY_NAMES );
+		$this->view->setData( 'communities', Communities::$COMMUNITY_NAMES );
 		$this->view->setData( 'wikilist', Wikis::$WIKI_NAMES );
 
 		$this->render( 'apply.html' );

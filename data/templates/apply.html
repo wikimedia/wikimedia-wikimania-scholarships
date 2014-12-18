@@ -6,6 +6,7 @@ registration_closed: is the registration period closed?
 app: Slim application
 form: user input
 countries: array of country names
+communities: array of language communities
 wgLang: Lang
 lang: currently selected display language
 -#}
@@ -114,6 +115,7 @@ lang: currently selected display language
     <legend>{{ wgLang.message( 'form-participation' ) }}</legend>
     {{ forms.text( ctx, 'form-username', 'username', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-other-usernames', 'alt_users' ) }}
+    {{ forms.communitySelect( ctx, 'form-community', 'community', { 'required':true } ) }}
     {{ forms.wikiSelect( ctx, 'form-active-projects', [ 'project', 'project2', 'project3' ], wikilist ) }}
     {{ forms.checkboxList( ctx, 'form-engagement', {
         'engage1': wgLang.message( 'form-engagement-option1' ),

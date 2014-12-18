@@ -89,6 +89,7 @@
 	"form-participation": "Participation in the Wikimedia projects",
 	"form-username": "Username on your primary Wikimedia project (Please omit the 'User:' prefix before your username):",
 	"form-other-usernames": "(If applicable) Other Wikimedia usernames used for editing:",
+	"form-multilingual-community": "I primarily/only contribute to Commons, Species, Data, or Incubator, and therefore cannot pick a language community",
 	"form-active-projects": "Most active Wikimedia projects:",
 	"form-engagement": "Please select all of the following that describe how you have engaged in the Wikimedia movement.",
 	"form-engagement-option1": "Active contributor to a Wikimedia project (e.g. Wikipedia, Commons, Wikisource), with at least 50 contributions (edits)",
@@ -101,6 +102,7 @@
 	"form-engagement-option8": "Participant in Wikimedia organized events (e.g. photographer contributing to Wiki Loves Monuments, workshop attendee)",
 	"form-engagement-option9": "Organizer of Wikimedia events (e.g. WLM, edit-a-thons)",
 	"form-engagement-option10": "None of the above",
+	"form-community": "Primary language community on wiki:",
 	"form-extent-explain": "In the space below, please explain the extent and nature of your participation in the Wikimedia projects (Are you a chapter member? An administrator? A longtime editor? A contributor to featured articles? A frequent uploader of high quality images? etc.)",
 	"form-contrib-explain": "In the space below, please explain the extent and nature of your participation in other free knowledge, free software, collaborative or educational initiatives other than the Wikimedia projects.",
 
