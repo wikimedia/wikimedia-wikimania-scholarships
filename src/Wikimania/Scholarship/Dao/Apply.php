@@ -269,6 +269,8 @@ class Apply extends AbstractDao {
 			'last' => null,
 			'residence' => null,
 			'region' => null,
+			'size' => null,
+			'globalns' => null,
 			'items'  => 50,
 			'page' => 0,
 		);
@@ -301,6 +303,14 @@ class Apply extends AbstractDao {
 			$where[] = "c.region = :region";
 			$crit['region'] = $params['region'];
 		}
+		if ( $params['size'] !== null ) {
+			$where[] = "l.size = :size";
+			$crit['size'] = $params['size'];
+		}
+		if ( $params['globalns'] !== null ) {
+			$where[] = "c.globalns = :globalns";
+			$crit['globalns'] = $params['globalns'];
+		}
 
 		$where[] = "s.exclude = 0";
 
@@ -315,6 +325,8 @@ class Apply extends AbstractDao {
 			"(YEAR(NOW()) - YEAR(s.dob)) AS age",
 			"c.country_name",
 			"c.region",
+			"c.globalns",
+			"l.size",
 			"COALESCE(p1score, 0) AS p1score",
 			"p1count",
 			"mycount",
@@ -338,6 +350,7 @@ class Apply extends AbstractDao {
 				"LEFT OUTER JOIN ( {$p1countSql} ) r2 ON s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 ON s.id = r3.scholarship_id",
 				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
+				"LEFT OUTER JOIN language_communities l ON s.community = l.code",
 				self::buildWhere( $where ),
 				"ORDER BY s.id",
 				$limit,
@@ -581,6 +594,29 @@ class Apply extends AbstractDao {
 			"FROM scholarships s",
 			"LEFT JOIN iso_countries c ON c.code = s.residence",
 			"GROUP BY c.country_name"
+		) );
+	}
+
+
+	/*
+	 * Fetch applications for different language groups
+	 * Possible language groupings are:
+	 * Small language community - Global North
+	 * Small language community - Global South
+	 * Medium language community - Global North
+	 * Medium language community - Global South
+	 * Large language community - Global South
+	 * Large language community - Global North
+	 * Multilingual community - Global North
+	 * Multilingual community - Global South
+	 */
+	public function getListOfCommunities() {
+		return $this->fetchAll( self::concat(
+			"SELECT count(*) as sid, l.size, c.globalns",
+			"FROM scholarships s",
+			"LEFT JOIN language_communities l ON l.code = s.community",
+			"LEFT JOIN iso_countries c ON c.code = s.residence",
+			"GROUP BY l.size"
 		) );
 	}
 

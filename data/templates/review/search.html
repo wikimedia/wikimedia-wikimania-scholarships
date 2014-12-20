@@ -9,26 +9,42 @@
 </ol>
 
 <form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
+
   <input type="hidden" name="p" value="0">
   <div class="form-group">
     <label class="sr-only" for="lastname">{{ wgLang.message( 'form-lname' ) }}</label>
     <input type="text" name="l" id="lastname" placeholder="{{ wgLang.message( 'form-lname' ) }}" value="{{ l }}">
   </div>
+
   <div class="form-group">
     <label class="sr-only" for="firstname">{{ wgLang.message( 'form-fname' ) }}</label>
     <input type="text" name="f" id="firstname" placeholder="{{ wgLang.message( 'form-fname' ) }}" value="{{ f }}">
   </div>
+
   <div class="form-group">
     <label class="sr-only" for="residence">{{ wgLang.message( 'form-residence' ) }}</label>
     <input type="text" name="r" id="residence" placeholder="{{ wgLang.message( 'form-residence' ) }}" value="{{ r }}">
   </div>
+
   <div class="form-group">
     <label class="sr-only" for="region">{{ wgLang.message( 'search-region' ) }}</label>
     <input type="text" name="rg" id="region" placeholder="{{ wgLang.message( 'search-region' ) }}" value="{{ rg }}">
   </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="community-size">{{ wgLang.message( 'search-sommunity-size' ) }}</label>
+    <input type="text" name="cs" id="community" placeholder="{{ wgLang.message( 'search-community-size' ) }}" value="{{ cs }}">
+  </div>
+
+  <div class="form-group">
+    <label class="sr-only" for="globalns">{{ wgLang.message( 'search-globalns' ) }}</label>
+    <input type="text" name="ns" id="globalns" placeholder="{{ wgLang.message( 'search-globalns' ) }}" value="{{ ns }}">
+  </div>
+
   <div class="form-group">
     <input type="submit" class="btn btn-sm btn-primary" value="{{ wgLang.message( 'search' ) }}" />
   </div>
+
 </form>
 
 <p></p>

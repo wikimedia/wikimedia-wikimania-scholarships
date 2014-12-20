@@ -197,6 +197,7 @@
 	"review": "Review",
 	"search": "Search",
 	"by-country": "By country",
+	"by-language-group": "By language group",
 	"by-region": "By region",
 	"change-password": "Change password",
 	"logout": "Logout",
@@ -245,6 +246,10 @@
 	"review-countries-country": "Country",
 	"review-countries-region": "Region",
 	"review-countries-count": "Scholarship count",
+
+	"review-communities-size": "Language group",
+	"review-communities-globalns": "Global North/South",
+	"review-communities-count": "Scholarship count",
 
 	"review-view-name": "Name:",
 	"review-view-email": "Email:",

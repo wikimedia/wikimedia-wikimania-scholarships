@@ -448,6 +448,12 @@ class App {
 				$page();
 			})->name( 'review_regions' );
 
+			$slim->get( 'communities', function () use ( $slim ) {
+				$page = new Controllers\Review\Communities( $slim );
+				$page->setDao( $slim->applyDao );
+				$page();
+			})->name( 'review_communities' );
+
 		});
 
 		$slim->group( '/admin/',

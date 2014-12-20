@@ -37,6 +37,8 @@ class Search extends Controller {
 		$this->form->expectString( 'f' );
 		$this->form->expectString( 'r' );
 		$this->form->expectString( 'rg' );
+		$this->form->expectString( 'cs' );
+		$this->form->expectString( 'ns' );
 		$this->form->expectInt( 'items',
 			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
 		);
@@ -47,12 +49,15 @@ class Search extends Controller {
 		$this->view->set( 'f', $this->form->get( 'f' ) );
 		$this->view->set( 'r', $this->form->get( 'r' ) );
 		$this->view->set( 'rg', $this->form->get( 'rg' ) );
+		$this->view->set( 'cs', $this->form->get( 'cs' ) );
+		$this->view->set( 'ns', $this->form->get( 'ns' ) );
 		$this->view->set( 'items', $this->form->get( 'items' ) );
 		$this->view->set( 'p', $this->form->get( 'p' ) );
 		$this->view->set( 'found', null );
 
 		if ( $this->form->get( 'l' ) || $this->form->get( 'f' ) ||
-			$this->form->get( 'r' ) || $this->form->get( 'rg' )
+			$this->form->get( 'r' ) || $this->form->get( 'rg' ) ||
+			$this->form->get( 'cs' ) || $this->form->get( 'ns' )
 		) {
 
 			$params = array(
@@ -60,6 +65,8 @@ class Search extends Controller {
 				'last' => $this->form->get( 'l' ),
 				'residence' => $this->form->get( 'r' ),
 				'region' => $this->form->get( 'rg' ),
+				'size' => $this->form->get( 'cs' ),
+				'globalns' =>$this->form->get( 'ns' ),
 				'items' => $this->form->get( 'items' ),
 				'page' => $this->form->get( 'p' ),
 			);
