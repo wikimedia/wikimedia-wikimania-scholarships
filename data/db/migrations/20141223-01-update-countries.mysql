@@ -1,90 +1,7 @@
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- Update iso_countries table to reflect Global South/North
+-- Bug: T84869
 
-CREATE TABLE IF NOT EXISTS rankings (
-    id              INT(11) NOT NULL AUTO_INCREMENT
-  , user_id         INT(11) NOT NULL
-  , scholarship_id  INT(11) NOT NULL
-  , criterion       VARCHAR(64) NOT NULL
-  , rank            INT(11) NOT NULL DEFAULT '0'
-  , entered_on      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  , PRIMARY KEY (id)
-  , UNIQUE rank_by_user (user_id, scholarship_id, criterion)
-  , KEY scholarship_id (scholarship_id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
-
-CREATE TABLE IF NOT EXISTS scholarships (
-    id                          INT(11) NOT NULL AUTO_INCREMENT
-  , fname                       VARCHAR(32) DEFAULT NULL
-  , lname                       VARCHAR(32) DEFAULT NULL
-  , email                       VARCHAR(64) DEFAULT NULL
-  , residence                   CHAR(2) DEFAULT NULL
-  , haspassport                 TINYINT(1) DEFAULT NULL
-  , nationality                 CHAR(2) DEFAULT NULL
-  , airport                     VARCHAR(64) DEFAULT NULL
-  , languages                   VARCHAR(64) DEFAULT NULL
-  , dob                         DATE DEFAULT NULL
-  , gender                      ENUM('m','f','o','d') DEFAULT NULL
-  , gender_other                VARCHAR(64) DEFAULT NULL
-  , occupation                  VARCHAR(64) DEFAULT NULL
-  , areaofstudy                 VARCHAR(64) DEFAULT NULL
-  , username                    VARCHAR(64) DEFAULT NULL
-  , alt_users                   VARCHAR(255) DEFAULT NULL
-  , project                     VARCHAR(255) DEFAULT NULL
-  , project2                    VARCHAR(255) DEFAULT NULL
-  , project3                    VARCHAR(255) DEFAULT NULL
-  , engage1                     TINYINT(1) DEFAULT NULL
-  , engage2                     TINYINT(1) DEFAULT NULL
-  , engage3                     TINYINT(1) DEFAULT NULL
-  , engage4                     TINYINT(1) DEFAULT NULL
-  , engage5                     TINYINT(1) DEFAULT NULL
-  , engage6                     TINYINT(1) DEFAULT NULL
-  , engage7                     TINYINT(1) DEFAULT NULL
-  , engage8                     TINYINT(1) DEFAULT NULL
-  , engage9                     TINYINT(1) DEFAULT NULL
-  , engage10                    TINYINT(1) DEFAULT NULL
-  , involvement                 TEXT
-  , contribution                TEXT
-  , wm05                        TINYINT(1) DEFAULT NULL
-  , wm06                        TINYINT(1) DEFAULT NULL
-  , wm07                        TINYINT(1) DEFAULT NULL
-  , wm08                        TINYINT(1) DEFAULT NULL
-  , wm09                        TINYINT(1) DEFAULT NULL
-  , wm10                        TINYINT(1) DEFAULT NULL
-  , wm11                        TINYINT(1) DEFAULT NULL
-  , wm12                        TINYINT(1) DEFAULT NULL
-  , wm13                        TINYINT(1) DEFAULT NULL
-  , wm14                        TINYINT(1) DEFAULT NULL
-  , prev_scholar                TINYINT(1) DEFAULT NULL
-  , goals                       TEXT
-  , presentation                TINYINT(1) DEFAULT NULL
-  , presentationTopic           TEXT
-  , howheard                    VARCHAR(64) DEFAULT NULL
-  , why                         TEXT
-  , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
-  , willpayincidentals          TINYINT(1) NOT NULL DEFAULT '0'
-  , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
-  , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
-  , wmfAgreeName                VARCHAR(255)
-  , wmfAgreeGuardian            VARCHAR(255) DEFAULT NULL
-  , notes                       TEXT
-  , exclude                     TINYINT(1) NOT NULL DEFAULT '0'
-  , entered_on                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  , PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
-
-CREATE TABLE IF NOT EXISTS users (
-    id          INT(11) NOT NULL AUTO_INCREMENT
-  , username    VARCHAR(20) DEFAULT NULL
-  , password    VARCHAR(255) DEFAULT NULL
-  , email       VARCHAR(255) DEFAULT NULL
-  , reviewer    TINYINT(1) DEFAULT NULL
-  , isvalid     TINYINT(1) DEFAULT NULL
-  , isadmin     TINYINT(1) DEFAULT NULL
-  , blocked     TINYINT(1) DEFAULT 0
-  , PRIMARY KEY (id)
-  , UNIQUE KEY username (username)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 AUTO_INCREMENT=1000 ;
-
+DROP TABLE IF EXISTS iso_countries;
 CREATE TABLE IF NOT EXISTS iso_countries (
     code CHAR(2) NOT NULL COMMENT 'ISO 3166-1 alpha-2 country code'
   , country_name VARCHAR(255) NOT NULL
@@ -346,18 +263,3 @@ INSERT IGNORE INTO iso_countries (code, country_name, region, globalns) VALUES
 ,('ZA','South Africa','Africa','Global South')
 ,('ZM','Zambia','Africa','Global South')
 ,('ZW','Zimbabwe','Africa','Global South');
-
-CREATE TABLE IF NOT EXISTS settings (
-    id              INT(11) NOT NULL AUTO_INCREMENT
-  , setting_name    VARCHAR(255) NOT NULL
-  , value           VARCHAR(255) NOT NULL DEFAULT '0'
-  , entered_on      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-  , PRIMARY KEY (id)
-  , UNIQUE (setting_name)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
-
-INSERT IGNORE INTO settings (setting_name, value) VALUES
- ('phase1pass',3)
-,('weightonwiki',0.5)
-,('weightoffwiki',0.2)
-,('weightinterest',0.3);
