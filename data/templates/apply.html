@@ -115,8 +115,9 @@ lang: currently selected display language
     <legend>{{ wgLang.message( 'form-participation' ) }}</legend>
     {{ forms.text( ctx, 'form-username', 'username', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-other-usernames', 'alt_users' ) }}
+    {{ forms.wikiSelect( ctx, 'form-active-project', 'project', wikilist, { 'required':true } ) }}
+    {{ forms.wikiSelect( ctx, 'form-active-project2', 'project2', wikilist ) }}
     {{ forms.communitySelect( ctx, 'form-community', 'community', { 'required':true } ) }}
-    {{ forms.wikiSelect( ctx, 'form-active-projects', [ 'project', 'project2', 'project3' ], wikilist ) }}
     {{ forms.checkboxList( ctx, 'form-engagement', {
         'engage1': wgLang.message( 'form-engagement-option1' ),
         'engage2': wgLang.message( 'form-engagement-option2' ),

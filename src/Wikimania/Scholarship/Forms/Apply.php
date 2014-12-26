@@ -75,9 +75,8 @@ class Apply extends Form {
 		$this->requireString( 'username' );
 		$this->expectString( 'alt_users' );
 		$this->requireInArray( 'community', $validCommunities );
-		$this->expectInArray( 'project', $validWikis );
+		$this->requireInArray( 'project', $validWikis );
 		$this->expectInArray( 'project2', $validWikis );
-		$this->expectInArray( 'project3', $validWikis );
 		$this->expectBool( 'engage1' );
 		$this->expectBool( 'engage2' );
 		$this->expectBool( 'engage3' );
@@ -238,8 +237,7 @@ class Apply extends Form {
 
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
-			'username', 'alt_users', 'community',
-			'project', 'project2', 'project3',
+			'username', 'alt_users', 'project', 'project2', 'community',
 			'engage1', 'engage2', 'engage3', 'engage4', 'engage6',
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
 			'involvement', 'contribution',

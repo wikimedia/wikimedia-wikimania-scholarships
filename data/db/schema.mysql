@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , community                   VARCHAR(255) DEFAULT NULL
   , project                     VARCHAR(255) DEFAULT NULL
   , project2                    VARCHAR(255) DEFAULT NULL
-  , project3                    VARCHAR(255) DEFAULT NULL
   , engage1                     TINYINT(1) DEFAULT NULL
   , engage2                     TINYINT(1) DEFAULT NULL
   , engage3                     TINYINT(1) DEFAULT NULL

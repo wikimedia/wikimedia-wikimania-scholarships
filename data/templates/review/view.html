@@ -114,10 +114,7 @@
             {% if schol.project2 %}
             <dd>{{ schol.project2 }}</dt>
             {% endif %}
-            {% if schol.project3 %}
-            <dd>{{ schol.project3 }}</dt>
-            {% endif %}
-            {% if not(schol.project or schol.project2 or schol.project3) %}
+            {% if not(schol.project or schol.project2) %}
             <dd>{{ wgLang.message( 'review-view-not-specified' ) }}</dd>
             {% endif %}
           </dl>

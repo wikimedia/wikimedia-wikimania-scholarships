@@ -132,19 +132,17 @@ in ctx.form.errors %}
 {{ forms.endElement() }}
 {% endmacro %}
 
-{% macro wikiSelect( ctx, mesg, names, options, opts = {} ) %}
+{% macro wikiSelect( ctx, mesg, name, options, opts = {} ) %}
 {% import _self as forms %}
 {% set opts = { 'required':false }|merge( opts ) %}
-{{ forms.startElement( ctx, mesg, names[0], opts ) }}
-  {% for name in names %}
-  {% set value = ctx.form.get( name ) %}
-  <select id="{{ name }}" name="{{ name }}" class="form-control chosen-select" {{ opts['required'] ? 'required' }}>
+{{ forms.startElement( ctx, mesg, name, opts ) }}
+{% set value = ctx.form.get( name ) %}
+  <select id="{{ name }}" name="{{ name }}" class="form-control" {{ opts['required'] ? 'required' }}>
     <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
     {% for val in options %}
     <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ val }}</option>
     {% endfor %}
   </select>
-  {% endfor %}
 {{ forms.endElement() }}
 {% endmacro %}
 

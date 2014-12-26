@@ -1,0 +1,4 @@
+-- Bug: T85287
+-- Drop project 3 column from scholarships table
+
+ALTER TABLE scholarships DROP COLUMN project3;
