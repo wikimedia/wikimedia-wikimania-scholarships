@@ -43,67 +43,67 @@ class ScholarshipApplication extends Controller {
 	}
 
 	protected function handle() {
-			$submitted = false;
+		$submitted = false;
 
-			if ( $this->request->isPost() ) {
-				// FIXME: get/post should be split and use redirects but I'm too lazy
-				// to do that right now. It would be nice if Controller handled most
-				// of the heavy lifting for that. Slim's `flash` is nice but rigged to
-				// be very view specific rather than a generic internally data passing
-				// system.
-				if ( $this->form->validate() ) {
-					// input is valid, save to database
-					if ( $this->form->save() ) {
-						// send confirmation email
-						$message = $this->wgLang->message( 'form-email-response',
-							array(
-								$this->form->get( 'fname' ),
-								$this->form->get( 'lname' ),
-							)
-						);
+		if ( $this->request->isPost() ) {
+			// FIXME: get/post should be split and use redirects but I'm too
+			// lazy to do that right now. It would be nice if Controller
+			// handled most of the heavy lifting for that. Slim's `flash` is
+			// nice but rigged to be very view specific rather than a generic
+			// internally data passing system.
+			if ( $this->form->validate() ) {
+				// input is valid, save to database
+				if ( $this->form->save() ) {
+					// send confirmation email
+					$message = $this->wgLang->message( 'form-email-response',
+						array(
+							$this->form->get( 'fname' ),
+							$this->form->get( 'lname' ),
+						)
+					);
 
-						$this->mailer->mail(
-							$this->form->get( 'email' ),
-							$this->wgLang->message( 'form-email-subject' ),
-							$message
-						);
-						$submitted = true;
+					$this->mailer->mail(
+						$this->form->get( 'email' ),
+						$this->wgLang->message( 'form-email-subject' ),
+						$message
+					);
+					$submitted = true;
 
-					} else {
-						$this->flashNow( 'error',
-							$this->wgLang->message( 'form-save-error' )
-						);
-					}
+				} else {
+					$this->flashNow( 'error',
+						$this->wgLang->message( 'form-save-error' )
+					);
 				}
 			}
+		}
 
-			$now = time();
-			$settings = $this->dao->getSettings();
-			if ( isset( $settings['apply_open'] ) ) {
-				$periodOpen = strtotime( "{$settings['apply_open']}T00:00:00" );
-			} else {
-				$this->log->error( 'Admin setting apply_open not specified.' );
-				$periodOpen = $now + 1;
-			}
-			if ( isset( $settings['apply_close'] ) ) {
-				$periodClose = strtotime( "{$settings['apply_close']}T23:59:59" );
-			} else {
-				$this->log->error( 'Admin setting apply_close not specified.' );
-				$periodClose = $now - 1;
-			}
+		$now = time();
+		$settings = $this->dao->getSettings();
+		if ( isset( $settings['apply_open'] ) ) {
+			$periodOpen = strtotime( "{$settings['apply_open']}T00:00:00" );
+		} else {
+			$this->log->error( 'Admin setting apply_open not specified.' );
+			$periodOpen = $now + 1;
+		}
+		if ( isset( $settings['apply_close'] ) ) {
+			$periodClose = strtotime( "{$settings['apply_close']}T23:59:59" );
+		} else {
+			$this->log->error( 'Admin setting apply_close not specified.' );
+			$periodClose = $now - 1;
+		}
 
-			$this->view->setData( 'registration_open',
-				$now > $periodOpen || $this->mock );
-			// FIXME: legacy app allowed '?special' to override
-			$this->view->setData( 'registration_closed',
-				$now > $periodClose && !$this->mock );
+		$this->view->setData( 'registration_open',
+			$now > $periodOpen || $this->mock );
+		// FIXME: legacy app allowed '?special' to override
+		$this->view->setData( 'registration_closed',
+			$now > $periodClose && !$this->mock );
 
-			$this->view->setData( 'form', $this->form );
-			$this->view->setData( 'submitted', $submitted );
-			$this->view->setData( 'countries', Countries::$COUNTRY_NAMES );
-			$this->view->setData( 'wikilist', Wikis::$WIKI_NAMES );
+		$this->view->setData( 'form', $this->form );
+		$this->view->setData( 'submitted', $submitted );
+		$this->view->setData( 'countries', Countries::$COUNTRY_NAMES );
+		$this->view->setData( 'wikilist', Wikis::$WIKI_NAMES );
 
-			$this->render( 'apply.html' );
+		$this->render( 'apply.html' );
 	}
 
 } //end Apply
