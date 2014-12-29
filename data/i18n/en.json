@@ -296,6 +296,8 @@
 	"csrf-heading": "Invalid request",
 	"csrf-message": "The request that was submitted was missing the request forgery protection token. Please return to the form, reload the page and try again.",
 	"search-region": "Geographic region:",
+	"search-community-size": "Community size:",
+	"search-globalns": "Global North/South:",
 
 	"admin-settings-phase1pass": "Phase 1 pass score:",
 	"admin-settings-phase2pass": "Phase 2 pass score:",
