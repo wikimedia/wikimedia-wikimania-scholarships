@@ -1,7 +1,5 @@
 public/js/vendor/bootstrap.js
 public/js/vendor/bootstrap.min.js
-public/js/vendor/chosen.jquery.js
-public/js/vendor/chosen.jquery.min.js
 public/js/vendor/jquery-1.10.2.js
 public/js/vendor/jquery-1.10.2.min.js
 public/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js
