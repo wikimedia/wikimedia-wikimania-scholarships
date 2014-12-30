@@ -117,6 +117,8 @@
             {% if not(schol.project or schol.project2) %}
             <dd>{{ wgLang.message( 'review-view-not-specified' ) }}</dd>
             {% endif %}
+            <dt>{{ wgLang.message( 'review-view-community' ) }}</dt>
+            <dd>{{ schol.community_name }}</dt>
           </dl>
 
           <div class="well well-sm">

@@ -362,11 +362,19 @@ class Apply extends AbstractDao {
 
 
 	public function getScholarship( $id ) {
+		$fields = array(
+			's.*',
+			's.id',
+			'c.country_name',
+			'r.country_name AS residence_name',
+			'l.language AS community_name',
+		);
 		$sql = self::concat(
-			'SELECT *, s.id, c.country_name, r.country_name AS residence_name',
+			'SELECT', implode( ',', $fields ),
 			'FROM scholarships s',
 			'LEFT OUTER JOIN iso_countries c ON s.nationality = c.code',
 			'LEFT OUTER JOIN iso_countries r ON s.residence = r.code',
+			'LEFT OUTER JOIN language_communities l ON s.community = l.code',
 			'WHERE s.id = :int_id'
 		);
 		return $this->fetch( $sql, array( 'int_id' => $id ) );
