@@ -90,6 +90,7 @@ class Apply extends Form {
 		$this->requireString( 'involvement' );
 		$this->requireString( 'contribution' );
 		$this->requireString( 'experience' );
+		$this->requireString( 'collaboration' );
 
 		// Interest and involvement in Wikimania
 		$this->expectBool( 'wm05' );
@@ -241,7 +242,7 @@ class Apply extends Form {
 			'username', 'alt_users', 'project', 'project2', 'community',
 			'engage1', 'engage2', 'engage3', 'engage4', 'engage6',
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
-			'involvement', 'contribution', 'experience',
+			'involvement', 'contribution', 'experience', 'collaboration',
 			'prev_scholar', 'goals', 'involvement', 'contribution',
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14',
 			'presentation', 'presentationTopic', 'howheard', 'why',

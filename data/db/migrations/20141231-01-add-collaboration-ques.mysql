@@ -1,0 +1,6 @@
+-- Add question on Collaborations
+-- Bug: T78611
+
+ALTER TABLE scholarships
+  ADD COLUMN collaboration TEXT
+  AFTER experience;

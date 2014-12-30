@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , involvement                 TEXT
   , contribution                TEXT
   , experience                  TEXT
+  , collaboration               TEXT
   , wm05                        TINYINT(1) DEFAULT NULL
   , wm06                        TINYINT(1) DEFAULT NULL
   , wm07                        TINYINT(1) DEFAULT NULL
