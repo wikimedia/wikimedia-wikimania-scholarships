@@ -1,0 +1,6 @@
+-- Add question on experiences and learning
+-- Bug: T78613
+
+ALTER TABLE scholarships
+  ADD COLUMN experience TEXT
+  AFTER contribution;

@@ -49,6 +49,7 @@
 	"form-gender-error": "Please select your gender.",
 	"form-involvement-error": "Please explain your involvement with Wikimedia projects.",
 	"form-contribution-error": "Please explain your involvement and contributions in projects other than Wikimedia projects.",
+	"form-experience-error": "Please provide information about how you share your experiences with the community.",
 	"form-why-error": "Please state your interest in attending Wikimania.",
 	"form-willgetvisa-error": "To proceed, please agree to the visa requirements.",
 	"form-willpayincidentals-error": "To proceed, please agree to the scholarship terms and conditions.",
@@ -106,6 +107,7 @@
 	"form-active-project2": "Second most active Wikimedia project (if applicable):",
 	"form-extent-explain": "Tell us about your involvement in your home wiki or the broader Wikimedia movement. What have you built or contributed to in order to improve your wiki or community? Have you lead or organized any of these activities?",
 	"form-contrib-explain": "What’s something great that happened as a result of these activities? This could be described either quantitatively or qualitatively, and could impact either online or offline.",
+	"form-experience-explain": "How do you usually share your experiences (or things you’ve learned) with your community? Examples of on-wiki summaries/reports, blog posts, meetup talks, etc. are welcome here.",
 
 	"form-interest": "Interest and involvement in Wikimania",
 	"form-attended": "Have you attended Wikimania before?  If so, in what year or years?",
@@ -268,6 +270,7 @@
 	"review-view-attending-goals": "Previous experience and goals for attending this year",
 	"review-view-involvement": "What have you built or contributed to in order to improve your wiki or community? Have you lead or organized any of these activities?",
 	"review-view-contrib-explain": "What’s something great that happened as a result of these activities?",
+	"review-view-experience-explain": " How do you usually share your experiences (or things you’ve learned) with your community? Examples of on-wiki summaries/reports, blog posts, meetup talks, etc. are welcome here.",
 	"review-view-presenter": "Presentation?",
 	"review-view-presentation-topic": "Topic:",
 	"review-view-engagement": "Engagement with the Wikimedia movement",
