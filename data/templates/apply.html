@@ -17,18 +17,6 @@ lang: currently selected display language
 
 {% block nav_li_apply %}class="active"{% endblock %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/vendor/chosen.css' ) }}" />
-<link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/vendor/chosen-bootstrap.css' ) }}" />
-{% endblock css %}
-
-{% block javascript %}
-<script src="{{ siteUrl( 'js/vendor/chosen.jquery.js' ) }}"></script>
-<script type="text/javascript">(function( $, document ) {
-    $( document ).ready( function() { $('.chosen-select').chosen({'search_contains':true}); });
-})( jQuery, document );</script>
-{% endblock javascript %}
-
 {% block content %}
 {% spaceless %}
 

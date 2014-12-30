@@ -76,10 +76,6 @@ a:visited {
   content: ' *';
 }
 
-.chosen-container {
-  margin-bottom: .5em;
-}
-
 .pagination {
   margin: 0;
 }
