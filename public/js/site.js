@@ -21,6 +21,19 @@
     });
     $('.langlabel').show();
 
+    $('#project').change( function(){
+        var projectvalue = this.value;
+        if( projectvalue == 'Wikimedia Commons' ||
+            projectvalue == 'Wikidata' ||
+            projectvalue == 'Wikispecies' ||
+            projectvalue == 'Incubator'
+          ) {
+            $('#community').val( 'MULTILINGUAL' );
+        } else {
+            $('#community').get(0).selectedIndex = 0;
+        }
+    });
+
     /**
      * Clamped-width.
      * Usage:
