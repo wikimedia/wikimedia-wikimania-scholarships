@@ -91,7 +91,7 @@
 	"form-participation": "Participation in the Wikimedia projects",
 	"form-username": "Username on your primary Wikimedia project (Please omit the 'User:' prefix before your username):",
 	"form-other-usernames": "(If applicable) Other Wikimedia usernames used for editing:",
-	"form-multilingual-community": "I primarily/only contribute to Commons, Species, Data, or Incubator, and therefore cannot pick a language community",
+	"form-multilingual-community": "I primarily/only contribute to Commons, Species, Data, Mediawiki, Tool Labs or Incubator, and therefore cannot pick a language community",
 	"form-engagement": "Please select all of the following that describe how you have engaged in the Wikimedia movement.",
 	"form-engagement-option1": "Active contributor to a Wikimedia project (e.g. Wikipedia, Commons, Wikisource), with at least 50 contributions (edits)",
 	"form-engagement-option2": "Mediawiki code contributor, gadget or other tool-builder for Wikimedia projects",

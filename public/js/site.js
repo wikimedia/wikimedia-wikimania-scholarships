@@ -26,7 +26,9 @@
         if( projectvalue == 'Wikimedia Commons' ||
             projectvalue == 'Wikidata' ||
             projectvalue == 'Wikispecies' ||
-            projectvalue == 'Incubator'
+            projectvalue == 'Incubator' ||
+            projectvalue == 'MediaWiki' ||
+            projectvalue == 'Tool Labs'
           ) {
             $('#community').val( 'MULTILINGUAL' );
         } else {

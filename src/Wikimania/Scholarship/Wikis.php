@@ -46,6 +46,7 @@ class Wikis {
 		'Outreach',
 		'Incubator',
 		'Tool Labs',
+		'MediaWiki'
 	);
 
 
