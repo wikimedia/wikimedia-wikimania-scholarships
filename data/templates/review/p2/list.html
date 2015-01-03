@@ -9,13 +9,30 @@
 
 <form class="form-inline" method="get" action="{{ urlFor( 'review_p2_list' ) }}" role="form">
   <div class="form-group">
+
     <label for="region">Region:</label>
     <select class="form-control input-sm" name="region" id="region">
       {% for r in regionList %}
       <option value="{{ r }}" {{ r == region ? 'selected="selected"' }}>{{ r }}</option>
       {% endfor %}
-    </select>
+    </select> &nbsp;
+
+    <label for="globalns">Global North/South:</label>
+    <select class="form-control input-sm" name="globalns" id="globalns">
+      {% for r in globalnsList %}
+      <option value="{{ r }}" {{ r == globalns ? 'selected="selected"' }}>{{ r }}</option>
+      {% endfor %}
+    </select> &nbsp;
+
+    <label for="languageGroup">Language Group:</label>
+    <select class="form-control input-sm" name="languageGroup" id="languageGroup">
+      {% for r in languageGroupList %}
+      <option value="{{ r }}" {{ r == languageGroup ? 'selected="selected"' }}>{{ r }}</option>
+      {% endfor %}
+    </select> &nbsp;
+
   </div>
+
   <div class="checkbox">
     <label for="export">
       <input type="checkbox" name="export" id="export" value="1"/>

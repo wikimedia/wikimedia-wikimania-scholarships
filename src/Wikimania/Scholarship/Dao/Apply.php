@@ -527,8 +527,11 @@ class Apply extends AbstractDao {
 		return array_map( function ($row) { return $row['region']; }, $res );
 	}
 
-
-	public function getP2List( $region = 'All' ) {
+	/*
+	 * Function to fetch records for Phase 2 filtered by region,
+	 * global north/south, language group
+	 */
+	public function getP2List( $region = 'All', $globalns = 'All', $languageGroup = 'All' ) {
 		$params = array();
 
 		$fields = array(
@@ -574,6 +577,20 @@ class Apply extends AbstractDao {
 			$regionJoin = '';
 		}
 
+		if ( $globalns != 'All' ) {
+			$params['globalns'] = $globalns;
+			$globalnsJoin = 'INNER JOIN iso_countries c2 ON c.globalns = :globalns';
+		} else {
+			$globalnsJoin = '';
+		}
+
+		if ( $languageGroup != 'All' ) {
+			$params['languageGroup'] = $languageGroup;
+			$languageGroupJoin = 'INNER JOIN language_communities l1 ON l.size = :languageGroup';
+		} else {
+			$languageGroupJoin = '';
+		}
+
 		$sql = self::concat(
 			"SELECT", implode( ',', $fields ),
 			"FROM scholarships s",
@@ -583,7 +600,10 @@ class Apply extends AbstractDao {
 			"LEFT OUTER JOIN ({$sqlP1Score}) p1 ON s.id = p1.scholarship_id",
 			"LEFT OUTER JOIN ({$sqlNumScorers}) ns ON s.id = ns.scholarship_id",
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
+			"LEFT OUTER JOIN language_communities l ON s.community = l.code",
 			$regionJoin,
+			$globalnsJoin,
+			$languageGroupJoin,
 			'GROUP BY s.id, s.fname, s.lname, s.email, s.residence',
 			'HAVING p1score >= :int_phase1pass AND s.exclude = 0',
 			'ORDER BY p2score DESC, s.id ASC'

@@ -36,14 +36,37 @@ class Phase2List extends Controller {
 		$regionList = $this->dao->getRegionList();
 		array_unshift( $regionList, 'All' );
 
+		$globalnsList = array(
+			'Global South',
+			'Global North',
+		);
+
+		$languageGroupList = array(
+			'Small',
+			'Medium',
+			'Large',
+			'Multilingual',
+		);
+
+		array_unshift( $globalnsList, 'All' );
+		array_unshift( $languageGroupList, 'All' );
+
 		$this->form->requireInArray( 'region', $regionList, array(
+			'default' => 'All',
+		) );
+		$this->form->requireInArray( 'globalns', $globalnsList, array(
+			'default' => 'All',
+		) );
+		$this->form->requireInArray( 'languageGroup', $languageGroupList, array(
 			'default' => 'All',
 		) );
 		$this->form->expectBool( 'export' );
 		$this->form->validate( $_GET );
 
 		$region = $this->form->get( 'region' );
-		$rows = $this->dao->getP2List( $region );
+		$globalns = $this->form->get( 'globalns' );
+		$languageGroup = $this->form->get( 'languageGroup' );
+		$rows = $this->dao->getP2List( $region, $globalns, $languageGroup );
 
 		if ( $this->request->get( 'export' ) ) {
 			$ts = gmdate( 'Ymd\THi' );
@@ -75,7 +98,11 @@ class Phase2List extends Controller {
 
 		} else {
 			$this->view->set( 'regionList', $regionList );
+			$this->view->set( 'globalnsList', $globalnsList );
+			$this->view->set( 'languageGroupList', $languageGroupList );
 			$this->view->set( 'region', $region );
+			$this->view->set( 'globalns', $globalns );
+			$this->view->set( 'languageGroup', $languageGroup );
 			$this->view->set( 'records', $rows );
 			$this->render( 'review/p2/list.html' );
 		}
