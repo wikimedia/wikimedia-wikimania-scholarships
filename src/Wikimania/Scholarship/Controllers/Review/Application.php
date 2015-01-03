@@ -73,7 +73,7 @@ class Application extends Controller {
 	}
 
 	protected function handlePost() {
-		$criteria = array( 'valid', 'onwiki', 'offwiki', 'interest' );
+		$criteria = array( 'valid', 'relexp', 'expshare' );
 
 		$this->form->expectInt( 'phase', array( 'min_range' => 0, 'max_range' => 2, 'default' => 2 ) );
 		$this->form->requireInt( 'id', array( 'min_range' => 0 ) );

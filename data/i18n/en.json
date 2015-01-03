@@ -246,9 +246,8 @@
 	"review-list-gender": "Gender",
 	"review-list-age": "Age",
 	"review-list-num-p2": "# p2 scorers",
-	"review-list-onwiki": "Onwiki",
-	"review-list-offwiki": "Offwiki",
-	"review-list-interest": "Interest",
+	"review-list-relexp": "Relevant Experience",
+	"review-list-expshare": "Experience Sharing",
 
 	"review-countries-country": "Country",
 	"review-countries-region": "Region",
@@ -294,8 +293,8 @@
 
 	"review-view-rankings": "Rankings",
 	"review-view-valid": "Valid:",
-	"review-view-onwiki": "In Wikimedia movement:",
-	"review-view-offwiki": "Outside Wikimedia movement:",
+	"review-view-relexp": "Relevant Experience:",
+	"review-view-expshare": "Experience Sharing:",
 	"review-view-interest": "Interest in Wikimania:",
 	"review-view-notes": "Notes:",
 	"review-view-save": "Save",

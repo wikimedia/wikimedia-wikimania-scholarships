@@ -42,10 +42,9 @@ class Apply extends AbstractDao {
 	 * @var array $settings
 	 */
 	protected $settings = array(
-		'phase1pass'     => 3,     // p1score needed to pass into phase2
-		'weightonwiki'   => 0.5,   // contribution of onwiki to final score
-		'weightoffwiki'  => 0.2,   // contribution of offwiki to final score
-		'weightinterest' => 0.3,   // contribution of interest to final score
+		'phase1pass' => 1, // p1score needed to pass into phase2
+		'relexp' => 0.5, // contribution of relevant experience to final score
+		'expshare' => 0.5, // contribution of experience sharing to final score
 	);
 
 	/**
@@ -527,11 +526,18 @@ class Apply extends AbstractDao {
 		return array_map( function ($row) { return $row['region']; }, $res );
 	}
 
-	/*
+	/**
 	 * Function to fetch records for Phase 2 filtered by region,
 	 * global north/south, language group
+	 *
+	 * @param string $region
+	 * @param string $globalns
+	 * @param string $languageGroup
+	 * @return array Result rows
 	 */
-	public function getP2List( $region = 'All', $globalns = 'All', $languageGroup = 'All' ) {
+	public function getP2List(
+		$region = 'All', $globalns = 'All', $languageGroup = 'All'
+	) {
 		$params = array();
 
 		$fields = array(
@@ -546,21 +552,18 @@ class Apply extends AbstractDao {
 			"c.country_name",
 			"COALESCE(p1score, 0) AS p1score",
 			"COALESCE(nscorers, 0) AS nscorers",
-			"rk_ow.onwiki AS onwiki",
-			"rk_ofw.offwiki AS offwiki",
-			"rk_i.interest AS interest",
-			"(COALESCE(:weightonwiki * rk_ow.onwiki, 0) + " .
-			"COALESCE(:weightoffwiki * rk_ofw.offwiki, 0) + " .
-			"COALESCE(:weightinterest * rk_i.interest, 0)) as p2score",
+			"rkrexp.relexp AS relexp",
+			"rkexps.expshare AS expshare",
+			"(COALESCE(:relexp * rkrexp.relexp, 0) + " .
+			"COALESCE(:expshare * rkexps.expshare, 0)) as p2score ",
 		);
 
-		$params['weightonwiki'] = (float)$this->settings['weightonwiki'];
-		$params['weightoffwiki'] = (float)$this->settings['weightoffwiki'];
-		$params['weightinterest'] = (float)$this->settings['weightinterest'];
+		$params['relexp'] = (float)$this->settings['relexp'];
+		$params['expshare'] = (float)$this->settings['expshare'];
 
-		$sqlOnWiki = $this->makeAggregateRankSql( 'onwiki', 'AVG' );
-		$sqlOffWiki = $this->makeAggregateRankSql( 'offwiki', 'AVG' );
-		$sqlInterest = $this->makeAggregateRankSql( 'interest', 'AVG' );
+		$relexp = $this->makeAggregateRankSql( 'relexp', 'AVG' );
+		$expshare = $this->makeAggregateRankSql( 'expshare', 'AVG' );
+
 		$sqlP1Score = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 
 		$sqlNumScorers = self::concat(
@@ -594,9 +597,8 @@ class Apply extends AbstractDao {
 		$sql = self::concat(
 			"SELECT", implode( ',', $fields ),
 			"FROM scholarships s",
-			"LEFT OUTER JOIN ({$sqlOnWiki}) rk_ow ON s.id = rk_ow.scholarship_id",
-			"LEFT OUTER JOIN ({$sqlOffWiki}) rk_ofw ON s.id = rk_ofw.scholarship_id",
-			"LEFT OUTER JOIN ({$sqlInterest}) rk_i ON s.id = rk_i.scholarship_id",
+			"LEFT OUTER JOIN ({$relexp}) rkrexp ON s.id = rkrexp.scholarship_id",
+			"LEFT OUTER JOIN ({$expshare}) rkexps ON s.id = rkexps.scholarship_id",
 			"LEFT OUTER JOIN ({$sqlP1Score}) p1 ON s.id = p1.scholarship_id",
 			"LEFT OUTER JOIN ({$sqlNumScorers}) ns ON s.id = ns.scholarship_id",
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",

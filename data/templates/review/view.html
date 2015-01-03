@@ -393,22 +393,19 @@
                 </div>
               {% else %}
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-onwiki' ) }}</label>
+                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-relexp' ) }}</label>
                 <div class="col-sm-6">
-                  {{ helpers.rankDropdownList( ctx, 'onwiki' ) }}
+                  {{ helpers.rankDropdownList( ctx, 'relexp' ) }}
                 </div>
               </div>
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-offwiki' ) }}</label>
+                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-expshare' ) }}</label>
                 <div class="col-sm-6">
-                  {{ helpers.rankDropdownList( ctx, 'offwiki' ) }}
+                  {{ helpers.rankDropdownList( ctx, 'expshare' ) }}
                 </div>
               </div>
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-interest' ) }}</label>
-                <div class="col-sm-6">
-                  {{ helpers.rankDropdownList( ctx, 'interest' ) }}
-                </div>
+
                 {% endif %}
               </div>
 

@@ -55,9 +55,8 @@
     <th>{{ wgLang.message( 'review-list-gender' ) }}</th>
     <th>{{ wgLang.message( 'review-list-age' ) }}</th>
     <th>{{ wgLang.message( 'review-list-num-p2' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-onwiki' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-offwiki' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-interest' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-relexp' ) }}</th>
+    <th>{{ wgLang.message( 'review-list-expshare' ) }}</th>
     <th>{{ wgLang.message( 'review-list-p2-score' ) }}</th>
   </tr>
   {% for row in records %}
@@ -70,9 +69,8 @@
     <td>{{ row.gender }}</td>
     <td>{{ row.age }}</td>
     <td>{{ row.nscorers }}</td>
-    <td>{{ '%.3f'|format( row.onwiki ) }}</td>
-    <td>{{ '%.3f'|format( row.offwiki ) }}</td>
-    <td>{{ '%.3f'|format( row.interest ) }}</td>
+    <td>{{ '%.3f'|format( row.relexp ) }}</td>
+    <td>{{ '%.3f'|format( row.expshare ) }}</td>
     <td>{{ '%.4f'|format( row.p2score ) }}</td>
   </tr>
   {% else %}
