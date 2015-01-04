@@ -148,9 +148,10 @@ lang: currently selected display language
 
     {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false } ) }}
     <h4>{{ wgLang.message( 'form-rights-heading' ) }}</h4>
-    <p>
-      {{ wgLang.message( 'form-rights' )|raw }}
-    </p>
+    <p>{{ wgLang.message( 'form-rights1' )|raw }}</p>
+    <p>{{ wgLang.message( 'form-rights2' )|raw }}</p>
+    <p>{{ wgLang.message( 'form-rights3' )|raw }}</p>
+    <p>{{ wgLang.message( 'form-rights4' )|raw }}</p>
 
     {{ forms.checkbox( ctx, 'form-wmfagree', 'wmfagree', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-wmfAgreeName', 'wmfAgreeName', { 'required':true } ) }}
