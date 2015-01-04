@@ -279,7 +279,6 @@
     "settings-app-period-close": "Input label, for application period close date",
     "admin-settings-phase1pass": "Input label, for phase 1 pass score",
     "admin-settings-phase2pass": "Input label, for phase 2 pass score",
-    "admin-settings-weightonwiki": "Input label, for weight of contributions to Wikimedia",
-    "admin-settings-weightoffwiki": "Input label, for weight of contributions other than Wikimedia",
-    "admin-settings-weightinterest": "Input label, for weight of Interest"
+    "admin-settings-relexp": "Input label, for weight of relevant experience",
+    "admin-settings-expshare": "Input label, for weight of experience sharing"
 }

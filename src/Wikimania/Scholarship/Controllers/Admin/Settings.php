@@ -43,9 +43,8 @@ class Settings extends Controller {
 	protected function handlePost() {
 		$this->form->requireInt( 'phase1pass' );
 		$this->form->requireInt( 'phase2pass' );
-		$this->form->requireFloat( 'weightonwiki' );
-		$this->form->requireFloat( 'weightoffwiki' );
-		$this->form->requireFloat( 'weightinterest' );
+		$this->form->requireFloat( 'relexp' );
+		$this->form->requireFloat( 'expshare' );
 		$this->form->requireDateTime( 'apply_open', 'Y-m-d' );
 		$this->form->requireDateTime( 'apply_close' , 'Y-m-d' );
 
@@ -53,17 +52,13 @@ class Settings extends Controller {
 			$settings = array(
 				'phase1pass' => $this->form->get( 'phase1pass' ),
 				'phase2pass' => $this->form->get( 'phase2pass' ),
-				'weightonwiki' => $this->form->get( 'weightonwiki' ),
-				'weightoffwiki' => $this->form->get( 'weightoffwiki' ),
-				'weightinterest' => $this->form->get( 'weightinterest' ),
+				'relexp' => $this->form->get( 'relexp' ),
+				'expshare' => $this->form->get( 'expshare' ),
 				'apply_open' => $this->form->get( 'apply_open' )->format( 'Y-m-d' ),
 				'apply_close' => $this->form->get( 'apply_close' )->format( 'Y-m-d' ),
 			);
 
-			if ( $settings['weightonwiki'] +
-				$settings['weightoffwiki'] +
-				$settings['weightinterest'] != 1
-			) {
+			if ( ( $settings['relexp'] + $settings['expshare'] ) != 1 ) {
 				$this->flash( 'error', 'Sum of weights must be one' );
 
 			} else {

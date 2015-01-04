@@ -39,31 +39,23 @@
 	<fieldset>
 		<legend>{{ wgLang.message( 'settings-weighing-factors' ) }}</legend>
 		<div class="form-group">
-			<label for="weightonwiki" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-weightonwiki' ) }}
+			<label for="relexp" class="col-sm-2 control-label">
+				{{ wgLang.message( 'admin-settings-relexp' ) }}
 			</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" name="weightonwiki" id="weightonwiki" value="{{ set.weightonwiki }}" required="required">
+				<input type="text" class="form-control" name="relexp" id="relexp" value="{{ set.relexp }}" required="required">
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label for="weightoffwiki" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-weightoffwiki' ) }}
+			<label for="expshare" class="col-sm-2 control-label">
+				{{ wgLang.message( 'admin-settings-expshare' ) }}
 			</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" name="weightoffwiki" id="weightoffwiki" value="{{ set.weightoffwiki }}" required="required">
+				<input type="text" class="form-control" name="expshare" id="expshare" value="{{ set.expshare }}" required="required">
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label for="weightinterest" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-weightinterest' ) }}
-			</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" name="weightinterest" id="weightinterest" value="{{ set.weightinterest }}" required="required">
-			</div>
-		</div>
 	</fieldset>
 
 	<fieldset>

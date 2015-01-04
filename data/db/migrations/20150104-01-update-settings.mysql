@@ -1,0 +1,11 @@
+-- Change phase 2 scoring criteria
+-- Bug: T85486
+
+TRUNCATE settings;
+
+INSERT IGNORE INTO settings (setting_name, value) VALUES
+    ('phase1pass', 1)
+  , ('relexp', 0.5)
+  , ('expshare', 0.5)
+  , ('apply_open', '2015-01-19')
+  , ('apply_close', '2015-02-17');
