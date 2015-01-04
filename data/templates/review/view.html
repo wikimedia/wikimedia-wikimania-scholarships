@@ -7,8 +7,8 @@
 {% block content %}
 {% spaceless %}
 <ol class="breadcrumb">
-  <li>{{ wgLang.message( 'nav-review' ) }}</li>
-  <li>{{ wgLang.message( 'review' ) }}</li>
+  <li>{{ 'nav-review'|message }}</li>
+  <li>{{ 'review'|message }}</li>
   <li>{{ id }}</li>
 </ol>
 
@@ -22,7 +22,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#contact">
-            {{ wgLang.message( 'form-contact-info' ) }}
+            {{ 'form-contact-info'|message }}
             </a>
           </h4>
         </div>
@@ -30,11 +30,11 @@
       <div id="contact" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>{{ wgLang.message( 'review-view-name' ) }}</dt>
+            <dt>{{ 'review-view-name'|message }}</dt>
             <dd>{{ schol.fname }} {{ schol.lname }}</dd>
-            <dt>{{ wgLang.message( 'review-view-email' ) }}</dt>
+            <dt>{{ 'review-view-email'|message }}</dt>
             <dd><a href="mailto:{{ schol.email }}">{{ schol.email }}</a></dd>
-            <dt>{{ wgLang.message( 'review-view-residence' ) }}</dt>
+            <dt>{{ 'review-view-residence'|message }}</dt>
             <dd>{{ schol.residence_name }}</dd>
           </dl>
         </div>
@@ -44,7 +44,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#personal">
-            {{ wgLang.message( 'form-personalinfo' ) }}
+            {{ 'form-personalinfo'|message }}
             </a>
           </h4>
         </div>
@@ -52,31 +52,31 @@
       <div id="personal" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>{{ wgLang.message( 'review-view-haspassport' ) }}</dt>
+            <dt>{{ 'review-view-haspassport'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.haspassport ) }}</dd>
-            <dt>{{ wgLang.message( 'review-view-nationality' ) }}</dt>
+            <dt>{{ 'review-view-nationality'|message }}</dt>
             <dd>{{ schol.country_name }}</dd>
-            <dt>{{ wgLang.message( 'review-view-language' ) }}</dt>
+            <dt>{{ 'review-view-language'|message }}</dt>
             <dd>{{ schol.languages }}</dd>
-            <dt>{{ wgLang.message( 'review-view-dateofbirth' ) }}</dt>
+            <dt>{{ 'review-view-dateofbirth'|message }}</dt>
             <dd>
               {% if schol.dob is not empty %}
               {{ schol.dob }} ({{ helpers.yearsOld( schol.dob ) }})
               {% else %}
-              {{ wgLang.message( 'review-view-not-specified' ) }}
+              {{ 'review-view-not-specified'|message }}
               {% endif %}
             </dd>
-            <dt>{{ wgLang.message( 'review-view-gender' ) }}</dt>
+            <dt>{{ 'review-view-gender'|message }}</dt>
             <dd>{{ helpers.gender( ctx, schol.gender ) }}</dd>
             {% if schol.gender_other is not empty %}
             <dd>( {{ schol.gender_other }} )</dd>
             {% endif %}
             {% if schol.occupation is not empty %}
-            <dt>{{ wgLang.message( 'review-view-occupation' ) }}</dt>
+            <dt>{{ 'review-view-occupation'|message }}</dt>
             <dd>{{ schol.occupation }}</dd>
             {% endif %}
             {% if schol.areaofstudy is not empty %}
-            <dt>{{ wgLang.message( 'review-view-study' ) }}</dt>
+            <dt>{{ 'review-view-study'|message }}</dt>
             <dd>{{ schol.areaofstudy }}</dd>
             {% endif %}
           </dl>
@@ -87,7 +87,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#participation">
-            {{ wgLang.message( 'form-participation' ) }}
+            {{ 'form-participation'|message }}
             </a>
           </h4>
         </div>
@@ -95,68 +95,67 @@
       <div id="participation" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal wide">
-            <dt>{{ wgLang.message( 'review-view-username' ) }}</dt>
+            <dt>{{ 'review-view-username'|message }}</dt>
             <dd>
               {% if schol.username is not empty %}
               {{ schol.username }} (<a href="https://tools.wmflabs.org/quentinv57-tools/tools/sulinfo.php?username={{ schol.username|escape( 'url' ) }}" target="_blank">cross-wiki contribs</a>)
               {% else %}
-              {{ wgLang.message( 'review-view-not-specified' ) }}
+              {{ 'review-view-not-specified'|message }}
               {% endif %}
             </dd>
             {% if schol.alt_users is not empty %}
-            <dt>{{ wgLang.message( 'review-view-alt-users' ) }}</dt>
+            <dt>{{ 'review-view-alt-users'|message }}</dt>
             <dd>{{ schol.alt_users }}</dd>
             {% endif %}
-            <dt>{{ wgLang.message( 'review-view-active-projects' ) }}</dt>
-            <br>
+            <dt>{{ 'review-view-active-projects'|message }}</dt>
             {% if schol.project %}
-            <dt>{{ wgLang.message( 'review-view-primary-project' )}}</dt>
+            <dt>{{ 'review-view-primary-project'|message }}</dt>
             <dd>{{ schol.project }}</dd>
             {% endif %}
             {% if schol.project2 %}
-            <dt>{{ wgLang.message( 'review-view-secondary-project' )}}</dt>
+            <dt>{{ 'review-view-secondary-project'|message }}</dt>
             <dd>{{ schol.project2 }}</dd>
             {% endif %}
             {% if not(schol.project or schol.project2) %}
-            <dd>{{ wgLang.message( 'review-view-not-specified' ) }}</dd>
+            <dd>{{ 'review-view-not-specified'|message }}</dd>
             {% endif %}
-            <dt>{{ wgLang.message( 'review-view-community' ) }}</dt>
+            <dt>{{ 'review-view-community'|message }}</dt>
             <dd>{{ schol.community_name }}</dd>
           </dl>
 
           <div class="well well-sm">
-            <p><strong>{{ wgLang.message( 'review-view-involvement' ) }}</strong></p>
+            <p><strong>{{ 'review-view-involvement'|message }}</strong></p>
             {% if schol.involvement is not empty %}
             <p style="white-space:pre-wrap">{{ schol.involvement }}</p>
             {% else %}
-            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
+            <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
           </div>
 
           <div class="well well-sm">
-            <p><strong>{{ wgLang.message( 'review-view-contrib-explain' ) }}</strong></p>
+            <p><strong>{{ 'review-view-contrib-explain'|message }}</strong></p>
             {% if schol.contribution is not empty %}
             <p style="white-space:pre-wrap">{{ schol.contribution }}</p>
             {% else %}
-            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
+            <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
           </div>
 
           <div class="well well-sm">
-            <p><strong>{{ wgLang.message( 'review-view-collaboration-explain' ) }}</strong></p>
+            <p><strong>{{ 'review-view-collaboration-explain'|message }}</strong></p>
             {% if schol.collaboration is not empty %}
             <p style="white-space:pre-wrap">{{ schol.collaboration }}</p>
             {% else %}
-            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
+            <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
         </div>
 
           <div class="well well-sm">
-            <p><strong>{{ wgLang.message( 'review-view-experience-explain' ) }}</strong></p>
+            <p><strong>{{ 'review-view-experience-explain'|message }}</strong></p>
             {% if schol.experience is not empty %}
             <p style="white-space:pre-wrap">{{ schol.experience }}</p>
             {% else %}
-            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
+            <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
           </div>
         </div>
@@ -166,7 +165,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#interest">
-            {{ wgLang.message( 'form-interest' ) }}
+            {{ 'form-interest'|message }}
             </a>
           </h4>
         </div>
@@ -200,19 +199,19 @@
         </table>
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>{{ wgLang.message( 'review-view-presenter' ) }}</dt>
+            <dt>{{ 'review-view-presenter'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.presentation ) }}</dd>
             {% if schol.presentation %}
-            <dt>{{ wgLang.message( 'review-view-presentation-topic' ) }}</dt>
+            <dt>{{ 'review-view-presentation-topic'|message }}</dt>
             <dd>{{ schol.presentationTopic }}</dd>
             {% endif %}
-            <dt>{{ wgLang.message( 'review-view-previous-scholar' ) }}</dt>
+            <dt>{{ 'review-view-previous-scholar'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.prev_scholar ) }}</dd>
           </dl>
 
           {% if schol.prev_scholar %}
             <div class="well well-sm">
-                <p><strong>{{ wgLang.message( 'review-view-attending-goals' ) }}</strong></p>
+                <p><strong>{{ 'review-view-attending-goals'|message }}</strong></p>
                 <p style="white-space:pre-wrap">{{ schol.goals }}</p>
             </div>
           {% endif %}
@@ -224,7 +223,7 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#application" href="#engagement">
-                    {{ wgLang.message( 'review-view-engagement' ) }}
+                    {{ 'review-view-engagement'|message }}
                 </a>
             </h4>
         </div>
@@ -232,43 +231,43 @@
     <div id="engagement" class="panel-collapse collapse in">
         <table class="table table-condensed">
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option1' ) }}</td>
+                <td>{{ 'form-engagement-option1'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage1 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option2' ) }}</td>
+                <td>{{ 'form-engagement-option2'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage2 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option3' ) }}</td>
+                <td>{{ 'form-engagement-option3'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage3 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option4' ) }}</td>
+                <td>{{ 'form-engagement-option4'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage4 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option5' ) }}</td>
+                <td>{{ 'form-engagement-option5'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage5 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option6' ) }}</td>
+                <td>{{ 'form-engagement-option6'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage6 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option7' ) }}</td>
+                <td>{{ 'form-engagement-option7'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage7 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option8' ) }}</td>
+                <td>{{ 'form-engagement-option8'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage8 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option9' ) }}</td>
+                <td>{{ 'form-engagement-option9'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage9 ) }}</td>
             </tr>
             <tr>
-                <td>{{ wgLang.message( 'form-engagement-option10' ) }}</td>
+                <td>{{ 'form-engagement-option10'|message }}</td>
                 <td>{{ helpers.yesOnly( schol.engage10 ) }}</td>
             </tr>
         </table>
@@ -279,7 +278,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#agree">
-            {{ wgLang.message( 'form-agree' ) }}
+            {{ 'form-agree'|message }}
             </a>
           </h4>
         </div>
@@ -287,9 +286,9 @@
       <div id="agree" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal wide">
-            <dt>{{ wgLang.message( 'review-view-visa' ) }}</dt>
+            <dt>{{ 'review-view-visa'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.willgetvisa ) }}</dd>
-            <dt>{{ wgLang.message( 'review-view-travel-conditions' ) }}</dt>
+            <dt>{{ 'review-view-travel-conditions'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.agreestotravelconditions ) }}</dd>
           </dl>
         </div>
@@ -299,7 +298,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#fulldump">
-            {{ wgLang.message( 'review-view-full-dump' ) }}
+            {{ 'review-view-full-dump'|message }}
             </a>
           </h4>
         </div>
@@ -318,7 +317,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#application" href="#scores">
-            {{ wgLang.message( 'review-view-scorings' ) }}
+            {{ 'review-view-scorings'|message }}
             </a>
           </h4>
         </div>
@@ -326,7 +325,7 @@
       <div id="scores" class="panel-collapse collapse in">
         {% if myscorings is not empty %}
         <table class="table table-condensed">
-          <tr><th>{{ wgLang.message( 'review-view-criteria' ) }}</th><th>{{ wgLang.message( 'review-view-rank' )}}</th></tr>
+          <tr><th>{{ 'review-view-criteria'|message }}</th><th>{{ 'review-view-rank'|message}}</th></tr>
           {% for r in myscorings %}
           <tr><td>{{ r.criterion }}</td><td>{{ r.rank }}</td></tr>
           {% endfor %}
@@ -335,7 +334,7 @@
         {% if reviewers is not empty %}
         <div class="panel-body">
           <dl>
-            <dt>{{ wgLang.message( 'review-view-reviewers' ) }}</dt>
+            <dt>{{ 'review-view-reviewers'|message }}</dt>
             <dd>
               <ul>
                 {% for reviewer in reviewers %}
@@ -357,7 +356,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">
             <a data-toggle="collapse" data-parent="#review-tools" href="#rankings">
-              {{ wgLang.message( 'review-view-rankings' ) }}</a>
+              {{ 'review-view-rankings'|message }}</a>
           </h3>
         </div>
         <div id="rankings" class="panel-collapse collapse in">
@@ -368,8 +367,8 @@
               {% else %}
               <span class="btn btn-default disabled">&laquo;</span>
               {% endif %}
-              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=1">{{ wgLang.message( 'phase-1' ) }}</a>
-              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=2">{{ wgLang.message( 'phase-2' ) }}</a>
+              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=1">{{ 'phase-1'|message }}</a>
+              <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ id }}&phase=2">{{ 'phase-2'|message }}</a>
               {% if nextid is not empty %}
               <a class="btn btn-default" href="{{ urlFor( 'review_view' ) }}?id={{ nextid }}&phase={{ phase }}">&raquo;</a>
               {% else %}
@@ -384,19 +383,19 @@
               <input type="hidden" name="id" value="{{ id }}"/>
               {% if phase == 1 %}
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-valid' ) }}</label>
+                <label for="valid" class="col-sm-6 control-label">{{ 'review-view-valid'|message }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'valid' ) }}
                 </div>
               {% else %}
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-relexp' ) }}</label>
+                <label for="valid" class="col-sm-6 control-label">{{ 'review-view-relexp'|message }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'relexp' ) }}
                 </div>
               </div>
               <div class="form-group">
-                <label for="valid" class="col-sm-6 control-label">{{ wgLang.message( 'review-view-expshare' ) }}</label>
+                <label for="valid" class="col-sm-6 control-label">{{ 'review-view-expshare'|message }}</label>
                 <div class="col-sm-6">
                   {{ helpers.rankDropdownList( ctx, 'expshare' ) }}
                 </div>
@@ -407,14 +406,14 @@
               </div>
 
               <div class="form-group">
-                <label for="notes" class="col-sm-2">{{ wgLang.message( 'review-view-notes' ) }}</label>
+                <label for="notes" class="col-sm-2">{{ 'review-view-notes'|message }}</label>
                 <div class="col-sm-10">
                   <textarea class="form-control" id="notes" name="notes" rows="10">{{ schol.notes }}</textarea>
                 </div>
               </div>
 
               <div class="col-sm-2 col-sm-offset-10">
-                <input type="submit" class="btn btn-primary" id="save" name="save" value="{{ wgLang.message( 'review-view-save' ) }}" />
+                <input type="submit" class="btn btn-primary" id="save" name="save" value="{{ 'review-view-save'|message }}" />
               </div>
             </form>
           </div>

@@ -3,23 +3,23 @@
 {% block content %}
 {% spaceless %}
 <ol class="breadcrumb">
-  <li>{{ wgLang.message( 'nav-reports' ) }}</li>
-  <li>{{ wgLang.message( 'final-full' ) }}</li>
+  <li>{{ 'nav-reports'|message }}</li>
+  <li>{{ 'final-full'|message }}</li>
 </ol>
 
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-residence' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-gender' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-age' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-num-p2' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-relexp' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-expshare' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-p2-score' ) }}</th>
+    <th>{{ 'review-list-counter'|message }}</th>
+    <th>{{ 'review-list-id'|message }}</th>
+    <th>{{ 'review-list-name'|message }}</th>
+    <th>{{ 'review-list-email'|message }}</th>
+    <th>{{ 'review-list-residence'|message }}</th>
+    <th>{{ 'review-list-gender'|message }}</th>
+    <th>{{ 'review-list-age'|message }}</th>
+    <th>{{ 'review-list-num-p2'|message }}</th>
+    <th>{{ 'review-list-relexp'|message }}</th>
+    <th>{{ 'review-list-expshare'|message }}</th>
+    <th>{{ 'review-list-p2-score'|message }}</th>
   </tr>
   {% for row in records %}
   <tr>
@@ -36,7 +36,7 @@
     <td>{{ '%.4f'|format( row.p2score ) }}</td>
   </tr>
   {% else %}
-  <tr><td colspan="12">{{ wgLang.message( 'no-results' ) }}</td></tr>
+  <tr><td colspan="12">{{ 'no-results'|message }}</td></tr>
   {% endfor %}
 </table>
 {% endspaceless %}

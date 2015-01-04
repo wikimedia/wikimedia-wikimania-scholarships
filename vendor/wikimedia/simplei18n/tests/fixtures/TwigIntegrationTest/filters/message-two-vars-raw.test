@@ -1,0 +1,16 @@
+--TEST--
+"message" filter with 2 args
+--TEMPLATE--
+{{ 'test-key-2-params'|message(param1)|raw }}
+{{ 'test-key-2-params'|message(param1, null)|raw }}
+{{ 'test-key-2-params'|message(null, param2)|raw }}
+{{ 'test-key-2-params'|message(null, null)|raw }}
+{{ 'test-key-2-params'|message(param1, param2)|raw }}
+--DATA--
+return array( 'param1' => 'something', 'param2' => 'otherthing' );
+--EXPECT--
+<something $2>
+<something >
+< otherthing>
+< >
+<something otherthing>

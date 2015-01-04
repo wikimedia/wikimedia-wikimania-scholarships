@@ -14,7 +14,7 @@
 
 {% macro label( ctx, mesg, name, opts = {} ) %}
 {% set opts = { 'required':false, 'escape':true }|merge( opts ) %}
-{% set tran = ctx.wgLang.message( mesg ) %}
+{% set tran = mesg|message %}
 <label for="{{ name }}" class="control-label {{ opts['required'] ? 'required' }}">{% if
     opts['escape'] == false %}{{ tran|raw }}{% else %}{{ tran }}{% endif %}</label>
 {% endmacro %}
@@ -53,7 +53,7 @@
 {% set value = ctx.form.get( name ) %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
 <select class="form-control" id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
-  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+  <option value="">{{ 'form-select'|message }}</option>
   {% for code, country in ctx.countries %}
     <option value="{{ code }}" {{ code == value ? 'selected="selected"' }}>{{ country }}</option>
   {% endfor %}
@@ -68,11 +68,11 @@
   <div class="form-inline">
   <label class="control-label">
     <input type="radio" id="{{ name }}-yes" name="{{ name }}" value="1" {{ value ? 'checked="checked"' }}/>
-    {{ ctx.wgLang.message( 'form-yes' ) }}
+    {{ 'form-yes'|message }}
   </label>&nbsp;
   <label class="control-label">
     <input type="radio" id="{{ name }}-no" name="{{ name }}" value="0" {{ not(value) ? 'checked="checked"' }}/>
-    {{ ctx.wgLang.message( 'form-no' ) }}
+    {{ 'form-no'|message }}
   </label>
 </div>
 {{ forms.endElement() }}
@@ -96,19 +96,19 @@ in ctx.form.errors %}
 {{ forms.startElement( ctx, mesg, '', opts ) }}
   <div class="form-inline">
   <select class="form-control" id="{{ dayName }}" name="{{ dayName }}" {{ required }}>
-    <option value="">{{ ctx.wgLang.message( 'form-select-day' ) }}</option>
+    <option value="">{{ 'form-select-day'|message }}</option>
     {% for i in 1..31 %}
     <option value="{{ "%d"|format(i) }}" {{ i == dayValue ? 'selected="selected"' }}>{{ i }}</option>
     {% endfor %}
   </select>&nbsp;
   <select class="form-control" id="{{ monthName }}" name="{{ monthName }}" {{ required }}>
-    <option value="">{{ ctx.wgLang.message( 'form-select-month' ) }}</option>
+    <option value="">{{ 'form-select-month'|message }}</option>
     {% for i, month in monthnames %}
-    <option value="{{ "%d"|format(i) }}" {{ i == monthValue ? 'selected="selected"' }}>{{ ctx.wgLang.message( month ) }}</option>
+    <option value="{{ "%d"|format(i) }}" {{ i == monthValue ? 'selected="selected"' }}>{{ month|message }}</option>
     {% endfor %}
   </select>&nbsp;
   <select class="form-control" id="{{ yearName }}" name="{{ yearName }}" {{ required }}>
-    <option value="">{{ ctx.wgLang.message( 'form-select-year' ) }}</option>
+    <option value="">{{ 'form-select-year'|message }}</option>
     {% set thisYear = 'now'|date('Y') %}
     {% for i in range(thisYear, thisYear - 130, -1) %}
     <option value="{{ i }}" {{ i == yearValue ? 'selected="selected"' }}>{{ i }}</option>
@@ -124,9 +124,9 @@ in ctx.form.errors %}
 {% set value = ctx.form.get( name ) %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
 <select class="form-control" id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
-  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+  <option value="">{{ 'form-select'|message }}</option>
   {% for label, val in options %}
-  <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ ctx.wgLang.message( label ) }}</option>
+  <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ label|message }}</option>
   {% endfor %}
 </select>
 {{ forms.endElement() }}
@@ -138,7 +138,7 @@ in ctx.form.errors %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
 {% set value = ctx.form.get( name ) %}
   <select id="{{ name }}" name="{{ name }}" class="form-control" {{ opts['required'] ? 'required' }}>
-    <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+    <option value="">{{ 'form-select'|message }}</option>
     {% for val in options %}
     <option value="{{ val }}" {{ val == value ? 'selected="selected"' }}>{{ val }}</option>
     {% endfor %}
@@ -152,8 +152,8 @@ in ctx.form.errors %}
 {% set value = ctx.form.get( name ) %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
 <select class="form-control" id="{{ name }}" name="{{ name }}" {{ opts['required'] ? 'required' }}>
-  <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
-  <option value="MULTILINGUAL">{{ ctx.wgLang.message( 'form-multilingual-community' ) }}</option>
+  <option value="">{{ 'form-select'|message }}</option>
+  <option value="MULTILINGUAL">{{ 'form-multilingual-community'|message }}</option>
   {% for code, lang in ctx.communities|sort %}
     {% if code != 'MULTILINGUAL' %}
     <option value="{{ code }}" {{ code == value ? 'selected="selected"' }}>{{ lang }}</option>
@@ -182,7 +182,7 @@ in ctx.form.errors %}
 {% import _self as forms %}
 {% set opts = { 'required':false, 'escape':true }|merge( opts ) %}
 {% set value = ctx.form.get( name ) %}
-{% set tran = ctx.wgLang.message( mesg ) %}
+{% set tran = mesg|message %}
 {{ forms.div( ctx, mesg, name, opts ) }}
 <div class="checkbox">
   <label class="control-label {{ opts['required'] ? 'required' }}">

@@ -151,6 +151,18 @@ class App {
 			return new \Wikimania\Scholarship\AuthManager( $c->userDao );
 		});
 
+		$container->singleton( 'i18nCache', function ( $c ) {
+			return new \Wikimedia\SimpleI18n\JsonCache(
+				$c->settings['i18n.path'], $c->log
+			);
+		} );
+
+		$container->singleton( 'i18nContext', function ( $c ) {
+			return new \Wikimedia\SimpleI18n\I18nContext(
+				$c->i18nCache, $c->settings['i18n.default'], $c->log
+			);
+		} );
+
 		$container->singleton( 'applyDao', function ( $c ) {
 			$uid = $c->authManager->getUserId();
 			$settings = $c->settingsDao->getSettings();
@@ -158,11 +170,6 @@ class App {
 				$c->settings['db.dsn'],
 				$c->settings['db.user'], $c->settings['db.pass'],
 				$uid, $settings, $c->log );
-		});
-
-		$container->singleton( 'wgLang', function ( $c ) {
-			return new Lang(
-				$c->settings['i18n.path'], $c->settings['i18n.default'], $c->log );
 		});
 
 		$container->singleton( 'applyForm', function ( $c ) {
@@ -224,13 +231,13 @@ class App {
 		$view->parserExtensions = array(
 			new \Slim\Views\TwigExtension(),
 			new TwigExtension(),
+			new \Wikimedia\SimpleI18n\TwigExtension( $this->slim->i18nContext ),
 		);
 
 		// set default view data
-		// FIXME: move wgLang to extension
 		$view->replace( array(
 			'app' => $this->slim,
-			'wgLang' => $this->slim->wgLang,
+			'i18nCtx' => $this->slim->i18nContext,
 		) );
 	}
 

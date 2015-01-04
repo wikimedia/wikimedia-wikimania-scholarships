@@ -58,18 +58,27 @@ class Login extends Controller {
 			);
 
 			if ( $authed ) {
-				$this->flash( 'info', $this->wgLang->message( 'login-success' ) );
+				$this->flash(
+					'info',
+					$this->i18nContext->message( 'login-success' )
+				);
 				$this->redirect( $next );
 
 			} else {
-				$this->flash( 'error', $this->wgLang->message( 'login-failed' ) );
+				$this->flash(
+					'error',
+					$this->i18nContext->message( 'login-failed' )
+				);
 				$this->log->info( 'Failed login attempt for {username}', array(
 					'username' => $this->form->get( 'username' ),
 				) );
 			}
 
 		} else {
-			$this->flash( 'error', $this->wgLang->message( 'login-error' ) );
+			$this->flash(
+				'error',
+				$this->i18nContext->message( 'login-error' )
+			);
 		}
 
 		$this->redirect( $this->urlFor( 'login' ) );

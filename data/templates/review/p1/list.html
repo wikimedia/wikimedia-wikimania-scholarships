@@ -4,24 +4,24 @@
 {% block content %}
 {% spaceless %}
 <ol class="breadcrumb">
-  <li>{{ wgLang.message( 'nav-reports' ) }}</li>
+  <li>{{ 'nav-reports'|message }}</li>
   <li>{{ title }}</li>
 </ol>
 
 <form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
   <input type="hidden" name="action" value="export">
   <div class="form-group">
-    <input type="submit" class="btn btn-sm btn-default" value="{{ wgLang.message( 'review-list-export' ) }}" />
+    <input type="submit" class="btn btn-sm btn-default" value="{{ 'review-list-export'|message }}" />
   </div>
 </form>
 <p></p>
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>{{ wgLang.message( 'review-list-counter' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-p1-score' ) }}</th>
+    <th>{{ 'review-list-counter'|message }}</th>
+    <th>{{ 'review-list-id'|message }}</th>
+    <th>{{ 'review-list-name'|message }}</th>
+    <th>{{ 'review-list-email'|message }}</th>
+    <th>{{ 'review-list-p1-score'|message }}</th>
   </tr>
   {% for row in records %}
   <tr>

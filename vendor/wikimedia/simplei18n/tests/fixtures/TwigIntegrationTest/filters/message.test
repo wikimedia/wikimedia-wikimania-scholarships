@@ -1,0 +1,10 @@
+--TEST--
+"message" filter
+--TEMPLATE--
+{{ 'test-key-no-params'|message }}
+{{ 'test-key-1-param'|message }}
+--DATA--
+return array();
+--EXPECT--
+&lt;something&gt;
+&lt;$1&gt;

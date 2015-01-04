@@ -89,8 +89,8 @@ class User extends Controller {
 
 					$sent = $this->mailer->mail(
 						$user['email'],
-						$this->wgLang->message( 'new-account-subject' ),
-						$this->wgLang->message( 'new-account-email', array(
+						$this->i18nContext->message( 'new-account-subject' ),
+						$this->i18nContext->message( 'new-account-email', array(
 							$user['username'],
 							$this->form->get( 'password' ),
 							$this->urlFor( 'login' ),

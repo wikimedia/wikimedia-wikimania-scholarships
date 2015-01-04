@@ -7,7 +7,6 @@ app: Slim application
 form: user input
 countries: array of country names
 communities: array of language communities
-wgLang: Lang
 lang: currently selected display language
 -#}
 
@@ -28,41 +27,41 @@ lang: currently selected display language
 
 {% if app.mock %}
 <div class="alert alert-info">
-  <p class="text-center lead">{{ wgLang.message( 'mock' ) }}</p>
+  <p class="text-center lead">{{ 'mock'|message }}</p>
 </div>
 {% endif %}
 
 {% if registration_open == false %}
 <div class="jumbotron">
   <div class="container">
-    <p>{{ wgLang.message( 'not-open' )|raw }}</p>
+    <p>{{ 'not-open'|message|raw }}</p>
   </div>
 </div>
 
 {% elseif registration_closed == true %}
 <div class="jumbotron">
   <div class="container">
-    <p>{{ wgLang.message( 'deadline-passed' )|raw }}</p>
+    <p>{{ 'deadline-passed'|message|raw }}</p>
   </div>
 </div>
 
 {% else %}
 {% if submitted %}
-<h1>{{ wgLang.message( 'confirm-thanks' ) }}</h1>
-<p class="lead">{{ wgLang.message( 'confirm-text' )|raw }}</p>
+<h1>{{ 'confirm-thanks'|message }}</h1>
+<p class="lead">{{ 'confirm-text'|message|raw }}</p>
 
 {% else %}
 {% if form.hasErrors %}
 <div class="alert alert-danger alert-dismissable">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  <p class="lead">{{ wgLang.message( 'form-error' ) }}</p>
+  <p class="lead">{{ 'form-error'|message }}</p>
 </div>
 
 {% for key in form.Errors %}
   {% set errorkey = 'form-' ~ key ~ '-error' %}
   <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <p class="lead">{{ wgLang.message(errorkey) }}</p>
+    <p class="lead">{{ errorkey|message }}</p>
   </div>
 {% endfor %}
 
@@ -70,8 +69,8 @@ lang: currently selected display language
 
 <div class="jumbotron">
   <div class="container">
-    {{ wgLang.message( 'form-intro' )|raw }}
-    <p class="text-center">{{ wgLang.message( 'form-intro-faq' )|raw }}</p>
+    {{ 'form-intro'|message|raw }}
+    <p class="text-center">{{ 'form-intro-faq'|message|raw }}</p>
   </div>
 </div>
 
@@ -81,11 +80,11 @@ lang: currently selected display language
   <input id="token" type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
   <input type="hidden" name="lang" id="lang" value="{{ lang }}" />
   <div class="form-group">
-    <label class="required">{{ wgLang.message( 'required-field' ) }}</label>
+    <label class="required">{{ 'required-field'|message }}</label>
   </div>
 
   <fieldset>
-    <legend>{{ wgLang.message( 'form-contact-info' ) }}</legend>
+    <legend>{{ 'form-contact-info'|message }}</legend>
     {{ forms.text( ctx, 'form-fname', 'fname', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-lname', 'lname', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-email', 'email', { 'required':true } ) }}
@@ -93,7 +92,7 @@ lang: currently selected display language
   </fieldset>
 
   <fieldset>
-    <legend>{{ wgLang.message( 'form-personalinfo' ) }}</legend>
+    <legend>{{ 'form-personalinfo'|message }}</legend>
     {{ forms.yesNo( ctx, 'form-haspassport', 'haspassport' ) }}
     {{ forms.countrySelect( ctx, 'form-nationality', 'nationality', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-airport', 'airport' ) }}
@@ -106,23 +105,23 @@ lang: currently selected display language
   </fieldset>
 
   <fieldset>
-    <legend>{{ wgLang.message( 'form-participation' ) }}</legend>
+    <legend>{{ 'form-participation'|message }}</legend>
     {{ forms.text( ctx, 'form-username', 'username', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-other-usernames', 'alt_users' ) }}
     {{ forms.wikiSelect( ctx, 'form-active-project', 'project', wikilist, { 'required':true } ) }}
     {{ forms.wikiSelect( ctx, 'form-active-project2', 'project2', wikilist ) }}
     {{ forms.communitySelect( ctx, 'form-community', 'community', { 'required':true } ) }}
     {{ forms.checkboxList( ctx, 'form-engagement', {
-        'engage1': wgLang.message( 'form-engagement-option1' ),
-        'engage2': wgLang.message( 'form-engagement-option2' ),
-        'engage3': wgLang.message( 'form-engagement-option3' ),
-        'engage4': wgLang.message( 'form-engagement-option4' ),
-        'engage5': wgLang.message( 'form-engagement-option5' ),
-        'engage6': wgLang.message( 'form-engagement-option6' ),
-        'engage7': wgLang.message( 'form-engagement-option7' ),
-        'engage8': wgLang.message( 'form-engagement-option8' ),
-        'engage9': wgLang.message( 'form-engagement-option9' ),
-        'engage10': wgLang.message( 'form-engagement-option10' )
+        'engage1': 'form-engagement-option1'|message,
+        'engage2': 'form-engagement-option2'|message,
+        'engage3': 'form-engagement-option3'|message,
+        'engage4': 'form-engagement-option4'|message,
+        'engage5': 'form-engagement-option5'|message,
+        'engage6': 'form-engagement-option6'|message,
+        'engage7': 'form-engagement-option7'|message,
+        'engage8': 'form-engagement-option8'|message,
+        'engage9': 'form-engagement-option9'|message,
+        'engage10': 'form-engagement-option10'|message
       } ) }}
     {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true, 'escape':false } ) }}
@@ -131,7 +130,7 @@ lang: currently selected display language
 </fieldset>
 
   <fieldset>
-    <legend>{{ wgLang.message( 'form-interest' ) }}</legend>
+    <legend>{{ 'form-interest'|message }}</legend>
     {{ forms.checkboxList( ctx, 'form-attended', { 'wm05':2005, 'wm06':2006, 'wm07':2007, 'wm08':2008, 'wm09':2009, 'wm10':2010, 'wm11':2011, 'wm12':2012, 'wm13':2013, 'wm14':2014 } ) }}
     {{ forms.yesNo( ctx, 'form-prev-scholar', 'prev_scholar', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-attending-goals', 'goals' ) }}
@@ -141,28 +140,28 @@ lang: currently selected display language
 </fieldset>
 
   <fieldset>
-    <legend>{{ wgLang.message( 'form-agree' ) }}</legend>
+    <legend>{{ 'form-agree'|message }}</legend>
     {{ forms.checkbox( ctx, 'form-visa', 'willgetvisa', { 'required':true } ) }}
     {{ forms.checkbox( ctx, 'form-travel-conditions', 'agreestotravelconditions', { 'required':true } ) }}
   </fieldset>
 
   <fieldset>
-    <legend>{{ wgLang.message( 'form-privacy' )  }}</legend>
-    <p>{{ wgLang.message( 'form-review' )|raw }}</p>
+    <legend>{{ 'form-privacy'|message  }}</legend>
+    <p>{{ 'form-review'|message|raw }}</p>
 
     {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false } ) }}
-    <h4>{{ wgLang.message( 'form-rights-heading' ) }}</h4>
-    <p>{{ wgLang.message( 'form-rights1' )|raw }}</p>
-    <p>{{ wgLang.message( 'form-rights2' )|raw }}</p>
-    <p>{{ wgLang.message( 'form-rights3' )|raw }}</p>
-    <p>{{ wgLang.message( 'form-rights4' )|raw }}</p>
+    <h4>{{ 'form-rights-heading'|message }}</h4>
+    <p>{{ 'form-rights1'|message|raw }}</p>
+    <p>{{ 'form-rights2'|message|raw }}</p>
+    <p>{{ 'form-rights3'|message|raw }}</p>
+    <p>{{ 'form-rights4'|message|raw }}</p>
 
     {{ forms.checkbox( ctx, 'form-wmfagree', 'wmfagree', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-wmfAgreeName', 'wmfAgreeName', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-wmfAgreeGuardian', 'wmfAgreeGuardian' ) }}
   </fieldset>
 
-  <input type="submit" class="btn btn-primary" id="submit" name="submit" value="{{ wgLang.message( 'form-submit-app' ) }}" />
+  <input type="submit" class="btn btn-primary" id="submit" name="submit" value="{{ 'form-submit-app'|message }}" />
 </form>
 </div>
 </div>

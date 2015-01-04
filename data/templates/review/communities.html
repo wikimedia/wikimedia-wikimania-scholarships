@@ -3,15 +3,15 @@
 {% block content %}
 {% spaceless %}
 <ol class="breadcrumb">
-  <li>{{ wgLang.message( 'nav-reports' ) }}</li>
-  <li>{{ wgLang.message( 'by-language-group' ) }}</li>
+  <li>{{ 'nav-reports'|message }}</li>
+  <li>{{ 'by-language-group'|message }}</li>
 </ol>
 
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>{{ wgLang.message( 'review-communities-size' ) }}</th>
-    <th>{{ wgLang.message( 'review-communities-globalns' ) }}</th>
-    <th>{{ wgLang.message( 'review-communities-count' ) }}</th>
+    <th>{{ 'review-communities-size'|message }}</th>
+    <th>{{ 'review-communities-globalns'|message }}</th>
+    <th>{{ 'review-communities-count'|message }}</th>
   </tr>
   {% for row in records %}
   <tr>

@@ -1,5 +1,7 @@
 {
 	"name": "wikimania/scholarships",
+	"description": "Collect and review scholarship applications",
+	"license": "GPL-3.0",
 	"require": {
 		"php": ">=5.3.7",
 		"twig/twig": "v1.16.2",
@@ -7,15 +9,16 @@
 		"slim/views": "0.1.2",
 		"monolog/monolog": "1.11.0",
 		"phpmailer/phpmailer": "v5.2.9",
-		"bd808/monolog-udp2log-handler": "1.0.0"
+		"bd808/monolog-udp2log-handler": "1.0.0",
+		"wikimedia/simplei18n": "1.0.0"
 	},
-	"preferred-install": "dist",
 	"autoload": {
 		"psr-0": {
 			"Wikimania\\Scholarship\\": "src/"
 		}
 	},
 	"config": {
-		"optimize-autoloader": true
+		"optimize-autoloader": true,
+		"preferred-install": "dist"
 	}
 }

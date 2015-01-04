@@ -56,7 +56,8 @@ class ScholarshipApplication extends Controller {
 				// input is valid, save to database
 				if ( $this->form->save() ) {
 					// send confirmation email
-					$message = $this->wgLang->message( 'form-email-response',
+					$message = $this->i18nContext->message(
+						'form-email-response',
 						array(
 							$this->form->get( 'fname' ),
 							$this->form->get( 'lname' ),
@@ -65,14 +66,14 @@ class ScholarshipApplication extends Controller {
 
 					$this->mailer->mail(
 						$this->form->get( 'email' ),
-						$this->wgLang->message( 'form-email-subject' ),
+						$this->i18nContext->message( 'form-email-subject' ),
 						$message
 					);
 					$submitted = true;
 
 				} else {
 					$this->flashNow( 'error',
-						$this->wgLang->message( 'form-save-error' )
+						$this->i18nContext->message( 'form-save-error' )
 					);
 				}
 			}

@@ -3,10 +3,10 @@
 {% spaceless %}
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h2>{{ wgLang.message( 'error-heading' ) }}</h2>
-    <p>{{ wgLang.message( 'error-message' ) }}</p>
+    <h2>{{ 'error-heading'|message }}</h2>
+    <p>{{ 'error-message'|message }}</p>
     {% if errorId|default(false) %}
-    <p>{{ wgLang.message( 'error-id', [ errorId ] ) }}</p>
+    <p>{{ 'error-id'|message( errorId ) }}</p>
     {% endif %}
   </div>
 </div>

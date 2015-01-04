@@ -7,51 +7,51 @@
 
 {% block navbar %}
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-review' ) }} <b class="caret"></b></a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'nav-review'|message }} <b class="caret"></b></a>
   <ul class="dropdown-menu">
-    <li><a href="{{ urlFor( 'review_view' ) }}">{{ wgLang.message( 'review' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_view' ) }}">{{ 'review'|message }}</a></li>
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_phase1' ) }}">{{ wgLang.message( 'phase-1' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_phase2' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_phase1' ) }}">{{ 'phase-1'|message }}</a></li>
+    <li><a href="{{ urlFor( 'review_phase2' ) }}">{{ 'phase-2'|message }}</a></li>
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_search' ) }}">{{ wgLang.message( 'search' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_search' ) }}">{{ 'search'|message }}</a></li>
   </ul>
 </li>
 
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-reports' ) }} <b class="caret"></b></a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'nav-reports'|message }} <b class="caret"></b></a>
   <ul class="dropdown-menu">
-    <li><a href="{{ urlFor( 'review_countries' ) }}">{{ wgLang.message( 'by-country' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_communities' ) }}">{{ wgLang.message( 'by-language-group' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_regions' ) }}">{{ wgLang.message( 'by-region' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_countries' ) }}">{{ 'by-country'|message }}</a></li>
+    <li><a href="{{ urlFor( 'review_communities' ) }}">{{ 'by-language-group'|message }}</a></li>
+    <li><a href="{{ urlFor( 'review_regions' ) }}">{{ 'by-region'|message }}</a></li>
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_p1_success' ) }}">{{ wgLang.message( 'phase-1-success' ) }}</a></li>
-    <li><a href="{{ urlFor( 'review_p1_fail' ) }}">{{ wgLang.message( 'phase-1-fail' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_p1_success' ) }}">{{ 'phase-1-success'|message }}</a></li>
+    <li><a href="{{ urlFor( 'review_p1_fail' ) }}">{{ 'phase-1-fail'|message }}</a></li>
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_p2_list' ) }}">{{ wgLang.message( 'phase-2' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_p2_list' ) }}">{{ 'phase-2'|message }}</a></li>
     {% if isadmin|default(false) %}
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_scores' ) }}">{{ wgLang.message( 'final-full' ) }}</a></li>
+    <li><a href="{{ urlFor( 'review_scores' ) }}">{{ 'final-full'|message }}</a></li>
     {% endif %}
   </ul>
 </li>
 
 {% if isadmin|default(false) %}
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-admin' ) }} <b class="caret"></b></a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'nav-admin'|message }} <b class="caret"></b></a>
   <ul class="dropdown-menu">
-    <li><a href="{{ urlFor( 'admin_users' ) }}">{{ wgLang.message( 'nav-users' ) }}</a></li>
-    <li><a href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">{{ wgLang.message( 'admin-users-add' ) }}</a></li>
-    <li><a href="{{ urlFor( 'admin_settings' ) }}">{{ wgLang.message( 'nav-settings' ) }}</a></li>
+    <li><a href="{{ urlFor( 'admin_users' ) }}">{{ 'nav-users'|message }}</a></li>
+    <li><a href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">{{ 'admin-users-add'|message }}</a></li>
+    <li><a href="{{ urlFor( 'admin_settings' ) }}">{{ 'nav-settings'|message }}</a></li>
   </ul>
 </li>
 {% endif %}
 
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ wgLang.message( 'nav-account' ) }} <b class="caret"></b></a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'nav-account'|message }} <b class="caret"></b></a>
   <ul class="dropdown-menu">
-    <li><a href="{{ urlFor( 'user_changepassword' ) }}">{{ wgLang.message( 'change-password' ) }}</a></li>
-    <li><a href="{{ urlFor( 'logout' ) }}">{{ wgLang.message( 'logout' ) }}</a></li>
+    <li><a href="{{ urlFor( 'user_changepassword' ) }}">{{ 'change-password'|message }}</a></li>
+    <li><a href="{{ urlFor( 'logout' ) }}">{{ 'logout'|message }}</a></li>
   </ul>
 </li>
 {% endblock navbar %}

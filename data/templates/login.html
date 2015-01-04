@@ -7,15 +7,15 @@
     <form class="form-horizontal" action="{{ urlFor( 'login_post' ) }}" method="post" role="form">
       <input type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
       <fieldset>
-        <legend>{{ wgLang.message( 'login' ) }}</legend>
+        <legend>{{ 'login'|message }}</legend>
         <div class="form-group">
-          <label for="username" class="col-sm-2 control-label">{{ wgLang.message( 'username' ) }}</label>
+          <label for="username" class="col-sm-2 control-label">{{ 'username'|message }}</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" id="username" name="username" required="required" autofocus="autofocus"/>
           </div>
         </div>
         <div class="form-group">
-          <label for="password" class="col-sm-2 control-label">{{ wgLang.message( 'password' ) }}</label>
+          <label for="password" class="col-sm-2 control-label">{{ 'password'|message }}</label>
           <div class="col-sm-10">
             <input type="password" class="form-control" id="password" name="password" required="required" />
           </div>
@@ -23,7 +23,7 @@
       </fieldset>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <input type="submit" class="btn btn-default" value="{{ wgLang.message( 'login' ) }}" />
+          <input type="submit" class="btn btn-default" value="{{ 'login'|message }}" />
         </div>
       </div>
     </form>

@@ -14,7 +14,7 @@
 {% endif %}
 {% endfor %}
 <select class="form-control input-sm" id="{{ crit }}" name="{{ crit }}">
-    <option value="">{{ ctx.wgLang.message( 'form-select' ) }}</option>
+    <option value="">{{ 'form-select'|message }}</option>
   {% for o in opts %}
   <option value="{{ o }}" {{ r == o ? 'selected="selected"'}}>{{ o }}</option>
   {% endfor %}
@@ -27,7 +27,7 @@
 
 {% macro gender( ctx, g ) %}
 {% set gmap = { 'm':'form-gender-male', 'f':'form-gender-female', 'o':'form-gender-other', 'd':'form-gender-unspecified' } %}
-{{ ctx.wgLang.message( gmap[g]|default( 'form-gender-unspecified' ) ) }}
+{{ ( gmap[g]|default( 'form-gender-unspecified' ) )|message }}
 {% endmacro %}
 
 {% macro yesNo( var ) %}

@@ -4,52 +4,52 @@
 {% block content %}
 {% spaceless %}
 <ol class="breadcrumb">
-  <li>{{ wgLang.message( 'nav-review' ) }}</li>
-  <li>{{ wgLang.message( 'search' ) }}</li>
+  <li>{{ 'nav-review'|message }}</li>
+  <li>{{ 'search'|message }}</li>
 </ol>
 
 <form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
 
   <input type="hidden" name="p" value="0">
   <div class="form-group">
-    <label class="sr-only" for="lastname">{{ wgLang.message( 'form-lname' ) }}</label>
-    <input type="text" name="l" id="lastname" placeholder="{{ wgLang.message( 'form-lname' ) }}" value="{{ l }}">
+    <label class="sr-only" for="lastname">{{ 'form-lname'|message }}</label>
+    <input type="text" name="l" id="lastname" placeholder="{{ 'form-lname'|message }}" value="{{ l }}">
   </div>
 
   <div class="form-group">
-    <label class="sr-only" for="firstname">{{ wgLang.message( 'form-fname' ) }}</label>
-    <input type="text" name="f" id="firstname" placeholder="{{ wgLang.message( 'form-fname' ) }}" value="{{ f }}">
+    <label class="sr-only" for="firstname">{{ 'form-fname'|message }}</label>
+    <input type="text" name="f" id="firstname" placeholder="{{ 'form-fname'|message }}" value="{{ f }}">
   </div>
 
   <div class="form-group">
-    <label class="sr-only" for="residence">{{ wgLang.message( 'form-residence' ) }}</label>
-    <input type="text" name="r" id="residence" placeholder="{{ wgLang.message( 'form-residence' ) }}" value="{{ r }}">
+    <label class="sr-only" for="residence">{{ 'form-residence'|message }}</label>
+    <input type="text" name="r" id="residence" placeholder="{{ 'form-residence'|message }}" value="{{ r }}">
   </div>
 
   <div class="form-group">
-    <label class="sr-only" for="region">{{ wgLang.message( 'search-region' ) }}</label>
-    <input type="text" name="rg" id="region" placeholder="{{ wgLang.message( 'search-region' ) }}" value="{{ rg }}">
+    <label class="sr-only" for="region">{{ 'search-region'|message }}</label>
+    <input type="text" name="rg" id="region" placeholder="{{ 'search-region'|message }}" value="{{ rg }}">
   </div>
 
   <div class="form-group">
-    <label class="sr-only" for="community-size">{{ wgLang.message( 'search-sommunity-size' ) }}</label>
-    <input type="text" name="cs" id="community" placeholder="{{ wgLang.message( 'search-community-size' ) }}" value="{{ cs }}">
+    <label class="sr-only" for="community-size">{{ 'search-sommunity-size'|message }}</label>
+    <input type="text" name="cs" id="community" placeholder="{{ 'search-community-size'|message }}" value="{{ cs }}">
   </div>
 
   <div class="form-group">
-    <label class="sr-only" for="globalns">{{ wgLang.message( 'search-globalns' ) }}</label>
-    <input type="text" name="ns" id="globalns" placeholder="{{ wgLang.message( 'search-globalns' ) }}" value="{{ ns }}">
+    <label class="sr-only" for="globalns">{{ 'search-globalns'|message }}</label>
+    <input type="text" name="ns" id="globalns" placeholder="{{ 'search-globalns'|message }}" value="{{ ns }}">
   </div>
 
   <div class="form-group">
     <label class="control-label">
       <input type="checkbox" id="p1" name="p1" value="1" {{ p1 == 1 ? 'checked="checked"' }}/>&nbsp;
-      {{ wgLang.message( 'search-phase1' ) }}
+      {{ 'search-phase1'|message }}
     </label>
   </div>
 
   <div class="form-group">
-    <input type="submit" class="btn btn-sm btn-primary" value="{{ wgLang.message( 'search' ) }}" />
+    <input type="submit" class="btn btn-sm btn-primary" value="{{ 'search'|message }}" />
   </div>
 
 </form>
@@ -59,13 +59,13 @@
 {% if found is not null %}
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>{{ wgLang.message( 'review-list-id' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-name' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-email' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-residence' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-gender' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-age' ) }}</th>
-    <th>{{ wgLang.message( 'review-list-p1-score' ) }}</th>
+    <th>{{ 'review-list-id'|message }}</th>
+    <th>{{ 'review-list-name'|message }}</th>
+    <th>{{ 'review-list-email'|message }}</th>
+    <th>{{ 'review-list-residence'|message }}</th>
+    <th>{{ 'review-list-gender'|message }}</th>
+    <th>{{ 'review-list-age'|message }}</th>
+    <th>{{ 'review-list-p1-score'|message }}</th>
   </tr>
   {% for row in records %}
   <tr>
@@ -78,13 +78,13 @@
     <td>{{ row.p1count ? row.p1score : '-' }}</td>
   </tr>
   {% else %}
-  <tr><td colspan="8">{{ wgLang.message( 'no-results' ) }}</td></tr>
+  <tr><td colspan="8">{{ 'no-results'|message }}</td></tr>
   {% endfor %}
 </table>
 
 <div class="row">
   <div class="col-md-3">
-    <p class="text-right">{{ wgLang.message( 'page-of-pages', [ p + 1, pages ] ) }}</p>
+    <p class="text-right">{{ 'page-of-pages'|message( p + 1, pages ) }}</p>
   </div>
   <div class="col-md-9">
       <ul class="pagination">

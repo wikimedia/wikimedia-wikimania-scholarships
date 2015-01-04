@@ -8,18 +8,18 @@
 {% block content %}
 {% spaceless %}
 <ol class="breadcrumb">
-	<li>{{ wgLang.message( 'nav-admin' ) }}</li>
-	<li>{{ wgLang.message( 'nav-settings' ) }}</li>
+	<li>{{ 'nav-admin'|message }}</li>
+	<li>{{ 'nav-settings'|message }}</li>
 </ol>
 
 
 <form class="form-horizontal" method="post" action="{{ urlFor( 'admin_settings_post' ) }}">
 	<input type="hidden" name="{{ csrf_param }}" value="{{ csrf_token }}" />
 	<fieldset>
-		<legend>{{ wgLang.message( 'settings-pass-scores' ) }}</legend>
+		<legend>{{ 'settings-pass-scores'|message }}</legend>
 			<div class="form-group">
 				<label for="phase1pass" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-phase1pass' ) }}
+				{{ 'admin-settings-phase1pass'|message }}
 				</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="phase1pass" name="phase1pass" value="{{ set.phase1pass }}" required="required">
@@ -28,7 +28,7 @@
 
 		<div class="form-group">
 			<label for="phase2pass" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-phase2pass' ) }}
+				{{ 'admin-settings-phase2pass'|message }}
 			</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" name="phase2pass" id="phase2pass" value="{{ set.phase2pass }}" required="required">
@@ -37,10 +37,10 @@
 	</fieldset>
 
 	<fieldset>
-		<legend>{{ wgLang.message( 'settings-weighing-factors' ) }}</legend>
+		<legend>{{ 'settings-weighing-factors'|message }}</legend>
 		<div class="form-group">
 			<label for="relexp" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-relexp' ) }}
+				{{ 'admin-settings-relexp'|message }}
 			</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" name="relexp" id="relexp" value="{{ set.relexp }}" required="required">
@@ -49,7 +49,7 @@
 
 		<div class="form-group">
 			<label for="expshare" class="col-sm-2 control-label">
-				{{ wgLang.message( 'admin-settings-expshare' ) }}
+				{{ 'admin-settings-expshare'|message }}
 			</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" name="expshare" id="expshare" value="{{ set.expshare }}" required="required">
@@ -59,10 +59,10 @@
 	</fieldset>
 
 	<fieldset>
-		<legend>{{ wgLang.message( 'settings-app-period' ) }}</legend>
+		<legend>{{ 'settings-app-period'|message }}</legend>
 		<div class="form-group">
 			<label for="period_open" class="col-sm-2 control-label">
-				{{ wgLang.message( 'settings-app-period-open' ) }}
+				{{ 'settings-app-period-open'|message }}
 			</label>
 			<div class="col-sm-5">
 				<input type="date" class="form-control" name="apply_open" id="apply_open" value = "{{ set.apply_open|date('Y-m-d') }}" required = "required">
@@ -71,7 +71,7 @@
 
 		<div class="form-group">
 			<label for="period_close" class="col-sm-2 control-label">
-				{{ wgLang.message( 'settings-app-period-close' ) }}
+				{{ 'settings-app-period-close'|message }}
 			</label>
 			<div class="col-sm-5">
 				<input type="date" class="form-control" name="apply_close" id="apply_close" value = "{{ set.apply_close|date('Y-m-d') }}" required = "required">
@@ -80,7 +80,7 @@
 	</fieldset>
 
 	<div class="col-sm-10 col-sm-offset-2">
-		<input type="submit" class="btn btn-default" id="save" name="save" value="{{ wgLang.message( 'review-view-save' ) }}"/>
+		<input type="submit" class="btn btn-default" id="save" name="save" value="{{ 'review-view-save'|message }}"/>
 	</div>
 </form>
 {% endspaceless %}

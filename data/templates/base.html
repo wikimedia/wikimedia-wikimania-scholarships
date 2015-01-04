@@ -1,4 +1,4 @@
-{% set lang = wgLang.getLang %}
+{% set lang = i18nCtx.getCurrentLanguage %}
 {% set page = null %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ lang }}"> <![endif]-->
@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-language" content="{{ lang }}"/>
     <meta charset="utf-8"/>
-    <title>{% block title %}{{ wgLang.message( 'header-title' ) }}{% endblock title %}</title>
+    <title>{% block title %}{{ 'header-title'|message }}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" type="image/x-icon" href="{{ siteUrl( 'favicon.ico' ) }}"/>
     <link rel="stylesheet" type="text/css" href="{{ siteUrl( 'css/vendor/bootstrap.css' ) }}">
@@ -25,24 +25,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ urlFor( 'home') }}" title="{{ wgLang.message( 'header-title' ) }}"><img src="{{ siteUrl( 'images/brand.png' ) }}" width="32" height="36" alt="{{ wgLang.message( 'wikimania' ) }}"></a>
+          <a class="navbar-brand" href="{{ urlFor( 'home') }}" title="{{ 'header-title'|message }}"><img src="{{ siteUrl( 'images/brand.png' ) }}" width="32" height="36" alt="{{ 'wikimania'|message }}"></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             {% block navbar %}
-            <li {% block nav_li_apply %}{% endblock %}><a href="{{ urlFor( 'apply' ) }}">{{ wgLang.message( 'nav-apply' ) }}</a></li>
-            <li><a href="//wikimania2015.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'nav-faq' ) }}</a></li>
-            <li {% block nav_li_credits %}{% endblock %}><a href="{{ urlFor( 'credits' ) }}">{{ wgLang.message( 'nav-credits' ) }}</a></li>
-            <li {% block nav_li_privacy %}{% endblock %}><a href="{{ urlFor( 'privacy' ) }}">{{ wgLang.message( 'nav-privacy' ) }}</a></li>
-            <li {% block nav_li_contact %}{% endblock %}><a href="{{ urlFor( 'contact' ) }}">{{ wgLang.message( 'nav-contact' ) }}</a></li>
-            <li {% block nav_li_translate %}{% endblock %}><a href="{{ urlFor( 'translate' ) }}">{{ wgLang.message( 'help-translate' ) }}</a></li>
+            <li {% block nav_li_apply %}{% endblock %}><a href="{{ urlFor( 'apply' ) }}">{{ 'nav-apply'|message }}</a></li>
+            <li><a href="//wikimania2015.wikimedia.org/wiki/Scholarships/FAQ">{{ 'nav-faq'|message }}</a></li>
+            <li {% block nav_li_credits %}{% endblock %}><a href="{{ urlFor( 'credits' ) }}">{{ 'nav-credits'|message }}</a></li>
+            <li {% block nav_li_privacy %}{% endblock %}><a href="{{ urlFor( 'privacy' ) }}">{{ 'nav-privacy'|message }}</a></li>
+            <li {% block nav_li_contact %}{% endblock %}><a href="{{ urlFor( 'contact' ) }}">{{ 'nav-contact'|message }}</a></li>
+            <li {% block nav_li_translate %}{% endblock %}><a href="{{ urlFor( 'translate' ) }}">{{ 'help-translate'|message }}</a></li>
             {% endblock navbar %}
           </ul>
           <div class="navbar-right navbar-text form-inline">
-            {% if wgLang.getLangs|length > 1 %}
-            <span class="langlabel">{{ wgLang.message( 'nav-language' ) }}</span>
+            {% if i18nCtx.getAvailableLanguages|length > 1 %}
+            <span class="langlabel">{{ 'nav-language'|message }}</span>
             <ul class="langlist footer-links">
-              {% for l in wgLang.getLangs %}
+              {% for l in i18nCtx.getAvailableLanguages %}
               <li class="{{ loop.last ? 'last' }}"><a href="{{ app.request.getPath }}?uselang={{ l }}" {{ l == lang ? 'class="selected"' }}>{{ l }}</a></li>
               {% endfor %}
             </ul>
@@ -56,9 +56,9 @@
     {% block banner %}
     <div class="jumbotron site-banner">
       <div class="container text-center">
-        <img src="{{ siteUrl( 'images/logo.png' ) }}" width="118" height="137" alt="{{ wgLang.message( 'wikimania' ) }}">
-        <h2>{{ wgLang.message( 'wikimania' ) }}</h2>
-        <h3>{{ wgLang.message( 'wikimania-location-year' ) }}</h3>
+        <img src="{{ siteUrl( 'images/logo.png' ) }}" width="118" height="137" alt="{{ 'wikimania'|message }}">
+        <h2>{{ 'wikimania'|message }}</h2>
+        <h3>{{ 'wikimania-location-year'|message }}</h3>
       </div>
     </div>
     {% endblock banner %}
@@ -78,10 +78,10 @@
       <div class="hr"><hr/></div>
       <div class="container text-right">
         <ul class="footer-links">
-          <li><a href="http://wikimania2015.wikimedia.org/wiki/Scholarships/FAQ">{{ wgLang.message( 'footer-faq' ) }}</a></li>
-          <li><a href="{{ urlFor( 'credits' ) }}">{{ wgLang.message( 'footer-credits' ) }}</a></li>
-          <li><a href="{{ urlFor( 'privacy' ) }}">{{ wgLang.message( 'footer-privacy' ) }}</a></li>
-          <li class="last"><a href="{{ urlFor( 'contact' ) }}">{{ wgLang.message( 'footer-contact' ) }}</a></li>
+          <li><a href="http://wikimania2015.wikimedia.org/wiki/Scholarships/FAQ">{{ 'footer-faq'|message }}</a></li>
+          <li><a href="{{ urlFor( 'credits' ) }}">{{ 'footer-credits'|message }}</a></li>
+          <li><a href="{{ urlFor( 'privacy' ) }}">{{ 'footer-privacy'|message }}</a></li>
+          <li class="last"><a href="{{ urlFor( 'contact' ) }}">{{ 'footer-contact'|message }}</a></li>
         </ul>
       </div>
     </footer>
