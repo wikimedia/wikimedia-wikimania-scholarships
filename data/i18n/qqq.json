@@ -271,6 +271,7 @@
     "search-region": "Input label, followed by text box",
     "search-community-size": "Input label, followed by text box",
     "search-globalns": "Input label, followed by text box",
+    "search-phase1": "Input label, preceeded by checkbox",
     "settings-pass-scores": "Settings page section label, section contains input boxes for setting pass scores",
     "settings-weighing-factors": "Settings page section label, section contains input boxes for setting application weighing factors",
     "settings-app-period": "Settings page section label, section contains input boxes for setting application period open and close dates",

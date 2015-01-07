@@ -39,6 +39,7 @@ class Search extends Controller {
 		$this->form->expectString( 'rg' );
 		$this->form->expectString( 'cs' );
 		$this->form->expectString( 'ns' );
+		$this->form->expectBool( 'p1' );
 		$this->form->expectInt( 'items',
 			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
 		);
@@ -51,13 +52,15 @@ class Search extends Controller {
 		$this->view->set( 'rg', $this->form->get( 'rg' ) );
 		$this->view->set( 'cs', $this->form->get( 'cs' ) );
 		$this->view->set( 'ns', $this->form->get( 'ns' ) );
+		$this->view->set( 'p1', $this->form->get( 'p1' ) );
 		$this->view->set( 'items', $this->form->get( 'items' ) );
 		$this->view->set( 'p', $this->form->get( 'p' ) );
 		$this->view->set( 'found', null );
 
 		if ( $this->form->get( 'l' ) || $this->form->get( 'f' ) ||
 			$this->form->get( 'r' ) || $this->form->get( 'rg' ) ||
-			$this->form->get( 'cs' ) || $this->form->get( 'ns' )
+			$this->form->get( 'cs' ) || $this->form->get( 'ns' ) ||
+			$this->form->get( 'p1' )
 		) {
 
 			$params = array(
@@ -69,6 +72,7 @@ class Search extends Controller {
 				'globalns' =>$this->form->get( 'ns' ),
 				'items' => $this->form->get( 'items' ),
 				'page' => $this->form->get( 'p' ),
+				'phase1' => $this->form->get( 'p1' ),
 			);
 
 			$ret = $this->dao->search( $params );

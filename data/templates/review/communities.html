@@ -15,8 +15,8 @@
   </tr>
   {% for row in records %}
   <tr>
-    <td><a href="{{ urlFor( 'review_search' ) }}?cs={{ row.size|url_encode }}&ns={{ row.globalns }}">{{ row.size }}</a></td>
-    <td><a href="{{ urlFor( 'review_search' ) }}?cs={{ row.size|url_encode }}&ns={{ row.globalns }}">{{ row.globalns }}</a></td>
+    <td><a href="{{ urlFor( 'review_search' ) }}?cs={{ row.size|url_encode }}&ns={{ row.globalns }}&p1=1">{{ row.size }}</a></td>
+    <td><a href="{{ urlFor( 'review_search' ) }}?cs={{ row.size|url_encode }}&ns={{ row.globalns }}&p1=1">{{ row.globalns }}</a></td>
     <td>{{ row.sid }}</td>
   </tr>
   {% endfor %}

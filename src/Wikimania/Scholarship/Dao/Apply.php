@@ -272,6 +272,7 @@ class Apply extends AbstractDao {
 			'globalns' => null,
 			'items'  => 50,
 			'page' => 0,
+			'phase1' => false,
 		);
 		$params = array_merge( $defaults, $params );
 
@@ -310,6 +311,10 @@ class Apply extends AbstractDao {
 			$where[] = "c.globalns = :globalns";
 			$crit['globalns'] = $params['globalns'];
 		}
+		if ( $params['phase1'] ) {
+			$where[] = 'p1score >= :int_phase1pass';
+			$crit['int_phase1pass'] = (int)$this->settings['phase1pass'];
+		}
 
 		$where[] = "s.exclude = 0";
 
@@ -342,19 +347,19 @@ class Apply extends AbstractDao {
 			"GROUP BY scholarship_id"
 		);
 
-			$sql = self::concat(
-				"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
-				"FROM scholarships s",
-				"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
-				"LEFT OUTER JOIN ( {$p1countSql} ) r2 ON s.id = r2.scholarship_id",
-				"LEFT OUTER JOIN ( {$mycountSql} ) r3 ON s.id = r3.scholarship_id",
-				"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
-				"LEFT OUTER JOIN language_communities l ON s.community = l.code",
-				self::buildWhere( $where ),
-				"ORDER BY s.id",
-				$limit,
-				$offset
-			);
+		$sql = self::concat(
+			"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
+			"FROM scholarships s",
+			"LEFT OUTER JOIN ( {$p1scoreSql} ) r1 ON s.id = r1.scholarship_id",
+			"LEFT OUTER JOIN ( {$p1countSql} ) r2 ON s.id = r2.scholarship_id",
+			"LEFT OUTER JOIN ( {$mycountSql} ) r3 ON s.id = r3.scholarship_id",
+			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
+			"LEFT OUTER JOIN language_communities l ON s.community = l.code",
+			self::buildWhere( $where ),
+			"ORDER BY s.id",
+			$limit,
+			$offset
+		);
 
 		return $this->fetchAllWithFound( $sql, $crit );
 	}
@@ -641,12 +646,26 @@ class Apply extends AbstractDao {
 	 * Multilingual community - Global South
 	 */
 	public function getListOfCommunities() {
+
+		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
+
+		$fields = array(
+			'count(*) as sid',
+			'l.size',
+			'c.globalns',
+			'COALESCE(p1score, 0) as p1score',
+		);
+
 		return $this->fetchAll( self::concat(
-			"SELECT count(*) as sid, l.size, c.globalns",
+			"SELECT", implode( ',', $fields ),
 			"FROM scholarships s",
+			"LEFT JOIN ({$p1scoreSql}) r2 ON s.id = r2.scholarship_id",
 			"LEFT JOIN language_communities l ON l.code = s.community",
 			"LEFT JOIN iso_countries c ON c.code = s.residence",
-			"GROUP BY l.size"
+			"WHERE p1score >= :int_phase1pass AND s.exclude = 0",
+			"GROUP BY l.size, c.globalns"
+		), array(
+			'int_phase1pass' => (int)$this->settings['phase1pass'],
 		) );
 	}
 

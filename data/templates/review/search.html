@@ -42,6 +42,13 @@
   </div>
 
   <div class="form-group">
+    <label class="control-label">
+      <input type="checkbox" id="p1" name="p1" value="1" {{ p1 == 1 ? 'checked="checked"' }}/>&nbsp;
+      {{ wgLang.message( 'search-phase1' ) }}
+    </label>
+  </div>
+
+  <div class="form-group">
     <input type="submit" class="btn btn-sm btn-primary" value="{{ wgLang.message( 'search' ) }}" />
   </div>
 

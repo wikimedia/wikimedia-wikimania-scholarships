@@ -306,6 +306,7 @@
 	"search-region": "Geographic region:",
 	"search-community-size": "Community size:",
 	"search-globalns": "Global North/South:",
+	"search-phase1": "Passed Phase 1 review",
 
 	"admin-settings-phase1pass": "Phase 1 pass score:",
 	"admin-settings-phase2pass": "Phase 2 pass score:",
