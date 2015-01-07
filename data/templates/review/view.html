@@ -140,18 +140,18 @@
           </div>
 
           <div class="well well-sm">
-            <p><strong>{{ wgLang.message( 'review-view-experience-explain' ) }}</strong></p>
-            {% if schol.experience is not empty %}
-            <p style="white-space:pre-wrap">{{ schol.experience }}</p>
-            {% else %}
-            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
-            {% endif %}
-          </div>
-
-          <div class="well well-sm">
             <p><strong>{{ wgLang.message( 'review-view-collaboration-explain' ) }}</strong></p>
             {% if schol.collaboration is not empty %}
             <p style="white-space:pre-wrap">{{ schol.collaboration }}</p>
+            {% else %}
+            <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
+            {% endif %}
+        </div>
+
+          <div class="well well-sm">
+            <p><strong>{{ wgLang.message( 'review-view-experience-explain' ) }}</strong></p>
+            {% if schol.experience is not empty %}
+            <p style="white-space:pre-wrap">{{ schol.experience }}</p>
             {% else %}
             <p>{{ wgLang.message( 'review-view-not-specified' ) }}</p>
             {% endif %}
