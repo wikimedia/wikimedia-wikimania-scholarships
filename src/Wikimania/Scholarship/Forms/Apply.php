@@ -112,7 +112,6 @@ class Apply extends Form {
 			'validate' => array( $this, 'validatePresentationTopic' ),
 		) );
 		$this->expectInt( 'howheard' );
-		$this->requireString( 'why' );
 
 		// Application agreement
 		$this->expectTrue( 'willgetvisa' );
@@ -245,7 +244,7 @@ class Apply extends Form {
 			'involvement', 'contribution', 'experience', 'collaboration',
 			'prev_scholar', 'goals', 'involvement', 'contribution',
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14',
-			'presentation', 'presentationTopic', 'howheard', 'why',
+			'presentation', 'presentationTopic', 'howheard',
 
 			'willgetvisa', 'willpayincidentals', 'agreestotravelconditions',
 			

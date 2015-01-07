@@ -61,7 +61,6 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , presentation                TINYINT(1) DEFAULT NULL
   , presentationTopic           TEXT
   , howheard                    VARCHAR(64) DEFAULT NULL
-  , why                         TEXT
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
   , willpayincidentals          TINYINT(1) NOT NULL DEFAULT '0'
   , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'

@@ -1,0 +1,4 @@
+-- Bug: T85833
+-- Drop 'why' column from scholarships table
+
+ALTER TABLE scholarships DROP COLUMN why;

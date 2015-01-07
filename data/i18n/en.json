@@ -51,7 +51,6 @@
 	"form-contribution-error": "Please explain your involvement and contributions in projects other than Wikimedia projects.",
 	"form-experience-error": "Please provide information about how you share your experiences with the community.",
 	"form-collaboration-error": "Please provide information about your collaborations with other Wikimedians or Wikimedia organizations",
-	"form-why-error": "Please state your interest in attending Wikimania.",
 	"form-willgetvisa-error": "To proceed, please agree to the visa requirements.",
 	"form-willpayincidentals-error": "To proceed, please agree to the scholarship terms and conditions.",
 	"form-agreestotravelconditions-error": "To proceed, please agree to the travel booking agreement.",
@@ -123,7 +122,6 @@
 	"form-howheard3": "Village pump / Café / Community portal",
 	"form-howheard4": "Word of mouth",
 	"form-howheard5": "Other",
-	"form-enrichment": "In the space below, please state why are you interested in attending Wikimania?",
 
 	"form-agree": "Application agreement",
 	"form-visa": "If I am awarded and accept a grant, I will be responsible for obtaining a travel visa, if necessary, prior to travel to Mexico City.",
@@ -280,7 +278,6 @@
 	"review-view-presenter": "Presentation?",
 	"review-view-presentation-topic": "Topic:",
 	"review-view-engagement": "Engagement with the Wikimedia movement",
-	"review-view-enrichment": "Why are you interested in attending?",
 	"review-view-visa": "Will get visa?",
 	"review-view-incidentals": "Will pay incidentals?",
 	"review-view-travel-conditions": "Agrees to travel conditions?",
