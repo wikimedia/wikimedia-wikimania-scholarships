@@ -94,7 +94,7 @@
       </div>
       <div id="participation" class="panel-collapse collapse in">
         <div class="panel-body">
-          <dl class="dl-horizontal">
+          <dl class="dl-horizontal wide">
             <dt>{{ wgLang.message( 'review-view-username' ) }}</dt>
             <dd>
               {% if schol.username is not empty %}
@@ -105,20 +105,23 @@
             </dd>
             {% if schol.alt_users is not empty %}
             <dt>{{ wgLang.message( 'review-view-alt-users' ) }}</dt>
-            <dd>{{ schol.alt_users }}</dt>
+            <dd>{{ schol.alt_users }}</dd>
             {% endif %}
             <dt>{{ wgLang.message( 'review-view-active-projects' ) }}</dt>
+            <br>
             {% if schol.project %}
-            <dd>{{ schol.project }}</dt>
+            <dt>{{ wgLang.message( 'review-view-primary-project' )}}</dt>
+            <dd>{{ schol.project }}</dd>
             {% endif %}
             {% if schol.project2 %}
-            <dd>{{ schol.project2 }}</dt>
+            <dt>{{ wgLang.message( 'review-view-secondary-project' )}}</dt>
+            <dd>{{ schol.project2 }}</dd>
             {% endif %}
             {% if not(schol.project or schol.project2) %}
             <dd>{{ wgLang.message( 'review-view-not-specified' ) }}</dd>
             {% endif %}
             <dt>{{ wgLang.message( 'review-view-community' ) }}</dt>
-            <dd>{{ schol.community_name }}</dt>
+            <dd>{{ schol.community_name }}</dd>
           </dl>
 
           <div class="well well-sm">

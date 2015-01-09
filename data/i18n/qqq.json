@@ -241,6 +241,8 @@
     "review-view-alt-users": "Report label",
     "review-view-community": "Report label",
     "review-view-active-projects": "Report label.\n{{Identical|Wiki}}",
+    "review-view-primary-project": "Report label",
+    "review-view-secondary-project": "Report label",
     "review-view-previous-scholar": "Report label",
     "review-view-attending-goals": "Report label",
     "review-view-involvement": "Report label",

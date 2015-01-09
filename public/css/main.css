@@ -87,10 +87,10 @@ a:visited {
 
 @media (min-width: 768px) {
   .dl-horizontal.wide dt {
-    width: 200px;
+    width: 220px;
   }
   .dl-horizontal.wide dd {
-    margin-left: 220px;
+    margin-left: 240px;
   }
 }
 
