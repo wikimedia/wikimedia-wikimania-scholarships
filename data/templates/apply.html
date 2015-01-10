@@ -125,7 +125,7 @@ lang: currently selected display language
         'engage10': wgLang.message( 'form-engagement-option10' )
       } ) }}
     {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
-    {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true } ) }}
+    {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true, 'escape':false } ) }}
     {{ forms.textArea( ctx, 'form-collaboration-explain', 'collaboration', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-experience-explain', 'experience', { 'required':true } ) }}
 </fieldset>
