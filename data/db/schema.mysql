@@ -62,7 +62,6 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , presentationTopic           TEXT
   , howheard                    VARCHAR(64) DEFAULT NULL
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
-  , willpayincidentals          TINYINT(1) NOT NULL DEFAULT '0'
   , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
   , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
   , wmfAgreeName                VARCHAR(255)

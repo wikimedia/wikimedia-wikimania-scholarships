@@ -115,7 +115,6 @@ class Apply extends Form {
 
 		// Application agreement
 		$this->expectTrue( 'willgetvisa' );
-		$this->expectTrue( 'willpayincidentals' );
 		$this->expectTrue( 'agreestotravelconditions' );
 
 		// Privacy
@@ -246,7 +245,7 @@ class Apply extends Form {
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14',
 			'presentation', 'presentationTopic', 'howheard',
 
-			'willgetvisa', 'willpayincidentals', 'agreestotravelconditions',
+			'willgetvisa', 'agreestotravelconditions',
 			
 			'chapteragree', 'wmfAgreeName', 'wmfAgreeGuardian'
 		);

@@ -55,7 +55,6 @@
 	"form-experience-error": "Please provide information about how you share your experiences with the community.",
 	"form-collaboration-error": "Please provide information about your collaborations with other Wikimedians or Wikimedia organizations",
 	"form-willgetvisa-error": "To proceed, please agree to the visa requirements.",
-	"form-willpayincidentals-error": "To proceed, please agree to the scholarship terms and conditions.",
 	"form-agreestotravelconditions-error": "To proceed, please agree to the travel booking agreement.",
 	"form-wmfagree-error": "To proceed, please agree to the applicant rights condition.",
 	"form-wmfAgreeName-error": "Please fill in your full name in the given field to agree to the terms and conditions.",
@@ -128,7 +127,6 @@
 
 	"form-agree": "Application agreement",
 	"form-visa": "If I am awarded and accept a grant, I will be responsible for obtaining a travel visa, if necessary, prior to travel to Mexico City.",
-	"form-incidentals": "If I am awarded and accept a grant, I will be responsible for the cost of airport transfer, incidentals, and meals during the conference.",
 	"form-travel-conditions": "If I am awarded and accept a grant, I agree to use the travel booking service provided and paid for by the Wikimedia Foundation.",
 
 	"form-privacy": "Privacy",
@@ -284,7 +282,6 @@
 	"review-view-presentation-topic": "Topic:",
 	"review-view-engagement": "Engagement with the Wikimedia movement",
 	"review-view-visa": "Will get visa?",
-	"review-view-incidentals": "Will pay incidentals?",
 	"review-view-travel-conditions": "Agrees to travel conditions?",
 	"review-view-not-specified": "Not specified",
 	"review-view-full-dump": "Full dump",

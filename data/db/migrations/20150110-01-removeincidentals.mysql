@@ -1,0 +1,4 @@
+-- Bug: T86369
+-- Drop incidentals check box from Application Agreement
+
+ALTER TABLE scholarships DROP COLUMN willpayincidentals;
