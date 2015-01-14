@@ -38,17 +38,6 @@
             <li {% block nav_li_translate %}{% endblock %}><a href="{{ urlFor( 'translate' ) }}">{{ 'help-translate'|message }}</a></li>
             {% endblock navbar %}
           </ul>
-          <div class="navbar-right navbar-text form-inline">
-            {% if i18nCtx.getAvailableLanguages|length > 1 %}
-            <span class="langlabel">{{ 'nav-language'|message }}</span>
-            <ul class="langlist footer-links">
-              {% for l in i18nCtx.getAvailableLanguages %}
-              <li class="{{ loop.last ? 'last' }}"><a href="{{ app.request.getPath }}?uselang={{ l }}" {{ l == lang ? 'class="selected"' }}>{{ l }}</a></li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-          </div>
-          </ul>
         </div>
       </div>
     </header>
