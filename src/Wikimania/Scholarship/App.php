@@ -158,11 +158,9 @@ class App {
 		} );
 
 		$container->singleton( 'i18nContext', function ( $c ) {
-			$i18n = new \Wikimedia\SimpleI18n\I18nContext(
+			return new \Wikimedia\SimpleI18n\I18nContext(
 				$c->i18nCache, $c->settings['i18n.default'], $c->log
 			);
-			$i18n->setCurrentLanguage( 'en' );
-			return $i18n;
 		} );
 
 		$container->singleton( 'applyDao', function ( $c ) {
