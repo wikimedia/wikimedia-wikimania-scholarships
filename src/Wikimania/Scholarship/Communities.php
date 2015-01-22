@@ -255,7 +255,7 @@ class Communities {
 		'RUE' => 'Rusyn',
 		'RW' => 'Kinyarwanda',
 		'SAH' => 'Sakha',
-		'SAH' => 'Sanskrit',
+		'SA' => 'Sanskrit',
 		'SC' => 'Sardinian',
 		'SCN' => 'Sicilian',
 		'SCO' => 'Scots',

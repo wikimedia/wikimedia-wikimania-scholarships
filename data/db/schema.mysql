@@ -499,7 +499,7 @@ INSERT IGNORE INTO language_communities (code, language, size) VALUES
 , ( 'SAH', 'Sakha', 'Small' )
 , ( 'BAR', 'Bavarian', 'Small' )
 , ( 'VEC', 'Venetian', 'Small' )
-, ( 'SAH', 'Sanskrit', 'Small' )
+, ( 'SA', 'Sanskrit', 'Small' )
 , ( 'NAH', 'Nahuatl', 'Small' )
 , ( 'OS', 'Ossetian', 'Small' )
 , ( 'ROATARA', 'Tarantino', 'Small' )
