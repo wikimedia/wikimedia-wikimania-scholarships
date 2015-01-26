@@ -3,7 +3,8 @@
 		"authors": [
 			"Spring Roll Conan",
 			"Shangkuanlc",
-			"StephDC"
+			"StephDC",
+			"Liuxinyu970226"
 		]
 	},
 	"wikimania": "維基媒體國際會議",
@@ -20,6 +21,7 @@
 	"nav-admin": "管理者",
 	"nav-users": "管理用戶",
 	"nav-account": "我的帳戶",
+	"nav-settings": "設定",
 	"mock": "這是一個模擬個人獎助金申請頁，僅用於測試。",
 	"not-open": "2014年維基年會補助金申請程序尚未開始。可參閱以下網頁，以得取更多資訊：\n<ul>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Main_Page\">關於維基年會</a></li>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Scholarships\">關於補助金</a></li>\n</ul>",
 	"deadline-passed": "<p>補助金申請將於2014年2月17日23:59 UTC截止。</p>\n<p>我們會在2014年4月通知申請者他們的申請有何結果。</p>\n<p>詳情請參閱維基上的<a href='http://wikimania2014.wikimedia.org/wiki/Scholarships'>補助金專頁</a>。</p>",
@@ -97,6 +99,7 @@
 	"new-password": "新密碼：",
 	"save-password": "保存密碼",
 	"admin-user-email": "電郵：",
+	"admin-users-blocked": "已封鎖？",
 	"admin-users-yes": "是",
 	"admin-users-no": "否",
 	"review-countries-country": "國家",

@@ -6,7 +6,8 @@
 			"Shirayuki",
 			"BryanDavis",
 			"Nemo bis",
-			"Robby"
+			"Robby",
+			"Liuxinyu970226"
 		]
 	},
 	"wikimania": "Used as image alt text and in the branding banner",
@@ -119,7 +120,7 @@
 	"form-agree": "Form section label",
 	"form-visa": "Input label, preceeded by checkbox",
 	"form-travel-conditions": "Input label, preceeded by checkbox",
-	"form-privacy": "Form section label",
+	"form-privacy": "Form section label\n{{Identical|Privacy}}",
 	"form-review": "Static content in the application form",
 	"form-chapteragree": "Input label, followed by yes and no radio buttons",
 	"form-rights-heading": "Static content in the application form",
@@ -241,7 +242,7 @@
 	"review-view-community": "Report label",
 	"review-view-active-projects": "Report label.\n{{Identical|Wiki}}",
 	"review-view-primary-project": "Report label",
-	"review-view-secondary-project": "Report label",
+	"review-view-secondary-project": "Report label\n{{Identical|Secondary}}",
 	"review-view-previous-scholar": "Report label",
 	"review-view-attending-goals": "Report label",
 	"review-view-involvement": "Report label",
