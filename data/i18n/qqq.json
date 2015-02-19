@@ -7,7 +7,8 @@
 			"BryanDavis",
 			"Nemo bis",
 			"Robby",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Chase me ladies, I'm the Cavalry"
 		]
 	},
 	"wikimania": "Used as image alt text and in the branding banner",
@@ -87,7 +88,7 @@
 	"form-username": "Input label, followed by text box",
 	"form-other-usernames": "Input label, followed by text box",
 	"form-multilingual-community": "Option label, for multilingual community dropdown list",
-	"form-engagement": "Input label for following ten checkboxes for selecting user engagament in Wikimedia movement",
+	"form-engagement": "Input label for following ten checkboxes for selecting user engagement in Wikimedia movement",
 	"form-engagement-option1": "Option for user engagement in Wikimedia movement",
 	"form-engagement-option2": "Option for user engagement in Wikimedia movement",
 	"form-engagement-option3": "Option for user engagement in Wikimedia movement",
