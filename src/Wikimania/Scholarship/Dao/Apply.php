@@ -563,6 +563,11 @@ class Apply extends AbstractDao {
 			"COALESCE(:expshare * rkexps.expshare, 0)) as p2score ",
 		);
 
+		$having = array(
+			'p1score >= :int_phase1pass',
+			's.exclude = 0',
+		);
+
 		$params['relexp'] = (float)$this->settings['relexp'];
 		$params['expshare'] = (float)$this->settings['expshare'];
 
@@ -580,23 +585,20 @@ class Apply extends AbstractDao {
 
 		if ( $region != 'All' ) {
 			$params['region'] = $region;
-			$regionJoin = 'INNER JOIN iso_countries c1 ON c.region = :region';
-		} else {
-			$regionJoin = '';
+			$fields[] = 'c.region';
+			$having[] = 'c.region = :region';
 		}
 
 		if ( $globalns != 'All' ) {
 			$params['globalns'] = $globalns;
-			$globalnsJoin = 'INNER JOIN iso_countries c2 ON c.globalns = :globalns';
-		} else {
-			$globalnsJoin = '';
+			$fields[] = 'c.globalns';
+			$having[] = 'c.globalns = :globalns';
 		}
 
 		if ( $languageGroup != 'All' ) {
 			$params['languageGroup'] = $languageGroup;
-			$languageGroupJoin = 'INNER JOIN language_communities l1 ON l.size = :languageGroup';
-		} else {
-			$languageGroupJoin = '';
+			$fields[] = 'l.size';
+			$having[] = 'l.size = :languageGroup';
 		}
 
 		$sql = self::concat(
@@ -608,11 +610,8 @@ class Apply extends AbstractDao {
 			"LEFT OUTER JOIN ({$sqlNumScorers}) ns ON s.id = ns.scholarship_id",
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 			"LEFT OUTER JOIN language_communities l ON s.community = l.code",
-			$regionJoin,
-			$globalnsJoin,
-			$languageGroupJoin,
 			'GROUP BY s.id, s.fname, s.lname, s.email, s.residence',
-			'HAVING p1score >= :int_phase1pass AND s.exclude = 0',
+			self::buildHaving( $having ),
 			'ORDER BY p2score DESC, s.id ASC'
 		);
 
