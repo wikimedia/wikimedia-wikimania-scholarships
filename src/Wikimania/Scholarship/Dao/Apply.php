@@ -561,6 +561,9 @@ class Apply extends AbstractDao {
 			"rkexps.expshare AS expshare",
 			"(COALESCE(:relexp * rkrexp.relexp, 0) + " .
 			"COALESCE(:expshare * rkexps.expshare, 0)) as p2score ",
+			'c.region',
+			'c.globalns',
+			'l.size',
 		);
 
 		$having = array(
@@ -585,19 +588,16 @@ class Apply extends AbstractDao {
 
 		if ( $region != 'All' ) {
 			$params['region'] = $region;
-			$fields[] = 'c.region';
 			$having[] = 'c.region = :region';
 		}
 
 		if ( $globalns != 'All' ) {
 			$params['globalns'] = $globalns;
-			$fields[] = 'c.globalns';
 			$having[] = 'c.globalns = :globalns';
 		}
 
 		if ( $languageGroup != 'All' ) {
 			$params['languageGroup'] = $languageGroup;
-			$fields[] = 'l.size';
 			$having[] = 'l.size = :languageGroup';
 		}
 

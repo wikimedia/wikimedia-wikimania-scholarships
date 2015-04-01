@@ -75,7 +75,7 @@ class Phase2List extends Controller {
 			$this->response->headers->set( 'Content-Disposition',
 				'attachment; filename="' . "p2_{$region}_{$ts}" . '.csv"' );
 
-			echo 'id,name,email,residence,gender,age,"# p2 scorers",relexp,expshare,"p2 score"', "\n";
+			echo 'id,name,email,residence,region,"global north/south",size,gender,age,"# p2 scorers",relexp,expshare,"p2 score"', "\n";
 
 			$fp = fopen( 'php://output', 'w' );
 			foreach ( $rows as $row ) {
@@ -84,6 +84,9 @@ class Phase2List extends Controller {
 					ltrim( "{$row['fname']} {$row['lname']}", '=@' ),
 					ltrim( $row['email'], '=@' ),
 					ltrim( $row['country_name'], '=@' ),
+					ltrim( $row['region'], '=@' ),
+					ltrim( $row['globalns'], '=@' ),
+					ltrim( $row['size'], '=@' ),
 					ltrim( $row['gender'], '=@' ),
 					(int)$row['age'],
 					(int)$row['nscorers'],
