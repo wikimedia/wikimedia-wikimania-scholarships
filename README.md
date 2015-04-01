@@ -62,8 +62,6 @@ following variables are expected to be provided:
 * DB_DSN = PDO DSN
 * DB_USER = PDO username
 * DB_PASS = PDO password
-* APPLICATION_OPEN = Date/time that scholarship application period opens
-* APPLICATION_CLOSE = Date/time that scholarship application period closes
 
 The following variables can be optionally provided:
 
@@ -78,8 +76,6 @@ The following variables can be optionally provided:
     SetEnv DB_DSN mysql:host=localhost;dbname=scholarships;charset=utf8
     SetEnv DB_USER my_database_user
     SetEnv DB_PASS "super secret password"
-    SetEnv APPLICATION_OPEN 2013-01-01T00:00:00Z
-    SetEnv APPLICATION_CLOSE 2013-02-01T00:00:00Z
     SetEnv MOCK 1
 
 
@@ -88,8 +84,6 @@ The following variables can be optionally provided:
     env DB_DSN=mysql:host=localhost;dbname=scholarships;charset=utf8
     env DB_USER=my_database_user
     env DB_PASS="super secret password"
-    env APPLICATION_OPEN=2013-01-01T00:00:00Z
-    env APPLICATION_CLOSE=2013-02-01T00:00:00Z
     env MOCK=1
 
 ### .env file
@@ -102,8 +96,6 @@ settings will be injected into the application environment.
     DB_DSN="mysql:host=localhost;dbname=scholarships;charset=utf8"
     DB_USER=my_database_user
     DB_PASS="super secret password"
-    APPLICATION_OPEN=2013-01-01T00:00:00Z
-    APPLICATION_CLOSE=2013-02-01T00:00:00Z
     MOCK=1
 
 Authors
