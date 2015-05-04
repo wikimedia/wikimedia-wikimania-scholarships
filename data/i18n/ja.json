@@ -3,7 +3,8 @@
 		"authors": [
 			"Shirayuki",
 			"Whym",
-			"Sonicarts"
+			"Sonicarts",
+			"아라"
 		]
 	},
 	"wikimania": "ウィキマニア",
@@ -125,7 +126,8 @@
 	"review-view-study": "専攻分野",
 	"review-view-username": "利用者名:",
 	"review-view-alt-users": "その他の利用者名:",
-	"review-view-active-projects": "ウィキ",
+	"review-view-active-projects": "主要ウィキ・プロジェクト：",
+	"review-view-secondary-project": "二次ウィキ・プロジェクト：",
 	"review-view-involvement": "あなたのウィキメディアとの関わりはどのようなものですか？",
 	"review-view-full-dump": "完全ダンプ",
 	"review-view-scorings": "スコアリング",

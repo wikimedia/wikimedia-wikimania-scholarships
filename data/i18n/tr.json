@@ -5,7 +5,8 @@
 			"Trockya",
 			"Incelemeelemani",
 			"Joseph",
-			"Sayginer"
+			"Sayginer",
+			"Hayri özkurt"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -95,6 +96,9 @@
 	"form-review": "Bu başvuruda bulunan bütün bilgiler Wikimania Burs Komitesi üyeleri tarafından incelenecektir. Bütün kişisel bilgiler <a href=\"//wikimediafoundation.org/\">Wikimedia Vakfı</a> ve Komite tarafından kesinlikle gizli tutulacaktır.",
 	"form-chapteragree": "Ben burs seçimi ve ödüllendirme amacıyla kişisel bilgilerimin <a href=\"https://meta.wikimedia.org/wiki/Wikimedia%20chapters\">Wikimedia bölümleri</a> veya <a href=\"https://meta.wikimedia.org/wiki/Wikimedia_thematic_organizations\">tematik kuruluşları</a> ile paylaşılmasını kabul ediyorum.",
 	"form-rights-heading": "Başvuru Hakkı & Veri İşleme İzni ve Transferi",
+	"form-rights2": "(a) Herhangi bir kişisel veri veya hassas kişisel veriler, iddia ediyorum bir parçası olarak ya ilişkin Uygulama (topluca 'Veri') olabilir erişilebilir ve yapılmıştır: (i) WMF; (ıı) üyeden oluşan bir burs Komitesi yapılmış Wikimedia hareketi üyeleri, bir temsilci listesinin hangi bulunabilir: <a href=\"//wikimania2015.wikimedia.org/wiki/Scholarship_committee\">https://wikimania2015.wikimedia.org/wiki/Scholarship_committee</a> ('Burs Komitesi'); ve eğer belirttiğiniz olmak ister kabul için bir WM Bölüm veya WM Tematik Org burs, (ııı) resmi Wikimedia Şubesi, bir temsilci listesinin hangi bulunabilir: <a href=\"//meta.wikimedia.org/wiki/Wikimedia_chapters\">https://meta.wikimedia.org/wiki/Wikimedia_chapters</a> (WM Bölüm'), ve resmi tematik kuruluşları, bir temsilci listesinin hangi bulunabilir: <a href=\"//meta.wikimedia.org/wiki/Wikimedia_thematic_organizations\">https://meta.wikimedia.org/wiki/Wikimedia_thematic_organizations</a> (WM Tematik Düzenlemeler'); amaçlar için değerlendirilmesi başvurum.",
+	"form-rights3": "(b) Herhangi bir Veri ... iddia ediyorum bir parçası olarak ya ilişkin başvurum olabilir toplanan, depolanan, kullanılan, değiştirilen, Tebliğ, arşivlenmiş, tahrip veya başka şekilde işlenmiş (topluca 'İşlenmiş' veya 'İşleme'): (i) WMF; (ii) üyelerinin Burs Komitesi; ve eğer belirttiğiniz olmak ister kabul için bir WM Bölüm veya WM Tematik Org burs, (ııı) DİSK Bölümleri ve WM Tematik Düzenlemeler. Verilerimi ilgili yasaların gerektirdiği sürece benim Veri imha edilmeli WMF yazılı ya da ben istek kadar WMF tarafından muhafaza edilebilir.",
+	"form-rights4": "(c) yanlış Veri olabilir bulaşabilecek: (i) WMF içinde Amerika Birleşik Devletleri; (ii) üyelerinin Burs Komitesi ülke olan kalıyorlar; ve eğer belirttiğiniz olmak ister kabul için bir WM Bölüm veya WM Tematik Org burs, (ııı) DİSK Bölümleri ve/veya WM Tematik Düzenlemeler ülke olan kuruluşlar tabanlı.",
 	"form-wmfagree": "Ben 'Başvuru Hakkı & Veri İşleme İzni ve Transferi' bölümünde yapılan açıklamayı kabul ediyorum.",
 	"form-wmfAgreeName": "Lütfen tam adınızı girin:",
 	"form-wmfAgreeGuardian": "18 yaşından küçükseniz, ebeveyninizin ya da yasal vasinizin tam adını girin:",
@@ -148,6 +152,7 @@
 	"review": "İncele",
 	"search": "Ara",
 	"by-country": "Ülkeye göre",
+	"by-language-group": "Dil Grubu tarafından",
 	"by-region": "Bölgeye göre",
 	"change-password": "Parolayı değiştir",
 	"logout": "Oturumu kapat",
@@ -160,6 +165,7 @@
 	"admin-user-email": "E-posta:",
 	"admin-user-reviewer": "İnceleyici:",
 	"admin-user-valid": "Geçerli:",
+	"admin-user-admin": "Admin:",
 	"admin-user-blocked": "Engelli:",
 	"admin-user-save": "Değişiklikleri kaydet",
 	"admin-users-id": "kimlik",
@@ -182,6 +188,7 @@
 	"review-list-residence": "İkametgah",
 	"review-list-gender": "Cinsiyet",
 	"review-list-age": "Yaş",
+	"review-list-relexp": "İlgili Deneyim",
 	"review-countries-country": "Ülke",
 	"review-countries-region": "Bölge",
 	"review-countries-count": "Burs sayısı",

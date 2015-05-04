@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Farras"
+			"Farras",
+			"Kenrick95",
+			"Totosunarto"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "London 2014",
-	"header-title": "Wikimania - Formulir beasiswa",
+	"wikimania-location-year": "Mexico City 2015",
+	"header-title": "Wikimania 2015 - Pengajuan beasiswa",
 	"nav-apply": "Daftar",
 	"nav-faq": "FAQ",
 	"nav-credits": "Kredit",
@@ -18,6 +20,7 @@
 	"nav-admin": "Pengurus",
 	"nav-users": "Kelola pengguna",
 	"nav-account": "Akun Saya",
+	"nav-settings": "Pengaturan",
 	"mock": "Ini adalah situs formulir beasiswa tiruan. Untuk uji coba.",
 	"not-open": "Proses Beasiswa Wikimania 2014 belum dibuka. Untuk informasi lebih lanjut, lihat:\n<ul>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Main_Page\">Tentang Wikimania</a></li>\n<li><a href=\"https://wikimania2014.wikimedia.org/wiki/Scholarships\">Tentang Beasiswa</a></li>\n</ul>",
 	"deadline-passed": "<p>Batas waktu pendaftaran beasiswa adalah 17 Februari 2014, 23:59 UTC.</p>\n<p>Kami akan memberitahu hasil pendaftarannya pada bulan April 2014.</p>\n<p>Silakan lihat <a href='http://wikimania2014.wikimedia.org/wiki/Scholarships'>halaman beasiswa</a> di wiki ini untuk informasi lebih lanjut.</p>",
