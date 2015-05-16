@@ -9,7 +9,8 @@
 			"Leehoy",
 			"Priviet",
 			"Revi",
-			"Twotwo2019"
+			"Twotwo2019",
+			"SeoJeongHo"
 		]
 	},
 	"wikimania": "위키매니아",
@@ -218,6 +219,7 @@
 	"review-list-p1-score": "p1 점수",
 	"review-list-p2-score": "p2 점수",
 	"review-list-residence": "거주지",
+	"review-list-size": "크기",
 	"review-list-gender": "성별",
 	"review-list-age": "나이",
 	"review-list-num-p2": "# p2 득점자",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Jopparn",
 			"WikiPhoenix",
-			"Ainali"
+			"Ainali",
+			"Josve05a"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -132,6 +133,8 @@
 	"review-list-name": "Namn",
 	"review-list-email": "E-post",
 	"review-list-residence": "Bostad",
+	"review-list-region": "Region",
+	"review-list-size": "Storlek",
 	"review-list-gender": "Kön",
 	"review-list-age": "Ålder",
 	"review-countries-country": "Land",

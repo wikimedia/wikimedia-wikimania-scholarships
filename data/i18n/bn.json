@@ -121,6 +121,8 @@
 	"admin-users-add": "নতুন ব্যবহারকারী যোগ করুন",
 	"review-list-name": "নাম",
 	"review-list-email": "ই-মেইল",
+	"review-list-region": "অঞ্চল",
+	"review-list-size": "আকার",
 	"review-list-gender": "লিঙ্গ",
 	"review-list-age": "বয়স",
 	"review-countries-country": "দেশ",
