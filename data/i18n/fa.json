@@ -4,7 +4,8 @@
 			"Pouyana",
 			"Reza1615",
 			"Ebraminio",
-			"Mjbmr"
+			"Mjbmr",
+			"Dalba"
 		]
 	},
 	"wikimania": "ویکی‌مانیا",
@@ -142,7 +143,7 @@
 	"admin-user-reviewer": "بازبین هست:",
 	"admin-user-valid": "معتبر است:",
 	"admin-user-admin": "مدیر است:",
-	"admin-user-blocked": "مسدود شده است:",
+	"admin-user-blocked": "بسته است:",
 	"admin-user-save": "ذخیرهٔ تغییرات",
 	"admin-users-id": "شناسه",
 	"admin-users-username": "نام کاربر",

@@ -6,7 +6,8 @@
 			"Liuxinyu970226",
 			"Shangkuanlc",
 			"JuneAugust",
-			"凡人丶"
+			"凡人丶",
+			"LNDDYL"
 		]
 	},
 	"wikimania": "维基媒体国际会议",
@@ -40,7 +41,7 @@
 	"form-email-error": "请输入您的电子邮件地址。",
 	"form-residence-error": "请选择您所在的国家。",
 	"form-nationality-error": "请选择您的国籍。",
-	"form-yy-error": "请选择您的出生日期。",
+	"form-yy-error": "请选择您的出生年份。",
 	"form-dd-error": "请选择您的出生日期。",
 	"form-mm-error": "请选择您的出生日期。",
 	"form-gender-error": "请选择您的性别。",
