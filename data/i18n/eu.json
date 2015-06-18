@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"An13sa"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -114,8 +115,8 @@
 	"review-view-nationality": "Herritartasuna:",
 	"review-view-dateofbirth": "Jaiotza data:",
 	"review-view-gender": "Sexua",
-	"review-view-active-projects": "Wiki proiektu nagusiak:",
-	"review-view-secondary-project": "Bigarren mailakoa:",
+	"review-view-active-projects": "Wiki proiektu nagusia:",
+	"review-view-secondary-project": "Bigarren mailako wiki proiektua:",
 	"review-view-presenter": "Aurkezpena?",
 	"review-view-presentation-topic": "Gaia:",
 	"review-view-criteria": "Irizpideak",
