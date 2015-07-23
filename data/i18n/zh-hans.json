@@ -159,6 +159,7 @@
 	"login-failed": "登录失败。",
 	"login-error": "需要用户名和密码。",
 	"error-heading": "系统错误",
+	"error-message": "发生意外错误，我们正在尝试修复问题。请稍后重试。",
 	"error-id": "错误ID：$1",
 	"404-header": "找不到页面",
 	"404-message": "无法找到您请求的页面。请检查链接或URL后重试。",
