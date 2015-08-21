@@ -4,7 +4,7 @@
 	"license": "GPL-3.0",
 	"require": {
 		"php": ">=5.3.7",
-		"twig/twig": "v1.16.2",
+		"twig/twig": "v1.20.0",
 		"slim/slim": "2.4.3",
 		"slim/views": "0.1.2",
 		"monolog/monolog": "1.11.0",
