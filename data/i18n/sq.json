@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Edlira"
+			"Edlira",
+			"Kosovastar"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -188,7 +189,7 @@
 	"admin-user-email": "Email:",
 	"admin-user-reviewer": "Është recensent:",
 	"admin-user-valid": "Është e vlefshme:",
-	"admin-user-admin": "Është admin:",
+	"admin-user-admin": "Është administrator:",
 	"admin-user-blocked": "Është bllokuar:",
 	"admin-user-save": "Ruaj ndryshimet",
 	"admin-users-id": "id",
