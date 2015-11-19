@@ -65,6 +65,9 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , presentationTopic           TEXT
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
   , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
+  , grantfortravelonly          TINYINT(1) NOT NULL DEFAULT '0'
+  , agreestofriendlyspace       TINYINT(1) NOT NULL DEFAULT '0'
+  , infotrue                    TINYINT(1) NOT NULL DEFAULT '0'
   , wmfAgreeName                VARCHAR(255)
   , wmfAgreeGuardian            VARCHAR(255) DEFAULT NULL
   , notes                       TEXT

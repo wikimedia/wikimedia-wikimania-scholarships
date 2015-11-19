@@ -149,6 +149,9 @@ lang: currently selected display language
     <legend>{{ 'form-agree'|message }}</legend>
     {{ forms.checkbox( ctx, 'form-visa', 'willgetvisa', { 'required':true } ) }}
     {{ forms.checkbox( ctx, 'form-travel-conditions', 'agreestotravelconditions', { 'required':true } ) }}
+    {{ forms.checkbox( ctx, 'form-travel-only', 'grantfortravelonly', { 'required':true } ) }}
+    {{ forms.checkbox( ctx, 'form-friendly-space', 'agreestofriendlyspace', { 'required':true, 'escape':false } ) }}
+    {{ forms.checkbox( ctx, 'form-info-true', 'infotrue', { 'required':true } ) }}
   </fieldset>
 
   <fieldset>
