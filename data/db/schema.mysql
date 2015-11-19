@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS rankings (
 
 CREATE TABLE IF NOT EXISTS scholarships (
     id                          INT(11) NOT NULL AUTO_INCREMENT
+  , type                        ENUM('partial', 'full', 'either') DEFAULT NULL
+  , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
   , fname                       VARCHAR(32) DEFAULT NULL
   , lname                       VARCHAR(32) DEFAULT NULL
   , email                       VARCHAR(64) DEFAULT NULL
@@ -56,14 +58,13 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , wm12                        TINYINT(1) DEFAULT NULL
   , wm13                        TINYINT(1) DEFAULT NULL
   , wm14                        TINYINT(1) DEFAULT NULL
+  , wm15                        TINYINT(1) DEFAULT NULL
   , prev_scholar                TINYINT(1) DEFAULT NULL
   , goals                       TEXT
   , presentation                TINYINT(1) DEFAULT NULL
   , presentationTopic           TEXT
-  , howheard                    VARCHAR(64) DEFAULT NULL
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
   , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
-  , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
   , wmfAgreeName                VARCHAR(255)
   , wmfAgreeGuardian            VARCHAR(255) DEFAULT NULL
   , notes                       TEXT

@@ -50,6 +50,10 @@ class Apply extends Form {
 		$validCommunities = array_keys( Communities::$COMMUNITY_NAMES );
 		$validWikis = Wikis::$WIKI_NAMES;
 
+		// Scholarship type
+		$this->requireInArray( 'type', array( 'partial', 'full', 'either' ) );
+		$this->requireBool( 'chapteragree' );
+
 		// Contact information
 		$this->requireString( 'fname' );
 		$this->requireString( 'lname' );
@@ -103,6 +107,7 @@ class Apply extends Form {
 		$this->expectBool( 'wm12' );
 		$this->expectBool( 'wm13' );
 		$this->expectBool( 'wm14' );
+		$this->expectBool( 'wm15' );
 		$this->requireBool( 'prev_scholar' );
 		$this->expectString( 'goals', array(
 			'validate' => array( $this, 'validatePrevScholar' )
@@ -111,14 +116,12 @@ class Apply extends Form {
 		$this->expectString( 'presentationTopic', array(
 			'validate' => array( $this, 'validatePresentationTopic' ),
 		) );
-		$this->expectInt( 'howheard' );
 
 		// Application agreement
 		$this->expectTrue( 'willgetvisa' );
 		$this->expectTrue( 'agreestotravelconditions' );
 
 		// Privacy
-		$this->expectBool( 'chapteragree' );
 		$this->expectTrue( 'wmfagree' );
 		$this->requireString( 'wmfAgreeName' );
 		$this->expectString( 'wmfAgreeGuardian', array(
@@ -233,7 +236,7 @@ class Apply extends Form {
 	 */
 	public function save() {
 		$colnames = array(
-			'fname', 'lname', 'email', 'residence',
+			'type', 'chapteragree', 'fname', 'lname', 'email', 'residence',
 
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
@@ -242,12 +245,12 @@ class Apply extends Form {
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
 			'involvement', 'contribution', 'experience', 'collaboration',
 			'prev_scholar', 'goals', 'involvement', 'contribution',
-			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14',
-			'presentation', 'presentationTopic', 'howheard',
+			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14', 'wm15',
+			'presentation', 'presentationTopic',
 
 			'willgetvisa', 'agreestotravelconditions',
-			
-			'chapteragree', 'wmfAgreeName', 'wmfAgreeGuardian'
+
+			'wmfAgreeName', 'wmfAgreeGuardian'
 		);
 
 		$answers = array();
