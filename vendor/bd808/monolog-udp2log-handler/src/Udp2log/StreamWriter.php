@@ -66,8 +66,9 @@ class StreamWriter implements Writer
 
     public function close()
     {
-        if ($this->fhandle !== null) {
+        if (is_resource($this->fhandle)) {
             fclose($this->fhandle);
         }
+        $this->fhandle = null;
     }
 }

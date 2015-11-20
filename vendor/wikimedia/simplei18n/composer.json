@@ -2,7 +2,7 @@
     "name": "wikimedia/simplei18n",
     "description": "No frills internationalization engine",
     "keywords": ["i18n", "internationalization", "l10n", "localization"],
-    "homepage": "https://github.com/bd808/wikimedia-simplei18n",
+    "homepage": "https://github.com/wikimedia/simplei18n",
     "license": "GPL-3.0+",
     "authors": [
         {

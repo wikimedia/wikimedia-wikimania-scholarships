@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Wikimedia\\Slimapp\\' => array($vendorDir . '/wikimedia/slimapp/src'),
     'Wikimedia\\SimpleI18n\\' => array($vendorDir . '/wikimedia/simplei18n/src'),
+    'Slim\\Views\\' => array($vendorDir . '/slim/views'),
     'Monolog\\Handler\\' => array($vendorDir . '/bd808/monolog-udp2log-handler/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
 );
