@@ -20,27 +20,34 @@
  * @file
  */
 
-namespace Wikimania\Scholarship;
+namespace Wikimania\Scholarship\Auth;
 
 /**
+ * Manage authentication and authorization.
  *
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
-class TwigExtension extends \Twig_Extension {
+class AuthManager extends \Wikimedia\Slimapp\Auth\AuthManager {
 
-	public function getName() {
-		return 'scholarship';
+	/**
+	 * Is the user an administrator?
+	 * @return bool True if the user is authorized to perform admin tasks,
+	 * false otherwise
+	 */
+	public function isAdmin() {
+		$user = $this->getUserData();
+		return $user ? $user->isAdmin() : false;
 	}
 
-	public function getFunctions() {
-		return array(
-			new \Twig_SimpleFunction('qsMerge', array($this, 'qsMerge')),
-		);
-	}
 
-	public function qsMerge( $parms ) {
-		return Form::qsMerge( $parms );
+	/**
+	 * Is the user a reviewer?
+	 * @return bool True if the user is authorized to perform review tasks,
+	 * false otherwise
+	 */
+	public function isReviewer() {
+		$user = $this->getUserData();
+		return $user ? $user->isReviewer() : false;
 	}
-
 }

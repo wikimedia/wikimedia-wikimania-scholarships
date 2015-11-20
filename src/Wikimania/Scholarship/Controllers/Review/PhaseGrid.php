@@ -22,7 +22,7 @@
 
 namespace Wikimania\Scholarship\Controllers\Review;
 
-use Wikimania\Scholarship\Controller;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * Display a grid of reviews in a given phase.

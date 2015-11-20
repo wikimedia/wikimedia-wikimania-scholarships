@@ -22,52 +22,50 @@
 
 namespace Wikimania\Scholarship;
 
+use Wikimania\Scholarship\Auth\AuthManager;
+
+use Wikimedia\SimpleI18n\I18nContext;
+use Wikimedia\SimpleI18n\JsonCache;
+use Wikimedia\Slimapp\AbstractApp;
+use Wikimedia\Slimapp\Config;
+use Wikimedia\Slimapp\CsrfMiddleware;
+use Wikimedia\Slimapp\Form;
+use Wikimedia\Slimapp\HeaderMiddleware;
+use Wikimedia\Slimapp\Mailer;
+use Wikimedia\Slimapp\ParsoidClient;
+use Wikimedia\Slimapp\TwigExtension;
+
 /**
  * Wikimania scholarships.
  *
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
-class App {
+class App extends AbstractApp {
 
 	/**
-	 * @var string $deployDir
+	 * Apply settings to the Slim application.
+	 *
+	 * @param \Slim\Slim $slim Application
 	 */
-	protected $deployDir;
-
-	/**
-	 * @var \Slim\Slim $slim
-	 */
-	protected $slim;
-
-	/**
-	 * @param string $deployDir Full path to code deployment
-	 */
-	public function __construct( $deployDir ) {
-		$this->deployDir = $deployDir;
-
+	protected function configureSlim( \Slim\Slim $slim ) {
 		// Common configuration
-		$this->slim = new \Slim\Slim( array(
-			'mode' => 'production',
-			'debug' => false,
-			'log.level' => Config::getStr( 'LOG_LEVEL', \Psr\Log\LogLevel::NOTICE ),
-			'log.file' => Config::getStr( 'LOG_FILE', 'php://stderr' ),
-			'view' => new \Slim\Views\Twig(),
-			'view.cache' => Config::getStr( 'CACHE_DIR', "{$this->deployDir}/data/cache" ),
-			'smtp.host' => Config::getStr( 'SMTP_HOST', 'localhost' ),
-			'templates.path' => "{$this->deployDir}/data/templates",
-			'i18n.path' => "{$this->deployDir}/data/i18n",
-			'i18n.default' => 'en',
+		$slim->config( array(
+			'log.channel' => 'scholarships',
 			'db.dsn' => Config::getStr( 'DB_DSN' ),
 			'db.user' => Config::getStr( 'DB_USER' ),
 			'db.pass' => Config::getStr( 'DB_PASS' ),
-		));
-
-		$slim = $this->slim;
+			'parsoid.url' => Config::getStr( 'PARSOID_URL',
+				'http://parsoid-lb.eqiad.wikimedia.org/enwiki/'
+			),
+			'parsoid.cache' => Config::getStr( 'CACHE_DIR',
+				"{$this->deployDir}/data/cache"
+			),
+		) );
 
 		// Production configuration that should not be shared with development
 		// Enabled by default or SLIM_MODE=production in environment
-		$this->slim->configureMode( 'production', function () use ( $slim ) {
+		$slim->configureMode( 'production', function () use ( $slim ) {
 			// Install a custom error handler
 			$slim->error( function ( \Exception $e ) use ( $slim ) {
 				$errorId = substr( session_id(), 0, 8 ) . '-' . substr( uniqid(), -8 );
@@ -79,86 +77,54 @@ class App {
 				$slim->view->set( 'errorId', $errorId );
 				$slim->render( 'error.html' );
 			} );
-		});
+		} );
 
 		// Development configuration
 		// Enable by setting SLIM_MODE=development in environment
-		$this->slim->configureMode( 'development', function () use ( $slim ) {
+		$slim->configureMode( 'development', function () use ( $slim ) {
 			$slim->config( array(
 				'debug' => true,
 				'log.level' => Config::getStr( 'LOG_LEVEL', \Psr\Log\LogLevel::DEBUG ),
 				'view.cache' => false,
 			) );
-		});
+		} );
 
-		// Slim does not natively understand being behind a proxy
-		// If not corrected template links created via siteUrl() may use the wrong
-		// protocol (http instead of https).
-		if ( getenv( 'HTTP_X_FORWARDED_PROTO' ) ) {
-			$proto = getenv( 'HTTP_X_FORWARDED_PROTO' );
-			$this->slim->environment['slim.url_scheme'] = $proto;
-
-			$port = getenv( 'HTTP_X_FORWARDED_PORT' );
-			if ( $port === false ) {
-				$port = ( $proto == 'https' ) ? '443' : '80';
-			}
-			$this->slim->environment['SERVER_PORT'] = $port;
-		}
-
-		$this->configureIoc();
-		$this->configureView();
-		$this->configureRoutes();
-	}
-
-
-	/**
-	 * Main entry point for all requests.
-	 */
-	public function run () {
-
-		session_name( '_s' );
-		session_cache_limiter(false);
-		session_start();
-
-		$this->slim->mock = Config::getBool( 'MOCK' );
-
-		// run the app
-		$this->slim->run();
+		$slim->mock = Config::getBool( 'MOCK' );
 	}
 
 
 	/**
 	 * Configure inversion of control/dependency injection container.
+	 *
+	 * @param \Slim\Helper\Set $container IOC container
 	 */
-	protected function configureIoc() {
-		$container = $this->slim->container;
-
+	protected function configureIoc( \Slim\Helper\Set $container ) {
 		$container->singleton( 'userDao', function ( $c ) {
-			return new \Wikimania\Scholarship\Dao\User(
+			return new Dao\User(
 				$c->settings['db.dsn'],
 				$c->settings['db.user'], $c->settings['db.pass'],
 				$c->log );
-		});
+		} );
 
 		$container->singleton( 'settingsDao', function ( $c ) {
-			return new \Wikimania\Scholarship\Dao\Settings(
+			return new Dao\Settings(
 				$c->settings['db.dsn'],
 				$c->settings['db.user'], $c->settings['db.pass'],
 				$c->log );
-		});
+		} );
 
 		$container->singleton( 'authManager', function ( $c ) {
-			return new \Wikimania\Scholarship\AuthManager( $c->userDao );
-		});
+			return new AuthManager( $c->userDao );
+		} );
 
 		$container->singleton( 'i18nCache', function ( $c ) {
-			return new \Wikimedia\SimpleI18n\JsonCache(
+			return new JsonCache(
 				$c->settings['i18n.path'], $c->log
 			);
 		} );
 
 		$container->singleton( 'i18nContext', function ( $c ) {
-			return new \Wikimedia\SimpleI18n\I18nContext(
+			return new I18nContext(
 				$c->i18nCache, $c->settings['i18n.default'], $c->log
 			);
 		} );
@@ -166,58 +132,42 @@ class App {
 		$container->singleton( 'applyDao', function ( $c ) {
 			$uid = $c->authManager->getUserId();
 			$settings = $c->settingsDao->getSettings();
-			return new \Wikimania\Scholarship\Dao\Apply(
+			return new Dao\Apply(
 				$c->settings['db.dsn'],
 				$c->settings['db.user'], $c->settings['db.pass'],
 				$uid, $settings, $c->log );
-		});
+		} );
 
 		$container->singleton( 'applyForm', function ( $c ) {
 			$dao = $c->applyDao;
-			return new \Wikimania\Scholarship\Forms\Apply( $dao );
-		});
+			return new Forms\Apply( $dao );
+		} );
 
 		$container->singleton( 'mailer',  function ( $c ) {
-			return new \Wikimania\Scholarship\Mailer(
+			return new Mailer(
 				array(
 					'Host' => $c->settings['smtp.host'],
 				),
 				$c->log
 			);
-		});
+		} );
 
-		// replace default logger with monolog
-		$container->singleton( 'log', function ( $c ) {
-			// Convert string level to Monolog integer value
-			$level = strtoupper( $c->settings['log.level'] );
-			$level = constant( "\Monolog\Logger::{$level}" );
-
-			$log = new \Monolog\Logger( 'scholarships' );
-			$handler = new \Monolog\Handler\Udp2logHandler(
-				$c->settings['log.file'],
-				$level
+		$container->singleton( 'parsoid', function ( $c ) {
+			return new ParsoidClient(
+				$c->settings['parsoid.url'],
+				$c->settings['parsoid.cache'],
+				$c->log
 			);
-			$handler->setFormatter( new \Monolog\Formatter\LogstashFormatter(
-				'scholarships', null, null, '',
-				\Monolog\Formatter\LogstashFormatter::V1
-			) );
-			$handler->pushProcessor( new \Monolog\Processor\PsrLogMessageProcessor() );
-			$handler->pushProcessor( new \Monolog\Processor\ProcessIdProcessor() );
-			$handler->pushProcessor( new \Monolog\Processor\UidProcessor() );
-			$handler->pushProcessor( new \Monolog\Processor\WebProcessor() );
-			$log->pushHandler( $handler );
-			return $log;
 		} );
 	}
 
 
 	/**
 	 * Configure view behavior.
+	 *
+	 * @param \Slim\View $view Default view
 	 */
-	protected function configureView() {
-		// configure twig views
-		$view = $this->slim->view;
-
+	protected function configureView( \Slim\View $view ) {
 		$view->parserOptions = array(
 			'charset' => 'utf-8',
 			'cache' => $this->slim->config( 'view.cache' ),
@@ -230,7 +180,7 @@ class App {
 		// install twig parser extensions
 		$view->parserExtensions = array(
 			new \Slim\Views\TwigExtension(),
-			new TwigExtension(),
+			new TwigExtension( $this->slim->parsoid ),
 			new \Wikimedia\SimpleI18n\TwigExtension( $this->slim->i18nContext ),
 		);
 
@@ -244,15 +194,16 @@ class App {
 
 	/**
 	 * Configure routes to be handled by application.
+	 *
+	 * @param \Slim\Slim $slim Application
 	 */
-	protected function configureRoutes() {
-		$slim = $this->slim;
-
+	protected function configureRoutes( \Slim\Slim $slim ) {
 		// Add a Vary: Cookie header to all responses
 		$headerMiddleware = new HeaderMiddleware( array(
 			'Vary' => 'Cookie',
 		) );
 		$slim->add( $headerMiddleware );
+
 		// Add CSRF protection
 		$slim->add( new CsrfMiddleware() );
 
@@ -272,7 +223,7 @@ class App {
 					// redirect to login form if not authenticated
 					if ( $slim->request->isGet() ) {
 						$uri = $slim->request->getUrl() . $slim->request->getPath();
-						$qs = \Wikimania\Scholarship\Form::qsMerge();
+						$qs = Form::qsMerge();
 						if ( $qs ) {
 							$uri = "{$uri}?{$qs}";
 						}
@@ -283,7 +234,7 @@ class App {
 					$slim->redirect( $slim->urlFor( 'login' ) );
 				}
 
-				$user = $slim->authManager->getUser();
+				$user = $slim->authManager->getUserData();
 				$slim->view->set( 'user', $user );
 				$slim->view->set( 'isadmin', $slim->authManager->isAdmin() );
 			},
@@ -293,7 +244,7 @@ class App {
 					// redirect to login form if not an admin user
 					if ( $slim->request->isGet() ) {
 						$uri = $slim->request->getUrl() . $slim->request->getPath();
-						$qs = \Wikimania\Scholarship\Form::qsMerge();
+						$qs = Form::qsMerge();
 						if ( $qs ) {
 							$uri = "{$uri}?{$qs}";
 						}
@@ -313,14 +264,14 @@ class App {
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'apply' ) );
-			})->name( 'home' );
+			} )->name( 'home' );
 
 			$slim->get( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\ScholarshipApplication( $slim );
 				$page->setDao( $slim->settingsDao );
 				$page->setForm( $slim->applyForm );
 				$page();
-			})->name( 'apply' );
+			} )->name( 'apply' );
 
 			$slim->post( 'apply', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\ScholarshipApplication( $slim );
@@ -328,12 +279,12 @@ class App {
 				$page->setForm( $slim->applyForm );
 				$page->setMailer( $slim->mailer );
 				$page();
-			})->name( 'apply_post' );
+			} )->name( 'apply_post' );
 
 			$slim->get( 'apply/revalidatecsrf', function () use ( $slim ) {
 				$page = new Controllers\RevalidateCsrf( $slim );
 				$page();
-			})->name( 'revalidatecsrf' );
+			} )->name( 'revalidatecsrf' );
 
 			App::template( $slim, 'contact' );
 			App::template( $slim, 'credits' );
@@ -343,19 +294,19 @@ class App {
 			$slim->get( 'login', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\Login( $slim );
 				$page();
-			})->name( 'login' );
+			} )->name( 'login' );
 
 			$slim->post( 'login.post', $middleware['must-revalidate'], function () use ( $slim ) {
 				$page = new Controllers\Login( $slim );
 				$page();
-			})->name( 'login_post' );
+			} )->name( 'login_post' );
 
 			$slim->get( 'logout', $middleware['must-revalidate'], function () use ( $slim ) {
 				$slim->authManager->logout();
 				$slim->redirect( $slim->urlFor( 'home' ) );
-			})->name( 'logout' );
+			} )->name( 'logout' );
 
-		});
+		} );
 
 		// routes for authenticated users
 		$slim->group( '/user/',
@@ -365,20 +316,20 @@ class App {
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'user_changepassword' ) );
-			})->name( 'user_home' );
+			} )->name( 'user_home' );
 
 			$slim->get( 'changePassword', function () use ( $slim ) {
 				$page = new Controllers\User\ChangePassword( $slim );
 				$page();
-			})->name( 'user_changepassword' );
+			} )->name( 'user_changepassword' );
 
 			$slim->post( 'changePassword.post', function () use ( $slim ) {
 				$page = new Controllers\User\ChangePassword( $slim );
 				$page->setDao( $slim->userDao );
 				$page();
-			})->name( 'user_changepassword_post' );
+			} )->name( 'user_changepassword_post' );
 
-		});
+		} );
 
 		// routes for reviewers
 		$slim->group( '/review/',
@@ -388,85 +339,85 @@ class App {
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'review_phase1' ) );
-			})->name( 'review_home' );
+			} )->name( 'review_home' );
 
 			$slim->get( 'view', function () use ( $slim ) {
 				$page = new Controllers\Review\Application( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_view' );
+			} )->name( 'review_view' );
 
 			$slim->post( 'view.post', function () use ( $slim ) {
 				$page = new Controllers\Review\Application( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_view_post' );
+			} )->name( 'review_view_post' );
 
 			$slim->get( 'phase1', function () use ( $slim ) {
 				$page = new Controllers\Review\PhaseGrid( $slim );
 				$page->setDao( $slim->applyDao );
 				$page->setPhase( 1 );
 				$page();
-			})->name( 'review_phase1' );
+			} )->name( 'review_phase1' );
 
 			$slim->get( 'phase2', function () use ( $slim ) {
 				$page = new Controllers\Review\PhaseGrid( $slim );
 				$page->setDao( $slim->applyDao );
 				$page->setPhase( 2 );
 				$page();
-			})->name( 'review_phase2' );
+			} )->name( 'review_phase2' );
 
 			$slim->get( 'p1/successList', function () use ( $slim ) {
 				$page = new Controllers\Review\Phase1List( $slim );
 				$page->setDao( $slim->applyDao );
 				$page->setType( Controllers\Review\Phase1List::TYPE_SUCCESS );
 				$page();
-			})->name( 'review_p1_success' );
+			} )->name( 'review_p1_success' );
 
 			$slim->get( 'p1/failList', function () use ( $slim ) {
 				$page = new Controllers\Review\Phase1List( $slim );
 				$page->setDao( $slim->applyDao );
 				$page->setType( Controllers\Review\Phase1List::TYPE_FAIL );
 				$page();
-			})->name( 'review_p1_fail' );
+			} )->name( 'review_p1_fail' );
 
 			$slim->get( 'p2/list', function () use ( $slim ) {
 				$page = new Controllers\Review\Phase2List( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_p2_list' );
+			} )->name( 'review_p2_list' );
 
 			$slim->get( 'search', function () use ( $slim ) {
 				$page = new Controllers\Review\Search( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_search' );
+			} )->name( 'review_search' );
 
 			$slim->get( 'countries', function () use ( $slim ) {
 				$page = new Controllers\Review\Countries( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_countries' );
+			} )->name( 'review_countries' );
 
 			$slim->get( 'scores', function () use ( $slim ) {
 				$page = new Controllers\Review\Scores( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_scores' );
+			} )->name( 'review_scores' );
 
 			$slim->get( 'regions', function () use ( $slim ) {
 				$page = new Controllers\Review\Regions( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_regions' );
+			} )->name( 'review_regions' );
 
 			$slim->get( 'communities', function () use ( $slim ) {
 				$page = new Controllers\Review\Communities( $slim );
 				$page->setDao( $slim->applyDao );
 				$page();
-			})->name( 'review_communities' );
+			} )->name( 'review_communities' );
 
-		});
+		} );
 
 		$slim->group( '/admin/',
 			$middleware['must-revalidate'], $middleware['require-user'], $middleware['require-admin'],
@@ -476,53 +427,38 @@ class App {
 				$page = new Controllers\Admin\Users( $slim );
 				$page->setDao( $slim->userDao );
 				$page();
-			})->name( 'admin_users' );
+			} )->name( 'admin_users' );
 
 			$slim->get( 'user/:id', function ( $id ) use ( $slim ) {
 				$page = new Controllers\Admin\User( $slim );
 				$page->setDao( $slim->userDao );
 				$page( $id );
-			})->name( 'admin_user' );
+			} )->name( 'admin_user' );
 
 			$slim->get( 'settings', function () use ( $slim ) {
 				$page = new Controllers\Admin\Settings( $slim );
 				$page->setDao( $slim->settingsDao );
 				$page();
-			})->name( 'admin_settings' );
+			} )->name( 'admin_settings' );
 
 			$slim->post( 'settings.post', function () use ( $slim ) {
 				$page = new Controllers\Admin\Settings( $slim );
 				$page->setDao( $slim->settingsDao );
 				$page();
-			})->name( 'admin_settings_post' );
+			} )->name( 'admin_settings_post' );
 
 			$slim->post( 'user.post', function () use ( $slim ) {
 				$page = new Controllers\Admin\User( $slim );
 				$page->setDao( $slim->userDao );
 				$page->setMailer( $slim->mailer );
 				$page();
-			})->name( 'admin_user_post' );
+			} )->name( 'admin_user_post' );
 
-		});
+		} );
 
 		$slim->notFound( function () use ( $slim, $middleware ) {
 			$slim->render( '404.html' );
-		});
-	}
-
-
-	/**
-	 * Add a static template route to the app.
-	 * @param \Slim\Slim $slim App
-	 * @param string $name Page name
-	 * @param string $routeName Name for the route
-	 */
-	public static function template( $slim, $name, $routeName = null ) {
-		$routeName = $routeName ?: $name;
-
-		$slim->get( $name, function () use ( $slim, $name ) {
-			$slim->render( "{$name}.html" );
-		})->name( $routeName );
+		} );
 	}
 
 } //end App

@@ -22,11 +22,12 @@
 
 namespace Wikimania\Scholarship\Forms;
 
-use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Communities;
+use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Dao\Apply as ApplyDao;
-use Wikimania\Scholarship\Form;
 use Wikimania\Scholarship\Wikis;
+
+use Wikimedia\Slimapp\Form;
 
 use DateTime;
 

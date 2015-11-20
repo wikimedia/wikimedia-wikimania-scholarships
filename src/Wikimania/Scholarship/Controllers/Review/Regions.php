@@ -22,7 +22,7 @@
 
 namespace Wikimania\Scholarship\Controllers\Review;
 
-use Wikimania\Scholarship\Controller;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * List applications by region.

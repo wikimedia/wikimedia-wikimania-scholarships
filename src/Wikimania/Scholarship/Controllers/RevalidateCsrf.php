@@ -22,8 +22,8 @@
 
 namespace Wikimania\Scholarship\Controllers;
 
-use Wikimania\Scholarship\Controller;
-use Wikimania\Scholarship\CsrfMiddleware;
+use Wikimedia\Slimapp\Controller;
+use Wikimedia\Slimapp\CsrfMiddleware;
 
 /**
  * Routes related to authentication.

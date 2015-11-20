@@ -22,8 +22,8 @@
 
 namespace Wikimania\Scholarship\Controllers\Admin;
 
-use Wikimania\Scholarship\Controller;
-use Wikimania\Scholarship\Password;
+use Wikimedia\Slimapp\Auth\Password;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * View/edit a user.

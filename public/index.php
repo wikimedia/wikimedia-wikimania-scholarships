@@ -34,7 +34,7 @@ require_once APP_ROOT . '/vendor/autoload.php';
 // Ensure that a default timezone is set
 set_error_handler(function ($errno, $errstr) {
 	throw new Exception( $errstr );
-});
+} );
 try {
 	date_default_timezone_get();
 } catch( Exception $e ) {
@@ -45,7 +45,7 @@ restore_error_handler();
 
 // Load environment settings from .env if present
 if ( is_readable( APP_ROOT . '/.env' ) ) {
-	\Wikimania\Scholarship\Config::load( APP_ROOT . '/.env' );
+	\Wikimedia\Slimapp\Config::load( APP_ROOT . '/.env' );
 }
 
 $app = new \Wikimania\Scholarship\App( APP_ROOT );

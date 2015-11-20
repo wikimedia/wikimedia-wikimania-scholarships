@@ -22,8 +22,9 @@
 
 namespace Wikimania\Scholarship\Controllers;
 
-use Wikimania\Scholarship\AuthManager;
-use Wikimania\Scholarship\Controller;
+use Wikimania\Scholarship\Auth\AuthManager;
+
+use Wikimedia\Slimapp\Controller;
 
 /**
  * Routes related to authentication.

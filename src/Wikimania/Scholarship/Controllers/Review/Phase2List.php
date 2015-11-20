@@ -22,7 +22,7 @@
 
 namespace Wikimania\Scholarship\Controllers\Review;
 
-use Wikimania\Scholarship\Controller;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * Display a list of Phase 2 applications.

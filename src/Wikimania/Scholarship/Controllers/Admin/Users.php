@@ -22,7 +22,7 @@
 
 namespace Wikimania\Scholarship\Controllers\Admin;
 
-use Wikimania\Scholarship\Controller;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * List users.

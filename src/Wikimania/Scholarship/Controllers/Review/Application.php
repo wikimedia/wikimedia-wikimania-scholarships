@@ -22,7 +22,7 @@
 
 namespace Wikimania\Scholarship\Controllers\Review;
 
-use Wikimania\Scholarship\Controller;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * Process a scholarship application.
@@ -40,7 +40,7 @@ class Application extends Controller {
 		$this->form->validate( $_GET );
 		$id = $this->form->get( 'id' );
 		$phase = $this->form->get( 'phase' );
-		$userId = $this->authManager->getuserId();
+		$userId = $this->authManager->getUserId();
 
 		if ( $id === null ) {
 			// Attempt to find first unreviewed application for the current user

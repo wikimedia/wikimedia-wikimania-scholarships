@@ -28,6 +28,8 @@
 
 namespace Wikimania\Scholarship\Dao;
 
+use Wikimedia\Slimapp\Dao\AbstractDao;
+
 /**
  * Data access object for scholarship applications.
  */
@@ -702,4 +704,18 @@ class Apply extends AbstractDao {
 		);
 	}
 
+	/**
+	 * Construct a having clause.
+	 * @param array $where List of conditions
+	 * @param string $conjunction Joining operation ('and' or 'or')
+	 * @return string Having clause or empty string
+	 */
+	protected static function buildHaving(
+		array $having, $conjunction = 'AND'
+	) {
+		if ( $having ) {
+			return 'HAVING (' . implode( ") {$conjunction} (", $having ) . ') ';
+		}
+		return '';
+	}
 }

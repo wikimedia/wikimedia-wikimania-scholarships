@@ -28,19 +28,30 @@
 
 namespace Wikimania\Scholarship\Dao;
 
-use \PDOException;
-use \Wikimania\Scholarship\Password;
+use Wikimania\Scholarship\Auth\UserData;
+
+use PDOException;
+use Wikimedia\Slimapp\Auth\Password;
+use Wikimedia\Slimapp\Auth\UserManager;
+use Wikimedia\Slimapp\Dao\AbstractDao;
 
 /**
  * Data access object for scholarship applications.
  */
-class User extends AbstractDao {
+class User extends AbstractDao implements UserManager {
 
-	public function getUser( $username ) {
-		return $this->fetch(
+	/**
+	 * Get a user by name.
+	 *
+	 * @param string $username Username
+	 * @return UserData
+	 */
+	public function getUserData( $username ) {
+		$data = $this->fetch(
 			'SELECT * FROM users WHERE username = ? AND isvalid = 1',
 			array( $username )
 		);
+		return new UserData( $data );
 	}
 
 	public function getUsername( $id ) {
@@ -59,14 +70,6 @@ class User extends AbstractDao {
 			"SELECT * FROM users WHERE id = ?",
 			array( $user_id )
 		);
-	}
-
-	public function isSysAdmin( $user_id ) {
-		$res = $this->fetch(
-			"SELECT isadmin FROM users WHERE id = ?",
-			array( $user_id )
-		);
-		return $res['isadmin'];
 	}
 
 	public function newUserCreate( $answers ) {

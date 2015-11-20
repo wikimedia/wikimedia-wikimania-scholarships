@@ -22,7 +22,7 @@
 
 namespace Wikimania\Scholarship\Controllers\User;
 
-use Wikimania\Scholarship\Controller;
+use Wikimedia\Slimapp\Controller;
 
 /**
  * Routes related to authentication.
@@ -33,7 +33,7 @@ use Wikimania\Scholarship\Controller;
 class ChangePassword extends Controller {
 
 	protected function handleGet() {
-		$this->view->set( 'user', $this->authManager->getUser() );
+		$this->view->set( 'user', $this->authManager->getUserData() );
 		$this->render( 'user/changePassword.html' );
 	}
 

@@ -22,11 +22,12 @@
 
 namespace Wikimania\Scholarship\Controllers;
 
-use Wikimania\Scholarship\Controller;
-use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Communities;
+use Wikimania\Scholarship\Countries;
 use Wikimania\Scholarship\Forms\Apply as ApplyForm;
 use Wikimania\Scholarship\Wikis;
+
+use Wikimedia\Slimapp\Controller;
 
 /**
  * Process a scholarship application.
