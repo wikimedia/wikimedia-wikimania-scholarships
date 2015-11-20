@@ -8,8 +8,13 @@
 		"wikimedia/slimapp": "0.6.0"
 	},
 	"autoload": {
-		"psr-0": {
+		"psr-4": {
 			"Wikimania\\Scholarship\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Wikimania\\Scholarship\\": "tests/"
 		}
 	},
 	"config": {

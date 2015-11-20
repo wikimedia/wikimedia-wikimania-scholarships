@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Wikimania\\Scholarship\\' => array($baseDir . '/src'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Slim' => array($vendorDir . '/slim/slim'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
