@@ -65,6 +65,52 @@ class User extends AbstractDao implements UserManager {
 		return $this->fetchAll( 'SELECT * FROM users' );
 	}
 
+	public function search( array $params ) {
+		$defaults = array(
+			'name' => null,
+			'email' => null,
+			'sort' => 'id',
+			'order' => 'asc',
+			'items' => 20,
+			'page' => 0,
+		);
+		$params = array_merge( $defaults, $params );
+		$where = array();
+		$crit = array();
+		$validSorts = array(
+			'id', 'username', 'email', 'reviwer', 'isvalid',
+			'isadmin', 'blocked',
+		);
+		$sortby = in_array( $params['sort'], $validSorts ) ?
+			$params['sort'] : $defaults['sort'];
+		$order = $params['order'] === 'desc' ? 'DESC' : 'ASC';
+		if ( $params['items'] == 'all' ) {
+			$limit = '';
+			$offset = '';
+		} else {
+			$crit['int_limit'] = (int)$params['items'];
+			$crit['int_offset'] = (int)$params['page'] * (int)$params['items'];
+			$limit = 'LIMIT :int_limit';
+			$offset = 'OFFSET :int_offset';
+		}
+		if ( $params['name'] !== null ) {
+			$where[] = 'username like :name';
+			$crit['name'] = $params['name'];
+		}
+		if ( $params['email'] !== null ) {
+			$where[] = 'email like :email';
+			$crit['email'] = $params['email'];
+		}
+		$where[] = 'blocked = 0';
+		$sql = self::concat(
+			'SELECT SQL_CALC_FOUND_ROWS * FROM users',
+			self::buildWhere( $where ),
+			"ORDER BY {$sortby} {$order}, id {$order}",
+			$limit, $offset
+		);
+		return $this->fetchAllWithFound( $sql, $crit );
+	}
+
 	public function getUserInfo( $user_id ) {
 		return $this->fetch(
 			"SELECT * FROM users WHERE id = ?",
@@ -153,9 +199,11 @@ class User extends AbstractDao implements UserManager {
 			$stmt->execute( array( Password::encodePassword( $newpw ), $id ) );
 			$this->dbh->commit();
 			$this->logger->notice( 'Changed password for user', array(
-					'method' => __METHOD__,
-					'user' => $id,
+				'method' => __METHOD__,
+				'user' => $id,
 			) );
+			// Invalidate any password reset token that may have been issues->updatePasswordResetHash( $id, null );d
+			$this->updatePasswordResetHash( $id, null );
 			return true;
 
 		} catch ( PDOException $e) {
@@ -173,4 +221,92 @@ class User extends AbstractDao implements UserManager {
 		return $res['blocked'];
 	}
 
+	/**
+	 * Generate password reset token(s) for the given email address.
+	 *
+	 * @param string $email Email address
+	 * @return array (token, user) pairs; token === false on error
+	 */
+	public function createPasswordResetToken( $email ) {
+		$ret = array();
+		$users = $this->search( array(
+			'email' => $email,
+			'items' => 'all',
+		) );
+		foreach ( $users->rows as $user ) {
+			$token = bin2hex( Password::getBytes( 16, true ) );
+			$hash = hash( 'sha256', $token );
+			if ( !$this->updatePasswordResetHash( $user['id'], $hash ) ) {
+				$token = false;
+			}
+			$ret[] = array( $token, $user );
+		}
+		return $ret;
+	}
+
+	protected function updatePasswordResetHash( $id, $hash ) {
+		$ret = false;
+		$stmt = $this->dbh->prepare(
+			'UPDATE users SET reset_hash = ?, reset_date = now() WHERE id = ?'
+		);
+		try {
+			$this->dbh->beginTransaction();
+			$stmt->execute( array( $hash, $id ) );
+			$this->dbh->commit();
+			$this->logger->notice( 'Created reset token for user', array(
+				'method' => __METHOD__,
+				'user' => $id,
+			) );
+			$ret = true;
+
+		} catch ( PDOException $e) {
+			$this->dbh->rollback();
+			$this->logger->error(
+				'Failed to update reset_hash for user',
+				array(
+					'method' => __METHOD__,
+					'exception' => $e,
+			) );
+		}
+		return $ret;
+	}
+
+	/**
+	 * Validate a user's password reset token.
+	 *
+	 * @param int $id User id
+	 * @param string $token Reset token
+	 * @return bool
+	 */
+	public function validatePasswordResetToken( $id, $token ) {
+		$hash = hash( 'sha256', $token );
+		$row = $this->fetch(
+			'SELECT reset_hash, reset_date FROM users WHERE id = ?',
+			array( $id )
+		);
+		return $row &&
+			Password::hashEquals( $row['reset_hash'], $hash ) &&
+			// Tokens are only good for 48 hours
+			( time() - strtotime( $row['reset_date'] ) ) < 172800;
+	}
+
+	/**
+	 * Reset a user's password after validating the reset token.
+	 *
+	 * @param int $id User id
+	 * @param string $token Reset token
+	 * @param string $pass New password
+	 * @return bool
+	 */
+	public function resetPassword( $id, $token, $pass ) {
+		$ret = false;
+		if ( $this->validatePasswordResetToken( $id, $token ) ) {
+			$ret = $this->updatePassword( null, $pass, $id, true );
+			if ( $ret ) {
+				// Consume token if change was successful
+				$this->updatePasswordResetHash( $id, null );
+			}
+		}
+		return $ret;
+	}
 }

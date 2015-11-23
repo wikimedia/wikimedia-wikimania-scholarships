@@ -308,6 +308,42 @@ class App extends AbstractApp {
 
 		} );
 
+		// Account management helpers
+		$slim->group( '/account/', function () use ( $slim, $middleware ) {
+			$slim->get( 'recover', $middleware['must-revalidate'],
+				function () use ( $slim ) {
+					$page = new Controllers\Account\Recover( $slim );
+					$page->setDao( $slim->userDao );
+					$page();
+				}
+			)->name( 'account_recover' );
+
+			$slim->post( 'recover.post', $middleware['must-revalidate'],
+				function () use ( $slim ) {
+					$page = new Controllers\Account\Recover( $slim );
+					$page->setDao( $slim->userDao );
+					$page->setMailer( $slim->mailer );
+					$page();
+				}
+			)->name( 'account_recover_post' );
+
+			$slim->get( 'reset/:token/:uid', $middleware['must-revalidate'],
+				function ( $token, $uid ) use ( $slim ) {
+					$page = new Controllers\Account\Reset( $slim );
+					$page->setDao( $slim->userDao );
+					$page( $uid, $token );
+				}
+			)->name( 'account_reset' );
+
+			$slim->post( 'reset.post/:token/:uid', $middleware['must-revalidate'],
+				function ( $token, $uid ) use ( $slim ) {
+					$page = new Controllers\Account\Reset( $slim );
+					$page->setDao( $slim->userDao );
+					$page( $uid, $token );
+				}
+			)->name( 'account_reset_post' );
+		} );
+
 		// routes for authenticated users
 		$slim->group( '/user/',
 			$middleware['must-revalidate'], $middleware['require-user'],
