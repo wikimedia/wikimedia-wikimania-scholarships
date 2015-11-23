@@ -1,0 +1,60 @@
+{% extends "review/base.html" %}
+{% set route = app.router.getCurrentRoute.getName %}
+
+{% block content %}
+{% spaceless %}
+<ol class="breadcrumb">
+  <li>{{ 'nav-reports'|message }}</li>
+  <li>{{ 'nav-reports-export'|message }}</li>
+</ol>
+
+<form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
+  <input type="hidden" name="action" value="export">
+  <div class="form-group">
+    <input type="submit" class="btn btn-sm btn-default" value="{{ 'review-export-export'|message }}" />
+  </div>
+</form>
+<p></p>
+<table class="table table-striped table-hover table-condensed table-responsive">
+  {% for row in records %}
+  {% if loop.first %}
+  <tr>
+    {% for key in row|keys %}
+    <th>{{ key }}</th>
+    {% endfor %}
+  </tr>
+  {% endif %}
+  <tr>
+    {% for col in row %}
+    <td>{{ col }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <p class="text-right">{{ 'page-of-pages'|message(  p + 1, pages ) }}</p>
+  </div>
+  <div class="col-md-9">
+    <ul class="pagination">
+      {% if p > 0 %}
+      <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p - 1) } ) }}" id="prev">&laquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% if left > 0 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+      {% for i in left .. right %}
+      <li class="{{ i == p ? 'active' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
+      {% endfor %}
+      {% if right < pages - 1 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+      {% if p + 1 < pages %}
+      <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p + 1) } ) }}" >&raquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endspaceless %}
+{% endblock content %}

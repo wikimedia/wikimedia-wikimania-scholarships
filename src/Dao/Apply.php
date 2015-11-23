@@ -682,6 +682,75 @@ class Apply extends AbstractDao {
 
 
 	/**
+	 * @param array $params Query parameters
+	 */
+	public function export( $params ) {
+		$defaults = array(
+			'items'  => 50,
+			'page' => 0,
+		);
+		$params = array_merge( $defaults, $params );
+
+		$bindVars = array(
+			'relexp' => (float)$this->settings['relexp'],
+			'expshare' => (float)$this->settings['expshare'],
+		);
+
+		if ( $params['items'] == 'all' ) {
+			$limit = '';
+			$offset = '';
+
+		} else {
+			$bindVars['int_limit'] = (int)$params['items'];
+			$bindVars['int_offset'] = (int)$params['page'] * (int)$params['items'];
+			$limit = 'LIMIT :int_limit';
+			$offset = 'OFFSET :int_offset';
+		}
+
+		$fields = array(
+			's.*',
+			"YEAR(NOW()) - YEAR(s.dob) AS age",
+			'c.region',
+			'c.globalns',
+			'l.size',
+			'COALESCE(p1score, 0) as p1score',
+			"COALESCE(nscorers, 0) AS nscorers",
+			"rkrexp.relexp AS relexp",
+			"rkexps.expshare AS expshare",
+			"(COALESCE(:relexp * rkrexp.relexp, 0) + " .
+			"COALESCE(:expshare * rkexps.expshare, 0)) as p2score ",
+		);
+
+		$sqlP1Score = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
+		$relexp = $this->makeAggregateRankSql( 'relexp', 'AVG' );
+		$expshare = $this->makeAggregateRankSql( 'expshare', 'AVG' );
+		$sqlNumScorers = self::concat(
+			"SELECT scholarship_id, COUNT(DISTINCT user_id) AS nscorers",
+			"FROM rankings",
+			"WHERE criterion <> 'valid'",
+			"GROUP BY scholarship_id"
+		);
+
+		$sql = self::concat(
+			"SELECT SQL_CALC_FOUND_ROWS", implode( ',', $fields ),
+			"FROM scholarships s",
+			"LEFT OUTER JOIN ({$relexp}) rkrexp ON s.id = rkrexp.scholarship_id",
+			"LEFT OUTER JOIN ({$expshare}) rkexps ON s.id = rkexps.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlP1Score}) p1 ON s.id = p1.scholarship_id",
+			"LEFT OUTER JOIN ({$sqlNumScorers}) ns ON s.id = ns.scholarship_id",
+			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
+			"LEFT OUTER JOIN language_communities l ON s.community = l.code",
+			"GROUP BY s.id",
+			"HAVING s.exclude = 0",
+			"ORDER BY s.id",
+			$limit,
+			$offset
+		);
+
+		return $this->fetchAllWithFound( $sql, $bindVars );
+	}
+
+	/**
 	 * Create an SQL query that will compute an aggregate value for all rankings
 	 * of a given criterion.
 	 *

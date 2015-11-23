@@ -32,6 +32,7 @@
     {% if isadmin|default(false) %}
     <li class="divider"></li>
     <li><a href="{{ urlFor( 'review_scores' ) }}">{{ 'final-full'|message }}</a></li>
+    <li><a href="{{ urlFor( 'review_export' ) }}">{{ 'nav-reports-export'|message }}</a></li>
     {% endif %}
   </ul>
 </li>

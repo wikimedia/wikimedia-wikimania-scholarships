@@ -23,6 +23,7 @@
 	"nav-users": "Manage users",
 	"nav-account": "My Account",
 	"nav-settings": "Settings",
+	"nav-reports-export": "Full export",
 
 	"mock": "This is a mock scholarship application site only, use it just for testing.",
 
@@ -328,6 +329,8 @@
 	"review-view-interest": "Interest in Wikimania:",
 	"review-view-notes": "Notes:",
 	"review-view-save": "Save",
+
+	"review-export-export": "Export list as CSV",
 
 	"page-of-pages": "Page $1 of $2",
 	"no-results": "No results found",

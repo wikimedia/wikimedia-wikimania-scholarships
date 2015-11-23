@@ -453,6 +453,13 @@ class App extends AbstractApp {
 				$page();
 			} )->name( 'review_communities' );
 
+			$slim->get( 'export', $middleware['require-admin'],
+				function () use ( $slim ) {
+					$page = new Controllers\Review\Export( $slim );
+					$page->setDao( $slim->applyDao );
+					$page();
+				}
+			)->name( 'review_export' );
 		} );
 
 		$slim->group( '/admin/',
@@ -489,7 +496,6 @@ class App extends AbstractApp {
 				$page->setMailer( $slim->mailer );
 				$page();
 			} )->name( 'admin_user_post' );
-
 		} );
 
 		$slim->notFound( function () use ( $slim, $middleware ) {
