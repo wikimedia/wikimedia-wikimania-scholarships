@@ -93,8 +93,8 @@ class User extends Controller {
 						$this->i18nContext->message( 'new-account-email', array(
 							$user['username'],
 							$this->form->get( 'password' ),
-							$this->urlFor( 'login' ),
-							$this->urlFor( 'user_changepassword' ),
+							$this->request->getUrl() . $this->urlFor( 'login' ),
+							$this->request->getUrl() . $this->urlFor( 'user_changepassword' ),
 						) )
 					);
 					if ( !$sent ) {
