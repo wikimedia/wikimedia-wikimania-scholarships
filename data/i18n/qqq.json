@@ -228,6 +228,7 @@
 	"admin-users-yes": "Table cell value indicating that true/false value is true.\n\nSee also:\n* {{msg-wm|Wsa-admin-users-no}}\n{{Identical|Yes}}",
 	"admin-users-no": "Table cell value indicating that true/false value is false.\n\n\nSee also:\n* {{msg-wm|Wsa-admin-users-yes}}\n{{Identical|No}}",
 	"admin-users-add": "Navigation menu item, links to user account creation page",
+	"admin-users-form-go": "Button label, triggers search",
 	"review-list-export": "Button label, triggers csv report download",
 	"review-list-export-csv": "Input label, preceded by checkbox, changes form sumbission response to csv report download",
 	"review-list-counter": "Table column header, row number.\n{{Related|Wsa-review-list}}",

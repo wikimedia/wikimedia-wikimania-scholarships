@@ -1,4 +1,21 @@
 {% extends "admin/base.html" %}
+{% set route = app.router.getCurrentRoute.getName %}
+{% set ctx = _context %}
+
+{% macro showBool( val ) %}
+{{ val ? 'admin-users-yes'|message : 'admin-users-no'|message }}
+{% endmacro %}
+
+{% macro sortHeader( label, column, ctx, class ) %}
+{% set sorted = ctx.s == column %}
+{% if sorted %}
+  {% set o = ctx.o == 'desc' ? 'desc' : 'asc' %}
+  {% set nextO = o == 'asc' ? 'desc' : 'asc' %}
+{% else %}
+  {% set nextO = 'asc' %}
+{% endif %}
+<th><a class="sortable {{ sorted ? "sorted-#{o}" : 'unsorted' }} {{ class|default( '' ) }}" href="{{ urlFor( ctx.route ) }}?{{ qsMerge( { 's':column, 'o':nextO } ) }}">{{ label|message }}</a></th>
+{% endmacro %}
 
 {% block content %}
 {% spaceless %}
@@ -7,30 +24,80 @@
   <li>{{ 'nav-users'|message }}</li>
 </ol>
 
+<form class="form-inline" method="get" action="{{ urlFor( route ) }}" role="form">
+  <input type="hidden" name="p" value="0">
+  <div class="form-group">
+    <label class="sr-only" for="username">{{ 'admin-users-username'|message }}</label>
+    <input type="text" id="name" name="name" class="form-control" placeholder="{{ 'admin-users-username'|message }}" value="{{ name }}">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="email">{{ 'admin-users-email'|message }}</label>
+    <input type="text" id="email" name="email" class="form-control" placeholder="{{ 'admin-users-email'|message }}" value="{{ email }}">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-sm btn-primary">
+      <i class="glyphicon glyphicon-search"></i>
+      {{ 'admin-users-form-go'|message }}
+    </button>
+  </div>
+  {% if isadmin|default(false) %}
+  <div class="form-group">
+    <a class="btn btn-default" href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">
+      <i class="glyphicon glyphicon-plus"></i>
+      {{ 'admin-users-add'|message }}
+    </a>
+  </div>
+  {% endif %}
+</form>
+
+<p></p>
+
 <table class="table table-striped table-hover table-condensed table-responsive">
   <tr>
-    <th>{{ 'admin-users-id'|message }}</th>
-    <th>{{ 'admin-users-username'|message }}</th>
-    <th>{{ 'admin-users-email'|message }}</th>
-    <th>{{ 'admin-users-reviewer'|message }}</th>
-    <th>{{ 'admin-users-valid'|message }}</th>
-    <th>{{ 'admin-users-admin'|message }}</th>
-    <th>{{ 'admin-users-blocked'|message }}</th>
+    {{ _self.sortHeader( 'admin-users-id', 'id', ctx, 'text-right' ) }}
+    {{ _self.sortHeader( 'admin-users-username', 'username', ctx ) }}
+    {{ _self.sortHeader( 'admin-users-email', 'email', ctx ) }}
+    {{ _self.sortHeader( 'admin-users-admin', 'isadmin', ctx ) }}
+    {{ _self.sortHeader( 'admin-users-reviewer', 'reviewer', ctx ) }}
+    {{ _self.sortHeader( 'admin-users-valid', 'isvalid', ctx ) }}
+    {{ _self.sortHeader( 'admin-users-blocked', 'blocked', ctx ) }}
   </tr>
   {% for row in records %}
   <tr class="{{ cycle( [ 'oddrow', 'evenrow' ], loop.index ) }}">
     <td>{{ row.id }}</td>
     <td><a href="{{ urlFor( 'admin_user', { 'id':row.id} ) }}">{{ row.username }}</a></td>
     <td><a href="mailto:{{ row.email|url_encode }}">{{ row.email }}</a></td>
-    <td>{{ row.reviewer ? 'admin-users-yes'|message : 'admin-users-no'|message }}</td>
-    <td>{{ row.isvalid ? 'admin-users-yes'|message : 'admin-users-no'|message }}</td>
-    <td>{{ row.isadmin ? 'admin-users-yes'|message : 'admin-users-no'|message }}</td>
-    <td>{{ row.blocked ? 'admin-users-yes'|message : 'admin-users-no'|message }}</td>
+    <td>{{ _self.showBool( row.isadmin ) }}</td>
+    <td>{{ _self.showBool( row.reviewer ) }}</td>
+    <td>{{ _self.showBool( row.isvalid ) }}</td>
+    <td>{{ _self.showBool( row.blocked ) }}</td>
   </tr>
   {% endfor %}
 </table>
-{% if isadmin|default(false) %}
-<p><a class="btn btn-default" href="{{ urlFor( 'admin_user', { 'id':'new' } ) }}">{{ 'admin-users-add'|message }}</a></p>
-{% endif %}
+
+<div class="row">
+  <div class="col-md-3">
+    <p class="text-right">{{ 'page-of-pages'|message(  p + 1, pages ) }}</p>
+  </div>
+  <div class="col-md-9">
+    <ul class="pagination">
+      {% if p > 0 %}
+      <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p - 1) } ) }}" id="prev">&laquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% if left > 0 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+      {% for i in left .. right %}
+      <li class="{{ i == p ? 'active' }}"><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':i } ) }}" id="prev">{{ i + 1 }}</a></li>
+      {% endfor %}
+      {% if right < pages - 1 %}<li class="disabled"><span>&hellip;</span></li>{% endif %}
+      {% if p + 1 < pages %}
+      <li><a href="{{ urlFor( route ) }}?{{ qsMerge( { 'p':(p + 1) } ) }}" >&raquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
 {% endspaceless %}
 {% endblock content %}
