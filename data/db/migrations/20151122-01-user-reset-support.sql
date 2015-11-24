@@ -1,0 +1,7 @@
+ALTER TABLE users
+  ADD COLUMN reset_hash VARCHAR(64) DEFAULT NULL
+  AFTER blocked;
+
+ALTER TABLE users
+  ADD COLUMN reset_date TIMESTAMP NULL DEFAULT NULL
+  AFTER reset_hash;

@@ -85,6 +85,8 @@ CREATE TABLE IF NOT EXISTS users (
   , isvalid     TINYINT(1) DEFAULT NULL
   , isadmin     TINYINT(1) DEFAULT NULL
   , blocked     TINYINT(1) DEFAULT 0
+  , reset_hash  VARCHAR(64) DEFAULT NULL
+  , reset_date  TIMESTAMP NULL DEFAULT NULL
   , PRIMARY KEY (id)
   , UNIQUE KEY username (username)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 AUTO_INCREMENT=1000 ;
