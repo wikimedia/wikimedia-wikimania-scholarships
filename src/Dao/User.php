@@ -61,10 +61,6 @@ class User extends AbstractDao implements UserManager {
 		);
 	}
 
-	public function getListofUsers( $state ) {
-		return $this->fetchAll( 'SELECT * FROM users' );
-	}
-
 	public function search( array $params ) {
 		$defaults = array(
 			'name' => null,

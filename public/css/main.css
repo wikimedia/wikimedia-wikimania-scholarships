@@ -102,3 +102,20 @@ a:visited {
 .panel-body > dl + .well {
   margin-top: 15px;
 }
+
+a.sortable {
+  display:block;
+  padding-right:10px;
+  background-repeat: no-repeat;
+  background-position: center right;
+  color:inherit;
+}
+a.sortable.unsorted {
+  background-image: url(data:image/gif;base64,R0lGODlhBwAJAIABACMtMP///yH5BAEKAAEALAAAAAAHAAkAAAINjGEJq8sOk4Qu0IZmKgA7);
+}
+a.sortable.sorted-asc {
+  background-image: url(data:image/gif;base64,R0lGODlhBwAEAIABACMtMP///yH5BAEKAAEALAAAAAAHAAQAAAIHjGEJq8sOCwA7);
+}
+a.sortable.sorted-desc {
+  background-image: url(data:image/gif;base64,R0lGODlhBwAEAIABACMtMP///yH5BAEKAAEALAAAAAAHAAQAAAIIhA+BGWoNWSgAOw==);
+}

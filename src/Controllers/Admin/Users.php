@@ -33,15 +33,45 @@ use Wikimedia\Slimapp\Controller;
 class Users extends Controller {
 
 	protected function handleGet() {
-		$this->form->expectInArray( 'state', array( 'all', 'reviewer' ),
-			array( 'default' => 'all') );
+		$this->form->expectString( 'name' );
+		$this->form->expectString( 'email' );
+		$this->form->expectInt( 'items',
+			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
+		);
+		$this->form->expectInt( 'p', array( 'min_range' => 0, 'default' => 0 ) );
+		$this->form->expectString( 's', array( 'default' => 'id' ) );
+		$this->form->expectInArray( 'o', array( 'asc', 'desc' ),
+			array( 'default' => 'asc' )
+		);
 		$this->form->validate( $_GET );
 
-		$state = $this->form->get( 'state' );
-		$rows = $this->dao->GetListofUsers( $state );
+		$this->view->set( 'name', $this->form->get( 'name' ) );
+		$this->view->set( 'email', $this->form->get( 'email' ) );
+		$this->view->set( 'items', $this->form->get( 'items' ) );
+		$this->view->set( 'p', $this->form->get( 'p' ) );
+		$this->view->set( 's', $this->form->get( 's' ) );
+		$this->view->set( 'o', $this->form->get( 'o' ) );
 
-		$this->view->set( 'state', $state );
-		$this->view->set( 'records', $rows );
+		$params = array(
+			'name' => $this->form->get( 'name' ),
+			'email' => $this->form->get( 'email' ),
+			'sort' => $this->form->get( 's' ),
+			'order' => $this->form->get( 'o' ),
+			'items' => $this->form->get( 'items' ),
+			'page' => $this->form->get( 'p' ),
+		);
+
+		$ret = $this->dao->search( $params );
+		$this->view->set( 'records', $ret->rows );
+		$this->view->set( 'found', $ret->found );
+
+		// pagination information
+		list( $pageCount, $first, $last ) = $this->pagination(
+			$ret->found, $this->form->get( 'p' ), $this->form->get( 'items' ) );
+		$this->view->set( 'pages', $pageCount );
+		$this->view->set( 'left', $first );
+		$this->view->set( 'right', $last );
+
 		$this->render( 'admin/users.html' );
 	}
 

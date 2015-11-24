@@ -256,6 +256,7 @@
 	"admin-users-yes": "yes",
 	"admin-users-no": "no",
 	"admin-users-add": "Add new user",
+	"admin-users-form-go": "Search",
 
 	"review-list-export": "Export list",
 	"review-list-export-csv": "Export list as CSV",
