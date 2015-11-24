@@ -153,16 +153,16 @@
 	"form-wmfAgreeGuardian": "If under 18 years old, please have a parent or legal guardian enter his/her full name:",
 	"form-submit-app": "Submit application",
 
-	"form-email-subject": "Wikimania 2016 scholarship applications",
-	"form-email-response": "Dear $1 $2,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania 2016.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
+	"form-email-subject": "Wikimania scholarship application",
+	"form-email-response": "Dear $1 $2,\n\nThis is a confirmation of your application for a scholarship to attend Wikimania.\n\nWe will let you know the decision on your scholarship after we finish reviewing and scoring all applications.\n\nPlease reply to wikimania-scholarships@wikimedia.org if you have any questions.\n\nRegards,\n\nThe Wikimania scholarship team",
 
 	"confirm-thanks": "Thanks!",
-	"confirm-text": "Thank you for submitting your scholarship application for Wikimania 2016. Please contact <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> with any questions.",
+	"confirm-text": "Thank you for submitting your scholarship application for Wikimania. Please contact <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> with any questions.",
 
 	"privacy-page": "<p>All personal information will be held strictly confidential by the members of the Wikimania Scholarship Committee and the <a href=\"http://wikimediafoundation.org\">Wikimedia Foundation</a>, in accordance to the Wikimedia Foundation <a href=\"http://wikimediafoundation.org/wiki/Privacy_policy\">privacy policy</a>.</p>",
 
 	"new-account-subject": "New Wikimania Scholarships account",
-	"new-account-email": "A new Wikimania Scholarships account has been created for you.\n\nYour login info is:\n\nusername: $1\npassword: $2\n\nYou may login at: $3\n\nYou may change your password at: $4\n\nSincerely,\nWikimania 2016 Organizing Team",
+	"new-account-email": "A new Wikimania Scholarships account has been created for you.\n\nYour login info is:\n\nusername: $1\npassword: $2\n\nYou may login at: $3\n\nYou may change your password at: $4\n\nSincerely,\nWikimania Organizing Team",
 
 	"contact-us": "Contact us",
 	"contact-page": "Email: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
