@@ -86,8 +86,8 @@ lang: currently selected display language
 
   <fieldset>
     <legend>{{ 'form-scholarship-type'|message }}</legend>
-    {{ forms.i18nSelect( ctx, 'form-scholarship', 'type', { 'form-scholarship-partial': 'partial', 'form-scholarship-full': 'full', 'form-scholarship-either': 'either' }, { 'required':true } ) }}
-    {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false }, { 'required': true } ) }}
+    {{ forms.i18nSelect( ctx, 'form-scholarship', 'type', { 'form-scholarship-partial': 'partial', 'form-scholarship-full': 'full', 'form-scholarship-either': 'either' }, { 'required':true, 'escape':false } ) }}
+    {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false, 'required': true } ) }}
   </fieldset>
 
   <fieldset>
