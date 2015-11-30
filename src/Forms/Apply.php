@@ -110,9 +110,7 @@ class Apply extends Form {
 		$this->expectBool( 'wm14' );
 		$this->expectBool( 'wm15' );
 		$this->requireBool( 'prev_scholar' );
-		$this->expectString( 'goals', array(
-			'validate' => array( $this, 'validatePrevScholar' )
-		) );
+		$this->requireString( 'goals' );
 		$this->expectBool( 'presentation' );
 		$this->expectString( 'presentationTopic', array(
 			'validate' => array( $this, 'validatePresentationTopic' ),
@@ -141,16 +139,6 @@ class Apply extends Form {
 	 */
 	protected function validateGenderOther ( $value ) {
 		return $this->get( 'gender' ) == 'o' ? (bool)$value : true;
-	}
-
-	/**
-	 * Validate that goals is provided if prev_scholar is set.
-	 *
-	 * @param mixed $value Value of param
-	 * @return bool True if value is valid, false otherwise
-	 */
-	protected function validatePrevScholar ( $value ) {
-		return $this->get( 'prev_scholar' ) ? (bool)$value : true;
 	}
 
 	/**

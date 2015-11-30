@@ -31,7 +31,7 @@
 
 	"deadline-passed": "<p>Scholarship application deadline was January 09, 2016, 23:59 UTC.</p>\n<p>We will notify applicants in April 2016 about the result of their application.</p>\n<p>Please see the <a href='http://wikimania2016.wikimedia.org/wiki/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
 
-	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"http://wikimania2016.wikimedia.org\">Wikimania 2016</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Esino Lario (Italy), June 21–28, 2016.</p>\n<p><b>Applications may be submitted in any language</b>, but every applicant must <b>provide evidence of English language abilities</b> that are at a level which would enable them to participate in Wikimania, a conference which is primarily conducted in English. Sufficient English abilities could be demonstrated in the application itself or elsewhere.</p>\n<p>This is not a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n</p>The deadline to apply is January 09, 2016, 23:59 UTC.</p>",
+	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"http://wikimania2016.wikimedia.org\">Wikimania 2016</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Esino Lario (Italy), June 21–28, 2016.</p>\n<p><b>Applications may be submitted in any language</b>, but every applicant must <b>provide evidence of English language abilities</b> that are at a level which would enable them to participate in Wikimania, a conference which is primarily conducted in English. Sufficient English abilities could be demonstrated in the application itself or elsewhere.</p>\n<p>This is not a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n</p>The deadline to apply is January 09, 2016, 23:59 UTC.</p> Please note that <strong>if you need more then 10 minutes to complete this application, please draft your answers in a text editor</strong>, reload this page and then copy-paste your answers into corresponding fields before submitting. This application may give an error (\"Missing or invalid CSRF token\") if it is open for more then 15 minutes before submitting.",
 
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
 
@@ -103,7 +103,7 @@
 	"form-study": "Field of study (if student):",
 
 	"form-participation": "Participation in the Wikimedia projects",
-	"form-username": "Username on your primary Wikimedia project (Please omit the 'User:' prefix before your username):",
+	"form-username": "Username on your primary Wikimedia project (Note: Omit the 'User:' prefix before your username, e.g. User:PQR123 should enter PQR123 only. Please do not include anything before or after your username):",
 	"form-other-usernames": "(If applicable) Other Wikimedia usernames used for editing:",
 	"form-multilingual-community": "I selected as my \"Most active Wikimedia project\" Commons, Species, Data, Incubator, MediaWiki, or Tool Labs. Therefore I cannot pick a language community.",
 	"form-engagement": "Please select all of the following that describe how you have engaged in the Wikimedia movement.",
@@ -128,7 +128,7 @@
 	"form-interest": "Attendance and involvement in Wikimania",
 	"form-attended": "Have you attended Wikimania before?  If so, in what year or years?",
 	"form-prev-scholar": "Have you previously attended Wikimania on a WMF scholarship?",
-	"form-attending-goals": "If so, please use the space below to tell us about something great that happened as a result of attending Wikimania previously? What are your goals for attending Wikimania again?",
+	"form-attending-goals": "What are your goals for attending Wikimania? If you have previously attended Wikimania, please also tell us about something great that happened as a result of attending Wikimania. (Previous scholarship recipients may link to their 2015 or 2014 scholarship report, if relevant).",
 	"form-presenter": "Will you submit or have you submitted a presentation for Wikimania 2016? (<a href=\"https://wikimania2016.wikimedia.org/wiki/Submissions\" target=\"_blank\">Call for Participation</a>)",
 	"form-presentation-topic": "If you have submitted or will submit a presentation, please provide a link to your presentation or proposal title:",
 

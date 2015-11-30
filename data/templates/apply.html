@@ -140,7 +140,7 @@ lang: currently selected display language
     <legend>{{ 'form-interest'|message }}</legend>
     {{ forms.checkboxList( ctx, 'form-attended', { 'wm05':2005, 'wm06':2006, 'wm07':2007, 'wm08':2008, 'wm09':2009, 'wm10':2010, 'wm11':2011, 'wm12':2012, 'wm13':2013, 'wm14':2014, 'wm15':2015 } ) }}
     {{ forms.yesNo( ctx, 'form-prev-scholar', 'prev_scholar', { 'required':true } ) }}
-    {{ forms.textArea( ctx, 'form-attending-goals', 'goals' ) }}
+    {{ forms.textArea( ctx, 'form-attending-goals', 'goals', { 'required':true } ) }}
     {{ forms.yesNo( ctx, 'form-presenter', 'presentation', { 'escape':false } ) }}
     {{ forms.text( ctx, 'form-presentation-topic', 'presentationTopic' ) }}
 </fieldset>
