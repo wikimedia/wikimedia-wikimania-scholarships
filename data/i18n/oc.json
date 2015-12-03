@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Cedric31",
-			"Jfblanc"
+			"Jfblanc",
+			"Macofe"
 		]
 	},
 	"wikimania": "Wikimania",
 	"wikimania-location-year": "Ciutat de Mexic 2015",
-	"header-title": "Wikimania 2015 — Demanda de borsa",
+	"header-title": "Wikimania 2016 — Demanda de borsa",
 	"nav-apply": "Aplicar",
 	"nav-faq": "FAQ",
 	"nav-credits": "Mercejaments",
@@ -36,8 +37,6 @@
 	"form-gender-male": "Òme",
 	"form-gender-female": "Femna",
 	"form-gender-other": "Autre",
-	"form-howheard4": "Boca a aurelha",
-	"form-howheard5": "Autre",
 	"form-privacy": "Vida privada",
 	"confirm-thanks": "Mercés !",
 	"contact-us": "Nos contactar",

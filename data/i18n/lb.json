@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Macofe"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Mexico-City 2015",
-	"header-title": "Wikimania 2015 - Ufro fir eng Bourse",
+	"wikimania-location-year": "Esino Lario 2016",
+	"header-title": "Wikimania 2016 - Ufro fir eng Bourse",
 	"nav-apply": "Ufroen",
 	"nav-faq": "FAQ",
 	"nav-privacy": "Dateschutz",
@@ -72,11 +73,6 @@
 	"form-interest": "Matmaachen an Implikatioun a Wikiamania",
 	"form-attended": "Waart Dir scho virdrun bäi Wikimania? Wa jo, a watfir engem Joer/ enge Joren?",
 	"form-presentation-topic": "Wann Dir eng Presentatioun agereecht hutt oder areeche wëllt, da gitt e Link op Är Presentatioun oder de virgeschloenen Titel:",
-	"form-howheard": "Wéi hutt Dir vun dëser Geleeënheet héieren?",
-	"form-howheard1": "Mailing-Lëscht / E-Mail",
-	"form-howheard2": "Wikimedia-Projet-Website (inkl. Wikipedia)",
-	"form-howheard4": "Mondpropaganda",
-	"form-howheard5": "Anerer",
 	"form-privacy": "Dateschutz",
 	"form-wmfAgreeName": "Gitt w.e.g. Äre kompletten Numm an:",
 	"form-wmfAgreeGuardian": "Wann Dir manner wéi 18 Joer al sidd, da gitt w.e.g. hei de kompletten Numm vun engem Eleterendeel oder engem legalen Tuteur:",
@@ -104,6 +100,9 @@
 	"username": "Benotzernumm:",
 	"password": "Passwuert:",
 	"login-error": "Benotzernumm a Passwuert obligatoresch.",
+	"forgot-password": "Hutt Dir Äert Passwuert vergiess?",
+	"forgot-password-email": "E-Mail-Adress:",
+	"reset-password-empty": "Passwuert däerf net eidel sinn.",
 	"error-heading": "Systemfeeler",
 	"error-id": "Feelernummer: $1",
 	"404-header": "Säit net fonnt",
@@ -135,6 +134,7 @@
 	"admin-users-yes": "jo",
 	"admin-users-no": "neen",
 	"admin-users-add": "Neie Benotzer derbäisetzen",
+	"admin-users-form-go": "Sichen",
 	"review-list-export": "Lëscht exportéieren",
 	"review-list-export-csv": "Lëscht als CSV exportéieren",
 	"review-list-counter": "Compteur",
@@ -177,6 +177,7 @@
 	"review-view-interest": "Interessen u Wikimania:",
 	"review-view-notes": "Notizen:",
 	"review-view-save": "Späicheren",
+	"review-export-export": "Lëscht als CSV exportéieren",
 	"page-of-pages": "Säit $1 vu(n) $2",
 	"no-results": "Näischt fonnt",
 	"csrf-heading": "Net-valabel Ufro",

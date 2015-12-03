@@ -3,7 +3,8 @@
 		"authors": [
 			"Aashaa",
 			"Aftabuzzaman",
-			"Jayantanth"
+			"Jayantanth",
+			"Macofe"
 		]
 	},
 	"wikimania": "উইকিম্যানিয়া",
@@ -23,7 +24,7 @@
 	"nav-settings": "সেটিংস",
 	"mock": "এই শুধুমাত্র একটি উপহাস বৃত্তির আবেদন সাইট, শুধু পরীক্ষার জন্য এটি ব্যবহার করুন।",
 	"not-open": "উইকিম্যানিয়া ২০১৫ বৃত্তির প্রক্রিয়া এখনো শুরু হয়নি। আরো তথ্যের জন্য, দেখুন:\n<ul>\n<li><a href=\"https://wikimania2015.wikimedia.org/wiki/Main_Page/bn\">উইকিম্যানিয়া সম্পর্কে</a></li>\n<li><a href=\"https://wikimania2015.wikimedia.org/wiki/Scholarships/bn\">বৃত্তি সম্পর্কে</a></li>\n</ul>",
-	"form-intro-faq": "<a href='//wikimania2015.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>প্রায়শই জিজ্ঞাসিত প্রশ্ন</a>",
+	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>প্রায়শই জিজ্ঞাসিত প্রশ্ন</a>",
 	"form-error": "আপনার ফর্মে ত্রুটি আছে। দয়া করে নিন্ম ত্রুটিগুলি সংশোধন করুন ও ফর্মটিকে আবার দাখিল করুন।",
 	"form-wmfAgreeGuardian-error": "দয়া করে আপনার আইনগত অভিভাবকের নাম লিখুন।",
 	"form-presentationTopic-error": "দয়া করে আপনার উপস্থাপনার শিরোনাম লিখুন।",
@@ -58,10 +59,6 @@
 	"form-gender-unspecified": "আমি বলতে পছন্দ করি না",
 	"form-gender-specify": "যদি অন্যান্য হয় দয়া করে উল্লেখ করুন:",
 	"form-occupation": "পেশা (যদি পেশাদার হন):",
-	"form-howheard1": "মেইলিং লিস্ট / ই-মেইল",
-	"form-howheard2": "উইকিমিডিয়া প্রকল্পের ওয়েব সাইট (উইকিপিডিয়াসহ)",
-	"form-howheard3": "আলোচনাসভা / ক্যাফে / সম্প্রদায়ের প্রবেশদ্বার",
-	"form-howheard5": "অন্য",
 	"form-privacy": "গোপনীয়তা",
 	"form-wmfAgreeName": "দয়া করে আপনার পুরো নাম লিখুন:",
 	"form-submit-app": "আবেদন জমা",

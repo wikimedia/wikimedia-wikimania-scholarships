@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"Macofe"
 		]
 	},
 	"wikimania": "Wikimania",
 	"wikimania-location-year": "Ciutat de Mèxic 2015",
-	"header-title": "Wikimania 2015: sol·licitud de beca",
+	"header-title": "Wikimania 2016: sol·licitud de beca",
 	"nav-apply": "Sol·licita",
 	"nav-faq": "Preguntes freqüents",
 	"nav-credits": "Crèdits",
@@ -63,9 +64,6 @@
 	"form-participation": "Participació als projectes de Wikimedia",
 	"form-username": "Nom d’usuari al vostre projecte principal de Wikimedia (ometeu el prefix «Usuari:»):",
 	"form-other-usernames": "(Si s’escau) Altres noms d’usuari utilitzats a Wikimedia per editar:",
-	"form-howheard1": "Llista de correu electrònic",
-	"form-howheard2": "Lloc web d’un projecte de Wikimedia (incl. la Viquipèdia)",
-	"form-howheard3": "Taverna/portal comunitari",
 	"form-privacy": "Privadesa",
 	"form-wmfAgreeName": "Introduïu el vostre nom complet:",
 	"form-submit-app": "Envia la sol·licitud",
