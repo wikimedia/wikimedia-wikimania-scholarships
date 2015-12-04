@@ -390,61 +390,6 @@
         ]
     },
     {
-        "name": "wikimedia/slimapp",
-        "version": "v0.6.0",
-        "version_normalized": "0.6.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/wikimedia/wikimedia-slimapp.git",
-            "reference": "e8f556ace03a41348af86c0b6369cb5f0fb510a1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/e8f556ace03a41348af86c0b6369cb5f0fb510a1",
-            "reference": "e8f556ace03a41348af86c0b6369cb5f0fb510a1",
-            "shasum": ""
-        },
-        "require": {
-            "bd808/monolog-udp2log-handler": "~1.0",
-            "monolog/monolog": "~1.15",
-            "php": ">=5.3.7",
-            "phpmailer/phpmailer": "~5.2",
-            "slim/slim": "~2.4",
-            "slim/views": "~0.1",
-            "twig/twig": "~1.20",
-            "wikimedia/simplei18n": "~1.0"
-        },
-        "require-dev": {
-            "jakub-onderka/php-parallel-lint": "~0.9",
-            "mediawiki/mediawiki-codesniffer": "~0.4",
-            "phpunit/phpunit": "~4.6"
-        },
-        "time": "2015-10-24 21:25:58",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Wikimedia\\Slimapp\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-3.0+"
-        ],
-        "authors": [
-            {
-                "name": "Bryan Davis",
-                "email": "bd808@wikimedia.org"
-            },
-            {
-                "name": "Niharika Kohli",
-                "email": "niharikakohli29@gmail.com"
-            }
-        ],
-        "description": "Common classes to help with creating an application using the Slim micro framework and Twig template engine.",
-        "homepage": "https://github.com/wikimedia/wikimedia-slimapp"
-    },
-    {
         "name": "phpmailer/phpmailer",
         "version": "v5.2.9",
         "version_normalized": "5.2.9.0",
@@ -498,5 +443,60 @@
             }
         ],
         "description": "PHPMailer is a full-featured email creation and transfer class for PHP"
+    },
+    {
+        "name": "wikimedia/slimapp",
+        "version": "v0.7.0",
+        "version_normalized": "0.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/wikimedia-slimapp.git",
+            "reference": "7c0050125f7baf70f85a6e6c93aca629efc22631"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/7c0050125f7baf70f85a6e6c93aca629efc22631",
+            "reference": "7c0050125f7baf70f85a6e6c93aca629efc22631",
+            "shasum": ""
+        },
+        "require": {
+            "bd808/monolog-udp2log-handler": "~1.0",
+            "monolog/monolog": "~1.15",
+            "php": ">=5.3.7",
+            "phpmailer/phpmailer": "~5.2",
+            "slim/slim": "~2.4",
+            "slim/views": "~0.1",
+            "twig/twig": "~1.20",
+            "wikimedia/simplei18n": "~1.0"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "~0.9",
+            "mediawiki/mediawiki-codesniffer": "~0.4",
+            "phpunit/phpunit": "~4.6"
+        },
+        "time": "2015-12-03 23:24:40",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Wikimedia\\Slimapp\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0+"
+        ],
+        "authors": [
+            {
+                "name": "Bryan Davis",
+                "email": "bd808@wikimedia.org"
+            },
+            {
+                "name": "Niharika Kohli",
+                "email": "niharikakohli29@gmail.com"
+            }
+        ],
+        "description": "Common classes to help with creating an application using the Slim micro framework and Twig template engine.",
+        "homepage": "https://github.com/wikimedia/wikimedia-slimapp"
     }
 ]

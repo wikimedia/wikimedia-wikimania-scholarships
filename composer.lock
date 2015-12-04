@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3f5faa2da99534de034656fbf4d7809c",
-    "content-hash": "bfccd7486bd746a7691fe2ed0c975f6d",
+    "hash": "067fdc0b0d30a3445361e3efb468e155",
+    "content-hash": "5d64c3eea010f906e6c0c42897bcb99e",
     "packages": [
         {
             "name": "bd808/monolog-udp2log-handler",
@@ -438,16 +438,16 @@
         },
         {
             "name": "wikimedia/slimapp",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-slimapp.git",
-                "reference": "e8f556ace03a41348af86c0b6369cb5f0fb510a1"
+                "reference": "7c0050125f7baf70f85a6e6c93aca629efc22631"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/e8f556ace03a41348af86c0b6369cb5f0fb510a1",
-                "reference": "e8f556ace03a41348af86c0b6369cb5f0fb510a1",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/7c0050125f7baf70f85a6e6c93aca629efc22631",
+                "reference": "7c0050125f7baf70f85a6e6c93aca629efc22631",
                 "shasum": ""
             },
             "require": {
@@ -487,7 +487,7 @@
             ],
             "description": "Common classes to help with creating an application using the Slim micro framework and Twig template engine.",
             "homepage": "https://github.com/wikimedia/wikimedia-slimapp",
-            "time": "2015-10-24 21:25:58"
+            "time": "2015-12-03 23:24:40"
         }
     ],
     "packages-dev": [],

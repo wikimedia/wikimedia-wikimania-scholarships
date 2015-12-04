@@ -5,7 +5,7 @@
 	"require": {
 		"php": ">=5.3.7",
 		"phpmailer/phpmailer": "v5.2.9",
-		"wikimedia/slimapp": "0.6.0"
+		"wikimedia/slimapp": "0.7.0"
 	},
 	"autoload": {
 		"psr-4": {

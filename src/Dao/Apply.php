@@ -772,19 +772,4 @@ class Apply extends AbstractDao {
 			"GROUP BY scholarship_id"
 		);
 	}
-
-	/**
-	 * Construct a having clause.
-	 * @param array $where List of conditions
-	 * @param string $conjunction Joining operation ('and' or 'or')
-	 * @return string Having clause or empty string
-	 */
-	protected static function buildHaving(
-		array $having, $conjunction = 'AND'
-	) {
-		if ( $having ) {
-			return 'HAVING (' . implode( ") {$conjunction} (", $having ) . ') ';
-		}
-		return '';
-	}
 }
