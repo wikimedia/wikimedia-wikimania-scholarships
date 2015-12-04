@@ -446,17 +446,17 @@
     },
     {
         "name": "wikimedia/slimapp",
-        "version": "v0.7.0",
-        "version_normalized": "0.7.0.0",
+        "version": "v0.7.1",
+        "version_normalized": "0.7.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/wikimedia/wikimedia-slimapp.git",
-            "reference": "7c0050125f7baf70f85a6e6c93aca629efc22631"
+            "reference": "bd24cdfb3cad66e0ad41f973f2bdf60fa6c19c1d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/7c0050125f7baf70f85a6e6c93aca629efc22631",
-            "reference": "7c0050125f7baf70f85a6e6c93aca629efc22631",
+            "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/bd24cdfb3cad66e0ad41f973f2bdf60fa6c19c1d",
+            "reference": "bd24cdfb3cad66e0ad41f973f2bdf60fa6c19c1d",
             "shasum": ""
         },
         "require": {
@@ -474,7 +474,7 @@
             "mediawiki/mediawiki-codesniffer": "~0.4",
             "phpunit/phpunit": "~4.6"
         },
-        "time": "2015-12-03 23:24:40",
+        "time": "2015-12-04 00:52:04",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
