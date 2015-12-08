@@ -51,6 +51,10 @@ class User extends AbstractDao implements UserManager {
 			'SELECT * FROM users WHERE username = ? AND isvalid = 1',
 			array( $username )
 		);
+		if ( $data === false ) {
+			$this->logger->info( "No data found for user '{$username}'" );
+			$data = array();
+		}
 		return new UserData( $data );
 	}
 
