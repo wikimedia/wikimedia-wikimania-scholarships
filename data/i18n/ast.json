@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu"
+			"Xuacu",
+			"Enolp"
 		]
 	},
 	"wikimania": "Wikimanía",
@@ -23,7 +24,7 @@
 	"mock": "Esti sitiu ye namái una maqueta de l'aplicación pa beques, utilízalu sólo pa facer pruebes.",
 	"not-open": "El procesu de beques pa Wikimanía 2016 entá nun ta abiertu, pa más información puedes ver:\n<ul>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Main_Page\">Tocante a Wikimanía</a></li>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships\">Tocante a les beques</a></li>\n</ul>\n</ul>",
 	"deadline-passed": "<p>El plazu máximu pa solicitar la beca foi el 09 de xineru de 2016, a les 23:59 UTC.</p>\n<p>N'abril de 2016 avisaremos a los solicitantes sobro'l resultáu de la solicitú.</p>\n<p>Consulta la <a href=\"http://wikimania2016.wikimedia.org/wiki/Scholarships\">páxina de beques</a> de la wiki pa más detalles.</p>",
-	"form-intro": "<p>Esta ye la solicitú de beca p'asistir a <a href=\"http://wikimania2016.wikimedia.org\">Wikimania 2016</a>, la conferencia internacional añal enfocada nos proyectos de Wikimedia. Los premiaos van recibir una beca que cubrirá les cuotes d'inscripción a la conferencia, hotel y viaxe d'ida y vuelta a Wikimanía en Esino Lario (Italia), ente'l 21–28 de xunu de 2016.</p>\n<p><b>Les solicitúes puen unviase'n cualquier llingua</b>, pero tolos solicitantes tienen de <b>probar la so conocencia de la llingua inglesa</b> a un nivel que-yos permita participar en Wikimania, una conferencia que se desendolca principalmente n'Inglés. La capacidá bastante col inglés podría demostrase cola propia solicitú o n'otru llugar.</p>\n<p>Esta nun ye una beca pa estudios universitarios. Les solicitúes que nun tean direutamente rellacionaes cola conferencia van descartase.</p>\n<p>Por favor, considera bien les tos necesidaes financieres antes de solicitar una beca p'asistir a Wikimanía. Los fondos disponibles tán llindaos y munchos de los solicitantes nun tienen los medios económicos p'asistir a Wikimanía ensin esta oportunidá. Munches gracies.</p>\n<p>La fecha máxima pa unviar solicitúes ye'l 9 de xineru de 2016, a les 23:59 UTC.</p>",
+	"form-intro": "<p>Esta ye la solicitú de beca p'asistir a <a href=\"http://wikimania2016.wikimedia.org\">Wikimania 2016</a>, la conferencia internacional añal enfocada nos proyectos de Wikimedia. Los premiaos van recibir una beca que cubrirá les cuotes d'inscripción a la conferencia, hotel y viaxe d'ida y vuelta a Wikimanía en Esino Lario (Italia), ente'l 21–28 de xunu de 2016.</p>\n<p><b>Les solicitúes puen unviase'n cualquier llingua</b>, pero tolos solicitantes tienen de <b>probar la so conocencia de la llingua inglesa</b> a un nivel que-yos permita participar en Wikimania, una conferencia que se desendolca principalmente n'Inglés. La capacidá bastante col inglés podría demostrase cola propia solicitú o n'otru llugar.</p>\n<p>Esta nun ye una beca pa estudios universitarios. Les solicitúes que nun tean direutamente rellacionaes cola conferencia van descartase.</p>\n<p>Por favor, considera bien les tos necesidaes financieres antes de solicitar una beca p'asistir a Wikimanía. Los fondos disponibles tán llindaos y munchos de los solicitantes nun tienen los medios económicos p'asistir a Wikimanía ensin esta oportunidá. Munches gracies.</p>\n<p>Ten en cuenta que si precises más de 10 minutos pa completar esta solicitú, escribe primero un borrador nun editor de testu, recarga esta páxina y entós copia y pega les tos respuestes nos campos correspondientes antes d'unviar la to solicitú. Esta aplicación puede refundiar un erru (\"Missing or invalid CSRF token\") si atópase abierta por más de 15 minutos antes de l'unviu.</p>\n<p>La fecha máxima pa unviar solicitúes ye'l <strong>9 de xineru de 2016, a les 23:59 UTC</strong>.</p>",
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Entrugues frecuentes</a>",
 	"form-scholarship-type": "Tipu de beca",
 	"form-error": "El formulariu tien errores. Igua los siguientes errores y unvia el formulariu nuevamente.",
@@ -80,7 +81,7 @@
 	"form-occupation": "Ocupación (si yes profesional):",
 	"form-study": "Área d'estudiu (si yes estudiante):",
 	"form-participation": "Participación nos proyectos de Wikimedia",
-	"form-username": "Nome d'usuariu nel to proyectu de Wikimedia principal (omite'l prefixu «Usuariu:» anterior al nome):",
+	"form-username": "Nome d'usuariu nel to proyectu de Wikimedia principal (Nota: omite'l prefixu «Usuariu:» anterior al nome d'usuariu; por casu, Usuariu:PQR123 tendría d'escribise como PQR123 solamente. Nun incluyas nada antes o dempués del to nome d'usuariu):",
 	"form-other-usernames": "(Si correspuende) Otros nomes d'usuariu en Wikimedia qu'utilices pa editar:",
 	"form-multilingual-community": "Escoyí Commons, Especies, Data, Incubadora, MediaWiki o Tool Labs como'l mio \"Proyectu de Wikimedia más activu\". Darréu, nun puedo escoyer un idioma de la comunidá.",
 	"form-engagement": "Seleiciona tolo siguiente que describa cómo t'arreyasti nel movimientu Wikimedia.",
@@ -131,5 +132,8 @@
 	"forgot-password": "¿Escaecisti la contraseña?",
 	"forgot-password-email": "Direición de corréu electrónicu:",
 	"forgot-password-submit": "Unviar corréu de recuperación",
-	"recover-account-subject": "Recuperación de la contraseña de revisión de beques"
+	"recover-account-subject": "Recuperación de la contraseña de revisión de beques",
+	"reset-password-no-match": "Les contraseñes nun concasen.",
+	"reset-password-empty": "La contraseña nun pue tar balera.",
+	"reset-password-fail": "Falló'l reaniciu de la contraseña."
 }

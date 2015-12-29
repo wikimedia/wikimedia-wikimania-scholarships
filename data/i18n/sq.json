@@ -3,11 +3,12 @@
 		"authors": [
 			"Edlira",
 			"Kosovastar",
-			"Macofe"
+			"Macofe",
+			"Liridon"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Mexico City 2015",
+	"wikimania-location-year": "Esino Lario 2016",
 	"header-title": "Wikimania 2016 - Aplikim për bursë",
 	"nav-apply": "Aplikoni",
 	"nav-faq": "Pyetje të shpeshta",
@@ -23,7 +24,7 @@
 	"nav-settings": "Parametrat",
 	"mock": "Ky është vetëm një aplikim burse i stimuluar, përdoreni atë vetëm për testim.",
 	"not-open": "Proçesi i bursave Wikimania 2016 nuk është ende i hapur. Për më shumë informacion, shih:\n<ul>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Main_Page\">Rreth Wikimania</a></li>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships\">Rreth Bursave</a></li>\n</ul>",
-	"deadline-passed": "<p>Afati për aplikim për bursë  ishte 16 Shkurt, 2015, 23:59 UTC.</p>\n<p>Ne do të informojë aplikantët në Prill 2015 në lidhje me rezultatin e aplikimit të tyre.</p>\n<p>Ju lutem shikoni <a href=\"http://wikimania2015.wikimedia.org/wiki/Scholarships\">faqen e bursave</a> në wiki për më shumë detaje.</p>",
+	"deadline-passed": "<p>Afati për aplikim për bursë ishte 9 janar, 2016, 23:59 UTC.</p>\n<p>Ne do të informojë aplikantët në Prill 2016 në lidhje me rezultatin e aplikimit të tyre.</p>\n<p>Ju lutem shikoni <a href=\"http://wikimania2016.wikimedia.org/wiki/Scholarships\">faqen e bursave</a> në wiki për më shumë detaje.</p>",
 	"form-intro": "<p>Kjo <strong>nuk</strong> është një bursë për studime universitare. Natyrisht, aplikimet që nuk janë të lidhura me konferencën do të skualifikohen.</p>\n<p>Ju lutemi konsideroni me kujdes nevojat tuaja financiare përpara se të aplikoni për një bursë për të ndjekur Wikimania. Ka fondet të kufizuara në dispozicion dhe shumë aplikantë nuk kanë mjete financiare për të ndjekur Wikimania pa këtë mundësi. Faleminderit. </p>\n<p>Afati për të aplikuar është <strong>16 Shkurt, 2015, 23:59 UTC</strong>.</p>",
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Pyetje të shpeshta</a>",
 	"form-error": "Formulari juaj ka gabime. Ju lutemi të korrigjoni këto gabime dhe e dorëzoni formularin përsëri.",
