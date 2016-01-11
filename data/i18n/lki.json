@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hosseinblue"
+			"Hosseinblue",
+			"Lakzon"
 		]
 	},
 	"wikimania": "ویکی‌مانیا",
@@ -90,7 +91,7 @@
 	"search": "گئردین/مهِ نی",
 	"by-country": "بر پایه کشور",
 	"admin-users-id": "شناسه",
-	"admin-users-username": "نؤم کاربری",
+	"admin-users-username": "نۆم کاربەری",
 	"admin-users-email": "ایمیل",
 	"admin-users-reviewer": "بازبینی‌کننده؟",
 	"admin-users-admin": "مدیر است؟",
@@ -104,7 +105,7 @@
 	"review-list-export-csv": "صادر کردن فهرست به صورت CSV",
 	"review-list-counter": "شمارنده",
 	"review-list-id": "شناسه",
-	"review-list-name": "نؤم",
+	"review-list-name": "نۆم",
 	"review-list-email": "ایمیل",
 	"review-list-p1-score": "نمره  p1",
 	"review-list-region": "ناحیۀ",

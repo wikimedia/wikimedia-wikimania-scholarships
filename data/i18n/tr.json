@@ -11,7 +11,8 @@
 			"McAang",
 			"Macofe",
 			"Basak",
-			"HakanIST"
+			"HakanIST",
+			"Roxy"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -36,7 +37,7 @@
 	"form-intro": "<p>Bu, Wikimedia projeleri merkezli yıllık uluslararası konferans olan <a href=\"http://wikimania2016.wikimedia.org\">Wikimania 2016</a>'ya katılım için sponsorluk başvurusudur. Hak kazananlara, 21-28 Haziran 2016'da Esino Lario (Italya)'da yapılacak Wikimania'ya gidiş-dönüş seyahat, konferans kayıt ve otel ücretlerini kapsayacak burs verilecektir.</p>\n<p>Bu üniversite eğitimi için verilecek bir burs <strong>değildir</strong>. Ayrıca belirgin bir şekilde konferansla ilgisi olmayan başvurular dikkate alınmayacaktır.</p>\n<p>Lütfen Wikimania bursuna başvurmadan önce, mali durumunuzu dikkatle değerlendirin. Fonların sınırlı olduğunu unutmayın ve yalnızca Wikimania'ya bu fırsat olmadan katılamayacak durumdaysanız başvuru yapınız. Teşekkür ederiz.</p>\n<p>Başvuru için son tarih <strong>16 Şubat 2015'tir, 23:59 UTC</strong>.</p>",
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Sıkça sorulan sorular</a>",
 	"form-scholarship-type": "Burs türü",
-	"form-scholarship": "Bu yıl Wikimania 2016 için Wikimedia Vakfı tüm kayıt ücretlerini içeren (Wikimania süresince konaklamayı da kapsar) Kısmi burslar sunacak ancak bu kimsi bursla seyahat veya tali masrafları içerMEYECEK. Buna karşın Tam burslar seyahati kayıt ve tali masrafları da kapsayacak.\n\nLütfen Wikimedia vakfı'nın hangi tür bursu için başvurduğunuzu belirtin. \"Tam burs iin başvuruyorum ama kısmi burs verilirse katılabilirim\" seçeneğini seçenlerein önce <a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships#Scholarship_details\">seçim kurallarına</a> göre değerlendirileceğine dikakt ediniz.",
+	"form-scholarship": "Bu yıl Wikimania 2016 için Wikimedia Vakfı tüm kayıt ücretlerini içeren (Wikimania süresince konaklamayı da kapsar) kısmi burslar sunacak ancak bu kısmi burs ile seyahat veya tali masrafları İÇERMEYECEK. Buna karşın tam burslar, seyahat, kayıt ve olası masrafları da kapsayacak.\n\nLütfen Wikimedia Vakfı'nın hangi tür bursu için başvurduğunuzu belirtin. \"Tam burs için başvuruyorum ama kısmi burs verilirse katılabilirim\" seçeneğini seçenlerin, önce <a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships#Scholarship_details\">seçim kurallarına</a> göre değerlendirileceğine dikkat ediniz.",
 	"form-scholarship-full": "Tam burs için başvuruyorum.",
 	"form-scholarship-either": "Tam burs için başvuruyorum ama kısmi burs verilirse katılabilirim.",
 	"form-scholarship-partial": "Kısmi burs için başvuruyorum.",
