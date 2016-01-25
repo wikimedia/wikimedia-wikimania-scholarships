@@ -8,11 +8,12 @@
 			"He7d3r",
 			"Luckas",
 			"Webysther",
-			"Macofe"
+			"Macofe",
+			"HenriqueCrang"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Cidade do México 2015",
+	"wikimania-location-year": "Esino Lario 2016",
 	"header-title": "Wikimania 2016 - Solicitação de bolsa",
 	"nav-apply": "Solicitação",
 	"nav-faq": "FAQ",
@@ -28,7 +29,7 @@
 	"nav-settings": "Configurações",
 	"mock": "Este é um site que somente simula a aplicação para a bolsa, use-o somente para teste.",
 	"not-open": "O processo para obtenção de bolsas Wikimania 2016 ainda não está aberto. Para mais informação, veja:\n<ul>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Main_Page\">Sobre Wikimania</a></li>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships\">Sobre Bolsas de Estudo</a></li>\n</ul>",
-	"deadline-passed": "<p>O prazo para solicitação de bolsas encerrou em 17 de Fevereiro de 2014 às 23:59 UTC.</p>\n<p>Nós iremos notificar os solicitantes em Abril de 2014 sobre o resultado de suas aplicações.</p>\n<p>Por favor veja <a href='http://wikimania2014.wikimedia.org/wiki/Scholarships'>Página de Bolsas de Estudo</a> na wiki para mais detalhes.</p>",
+	"deadline-passed": "<p>O prazo para solicitação de bolsas encerrou em 09 de janeiro de 2016 às 23:59 UTC.</p>\n<p>Nós iremos notificar os solicitantes em Abril de 2016 sobre o resultado de suas aplicações.</p>\n<p>Por favor veja <a href='http://wikimania2016.wikimedia.org/wiki/Scholarships'>Página de Bolsas</a> na wiki para mais detalhes.</p>",
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Perguntas frenquentes</a>",
 	"form-error": "O seu formulário contém erros. Por favor corrija os seguintes erros e envie o formulário novamente.",
 	"form-save-error": "Houve um erro de sistema ao salvar a sua aplicação. Por favor, tente novamente.",
