@@ -134,7 +134,7 @@
 	"form-email-response": "$2 $1 님께,\n\n이 메일은 위키매니아 2015 참석을 위한 후원금 지원에 대한 확인 메일입니다.\n\n모든 지원서를 검토하고 우선순위를 정하여 결정한 후에 후원금 지원 여부를 알려드리겠습니다.\n\n질문이 있다면 wikimania-scholarships@wikimedia.org로 메일을 보내주세요.\n\n위키매니아 후원금 팀 드림",
 	"confirm-thanks": "감사합니다!",
 	"confirm-text": "위키매니아 후원금 지원서를 제출해주셔서 감사합니다. 질문이 있다면 <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>로 문의해주세요.",
-	"privacy-page": "<p>모든 개인정보는 위키매니아 후원금 위원회의 위원들과 <a href=\"http://wikimediafoundation.org\">Wikimedia Foundation</a>의 관계자들에게만 공개되며, 위키미디어 재단의 <a href=\"http://wikimediafoundation.org/wiki/Privacy_policy\">개인정보보호정책</a>.</p>을 따릅니다.",
+	"privacy-page": "<p>모든 개인정보는 위키매니아 후원금 위원회의 위원들과 <a href=\"https://wikimediafoundation.org\">Wikimedia Foundation</a>의 관계자들에게만 공개되며, 위키미디어 재단의 <a href=\"https://wikimediafoundation.org/wiki/Privacy_policy\">개인정보보호정책</a>.</p>을 따릅니다.",
 	"new-account-subject": "새 위키미디어 장학금 계정",
 	"new-account-email": "당신의 새로운 위키미디어 장학금 계정이 생성되었습니다.\n\n당신의 로그인 정보는 다음과 같습니다:\n\n사용자명: $1\n비밀번호: $2\n\n$3 에서 로그인 할 수 있습니다.\n\n$4 에서 당신의 비밀번호를 변경할 수 있습니다.\n\n진심을 담아,\n위키마니아 준비팀",
 	"contact-us": "문의하기",

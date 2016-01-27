@@ -24,7 +24,7 @@
 	"nav-account": "アカウント設定",
 	"mock": "これは模擬渡航助成金申請サイトにすぎず、ただテストのためだけに使用します",
 	"not-open": "2016年度ウィキマニア渡航助成金の手順はまだ公開されていません。詳細については以下をご参照ください:\n<ul>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Main_Page\">ウィキマニアについて</a></li>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships\">奨学金について</a></li>\n</ul>",
-	"deadline-passed": "<p>渡航助成金の申請締切は2016年1月09日23:59 UTC です。</p>\n<p>申請の結果については2016年4月に申請者に通知致します。</p>\n<p>詳細については、ウィキで<a href='http://wikimania2016.wikimedia.org/wiki/Scholarships'>渡航助成金ページ</a>をご覧ください。</p>",
+	"deadline-passed": "<p>渡航助成金の申請締切は2016年1月09日23:59 UTC です。</p>\n<p>申請の結果については2016年4月に申請者に通知致します。</p>\n<p>詳細については、ウィキで<a href='https://wikimania2016.wikimedia.org/wiki/Scholarships'>渡航助成金ページ</a>をご覧ください。</p>",
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>よくある質問</a>",
 	"form-error": "Your form has errors.  Please correct the following errors and submit the form again.\n(訳)\nフォームにエラーがあります。次のエラー箇所を修正して、フォームを再提出してください。",
 	"form-save-error": "There was a system error saving your application. Please try again.\n(訳)\nアプリケーションの保存でエラーが発生しました。もう一度やりなおしてください。",

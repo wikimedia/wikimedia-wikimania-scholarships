@@ -79,7 +79,7 @@
 	"form-email-response": "$1 $2,\n\nIni adalah konfirmasi formulir beasiswa Anda untuk menghadiri Wikimania 2014.\n\nKami akan memberitahu Anda perihal keputusan beasiswa setelah kami selesai meninjau dan menilai semua formulir pendaftara.\n\nJika ada pertanyaan, sampaikan ke wikimania-scholarships@wikimedia.org\n\nSalam,\n\nTim beasiswa Wikimania",
 	"confirm-thanks": "Terima kasih!",
 	"confirm-text": "Terima kasih telah mengirimkan formulir beasiswa Wikimania. Hubungi <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> jika ada pertanyaan.",
-	"privacy-page": "<p>Semua informasi pribadi akan dirahasiakan oleh para naggota Panitia Beasiswa Wikimania dan <a href=\"http://wikimediafoundation.org\">Yayasan Wikimedia</a> sesuai <a href=\"http://wikimediafoundation.org/wiki/Privacy_policy\">kebijakan privasi</a> Yayasan Wikimedia.</p>",
+	"privacy-page": "<p>Semua informasi pribadi akan dirahasiakan oleh para naggota Panitia Beasiswa Wikimania dan <a href=\"https://wikimediafoundation.org\">Yayasan Wikimedia</a> sesuai <a href=\"https://wikimediafoundation.org/wiki/Privacy_policy\">kebijakan privasi</a> Yayasan Wikimedia.</p>",
 	"new-account-subject": "Akun baru Beasiswa Wikimania",
 	"new-account-email": "Akun baru Beasiswa Wikimania Anda sudah dibuat.\n\nInformasi masuk log Anda adalah:\n\nnama pengguna: $1\nkata sandi: $2\n\nAnda dapat masuk log di: $3\n\nAnda dapat mengubah kata sandi di: $4\n\nDengan hormat,\nTim Penyelenggara Wikimania",
 	"contact-us": "Hubungi kami",
