@@ -56,7 +56,7 @@ class App extends AbstractApp {
 			'db.user' => Config::getStr( 'DB_USER' ),
 			'db.pass' => Config::getStr( 'DB_PASS' ),
 			'parsoid.url' => Config::getStr( 'PARSOID_URL',
-				'http://parsoid-lb.eqiad.wikimedia.org/enwiki/'
+				'http://parsoid.svc.eqiad.wmnet:8000/enwiki/'
 			),
 			'parsoid.cache' => Config::getStr( 'CACHE_DIR',
 				"{$this->deployDir}/data/cache"
