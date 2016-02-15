@@ -148,7 +148,7 @@
 	"form-email-response": "Estimado $1 $2,\n\nEsta es una confirmación de tu solicitud de beca para asistir a Wikimanía.\n\nTe informaremos la decisión sobre tu beca una vez que terminemos de revisar y calificar todas las solicitudes.\n\nSi tiene dudas, escribe a wikimania-scholarships@wikimedia.org\n\nSaludos,\n\nEquipo de becas de Wikimanía",
 	"confirm-thanks": "¡Gracias!",
 	"confirm-text": "Gracias por enviar tu solicitud de beca para Wikimanía. Contacta a <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> si tienes alguna pregunta.",
-	"privacy-page": "<p>Toda la información personal será mantenida como estrictamente confidencial por los miembros del Comité de Becas de Wikimanía y la <a href=\"https://wikimediafoundation.org\">Fundación Wikimedia</a>, de acuerdo a la <a href=\"https://wikimediafoundation.org/wiki/Privacy_policy\">política de privacidad</a> de la Fundación.</p>",
+	"privacy-page": "<p>Toda la información personal se mantendrá estrictamente confidencial por los miembros del Comité de Becas de Wikimanía y la <a href=\"https://wikimediafoundation.org\">Fundación Wikimedia</a>, de acuerdo a la <a href=\"https://wikimediafoundation.org/wiki/Privacy_policy\">política de privacidad</a> de la Fundación.</p>",
 	"new-account-subject": "Nueva cuenta de Becas Wikimanía",
 	"new-account-email": "Se ha creado una nueva cuenta de Becas Wikimanía para ti.\n\nTus datos de inicio de sesión son:\n\nNombre de usuario: $1\nContraseña: $2\n\nPuedes ingresar en: $3\n\nPuedes cambiar tu contraseña en: $4\n\nSinceramente,\nEquipo organizador de Wikimanía",
 	"contact-us": "Contáctanos",
