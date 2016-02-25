@@ -11,7 +11,8 @@
 			"Revi",
 			"Twotwo2019",
 			"SeoJeongHo",
-			"Macofe"
+			"Macofe",
+			"Idh0854"
 		]
 	},
 	"wikimania": "위키매니아",
@@ -20,7 +21,7 @@
 	"nav-apply": "적용",
 	"nav-faq": "자주 묻는 질문",
 	"nav-credits": "제작진",
-	"nav-privacy": "개인 정보 정책",
+	"nav-privacy": "개인정보",
 	"nav-contact": "연락하기",
 	"nav-language": "언어:",
 	"nav-review": "검토하기",
@@ -118,7 +119,7 @@
 	"form-agree": "제출 동의",
 	"form-visa": "만약 내가 승인되고 장학금을 수락한다면, 나는 멕시코 시티에 가기 위해 (필요할 경우) 비자를 취득할 책임을 집니다.",
 	"form-travel-conditions": "후원금을 받게되는 경우 위키미디어 재단에서 제공하는 여행 예약 서비스를 사용할 것에 동의합니다.",
-	"form-privacy": "개인 정보 정책",
+	"form-privacy": "개인정보",
 	"form-review": "이 지원서에 포함되는 모든 정보는 위키매니아 후원 위원회의 위원들이 검토합니다. 모든 개인정보는 위원회와 <a href=\"//wikimediafoundation.org/\">위키 미디어 재단</a>외에는 열람할 수 없습니다.",
 	"form-chapteragree": "<a href=\"https://meta.wikimedia.org/wiki/Wikimedia%20chapters\">위키미디어 지부</a>혹은 <a href=\"https://meta.wikimedia.org/wiki/Wikimedia_thematic_organizations\">주제별 특성화 기과</a> 의 장학금 수여자가 되는 것과 지부와 주제별 특성화 기관에 장학금 수여의 목적으로 개인정보를 공유하는 것에 동의합니다.",
 	"form-rights-heading": "지원자의 권리와 정보 처리 및 전송에 관한 동의서",
@@ -145,7 +146,7 @@
 	"translate-page": "후원금 지원 시스템이 가능한 많은 언어로 번역되기를 바랍니다.</p>\n<p> <a href=\"//translatewiki.net\">translatewiki.net</a>에서 번역자 권한을 요청한 후에 <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">번역을 시작</a>할 수 있습니다.",
 	"footer-faq": "자주 묻는 질문",
 	"footer-credits": "제작진",
-	"footer-privacy": "개인 정보 정책",
+	"footer-privacy": "개인정보",
 	"footer-contact": "연락하기",
 	"month-jan": "1월",
 	"month-feb": "2월",
