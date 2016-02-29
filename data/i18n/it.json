@@ -224,6 +224,6 @@
 	"review-view-save": "Salva",
 	"review-export-export": "Esporta elenco come CSV",
 	"page-of-pages": "Pagina $1 di $2",
-	"no-results": "Nessun risultato",
+	"no-results": "Nessun risultato trovato",
 	"csrf-heading": "Richiesta non valida"
 }
