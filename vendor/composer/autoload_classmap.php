@@ -338,7 +338,6 @@ return array(
     'Wikimania\\Scholarship\\Controllers\\ScholarshipApplication' => $baseDir . '/src/Controllers/ScholarshipApplication.php',
     'Wikimania\\Scholarship\\Controllers\\User\\ChangePassword' => $baseDir . '/src/Controllers/User/ChangePassword.php',
     'Wikimania\\Scholarship\\Countries' => $baseDir . '/src/Countries.php',
-    'Wikimania\\Scholarship\\CountriesTest' => $baseDir . '/tests/CountriesTest.php',
     'Wikimania\\Scholarship\\Dao\\Apply' => $baseDir . '/src/Dao/Apply.php',
     'Wikimania\\Scholarship\\Dao\\Settings' => $baseDir . '/src/Dao/Settings.php',
     'Wikimania\\Scholarship\\Dao\\User' => $baseDir . '/src/Dao/User.php',
