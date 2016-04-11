@@ -3,12 +3,13 @@
 	"description": "Collect and review scholarship applications",
 	"license": "GPL-3.0",
 	"require": {
-		"php": ">=5.3.7",
+		"php": ">=5.5.9",
 		"phpmailer/phpmailer": "v5.2.9",
 		"wikimedia/slimapp": "0.7.1"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "0.9.*",
+		"mediawiki/mediawiki-codesniffer": "0.6.0",
 		"phpunit/phpunit": "~4.8"
 	},
 	"autoload": {
@@ -26,9 +27,13 @@
 		"preferred-install": "dist"
 	},
 	"scripts": {
+		"lint": "parallel-lint . --exclude vendor",
+		"phpcs": "phpcs -p -s",
+		"fix": "phpcbf",
 		"test": [
-			"parallel-lint . --exclude vendor",
-			"phpunit $PHPUNIT_ARGS"
+			"composer lint",
+			"phpunit $PHPUNIT_ARGS",
+			"composer phpcs"
 		]
 	}
 }

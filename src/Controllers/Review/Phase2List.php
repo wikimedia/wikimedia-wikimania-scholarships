@@ -36,30 +36,30 @@ class Phase2List extends Controller {
 		$regionList = $this->dao->getRegionList();
 		array_unshift( $regionList, 'All' );
 
-		$globalnsList = array(
+		$globalnsList = [
 			'Global South',
 			'Global North',
-		);
+		];
 
-		$languageGroupList = array(
+		$languageGroupList = [
 			'Small',
 			'Medium',
 			'Large',
 			'Multilingual',
-		);
+		];
 
 		array_unshift( $globalnsList, 'All' );
 		array_unshift( $languageGroupList, 'All' );
 
-		$this->form->requireInArray( 'region', $regionList, array(
+		$this->form->requireInArray( 'region', $regionList, [
 			'default' => 'All',
-		) );
-		$this->form->requireInArray( 'globalns', $globalnsList, array(
+		] );
+		$this->form->requireInArray( 'globalns', $globalnsList, [
 			'default' => 'All',
-		) );
-		$this->form->requireInArray( 'languageGroup', $languageGroupList, array(
+		] );
+		$this->form->requireInArray( 'languageGroup', $languageGroupList, [
 			'default' => 'All',
-		) );
+		] );
 		$this->form->expectBool( 'export' );
 		$this->form->validate( $_GET );
 
@@ -75,11 +75,13 @@ class Phase2List extends Controller {
 			$this->response->headers->set( 'Content-Disposition',
 				'attachment; filename="' . "p2_{$region}_{$ts}" . '.csv"' );
 
-			echo 'id,name,email,residence,region,"global north/south",size,gender,age,"# p2 scorers",relexp,expshare,"p2 score"', "\n";
+			echo 'id,name,email,residence,region,"global north/south",';
+			echo 'size,gender,age,"# p2 scorers",relexp,expshare,"p2 score"';
+			echo "\n";
 
 			$fp = fopen( 'php://output', 'w' );
 			foreach ( $rows as $row ) {
-				$csv = array(
+				$csv = [
 					(int)$row['id'],
 					ltrim( "{$row['fname']} {$row['lname']}", '=@' ),
 					ltrim( $row['email'], '=@' ),
@@ -93,7 +95,7 @@ class Phase2List extends Controller {
 					round( $row['relexp'], 3 ),
 					round( $row['expshare'], 3 ),
 					round( $row['p2score'], 4 ),
-				);
+				];
 				fputcsv( $fp, $csv );
 			}
 			fclose( $fp );

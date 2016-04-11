@@ -41,9 +41,9 @@ class Search extends Controller {
 		$this->form->expectString( 'ns' );
 		$this->form->expectBool( 'p1' );
 		$this->form->expectInt( 'items',
-			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
+			[ 'min_range' => 1, 'max_range' => 250, 'default' => 50 ]
 		);
-		$this->form->expectInt( 'p', array( 'min_range' => 0, 'default' => 0 ) );
+		$this->form->expectInt( 'p', [ 'min_range' => 0, 'default' => 0 ] );
 		$this->form->validate( $_GET );
 
 		$this->view->set( 'l', $this->form->get( 'l' ) );
@@ -63,7 +63,7 @@ class Search extends Controller {
 			$this->form->get( 'p1' )
 		) {
 
-			$params = array(
+			$params = [
 				'first' => $this->form->get( 'f' ),
 				'last' => $this->form->get( 'l' ),
 				'residence' => $this->form->get( 'r' ),
@@ -73,7 +73,7 @@ class Search extends Controller {
 				'items' => $this->form->get( 'items' ),
 				'page' => $this->form->get( 'p' ),
 				'phase1' => $this->form->get( 'p1' ),
-			);
+			];
 
 			$ret = $this->dao->search( $params );
 			$this->view->set( 'records', $ret->rows );
@@ -82,7 +82,7 @@ class Search extends Controller {
 			// pagination information
 			list( $pageCount, $first, $last ) = $this->pagination(
 				$ret->found, $this->form->get( 'p' ), $this->form->get( 'items' ) );
-			$this->view->set( 'pages' , $pageCount );
+			$this->view->set( 'pages', $pageCount );
 			$this->view->set( 'left', $first );
 			$this->view->set( 'right', $last );
 		}

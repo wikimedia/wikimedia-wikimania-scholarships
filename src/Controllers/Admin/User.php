@@ -35,7 +35,7 @@ class User extends Controller {
 
 	protected function handleGet( $id ) {
 		if ( $id === 'new' ) {
-			$user = array(
+			$user = [
 				'username' => '',
 				'password' => Password::randomPassword( 12 ),
 				'email' => '',
@@ -43,24 +43,23 @@ class User extends Controller {
 				'isvalid' => 1,
 				'isadmin' => 0,
 				'blocked' => 0,
-			);
+			];
 
 		} else {
 			$user = $this->dao->getUserInfo( $id );
 		}
-		
+
 		$this->view->set( 'id', $id );
 		$this->view->set( 'u', $user );
 		$this->render( 'admin/user.html' );
 	}
-
 
 	protected function handlePost() {
 		$id = $this->request->post( 'id' );
 
 		$this->form->requireString( 'username' );
 		$this->form->expectString( 'password',
-			array( 'required' => ( $id == 'new' ) )
+			[ 'required' => ( $id == 'new' ) ]
 		);
 		$this->form->requireEmail( 'email' );
 		$this->form->expectBool( 'reviewer' );
@@ -69,14 +68,14 @@ class User extends Controller {
 		$this->form->expectBool( 'blocked' );
 
 		if ( $this->form->validate() ) {
-			$user = array(
+			$user = [
 				'username' => $this->form->get( 'username' ),
 				'email' => $this->form->get( 'email' ),
 				'reviewer' => $this->form->get( 'reviewer' ),
 				'isvalid' => $this->form->get( 'isvalid' ),
 				'isadmin' => $this->form->get( 'isadmin' ),
 				'blocked' => $this->form->get( 'blocked' ),
-			);
+			];
 
 			if ( $id == 'new' ) {
 				$user['password'] = Password::encodePassword(
@@ -90,12 +89,12 @@ class User extends Controller {
 					$sent = $this->mailer->mail(
 						$user['email'],
 						$this->i18nContext->message( 'new-account-subject' ),
-						$this->i18nContext->message( 'new-account-email', array(
+						$this->i18nContext->message( 'new-account-email', [
 							$user['username'],
 							$this->form->get( 'password' ),
 							$this->request->getUrl() . $this->urlFor( 'login' ),
 							$this->request->getUrl() . $this->urlFor( 'user_changepassword' ),
-						) )
+						] )
 					);
 					if ( !$sent ) {
 						$this->flash(
@@ -119,7 +118,7 @@ class User extends Controller {
 		} else {
 			$this->flash( 'error', 'Invalid submission.' );
 			$this->flash( 'form_errors', $this->form->getErrors() );
-			$user = array(
+			$user = [
 				'username' => $this->form->get( 'username' ),
 				'email' => $this->form->get( 'email' ),
 				'password' => $this->form->get( 'password' ),
@@ -127,11 +126,11 @@ class User extends Controller {
 				'isvalid' => $this->form->get( 'isvalid' ),
 				'isadmin' => $this->form->get( 'isadmin' ),
 				'blocked' => $this->form->get( 'blocked' ),
-			);
+			];
 			$this->flash( 'form_defaults', $user );
 		}
 
-		$this->redirect( $this->urlFor( 'admin_user', array( 'id' => $id ) ) );
+		$this->redirect( $this->urlFor( 'admin_user', [ 'id' => $id ] ) );
 	}
 
 }

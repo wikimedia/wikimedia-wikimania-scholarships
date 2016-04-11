@@ -70,9 +70,9 @@ class Login extends Controller {
 					'error',
 					$this->i18nContext->message( 'login-failed' )
 				);
-				$this->log->info( 'Failed login attempt for {username}', array(
+				$this->log->info( 'Failed login attempt for {username}', [
 					'username' => $this->form->get( 'username' ),
-				) );
+				] );
 			}
 
 		} else {

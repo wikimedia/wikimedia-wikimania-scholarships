@@ -33,7 +33,7 @@ use Wikimedia\Slimapp\Controller;
 class Countries extends Controller {
 
 	protected function handleGet() {
-		$this->form->expectString( 'o', array( 'default' => 'country_name' ) );
+		$this->form->expectString( 'o', [ 'default' => 'country_name' ] );
 		$this->form->validate();
 
 		$order = $this->form->get( 'o' );

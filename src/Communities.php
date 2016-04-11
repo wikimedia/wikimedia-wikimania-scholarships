@@ -35,8 +35,10 @@ class Communities {
 	 *
 	 * @var array $COMMUNITY_NAMES
 	 */
-	public static $COMMUNITY_NAMES = array(
+	public static $COMMUNITY_NAMES = [
+		// @codingStandardsIgnoreStart Line exceeds 100 characters
 		'MULTILINGUAL' => 'I primarily/only contribute to Commons, Species, Data, or Incubator, and therefore cannot pick a language community',
+		// @codingStandardsIgnoreEnd
 		'AA' => 'Afar',
 		'AB' => 'Abkhazian',
 		'ACE' => 'Acehnese',
@@ -325,8 +327,7 @@ class Communities {
 		'ZHMINNAN' => 'Min Nan',
 		'ZHYUE' => 'Cantonese',
 		'ZU' => 'Zulu',
-	);
-
+	];
 
 	/**
 	 * Construction not allowed for utility class.

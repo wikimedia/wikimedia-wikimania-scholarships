@@ -20,6 +20,7 @@
  */
 
 namespace Wikimania\Scholarship;
+
 /**
  *
  * @author Bryan Davis <bd808@wikimedia.org>
@@ -43,4 +44,4 @@ class CountriesTest extends \PHPUnit_Framework_TestCase {
 		}
 	}
 
-} //end CountriesTest
+} // end CountriesTest

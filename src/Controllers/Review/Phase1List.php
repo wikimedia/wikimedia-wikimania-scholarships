@@ -65,12 +65,12 @@ class Phase1List extends Controller {
 			echo "id,name,email,p1score\n";
 			$fp = fopen( 'php://output', 'w' );
 			foreach ( $rows as $row ) {
-				$csv = array(
+				$csv = [
 					(int)$row['id'],
 					ltrim( "{$row['fname']} {$row['lname']}", '=@' ),
 					ltrim( $row['email'], '=@' ),
 					round( $row['p1score'], 4 ),
-				);
+				];
 				fputcsv( $fp, $csv );
 			}
 			fclose( $fp );

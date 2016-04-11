@@ -59,10 +59,10 @@ class ScholarshipApplication extends Controller {
 					// send confirmation email
 					$message = $this->i18nContext->message(
 						'form-email-response',
-						array(
+						[
 							$this->form->get( 'fname' ),
 							$this->form->get( 'lname' ),
-						)
+						]
 					);
 
 					$this->mailer->mail(
@@ -110,4 +110,4 @@ class ScholarshipApplication extends Controller {
 		$this->render( 'apply.html' );
 	}
 
-} //end Apply
+} // end Apply

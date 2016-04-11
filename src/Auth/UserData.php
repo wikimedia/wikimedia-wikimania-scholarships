@@ -42,7 +42,6 @@ class UserData implements ArrayAccess, SlimUserData {
 		$this->data = $data;
 	}
 
-
 	/**
 	 * Get user's unique numeric id.
 	 * @return int
@@ -78,7 +77,6 @@ class UserData implements ArrayAccess, SlimUserData {
 		return $this->getFlag( 'isadmin' );
 	}
 
-
 	/**
 	 * Is the user a reviewer?
 	 * @return bool True if the user is authorized to perfom review tasks, false
@@ -95,8 +93,8 @@ class UserData implements ArrayAccess, SlimUserData {
 	/**
 	 * @inherit
 	 */
-	public function offsetSet($offset, $value) {
-		if (is_null($offset)) {
+	public function offsetSet( $offset, $value ) {
+		if ( is_null( $offset ) ) {
 			$this->data[] = $value;
 		} else {
 			$this->data[$offset] = $value;
@@ -106,21 +104,21 @@ class UserData implements ArrayAccess, SlimUserData {
 	/**
 	 * @inherit
 	 */
-	public function offsetExists($offset) {
-		return isset($this->data[$offset]);
+	public function offsetExists( $offset ) {
+		return isset( $this->data[$offset] );
 	}
 
 	/**
 	 * @inherit
 	 */
-	public function offsetUnset($offset) {
-		unset($this->data[$offset]);
+	public function offsetUnset( $offset ) {
+		unset( $this->data[$offset] );
 	}
 
 	/**
 	 * @inherit
 	 */
-	public function offsetGet($offset) {
-		return isset($this->data[$offset]) ? $this->data[$offset] : null;
+	public function offsetGet( $offset ) {
+		return isset( $this->data[$offset] ) ? $this->data[$offset] : null;
 	}
 }

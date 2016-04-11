@@ -30,7 +30,7 @@ class Wikis {
 	 *
 	 * @var array $WIKI_NAMES
 	 */
-	public static $WIKI_NAMES = array(
+	public static $WIKI_NAMES = [
 		'Wikipedia',
 		'Wiktionary',
 		'Wikimedia Commons',
@@ -47,8 +47,7 @@ class Wikis {
 		'Incubator',
 		'Tool Labs',
 		'MediaWiki'
-	);
-
+	];
 
 	/**
 	 * Construction not allowed for utility class.

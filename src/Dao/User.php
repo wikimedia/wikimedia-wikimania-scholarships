@@ -49,11 +49,11 @@ class User extends AbstractDao implements UserManager {
 	public function getUserData( $username ) {
 		$data = $this->fetch(
 			'SELECT * FROM users WHERE username = ? AND isvalid = 1',
-			array( $username )
+			[ $username ]
 		);
 		if ( $data === false ) {
 			$this->logger->info( "No data found for user '{$username}'" );
-			$data = array();
+			$data = [];
 		}
 		return new UserData( $data );
 	}
@@ -61,26 +61,26 @@ class User extends AbstractDao implements UserManager {
 	public function getUsername( $id ) {
 		return $this->fetch(
 			'SELECT username FROM users WHERE id = ?',
-			array( $id )
+			[ $id ]
 		);
 	}
 
 	public function search( array $params ) {
-		$defaults = array(
+		$defaults = [
 			'name' => null,
 			'email' => null,
 			'sort' => 'id',
 			'order' => 'asc',
 			'items' => 20,
 			'page' => 0,
-		);
+		];
 		$params = array_merge( $defaults, $params );
-		$where = array();
-		$crit = array();
-		$validSorts = array(
+		$where = [];
+		$crit = [];
+		$validSorts = [
 			'id', 'username', 'email', 'reviwer', 'isvalid',
 			'isadmin', 'blocked',
-		);
+		];
 		$sortby = in_array( $params['sort'], $validSorts ) ?
 			$params['sort'] : $defaults['sort'];
 		$order = $params['order'] === 'desc' ? 'DESC' : 'ASC';
@@ -114,16 +114,16 @@ class User extends AbstractDao implements UserManager {
 	public function getUserInfo( $user_id ) {
 		return $this->fetch(
 			"SELECT * FROM users WHERE id = ?",
-			array( $user_id )
+			[ $user_id ]
 		);
 	}
 
 	public function newUserCreate( $answers ) {
-		$fields = array(
+		$fields = [
 			'username', 'password', 'email', 'reviewer', 'isvalid', 'isadmin'
-		);
-		$placeholders = array();
-		$vals = array();
+		];
+		$placeholders = [];
+		$vals = [];
 		foreach ( $fields as $field ) {
 			$placeholders[] = ":{$field}";
 			$vals[$field] = $answers[$field];
@@ -142,10 +142,10 @@ class User extends AbstractDao implements UserManager {
 	 * @return bool True if update suceeded, false otherwise
 	 */
 	public function updateUserInfo( $answers, $id ) {
-		$fields = array(
+		$fields = [
 			'username', 'email', 'reviewer', 'isvalid', 'isadmin', 'blocked'
-		);
-		$placeholders = array();
+		];
+		$placeholders = [];
 		foreach ( $fields as $field ) {
 			$placeholders[] = "{$field} = :{$field}";
 		}
@@ -164,14 +164,14 @@ class User extends AbstractDao implements UserManager {
 			$this->dbh->commit();
 			return true;
 
-		} catch ( PDOException $e) {
+		} catch ( PDOException $e ) {
 			$this->dbh->rollback();
-			$this->logger->error( 'Failed to update user', array(
+			$this->logger->error( 'Failed to update user', [
 				'method' => __METHOD__,
 				'exception' => $e,
 				'sql' => $sql,
 				'params' => $answers,
-			) );
+			] );
 			return false;
 		}
 	}
@@ -180,15 +180,15 @@ class User extends AbstractDao implements UserManager {
 		if ( !$force ) {
 			$res = $this->fetch(
 				'SELECT password FROM users WHERE id = ?',
-				array( $id )
+				[ $id ]
 			);
 
 			if ( !Password::comparePasswordToHash( $oldpw, $res['password'] ) ) {
 				// passsword doesn't match expected
-				$this->logger->notice( 'Invalid old password; will not update', array(
+				$this->logger->notice( 'Invalid old password; will not update', [
 					'method' => __METHOD__,
 					'user' => $id,
-				) );
+				] );
 				return false;
 			}
 		}
@@ -196,28 +196,28 @@ class User extends AbstractDao implements UserManager {
 		$stmt = $this->dbh->prepare( 'UPDATE users SET password = ? WHERE id = ?' );
 		try {
 			$this->dbh->beginTransaction();
-			$stmt->execute( array( Password::encodePassword( $newpw ), $id ) );
+			$stmt->execute( [ Password::encodePassword( $newpw ), $id ] );
 			$this->dbh->commit();
-			$this->logger->notice( 'Changed password for user', array(
+			$this->logger->notice( 'Changed password for user', [
 				'method' => __METHOD__,
 				'user' => $id,
-			) );
-			// Invalidate any password reset token that may have been issues->updatePasswordResetHash( $id, null );d
+			] );
+			// Invalidate any password reset token that may have been issued
 			$this->updatePasswordResetHash( $id, null );
 			return true;
 
-		} catch ( PDOException $e) {
+		} catch ( PDOException $e ) {
 			$this->dbh->rollback();
-			$this->logger->error( 'Failed to update password for user', array(
+			$this->logger->error( 'Failed to update password for user', [
 				'method' => __METHOD__,
 				'exception' => $e,
-			) );
+			] );
 			return false;
 		}
 	}
 
 	public function userIsBlocked( $id ) {
-		$res = $this->query( "SELECT blocked FROM users WHERE id = ?", array( $id ) );
+		$res = $this->query( "SELECT blocked FROM users WHERE id = ?", [ $id ] );
 		return $res['blocked'];
 	}
 
@@ -228,18 +228,18 @@ class User extends AbstractDao implements UserManager {
 	 * @return array (token, user) pairs; token === false on error
 	 */
 	public function createPasswordResetToken( $email ) {
-		$ret = array();
-		$users = $this->search( array(
+		$ret = [];
+		$users = $this->search( [
 			'email' => $email,
 			'items' => 'all',
-		) );
+		] );
 		foreach ( $users->rows as $user ) {
 			$token = bin2hex( Password::getBytes( 16, true ) );
 			$hash = hash( 'sha256', $token );
 			if ( !$this->updatePasswordResetHash( $user['id'], $hash ) ) {
 				$token = false;
 			}
-			$ret[] = array( $token, $user );
+			$ret[] = [ $token, $user ];
 		}
 		return $ret;
 	}
@@ -251,22 +251,22 @@ class User extends AbstractDao implements UserManager {
 		);
 		try {
 			$this->dbh->beginTransaction();
-			$stmt->execute( array( $hash, $id ) );
+			$stmt->execute( [ $hash, $id ] );
 			$this->dbh->commit();
-			$this->logger->notice( 'Created reset token for user', array(
+			$this->logger->notice( 'Created reset token for user', [
 				'method' => __METHOD__,
 				'user' => $id,
-			) );
+			] );
 			$ret = true;
 
-		} catch ( PDOException $e) {
+		} catch ( PDOException $e ) {
 			$this->dbh->rollback();
 			$this->logger->error(
 				'Failed to update reset_hash for user',
-				array(
+				[
 					'method' => __METHOD__,
 					'exception' => $e,
-			) );
+			] );
 		}
 		return $ret;
 	}
@@ -282,7 +282,7 @@ class User extends AbstractDao implements UserManager {
 		$hash = hash( 'sha256', $token );
 		$row = $this->fetch(
 			'SELECT reset_hash, reset_date FROM users WHERE id = ?',
-			array( $id )
+			[ $id ]
 		);
 		return $row &&
 			Password::hashEquals( $row['reset_hash'], $hash ) &&

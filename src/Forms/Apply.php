@@ -44,7 +44,6 @@ class Apply extends Form {
 	 */
 	protected $dao;
 
-
 	public function __construct( $dao = null ) {
 		$this->dao = $dao ?: new ApplyDao();
 		$validCountries = array_keys( Countries::$COUNTRY_NAMES );
@@ -52,7 +51,7 @@ class Apply extends Form {
 		$validWikis = Wikis::$WIKI_NAMES;
 
 		// Scholarship type
-		$this->requireInArray( 'type', array( 'partial', 'full', 'either' ) );
+		$this->requireInArray( 'type', [ 'partial', 'full', 'either' ] );
 		$this->requireBool( 'chapteragree' );
 
 		// Contact information
@@ -69,10 +68,10 @@ class Apply extends Form {
 		$this->requireInt( 'yy' );
 		$this->requireInt( 'mm' );
 		$this->requireInt( 'dd' );
-		$this->requireInArray( 'gender', array( 'm', 'f', 'o', 'd' ) );
-		$this->expectString( 'gender_other', array(
-			'validate' => array( $this, 'validateGenderOther' ),
-		) );
+		$this->requireInArray( 'gender', [ 'm', 'f', 'o', 'd' ] );
+		$this->expectString( 'gender_other', [
+			'validate' => [ $this, 'validateGenderOther' ],
+		] );
 		$this->expectString( 'occupation' );
 		$this->expectString( 'areaofstudy' );
 
@@ -112,9 +111,9 @@ class Apply extends Form {
 		$this->requireBool( 'prev_scholar' );
 		$this->requireString( 'goals' );
 		$this->expectBool( 'presentation' );
-		$this->expectString( 'presentationTopic', array(
-			'validate' => array( $this, 'validatePresentationTopic' ),
-		) );
+		$this->expectString( 'presentationTopic', [
+			'validate' => [ $this, 'validatePresentationTopic' ],
+		] );
 
 		// Application agreement
 		$this->expectTrue( 'willgetvisa' );
@@ -126,9 +125,9 @@ class Apply extends Form {
 		// Privacy
 		$this->expectTrue( 'wmfagree' );
 		$this->requireString( 'wmfAgreeName' );
-		$this->expectString( 'wmfAgreeGuardian', array(
-			'validate' => array( $this, 'validateWmfAgreeGuardian' ),
-		) );
+		$this->expectString( 'wmfAgreeGuardian', [
+			'validate' => [ $this, 'validateWmfAgreeGuardian' ],
+		] );
 	}
 
 	/**
@@ -137,7 +136,7 @@ class Apply extends Form {
 	 * @param mixed $value Value of param
 	 * @return bool True if value is valid, false otherwise
 	 */
-	protected function validateGenderOther ( $value ) {
+	protected function validateGenderOther( $value ) {
 		return $this->get( 'gender' ) == 'o' ? (bool)$value : true;
 	}
 
@@ -147,7 +146,7 @@ class Apply extends Form {
 	 * @param mixed $value Value of param
 	 * @return bool True if value is valid, false otherwise
 	 */
-	protected function validatePresentationTopic ( $value ) {
+	protected function validatePresentationTopic( $value ) {
 		return $this->get( 'presentation' ) ? (bool)$value : true;
 	}
 
@@ -157,7 +156,7 @@ class Apply extends Form {
 	 * @param mixed $value Value of param
 	 * @return bool True if value is valid, false otherwise
 	 */
-	protected function validateWmfAgreeGuardian ( $value ) {
+	protected function validateWmfAgreeGuardian( $value ) {
 		$dob = $this->getDob();
 		if ( $dob !== null ) {
 			$diff = $dob->diff( new DateTime() );
@@ -172,7 +171,7 @@ class Apply extends Form {
 	 *
 	 * @return DateTime|null Timestamp or null if invalid
 	 */
-	protected function getDob () {
+	protected function getDob() {
 		$year = $this->get( 'yy' );
 		$month = $this->get( 'mm' );
 		$day = $this->get( 'dd' );
@@ -186,7 +185,7 @@ class Apply extends Form {
 				$time > strtotime( '1882-01-01' )
 			) {
 				$result = new DateTime( "@{$time}" );
-				if ( $result->format( 'Y-m-d') != $date ) {
+				if ( $result->format( 'Y-m-d' ) != $date ) {
 					// Date wasn't really valid (eg 1970-02-31)
 					$result = null;
 				}
@@ -200,14 +199,14 @@ class Apply extends Form {
 	 * Validate that the date of birth constructed from the input is a valid
 	 * date.
 	 */
-	protected function customValidationHook () {
+	protected function customValidationHook() {
 		if ( $this->getDob() === null ) {
 			$this->errors[] = 'yy';
 			$this->errors[] = 'mm';
 			$this->errors[] = 'dd';
 		}
 
-		if ( !($this->get( 'engage1' ) ||
+		if ( !( $this->get( 'engage1' ) ||
 			$this->get( 'engage2' ) ||
 			$this->get( 'engage3' ) ||
 			$this->get( 'engage4' ) ||
@@ -227,7 +226,7 @@ class Apply extends Form {
 	 * Save the collected user input to the database.
 	 */
 	public function save() {
-		$colnames = array(
+		$colnames = [
 			'type', 'chapteragree', 'fname', 'lname', 'email', 'residence',
 
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
@@ -244,9 +243,9 @@ class Apply extends Form {
 			'agreestofriendlyspace', 'infotrue',
 
 			'wmfAgreeName', 'wmfAgreeGuardian'
-		);
+		];
 
-		$answers = array();
+		$answers = [];
 
 		foreach ( $colnames as $col ) {
 			if ( $col == 'dob' ) {

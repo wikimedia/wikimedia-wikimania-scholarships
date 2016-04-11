@@ -35,7 +35,7 @@ class Countries {
 	 *
 	 * @var array $COUNTRY_NAMES
 	 */
-	public static $COUNTRY_NAMES = array(
+	public static $COUNTRY_NAMES = [
 		'AF' => 'Afghanistan',
 		'AX' => 'Åland Islands',
 		'AL' => 'Albania',
@@ -286,8 +286,7 @@ class Countries {
 		'YE' => 'Yemen',
 		'ZM' => 'Zambia',
 		'ZW' => 'Zimbabwe',
-	);
-
+	];
 
 	/**
 	 * Construciton not allowed for utility class.

@@ -37,7 +37,6 @@ class ChangePassword extends Controller {
 		$this->render( 'user/changePassword.html' );
 	}
 
-
 	protected function handlePost() {
 		$this->form->requireString( 'oldpw' );
 		$this->form->requireString( 'newpw1' );
@@ -63,7 +62,7 @@ class ChangePassword extends Controller {
 				}
 			}
 		} else {
-			//FIXME: actually pass form errors back to view
+			// FIXME: actually pass form errors back to view
 			$this->flash( 'error', 'Invalid input.' );
 		}
 

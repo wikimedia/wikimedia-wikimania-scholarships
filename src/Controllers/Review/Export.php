@@ -44,17 +44,17 @@ class Export extends Controller {
 
 	protected function actionDefault() {
 		$this->form->expectInt( 'items',
-			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
+			[ 'min_range' => 1, 'max_range' => 250, 'default' => 50 ]
 		);
-		$this->form->expectInt( 'p', array( 'min_range' => 0, 'default' => 0 ) );
+		$this->form->expectInt( 'p', [ 'min_range' => 0, 'default' => 0 ] );
 		$this->form->validate( $_GET );
 		$this->view->set( 'items', $this->form->get( 'items' ) );
 		$this->view->set( 'p', $this->form->get( 'p' ) );
 
-		$params = array(
+		$params = [
 			'items' => $this->form->get( 'items' ),
 			'page' => $this->form->get( 'p' ),
-		);
+		];
 
 		$ret = $this->dao->export( $params );
 		$this->view->set( 'records', $ret->rows );
@@ -71,7 +71,7 @@ class Export extends Controller {
 	}
 
 	protected function actionExport() {
-		$ret = $this->dao->export( array( 'items' => 'all' ) );
+		$ret = $this->dao->export( [ 'items' => 'all' ] );
 
 		$ts = gmdate( 'Ymd\THi' );
 		$this->response->headers->set( 'Content-type',
