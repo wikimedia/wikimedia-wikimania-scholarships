@@ -35,7 +35,7 @@
 	"form-scholarship-either": "Sto facendo domanda per una borsa di studio completa, ma sarei in grado di partecipare se mi aggiudicassi una borsa di studio parziale.",
 	"form-scholarship-partial": "Sto facendo domanda per una borsa di studio parziale.",
 	"form-error": "Il modulo presenta degli errori. Si prega di correggere gli errori seguenti e inviare nuovamente il modulo.",
-	"form-save-error": "C'è stato un errore di sistema nel salvare la domanda per la borsa. Si prega di riprovare.",
+	"form-save-error": "Si è verificato un errore di sistema nel salvare la domanda per la borsa. Si prega di riprovare.",
 	"form-gender_other-error": "Si prega di descrivere la vostra auto-definita identità di genere.",
 	"form-goals-error": "Per favore spiega la tua precedente esperienza di partecipazione a Wikimania e i tuoi obiettivi per la partecipazione di quest'anno.",
 	"form-scholarship-error": "Seleziona il tipo di borsa di studio",
