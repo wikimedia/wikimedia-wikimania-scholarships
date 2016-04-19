@@ -45,15 +45,14 @@ class Reset extends Controller {
 		}
 	}
 
-
 	protected function handlePost( $id, $token ) {
 		$this->form->requireString( 'newpw1' );
 		$this->form->requireString( 'newpw2' );
 
-		$dest = $this->urlFor( 'account_reset', array(
+		$dest = $this->urlFor( 'account_reset', [
 			'uid' => $id,
 			'token' => $token,
-		) );
+		] );
 
 		if ( $this->form->validate() ) {
 			$newPass = $this->form->get( 'newpw1' );

@@ -22,6 +22,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // Twelve-Factor App configuration
 // populate $_ENV from .env if present
-if (is_readable(__DIR__ . '/../.env.test')) {
-	\Wikimania\Scholarship\Config::load( __DIR__ . '/../.env.test'  );
-} //end if .env
+if ( is_readable( __DIR__ . '/../.env.test' ) ) {
+	\Wikimania\Scholarship\Config::load( __DIR__ . '/../.env.test' );
+} // end if .env

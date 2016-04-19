@@ -25,7 +25,7 @@ $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	echo "MW_INSTALL_PATH not found in environment.\n";
 	echo "Did you remember to use mwscript to run this script?\n";
-	exit(1);
+	exit( 1 );
 }
 
 require_once "$IP/maintenance/Maintenance.php";
@@ -38,7 +38,8 @@ require_once "$IP/maintenance/Maintenance.php";
  */
 class ListOfWikis extends Maintenance {
 	public function execute() {
-		global $wgLocalDatabases, $wgSiteMatrixPrivateSites, $wgSiteMatrixFishbowlSites, $wgSiteMatrixClosedSites;
+		global $wgLocalDatabases, $wgSiteMatrixPrivateSites;
+		global $wgSiteMatrixFishbowlSites, $wgSiteMatrixClosedSites;
 
 		$list = array_diff(
 				$wgLocalDatabases,

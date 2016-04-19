@@ -36,7 +36,7 @@ class Settings extends AbstractDao {
 	 * @return array Settings from DB
 	 */
 	public function getSettings() {
-		$settings = array();
+		$settings = [];
 		$records = $this->fetchAll(
 			'SELECT setting_name, value FROM settings'
 		);
@@ -59,17 +59,17 @@ class Settings extends AbstractDao {
 		try {
 			$this->dbh->beginTransaction();
 			foreach ( $settings as $name => $value ) {
-				$stmt->execute( array( 'name' => $name, 'value' => $value ) );
+				$stmt->execute( [ 'name' => $name, 'value' => $value ] );
 			}
 			$this->dbh->commit();
 			return true;
 
-		} catch ( PDOException $e) {
+		} catch ( PDOException $e ) {
 			$this->dbh->rollback();
-			$this->logger->error( 'Failed to update settings', array(
+			$this->logger->error( 'Failed to update settings', [
 				'method' => __METHOD__,
 				'exception' => $e,
-			) );
+			] );
 			return false;
 		}
 	}

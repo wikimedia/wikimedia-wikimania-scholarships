@@ -33,9 +33,9 @@ use Wikimedia\Slimapp\Controller;
 class Application extends Controller {
 
 	protected function handleGet() {
-		$this->form->expectInt( 'id', array( 'min_range' => 0 ) );
+		$this->form->expectInt( 'id', [ 'min_range' => 0 ] );
 		$this->form->expectInt( 'phase',
-			array( 'min_range' => 0, 'max_range' => 2, 'default' => 2 )
+			[ 'min_range' => 0, 'max_range' => 2, 'default' => 2 ]
 		);
 		$this->form->validate( $_GET );
 		$id = $this->form->get( 'id' );
@@ -73,13 +73,13 @@ class Application extends Controller {
 	}
 
 	protected function handlePost() {
-		$criteria = array( 'valid', 'relexp', 'expshare' );
+		$criteria = [ 'valid', 'relexp', 'expshare' ];
 
-		$this->form->expectInt( 'phase', array( 'min_range' => 0, 'max_range' => 2, 'default' => 2 ) );
-		$this->form->requireInt( 'id', array( 'min_range' => 0 ) );
+		$this->form->expectInt( 'phase', [ 'min_range' => 0, 'max_range' => 2, 'default' => 2 ] );
+		$this->form->requireInt( 'id', [ 'min_range' => 0 ] );
 		$this->form->expectString( 'notes' );
-		foreach ( $criteria as $c) {
-			$this->form->expectInt( $c, array( 'min_range' => 0 ) );
+		foreach ( $criteria as $c ) {
+			$this->form->expectInt( $c, [ 'min_range' => 0 ] );
 		}
 
 		if ( $this->form->validate() ) {
@@ -107,6 +107,6 @@ class Application extends Controller {
 			$this->flash( 'error', 'Invalid submission' );
 		}
 		$phase = $this->form->get( 'phase' );
-		$this->redirect( $this->urlFor( 'review_view' ) . "?id={$id}&phase={$phase}");
+		$this->redirect( $this->urlFor( 'review_view' ) . "?id={$id}&phase={$phase}" );
 	}
 }

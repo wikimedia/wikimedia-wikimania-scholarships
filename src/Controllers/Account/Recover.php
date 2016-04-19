@@ -36,7 +36,6 @@ class Recover extends Controller {
 		$this->render( 'account/recover.html' );
 	}
 
-
 	protected function handlePost() {
 		$this->form->requireEmail( 'email' );
 
@@ -67,24 +66,24 @@ class Recover extends Controller {
 		$sent = $this->mailer->mail(
 			$user['email'],
 			$this->i18nContext->message( 'recover-account-subject' ),
-			$this->i18nContext->message( 'recover-account-email', array(
+			$this->i18nContext->message( 'recover-account-email', [
 				$user['username'],
 				$this->request->getUrl() .
-				$this->urlFor( 'account_reset', array(
+				$this->urlFor( 'account_reset', [
 					'uid' => $user['id'],
 					'token' => $token,
-				) ),
+				] ),
 				$this->request->getUrl() . $this->urlFor( 'home' ),
-			) )
+			] )
 		);
 
 		if ( !$sent ) {
 			$this->log->error(
 				'Failed to send reset email for user',
-				array(
+				[
 					'method' => __METHOD__,
 					'user' => $user['id'],
-			) );
+			] );
 		}
 	}
 

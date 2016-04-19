@@ -40,7 +40,6 @@ class AuthManager extends \Wikimedia\Slimapp\Auth\AuthManager {
 		return $user ? $user->isAdmin() : false;
 	}
 
-
 	/**
 	 * Is the user a reviewer?
 	 * @return bool True if the user is authorized to perform review tasks,

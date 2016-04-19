@@ -43,25 +43,25 @@ class PhaseGrid extends Controller {
 
 	protected function handleGet() {
 		$this->form->requireInArray( 'apps',
-			array( 'unreviewed', 'all', 'myapps' ),
-			array( 'default' => 'all' )
+			[ 'unreviewed', 'all', 'myapps' ],
+			[ 'default' => 'all' ]
 		);
 		$this->form->expectInt( 'items',
-			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
+			[ 'min_range' => 1, 'max_range' => 250, 'default' => 50 ]
 		);
-		$this->form->expectInt( 'p', array( 'min_range' => 0, 'default' => 0 ) );
-		$this->form->expectInt( 'min', array( 'default' => -2 ) );
-		$this->form->expectInt( 'max', array( 'default' => 999 ) );
+		$this->form->expectInt( 'p', [ 'min_range' => 0, 'default' => 0 ] );
+		$this->form->expectInt( 'min', [ 'default' => -2 ] );
+		$this->form->expectInt( 'max', [ 'default' => 999 ] );
 		$this->form->validate( $_GET );
 
-		$params = array(
+		$params = [
 			'min' => $this->form->get( 'min' ),
 			'max' => $this->form->get( 'max' ),
 			'phase' => $this->phase,
 			'items' => $this->form->get( 'items' ),
 			'page' => $this->form->get( 'p' ),
 			'apps' => $this->form->get( 'apps' ),
-		);
+		];
 		$ret = $this->dao->gridData( $params );
 
 		$this->view->set( 'apps', $this->form->get( 'apps' ) );

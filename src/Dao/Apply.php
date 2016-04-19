@@ -43,11 +43,11 @@ class Apply extends AbstractDao {
 	/**
 	 * @var array $settings
 	 */
-	protected $settings = array(
+	protected $settings = [
 		'phase1pass' => 1, // p1score needed to pass into phase2
 		'relexp' => 0.5, // contribution of relevant experience to final score
 		'expshare' => 0.5, // contribution of experience sharing to final score
-	);
+	];
 
 	/**
 	 * @param string $dsn PDO data source name
@@ -62,10 +62,9 @@ class Apply extends AbstractDao {
 	) {
 		parent::__construct( $dsn, $user, $pass, $logger );
 		$this->userid = $uid;
-		$settings = is_array( $settings ) ? $settings : array();
+		$settings = is_array( $settings ) ? $settings : [];
 		$this->settings = array_merge( $this->settings, $settings );
 	}
-
 
 	/**
 	 * Save a new application.
@@ -75,7 +74,9 @@ class Apply extends AbstractDao {
 	 */
 	public function saveApplication( $answers ) {
 		$cols = array_keys( $answers );
-		$parms = array_map( function ($elm) { return ":{$elm}"; }, $cols );
+		$parms = array_map( function ( $elm ) { return ":{$elm}";
+
+	 }, $cols );
 		$sql = self::concat(
 			'INSERT INTO scholarships (',
 			implode( ',', $cols ),
@@ -86,23 +87,22 @@ class Apply extends AbstractDao {
 		return $this->insert( $sql, $answers );
 	}
 
-
 	/**
 	 * @param array $params Query parameters
 	 */
 	public function gridData( $params ) {
-		$defaults = array(
+		$defaults = [
 			'apps'   => 'unreviewed',
 			'items'  => 50,
 			'page' => 0,
 			'min'    => -2,
 			'max'    => 999,
 			'phase'  => 1,
-		);
+		];
 		$params = array_merge( $defaults, $params );
 
-		$where = array();
-		$bindVars = array();
+		$where = [];
+		$bindVars = [];
 		$bindVars['int_userid'] = $this->userid ?: 0;
 
 		if ( $params['items'] == 'all' ) {
@@ -116,7 +116,7 @@ class Apply extends AbstractDao {
 			$offset = 'OFFSET :int_offset';
 		}
 
-		$fields = array(
+		$fields = [
 			's.id',
 			's.fname',
 			's.lname',
@@ -128,10 +128,10 @@ class Apply extends AbstractDao {
 			'c.country_name',
 			'COALESCE(p1score, 0) as p1score',
 			'mycount',
-		);
+		];
 
 		if ( $params['phase'] == 1 ) {
-			switch( $params['apps'] ) {
+			switch ( $params['apps'] ) {
 				case 'unreviewed':
 					$where[] = 'p1count IS NULL';
 					break;
@@ -142,8 +142,8 @@ class Apply extends AbstractDao {
 					break;
 			}
 
-		} else if ( $params['phase'] == 2 ) {
-			switch( $params['apps'] ) {
+		} elseif ( $params['phase'] == 2 ) {
+			switch ( $params['apps'] ) {
 				case 'unreviewed':
 					$where[] = 'nscorers IS NULL';
 					break;
@@ -188,20 +188,20 @@ class Apply extends AbstractDao {
 			"GROUP BY scholarship_id"
 		);
 
-		$joins = array(
+		$joins = [
 			"LEFT OUTER JOIN iso_countries c ON s.residence = c.code",
 			"LEFT OUTER JOIN ({$p1scoreSql}) r1 ON s.id = r1.scholarship_id",
-		);
+		];
 
 		$havingExtra = '';
 
 		if ( $params['phase'] == 1 ) {
 			$fields[] = 'p1count';
 
-			$joins = array_merge( $joins, array(
+			$joins = array_merge( $joins, [
 				"LEFT OUTER JOIN ({$p1countSql}) r2 on s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ( {$mycountSql} ) r3 on s.id = r3.scholarship_id",
-			) );
+			] );
 
 			$havingExtra = "AND p1score >= :int_min AND p1score <= :int_max";
 			$bindVars['int_min'] = (int)$params['min'];
@@ -214,11 +214,11 @@ class Apply extends AbstractDao {
 			$where[] = 'p1score >= :int_phase1pass';
 			$bindVars['int_phase1pass'] = (int)$this->settings['phase1pass'];
 
-			$joins = array_merge( $joins, array(
+			$joins = array_merge( $joins, [
 				"LEFT OUTER JOIN ({$p2scoreSql}) r2 ON s.id = r2.scholarship_id",
 				"LEFT OUTER JOIN ({$nscorersSql}) r3 ON s.id = r3.scholarship_id",
 				"LEFT OUTER JOIN ({$mycount2Sql}) r4 ON s.id = r4.scholarship_id",
-			) );
+			] );
 		}
 
 		$sql = self::concat(
@@ -233,10 +233,8 @@ class Apply extends AbstractDao {
 			$offset
 		);
 
-
 		return $this->fetchAllWithFound( $sql, $bindVars );
 	} // end gridData
-
 
 	public function myUnreviewed( $phase ) {
 		if ( $phase == 1 ) {
@@ -256,16 +254,17 @@ class Apply extends AbstractDao {
 			"ORDER BY s.id"
 		);
 
-		$res = $this->fetchAll( $sql, array(
+		$res = $this->fetchAll( $sql, [
 			'int_uid' => $this->userid,
 			'crit' => $crit,
-		) );
-		return array_map( function ($row) { return $row['id']; }, $res );
+		] );
+		return array_map( function ( $row ) { return $row['id'];
+
+	 }, $res );
 	}
 
-
 	public function search( $params ) {
-		$defaults = array(
+		$defaults = [
 			'first' => null,
 			'last' => null,
 			'residence' => null,
@@ -275,13 +274,13 @@ class Apply extends AbstractDao {
 			'items'  => 50,
 			'page' => 0,
 			'phase1' => false,
-		);
+		];
 		$params = array_merge( $defaults, $params );
 
-		$where = array();
-		$crit = array(
+		$where = [];
+		$crit = [
 			'int_uid' => $this->userid ?: 0,
-		);
+		];
 
 		$limit = "LIMIT :int_limit";
 		$crit['int_limit'] = $params['items'];
@@ -320,7 +319,7 @@ class Apply extends AbstractDao {
 
 		$where[] = "s.exclude = 0";
 
-		$fields = array(
+		$fields = [
 			"s.id",
 			"s.fname",
 			"s.lname",
@@ -336,7 +335,7 @@ class Apply extends AbstractDao {
 			"COALESCE(p1score, 0) AS p1score",
 			"p1count",
 			"mycount",
-		);
+		];
 
 		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 		$p1countSql = $this->makeAggregateRankSql( 'valid', 'COUNT', 'p1count' );
@@ -366,15 +365,14 @@ class Apply extends AbstractDao {
 		return $this->fetchAllWithFound( $sql, $crit );
 	}
 
-
 	public function getScholarship( $id ) {
-		$fields = array(
+		$fields = [
 			's.*',
 			's.id',
 			'c.country_name',
 			'r.country_name AS residence_name',
 			'l.language AS community_name',
-		);
+		];
 		$sql = self::concat(
 			'SELECT', implode( ',', $fields ),
 			'FROM scholarships s',
@@ -383,9 +381,8 @@ class Apply extends AbstractDao {
 			'LEFT OUTER JOIN language_communities l ON s.community = l.code',
 			'WHERE s.id = :int_id'
 		);
-		return $this->fetch( $sql, array( 'int_id' => $id ) );
+		return $this->fetch( $sql, [ 'int_id' => $id ] );
 	}
-
 
 	/**
 	 * Find the next unreviewed id after the given id.
@@ -401,7 +398,6 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
-
 	public function prevApp( $id, $phase ) {
 		$myapps = $this->myUnreviewed( $phase );
 		$prior = false;
@@ -414,7 +410,6 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
-
 	public function insertOrUpdateRanking( $scholarship_id, $criterion, $rank ) {
 		$sql = self::concat(
 			'INSERT INTO rankings (user_id, scholarship_id, criterion, rank)',
@@ -422,28 +417,26 @@ class Apply extends AbstractDao {
 			'ON DUPLICATE KEY UPDATE rank = :int_rank, entered_on = now()'
 		);
 
-		return $this->update( $sql, array(
+		return $this->update( $sql, [
 			'int_uid' => $this->userid,
 			'int_sid' => $scholarship_id,
 			'str_crit' => $criterion,
 			'int_rank' => $rank,
-		) );
+		] );
 	}
-
 
 	public function updateNotes( $id, $notes ) {
 		return $this->update(
 			'update scholarships set notes = :notes where id = :int_id',
-			array(
+			[
 				'int_id' => $id,
 				'notes' => $notes,
-			)
+			]
 		);
 	}
 
-
 	public function getReviewers( $id, $phase ) {
-		$where = array( "r.scholarship_id = :int_sid" );
+		$where = [ "r.scholarship_id = :int_sid" ];
 		if ( $phase == 1 ) {
 			$where[] = "r.criterion = 'valid'";
 		} else {
@@ -457,12 +450,11 @@ class Apply extends AbstractDao {
 			self::buildWhere( $where ),
 			"ORDER BY u.username"
 		);
-		return $this->fetchAll( $sql, array( 'int_sid' => $id ) );
+		return $this->fetchAll( $sql, [ 'int_sid' => $id ] );
 	}
 
-
 	public function myRankings( $id, $phase ) {
-		$where = array( "r.scholarship_id = :int_sid" );
+		$where = [ "r.scholarship_id = :int_sid" ];
 		if ( $phase == 1 ) {
 			$where[] = "r.criterion = 'valid'";
 
@@ -478,12 +470,11 @@ class Apply extends AbstractDao {
 			self::buildWhere( $where ),
 			"ORDER BY r.criterion, r.rank"
 		);
-		return $this->fetchAll( $sql, array(
+		return $this->fetchAll( $sql, [
 			'int_sid' => $id,
 			'int_uid' => $this->userid,
-		) );
+		] );
 	}
-
 
 	/**
 	 * Get a list of scholarships at the close of phase 1 screening.
@@ -493,44 +484,43 @@ class Apply extends AbstractDao {
 	 * @return array Query results
 	 */
 	protected function getPhase1List( $success ) {
-		$fields = array(
+		$fields = [
 			's.id',
 			's.fname',
 			's.lname',
 			's.email',
 			's.exclude',
 			'COALESCE(p1score, 0) as p1score',
-		);
+		];
 
 		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 
-		$op = ( $success ) ? '>=' : '<' ;
+		$op = ( $success ) ? '>=' : '<';
 
 		return $this->fetchAll( self::concat(
-			"SELECT" , implode( ',', $fields ),
+			"SELECT", implode( ',', $fields ),
 			"FROM scholarships s",
 			"LEFT OUTER JOIN ({$p1scoreSql}) r2 ON s.id = r2.scholarship_id",
 			"GROUP BY s.id, s.fname, s.lname, s.email",
 			"HAVING p1score {$op} :int_phase1pass AND s.exclude = 0"
-		), array(
+		), [
 			'int_phase1pass' => (int)$this->settings['phase1pass'],
-		) );
+		] );
 	}
-
 
 	public function getPhase1EarlyRejects() {
 		return $this->getPhase1List( false );
 	}
 
-
 	public function getPhase1Success() {
 		return $this->getPhase1List( true );
 	}
 
-
 	public function getRegionList() {
 		$res = $this->fetchAll( "SELECT DISTINCT region FROM iso_countries" );
-		return array_map( function ($row) { return $row['region']; }, $res );
+		return array_map( function ( $row ) { return $row['region'];
+
+	 }, $res );
 	}
 
 	/**
@@ -545,9 +535,9 @@ class Apply extends AbstractDao {
 	public function getP2List(
 		$region = 'All', $globalns = 'All', $languageGroup = 'All'
 	) {
-		$params = array();
+		$params = [];
 
-		$fields = array(
+		$fields = [
 			"s.id",
 			"s.fname",
 			"s.lname",
@@ -566,12 +556,12 @@ class Apply extends AbstractDao {
 			'c.region',
 			'c.globalns',
 			'l.size',
-		);
+		];
 
-		$having = array(
+		$having = [
 			'p1score >= :int_phase1pass',
 			's.exclude = 0',
-		);
+		];
 
 		$params['relexp'] = (float)$this->settings['relexp'];
 		$params['expshare'] = (float)$this->settings['expshare'];
@@ -622,7 +612,6 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( $sql, $params );
 	}
 
-
 	// Country administration
 	public function getListOfCountries( $order = "country_name" ) {
 		return $this->fetchAll( self::concat(
@@ -632,7 +621,6 @@ class Apply extends AbstractDao {
 			"GROUP BY c.country_name"
 		) );
 	}
-
 
 	/*
 	 * Fetch applications for different language groups
@@ -650,12 +638,12 @@ class Apply extends AbstractDao {
 
 		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 
-		$fields = array(
+		$fields = [
 			'count(*) as sid',
 			'l.size',
 			'c.globalns',
 			'COALESCE(p1score, 0) as p1score',
-		);
+		];
 
 		return $this->fetchAll( self::concat(
 			"SELECT", implode( ',', $fields ),
@@ -665,11 +653,10 @@ class Apply extends AbstractDao {
 			"LEFT JOIN iso_countries c ON c.code = s.residence",
 			"WHERE p1score >= :int_phase1pass AND s.exclude = 0",
 			"GROUP BY l.size, c.globalns"
-		), array(
+		), [
 			'int_phase1pass' => (int)$this->settings['phase1pass'],
-		) );
+		] );
 	}
-
 
 	public function getListOfRegions() {
 		return $this->fetchAll( self::concat(
@@ -680,21 +667,20 @@ class Apply extends AbstractDao {
 		) );
 	}
 
-
 	/**
 	 * @param array $params Query parameters
 	 */
 	public function export( $params ) {
-		$defaults = array(
+		$defaults = [
 			'items'  => 50,
 			'page' => 0,
-		);
+		];
 		$params = array_merge( $defaults, $params );
 
-		$bindVars = array(
+		$bindVars = [
 			'relexp' => (float)$this->settings['relexp'],
 			'expshare' => (float)$this->settings['expshare'],
-		);
+		];
 
 		if ( $params['items'] == 'all' ) {
 			$limit = '';
@@ -707,7 +693,7 @@ class Apply extends AbstractDao {
 			$offset = 'OFFSET :int_offset';
 		}
 
-		$fields = array(
+		$fields = [
 			's.*',
 			"YEAR(NOW()) - YEAR(s.dob) AS age",
 			'c.region',
@@ -719,7 +705,7 @@ class Apply extends AbstractDao {
 			"rkexps.expshare AS expshare",
 			"(COALESCE(:relexp * rkrexp.relexp, 0) + " .
 			"COALESCE(:expshare * rkexps.expshare, 0)) as p2score ",
-		);
+		];
 
 		$sqlP1Score = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 		$relexp = $this->makeAggregateRankSql( 'relexp', 'AVG' );

@@ -36,12 +36,12 @@ class Users extends Controller {
 		$this->form->expectString( 'name' );
 		$this->form->expectString( 'email' );
 		$this->form->expectInt( 'items',
-			array( 'min_range' => 1, 'max_range' => 250, 'default' => 50 )
+			[ 'min_range' => 1, 'max_range' => 250, 'default' => 50 ]
 		);
-		$this->form->expectInt( 'p', array( 'min_range' => 0, 'default' => 0 ) );
-		$this->form->expectString( 's', array( 'default' => 'id' ) );
-		$this->form->expectInArray( 'o', array( 'asc', 'desc' ),
-			array( 'default' => 'asc' )
+		$this->form->expectInt( 'p', [ 'min_range' => 0, 'default' => 0 ] );
+		$this->form->expectString( 's', [ 'default' => 'id' ] );
+		$this->form->expectInArray( 'o', [ 'asc', 'desc' ],
+			[ 'default' => 'asc' ]
 		);
 		$this->form->validate( $_GET );
 
@@ -52,14 +52,14 @@ class Users extends Controller {
 		$this->view->set( 's', $this->form->get( 's' ) );
 		$this->view->set( 'o', $this->form->get( 'o' ) );
 
-		$params = array(
+		$params = [
 			'name' => $this->form->get( 'name' ),
 			'email' => $this->form->get( 'email' ),
 			'sort' => $this->form->get( 's' ),
 			'order' => $this->form->get( 'o' ),
 			'items' => $this->form->get( 'items' ),
 			'page' => $this->form->get( 'p' ),
-		);
+		];
 
 		$ret = $this->dao->search( $params );
 		$this->view->set( 'records', $ret->rows );

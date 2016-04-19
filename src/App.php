@@ -50,7 +50,7 @@ class App extends AbstractApp {
 	 */
 	protected function configureSlim( \Slim\Slim $slim ) {
 		// Common configuration
-		$slim->config( array(
+		$slim->config( [
 			'log.channel' => 'scholarships',
 			'db.dsn' => Config::getStr( 'DB_DSN' ),
 			'db.user' => Config::getStr( 'DB_USER' ),
@@ -61,7 +61,7 @@ class App extends AbstractApp {
 			'parsoid.cache' => Config::getStr( 'CACHE_DIR',
 				"{$this->deployDir}/data/cache"
 			),
-		) );
+		] );
 
 		// Production configuration that should not be shared with development
 		// Enabled by default or SLIM_MODE=production in environment
@@ -69,11 +69,11 @@ class App extends AbstractApp {
 			// Install a custom error handler
 			$slim->error( function ( \Exception $e ) use ( $slim ) {
 				$errorId = substr( session_id(), 0, 8 ) . '-' . substr( uniqid(), -8 );
-				$slim->log->critical( $e->getMessage(), array(
+				$slim->log->critical( $e->getMessage(), [
 					'exception' => $e,
 					'ua' => $slim->request->getUserAgent(),
 					'errorId' => $errorId,
-				) );
+				] );
 				$slim->view->set( 'errorId', $errorId );
 				$slim->render( 'error.html' );
 			} );
@@ -82,16 +82,15 @@ class App extends AbstractApp {
 		// Development configuration
 		// Enable by setting SLIM_MODE=development in environment
 		$slim->configureMode( 'development', function () use ( $slim ) {
-			$slim->config( array(
+			$slim->config( [
 				'debug' => true,
 				'log.level' => Config::getStr( 'LOG_LEVEL', \Psr\Log\LogLevel::DEBUG ),
 				'view.cache' => false,
-			) );
+			] );
 		} );
 
 		$slim->mock = Config::getBool( 'MOCK' );
 	}
-
 
 	/**
 	 * Configure inversion of control/dependency injection container.
@@ -145,9 +144,9 @@ class App extends AbstractApp {
 
 		$container->singleton( 'mailer',  function ( $c ) {
 			return new Mailer(
-				array(
+				[
 					'Host' => $c->settings['smtp.host'],
-				),
+				],
 				$c->log
 			);
 		} );
@@ -161,36 +160,34 @@ class App extends AbstractApp {
 		} );
 	}
 
-
 	/**
 	 * Configure view behavior.
 	 *
 	 * @param \Slim\View $view Default view
 	 */
 	protected function configureView( \Slim\View $view ) {
-		$view->parserOptions = array(
+		$view->parserOptions = [
 			'charset' => 'utf-8',
 			'cache' => $this->slim->config( 'view.cache' ),
 			'debug' => $this->slim->config( 'debug' ),
 			'auto_reload' => true,
 			'strict_variables' => !$this->slim->config( 'debug' ),
 			'autoescape' => true,
-		);
+		];
 
 		// install twig parser extensions
-		$view->parserExtensions = array(
+		$view->parserExtensions = [
 			new \Slim\Views\TwigExtension(),
 			new TwigExtension( $this->slim->parsoid ),
 			new \Wikimedia\SimpleI18n\TwigExtension( $this->slim->i18nContext ),
-		);
+		];
 
 		// set default view data
-		$view->replace( array(
+		$view->replace( [
 			'app' => $this->slim,
 			'i18nCtx' => $this->slim->i18nContext,
-		) );
+		] );
 	}
-
 
 	/**
 	 * Configure routes to be handled by application.
@@ -199,15 +196,15 @@ class App extends AbstractApp {
 	 */
 	protected function configureRoutes( \Slim\Slim $slim ) {
 		// Add a Vary: Cookie header to all responses
-		$headerMiddleware = new HeaderMiddleware( array(
+		$headerMiddleware = new HeaderMiddleware( [
 			'Vary' => 'Cookie',
-		) );
+		] );
 		$slim->add( $headerMiddleware );
 
 		// Add CSRF protection
 		$slim->add( new CsrfMiddleware() );
 
-		$middleware = array(
+		$middleware = [
 
 			'must-revalidate' => function () use ( $slim ) {
 				// We want clients to cache if they can, but force them to check for
@@ -256,7 +253,7 @@ class App extends AbstractApp {
 				}
 			},
 
-		);
+		];
 
 		// "Root" routes for non-autenticated users
 		$slim->group( '/', function () use ( $slim, $middleware ) {
@@ -365,7 +362,7 @@ class App extends AbstractApp {
 				$page();
 			} )->name( 'user_changepassword_post' );
 
-		} );
+		 } );
 
 		// routes for reviewers
 		$slim->group( '/review/',
@@ -460,7 +457,7 @@ class App extends AbstractApp {
 					$page();
 				}
 			)->name( 'review_export' );
-		} );
+		 } );
 
 		$slim->group( '/admin/',
 			$middleware['must-revalidate'], $middleware['require-user'], $middleware['require-admin'],
@@ -496,11 +493,11 @@ class App extends AbstractApp {
 				$page->setMailer( $slim->mailer );
 				$page();
 			} )->name( 'admin_user_post' );
-		} );
+		 } );
 
 		$slim->notFound( function () use ( $slim, $middleware ) {
 			$slim->render( '404.html' );
 		} );
 	}
 
-} //end App
+} // end App
