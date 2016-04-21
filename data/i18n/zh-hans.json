@@ -143,7 +143,7 @@
 	"confirm-text": "感谢您提交您的年维基媒体国际会议资费申请。请联络<a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>以询问任何问题。",
 	"privacy-page": "<p>全部的个人信息将由维基媒体国际会议资费委员会成员和<a href=\"https://wikimediafoundation.org\">维基媒体基金会</a>严格保密，这基于维基媒体基金会<a href=\"https://wikimediafoundation.org/wiki/Privacy_policy\">隐私政策</a>。</p>",
 	"new-account-subject": "新的维基媒体国际会议奖金账户",
-	"new-account-email": "我们为您创建了新的维基媒体资费账户。\n\n您的登录信息：\n\n用户名：$1\n密码：$2\n\n您可在此登录：$3\n\n您可在此更改您的密码：$4\n\n感谢您的支持，\n年维基媒体国际会议组织团队",
+	"new-account-email": "我们为您创建了新的维基媒体资费账户。\n\n您的登录信息：\n\n用户名：$1\n密码：$2\n\n您可在此登录：$3\n\n您可在此更改您的密码：$4\n\n感谢您的支持，\n维基媒体国际会议组织团队",
 	"contact-us": "联系我们",
 	"contact-page": "电子邮件：<a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "制作人员和授权",
