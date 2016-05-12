@@ -6,7 +6,8 @@
 			"Ankabel",
 			"Ricordisamoa",
 			"Macofe",
-			"Gianfranco"
+			"Gianfranco",
+			"Walter Raffoni"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -186,6 +187,7 @@
 	"admin-users-id": "id",
 	"admin-users-username": "nome utente",
 	"admin-users-email": "email",
+	"admin-users-admin": "amministratore?",
 	"admin-users-blocked": "bloccato?",
 	"admin-users-yes": "sì",
 	"admin-users-no": "no",
@@ -197,7 +199,10 @@
 	"review-list-id": "ID",
 	"review-list-name": "Nome",
 	"review-list-email": "Email",
+	"review-list-p1-score": "punteggio p1",
+	"review-list-p2-score": "punteggio p2",
 	"review-list-residence": "Residenza",
+	"review-list-region": "Regione",
 	"review-list-size": "Dimensione",
 	"review-list-gender": "Sesso",
 	"review-list-age": "Età",
@@ -216,14 +221,23 @@
 	"review-view-study": "Campo di studio",
 	"review-view-username": "Nome utente:",
 	"review-view-alt-users": "Altri nomi utente:",
+	"review-view-active-projects": "Progetto wiki principale:",
 	"review-view-presentation-topic": "Argomento:",
+	"review-view-visa": "Otterrà il visto?",
+	"review-view-travel-conditions": "Accetta le condizioni di viaggio?",
+	"review-view-travel-only": "Utilizzerà la sovvenzione solo per il viaggio?",
 	"review-view-not-specified": "Non specificato",
+	"review-view-rank": "Rango",
+	"review-view-reviewers": "Revisori:",
+	"review-view-rankings": "Classifica",
 	"review-view-valid": "Valido:",
+	"review-view-relexp": "Esperienza rilevante:",
 	"review-view-interest": "Interessi in Wikimania:",
 	"review-view-notes": "Note:",
 	"review-view-save": "Salva",
 	"review-export-export": "Esporta elenco come CSV",
 	"page-of-pages": "Pagina $1 di $2",
 	"no-results": "Nessun risultato trovato",
-	"csrf-heading": "Richiesta non valida"
+	"csrf-heading": "Richiesta non valida",
+	"search-region": "Regione geografica:"
 }
