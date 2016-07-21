@@ -5,7 +5,8 @@
 			"Juandev",
 			"Mormegil",
 			"Urbanecm",
-			"Walter Klosse"
+			"Walter Klosse",
+			"Dvorapa"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -25,7 +26,7 @@
 	"nav-settings": "Nastavení",
 	"nav-reports-export": "Kompletní export",
 	"mock": "Tato žádost je pouze testovací.",
-	"form-scholarship-type": "Typ Stipendia",
+	"form-scholarship-type": "Typ stipendia",
 	"form-error": "Váš formulář nebyl vyplněn správně. Podívejte se, kde byly chyby, opravte jej, a pošlete jej znovu.",
 	"form-save-error": "Při ukládání vaší žádosti došlo k systémové chyb. Prosíme, zkuste to později.",
 	"form-gender_other-error": "Uveďte své pohlaví.",
