@@ -140,7 +140,7 @@
 	"confirm-text": "위키매니아 후원금 지원서를 제출해주셔서 감사합니다. 질문이 있다면 <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a>로 문의해주세요.",
 	"privacy-page": "<p>모든 개인정보는 위키매니아 후원금 위원회의 위원들과 <a href=\"https://wikimediafoundation.org\">Wikimedia Foundation</a>의 관계자들에게만 공개되며, 위키미디어 재단의 <a href=\"https://wikimediafoundation.org/wiki/Privacy_policy\">개인정보보호정책</a>.</p>을 따릅니다.",
 	"new-account-subject": "새 위키미디어 장학금 계정",
-	"new-account-email": "당신의 새로운 위키미디어 장학금 계정이 생성되었습니다.\n\n당신의 로그인 정보는 다음과 같습니다:\n\n사용자명: $1\n비밀번호: $2\n\n$3 에서 로그인할 수 있습니다.\n\n$4 에서 당신의 비밀번호를 변경할 수 있습니다.\n\n진심을 담아,\n위키마니아 준비팀",
+	"new-account-email": "당신의 새로운 위키미디어 장학금 계정이 생성되었습니다.\n\n당신의 로그인 정보는 다음과 같습니다:\n\n사용자명: $1\n비밀번호: $2\n\n$3에서 로그인할 수 있습니다.\n\n$4에서 당신의 비밀번호를 변경할 수 있습니다.\n\n진심을 담아,\n위키마니아 준비팀",
 	"contact-us": "문의하기",
 	"contact-page": "이메일: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "제작진 및 라이선스",
