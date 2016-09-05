@@ -114,6 +114,8 @@
 	"save-password": "पासवर्ड सहेजें",
 	"admin-user-id": "आईडी:",
 	"admin-user-email": "ईमेल:",
+	"admin-user-save": "बदलाव सहेजें",
 	"admin-users-form-go": "खोजें",
-	"review-view-community": "मुख्य विकि समुदाय:"
+	"review-view-community": "मुख्य विकि समुदाय:",
+	"review-view-save": "सहेजें"
 }
