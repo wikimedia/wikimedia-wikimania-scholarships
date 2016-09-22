@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Kumkumuk",
-			"Mirzali"
+			"Mirzali",
+			"Asmen"
 		]
 	},
 	"wikimania": "Wikimania",
 	"wikimania-location-year": "Esino Lario 2016",
 	"header-title": "Wikimania 2016 - Mıreceta Bursi",
 	"nav-apply": "Dezge",
-	"nav-faq": "PZP",
+	"nav-faq": "PVP",
 	"nav-credits": "Krediy",
 	"nav-privacy": "Nımıtış",
 	"nav-contact": "İrtıbat",
@@ -49,6 +50,7 @@
 	"form-community-error": "Wiki de zıwana xoya softeyêni weçinê",
 	"form-involvement-error": "Xebtiyayışanê proceyanê Wikimedia marê vacê",
 	"form-willgetvisa-error": "Dewam kerdışi rê şertanê viza rê tesdiq bıdê",
+	"form-agreestotravelconditions-error": "Dewam kerdışi rê,  reca kem rezervasyona forma seyahati qebul kerê",
 	"required-field": "Lazım bıyaye ca",
 	"form-contact-info": "Melumatê irtıbati",
 	"form-fname": "Nameyo resmi:",
@@ -202,11 +204,22 @@
 	"review-view-full-dump": "Tam rokerde",
 	"review-view-criteria": "Qıstasi",
 	"review-view-rank": "Rate",
+	"review-view-reviewers": "Vênayoği",
+	"review-view-rankings": "Rêzi",
+	"review-view-valid": "Ravêrde:",
+	"review-view-relexp": "Cerrebnayışo elaqeyın:",
+	"review-view-expshare": "Cerrebnayışi vıla kı :",
+	"review-view-interest": "Eleqeya Wikimania",
 	"review-view-notes": "Noti:",
 	"review-view-save": "Qeyd ke",
+	"review-export-export": "CSV ya listi ateberd",
+	"page-of-pages": "$1 perran ra $2",
+	"no-results": "Netice nê vineya",
+	"csrf-heading": "Vêrde waştış",
 	"search-region": "Mıntıqaya coğrafiye:",
 	"search-community-size": "Ebadê cemaeti:",
 	"search-globalns": "Global Zıme/Veroc",
+	"settings-weighing-factors": "Fabırqey gıraney",
 	"settings-app-period": "Dewrê mıracati",
 	"settings-app-period-open": "Abiyayışê dewrê mıracati:",
 	"settings-app-period-close": "Qediyayışê dewrê mıracati:"
