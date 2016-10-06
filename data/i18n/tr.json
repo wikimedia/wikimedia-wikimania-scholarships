@@ -12,7 +12,8 @@
 			"Macofe",
 			"Basak",
 			"HakanIST",
-			"Roxy"
+			"Roxy",
+			"Velg"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -237,6 +238,7 @@
 	"review-list-p2-score": "2. aşama değerlendirmesi",
 	"review-list-residence": "İkametgah",
 	"review-list-region": "Bölge",
+	"review-list-globalns": "Küresel Kuzey/Güney",
 	"review-list-size": "Boyut",
 	"review-list-gender": "Cinsiyet",
 	"review-list-age": "Yaş",
@@ -270,6 +272,9 @@
 	"review-view-travel-conditions": "Seyahat koşullarını kabul ediyor musunuz?",
 	"review-view-not-specified": "Belirtilmemiş",
 	"review-view-criteria": "Kıstaslar",
+	"review-view-rank": "Sıra",
+	"review-view-reviewers": "İnceleyiciler:",
+	"review-view-rankings": "Sıralaması",
 	"review-view-notes": "Notlar:",
 	"review-view-save": "Kaydet",
 	"page-of-pages": "Toplam $2 sayfadan $1 sayfa",
