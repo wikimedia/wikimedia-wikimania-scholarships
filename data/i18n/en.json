@@ -168,7 +168,7 @@
 	"contact-page": "Email: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 
 	"credits": "Credits & licensing",
-	"credits-page": "The Wikimania scholarships software is open source and <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">available</a> under the <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nThe code is based on the Wikimania scholarships system used for Wikimania 2009, 2010, 2011, 2012 and 2013.",
+	"credits-page": "The Wikimania scholarships software is open source and <a href=\"//phabricator.wikimedia.org/diffusion/WWSC/\">available</a> under the <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nThe code is based on the Wikimania scholarships system used for Wikimania 2009, 2010, 2011, 2012 and 2013.",
 
 	"help-translate": "Help translate",
 	"translate-page": "We would like the scholarship application system translated into as many languages as possible.\n</p><p>\nPlease request translator rights at <a href=\"//translatewiki.net\">translatewiki.net</a> and after that you can <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">start translating</a>.",
