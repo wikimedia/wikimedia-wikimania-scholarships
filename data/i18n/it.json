@@ -132,7 +132,7 @@
 	"contact-us": "Contattaci",
 	"contact-page": "Email: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Crediti & licenza",
-	"credits-page": "Il software per le borse di studio Wikimania è open source e <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">disponibile</a> in base alla <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nIl codice è basato sul sistema per le borse di studio Wikimania usato per Wikimania 2009, 2010, 2011, 2012 e 2013.",
+	"credits-page": "Il software per le borse di studio Wikimania è open source e <a href=\"//phabricator.wikimedia.org/diffusion/WWSC/\">disponibile</a> in base alla <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nIl codice è basato sul sistema per le borse di studio Wikimania usato per Wikimania 2009, 2010, 2011, 2012 e 2013.",
 	"help-translate": "Aiuta a tradurre",
 	"footer-faq": "Domande frequenti",
 	"footer-credits": "crediti",

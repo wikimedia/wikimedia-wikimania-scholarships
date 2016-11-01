@@ -154,7 +154,7 @@
 	"contact-us": "Contáctanos",
 	"contact-page": "Correo electrónico: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Créditos y licencias",
-	"credits-page": "El software de Becas Wikimanía es código abierto y se encuentra <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">disponible</a> bajo la <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nEl código está basado en el sistema de becas de Wikimanía usado en las Wikimanías de los años 2009, 2010, 2012 y 2013.",
+	"credits-page": "El software de Becas Wikimanía es código abierto y se encuentra <a href=\"//phabricator.wikimedia.org/diffusion/WWSC/\">disponible</a> bajo la <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nEl código está basado en el sistema de becas de Wikimanía usado en las Wikimanías de los años 2009, 2010, 2011, 2012 y 2013.",
 	"help-translate": "Ayúdanos a traducir",
 	"translate-page": "Nos gustaría que el sistema de solicitud de becas sea traducido a tantos idiomas como sea posible.\n</p><p>\nSolicita permisos de traductor en <a href=\"//translatewiki.net\">translatewiki.net</a> y después de eso puedes <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">comenzar a traducir</a>.",
 	"footer-faq": "preguntas frecuentes",
