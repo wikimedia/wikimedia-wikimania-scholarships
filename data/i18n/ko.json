@@ -144,7 +144,7 @@
 	"contact-us": "문의하기",
 	"contact-page": "이메일: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "제작진 및 라이선스",
-	"credits-page": "위키매니아 후원금 소프트웨어는 <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>를 따르며 오픈소스로 <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">사용</a>가능합니다.</p><p>위키매니아 후원금 시스템의 코드는 2009,2010,2011,2012 그리고 2013년에 사용된 코드에 기반합니다.",
+	"credits-page": "위키매니아 후원금 소프트웨어는 오픈 소스이며 <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>에 의거하여  <a href=\"//phabricator.wikimedia.org/diffusion/WWSC/\">이용</a>할 수 있습니다.\n</p><p>\n코드는 위키매니아 2009, 2010, 2011, 2012, 2013에 사용된 위키매니아 후원금 시스템에 기반합니다.",
 	"help-translate": "번역 돕기",
 	"translate-page": "후원금 지원 시스템이 가능한 많은 언어로 번역되기를 바랍니다.</p>\n<p> <a href=\"//translatewiki.net\">translatewiki.net</a>에서 번역자 권한을 요청한 후에 <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">번역을 시작</a>할 수 있습니다.",
 	"footer-faq": "자주 묻는 질문",
