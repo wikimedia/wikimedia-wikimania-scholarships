@@ -43,9 +43,17 @@ try {
 }
 restore_error_handler();
 
-// Load environment settings from .env if present
-if ( is_readable( APP_ROOT . '/.env' ) ) {
-	\Wikimedia\Slimapp\Config::load( APP_ROOT . '/.env' );
+// Load environment settings if present
+$envFileLocations = [
+	'/etc/wikimania-scholarships.ini',
+	APP_ROOT . '/.env',
+];
+foreach ( $envFileLocations as $file ) {
+	if ( is_readable( $file ) ) {
+		\Wikimedia\Slimapp\Config::load( $file );
+		// Stop after first env file is found
+		break;
+	}
 }
 
 $app = new \Wikimania\Scholarship\App( APP_ROOT );
