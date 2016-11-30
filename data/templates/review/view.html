@@ -116,7 +116,7 @@
             <dt>{{ 'review-view-username'|message }}</dt>
             <dd>
               {% if schol.username is not empty %}
-              {{ schol.username }} (<a href="https://tools.wmflabs.org/quentinv57-tools/tools/sulinfo.php?username={{ schol.username|escape( 'url' ) }}" target="_blank">cross-wiki contribs</a>)
+              {{ schol.username }} (<a href="https://meta.wikimedia.org/w/index.php?title=Special%3ACentralAuth&target={{ schol.username|escape( 'url' ) }}" target="_blank">cross-wiki contribs</a>)
               {% else %}
               {{ 'review-view-not-specified'|message }}
               {% endif %}
