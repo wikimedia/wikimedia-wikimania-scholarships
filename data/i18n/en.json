@@ -41,7 +41,8 @@
 	"form-scholarship-either": "I am applying for a full scholarship, but would be able to attend if awarded a partial scholarship.",
 	"form-scholarship-partial": "I am applying for a Partial scholarship.",
 
-	"form-error": "Your form has errors.  Please correct the following errors and submit the form again.",
+	"form-type-error": "Please select a scholarship type.",
+	"form-error": "Your form has errors. Please correct the following errors and submit the form again.",
 	"form-save-error": "There was a system error saving your application. Please try again.",
 	"form-gender_other-error": "Please describe your self-defined gender identity.",
 	"form-goals-error": "Please explain your experience of attending Wikimania previously and your goals for attending this year.",

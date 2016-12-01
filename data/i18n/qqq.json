@@ -39,6 +39,7 @@
 	"form-scholarship-either": "Scholarship type option",
 	"form-scholarship-partial": "Scholarship type option",
 	"form-error": "Error message shown to user when scholarship request form submission is incomplete",
+	"form-type-error": "Error message shown to user when they have not selected a scholarship type",
 	"form-save-error": "Error message shown to user when a system error occurred saving the application data",
 	"form-gender_other-error": "Error message shown to user when Gender \"other\" is selected and no description of self-defined gender identity is provided",
 	"form-goals-error": "Error message shown to user when user has been a previous scholarship recepient and has not filled out his experience and goals for attending this year",
