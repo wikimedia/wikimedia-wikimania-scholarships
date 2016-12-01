@@ -73,6 +73,8 @@
 	"form-wmfagree-error": "To proceed, please agree to the applicant rights condition.",
 	"form-wmfAgreeName-error": "Please fill in your full name in the given field to agree to the terms and conditions.",
 	"form-engage10-error": "Please select how you have engaged in the Wikimedia movement",
+	"form-staffOrg-error": "Please indicate the Wikimedia organization you're a paid or contract worker for.",
+	"form-boardOrg-error": "Please indicate the Wikimedia organization you're a board member for.",
 
 	"required-field": "Required field",
 
@@ -118,6 +120,12 @@
 	"form-engagement-option8": "Participant in Wikimedia organized events (e.g. photographer contributing to Wiki Loves Monuments, workshop attendee)",
 	"form-engagement-option9": "Organizer of Wikimedia events (e.g. WLM, edit-a-thons)",
 	"form-engagement-option10": "None of the above",
+
+	"form-wikimedia-staff": "Are you currently a paid or contract staff of any Wikimedia organization?",
+	"form-wikimedia-board": "Are you currently board member of any Wikimedia organization?",
+	"form-staff-organization": "If yes, please identify the Wikimedia organization here:",
+	"form-board-organization": "If yes, please identify the Wikimedia organization here:",
+
 	"form-community": "Primary language community on wiki:",
 	"form-active-project": "Most active Wikimedia project:",
 	"form-active-project2": "Second most active Wikimedia project (if applicable):",
@@ -299,6 +307,8 @@
 	"review-view-study": "Field of study",
 	"review-view-username": "Username:",
 	"review-view-alt-users": "Other usernames:",
+	"review-view-staff-member": "Staff member for:",
+	"review-view-board-member": "Board member for:",
 	"review-view-community": "Primary language community:",
 	"review-view-active-projects": "Main wiki project:",
 	"review-view-secondary-project": "Secondary wiki project:",

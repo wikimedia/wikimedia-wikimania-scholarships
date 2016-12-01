@@ -44,6 +44,10 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , engage8                     TINYINT(1) DEFAULT NULL
   , engage9                     TINYINT(1) DEFAULT NULL
   , engage10                    TINYINT(1) DEFAULT NULL
+  , staff                       TINYINT(1) DEFAULT NULL
+  , staffOrg                    VARCHAR(128) DEFAULT NULL
+  , board                       TINYINT(1) DEFAULT NULL
+  , boardOrg                    VARCHAR(128) DEFAULT NULL
   , involvement                 TEXT
   , contribution                TEXT
   , experience                  TEXT

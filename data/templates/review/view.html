@@ -125,6 +125,22 @@
             <dt>{{ 'review-view-alt-users'|message }}</dt>
             <dd>{{ schol.alt_users }}</dd>
             {% endif %}
+            <dt>{{ 'review-view-staff-member'|message }}</dt>
+            <dd>
+              {% if schol.staff %}
+                {{ schol.staffOrg }}
+              {% else %}
+                {{ '-' }}
+              {% endif %}
+            </dd>
+            <dt>{{ 'review-view-board-member'|message }}</dt>
+            <dd>
+              {% if schol.board %}
+                {{ schol.boardOrg }}
+              {% else %}
+                {{ '-' }}
+              {% endif %}
+            </dd>
             {% if schol.project %}
             <dt>{{ 'review-view-active-projects'|message }}</dt>
             <dd>{{ schol.project }}</dd>

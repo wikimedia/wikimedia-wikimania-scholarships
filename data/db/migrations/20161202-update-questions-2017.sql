@@ -1,0 +1,9 @@
+-- Alter schema for 2017 round
+
+ALTER TABLE scholarships
+  ADD COLUMN staff TINYINT(1) DEFAULT NULL AFTER engage10,
+  ADD COLUMN staffOrg VARCHAR(128) DEFAULT NULL AFTER staff,
+  ADD COLUMN board TINYINT(1) DEFAULT NULL AFTER staffOrg,
+  ADD COLUMN boardOrg VARCHAR(128) DEFAULT NULL AFTER board
+  ;
+

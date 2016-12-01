@@ -130,6 +130,10 @@ lang: currently selected display language
         'engage9': 'form-engagement-option9'|message,
         'engage10': 'form-engagement-option10'|message
       } ) }}
+    {{ forms.yesNo( ctx, 'form-wikimedia-staff', 'staff', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-staff-organization', 'staffOrg') }}
+    {{ forms.yesNo( ctx, 'form-wikimedia-board', 'board', { 'required':true } ) }}
+    {{ forms.text( ctx, 'form-board-organization', 'boardOrg') }}
     {{ forms.textArea( ctx, 'form-extent-explain', 'involvement', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true, 'escape':false } ) }}
     {{ forms.textArea( ctx, 'form-collaboration-explain', 'collaboration', { 'required':true } ) }}

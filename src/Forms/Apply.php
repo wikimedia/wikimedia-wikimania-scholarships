@@ -91,6 +91,10 @@ class Apply extends Form {
 		$this->expectBool( 'engage8' );
 		$this->expectBool( 'engage9' );
 		$this->expectBool( 'engage10' );
+		$this->requireBool( 'staff' );
+		$this->expectString( 'staffOrg', [ 'validate' => [ $this, 'validateStaffOrg'] ] );
+		$this->requireBool( 'board' );
+		$this->expectString( 'boardOrg', [ 'validate' => [ $this, 'validateBoardOrg'] ] );
 		$this->requireString( 'involvement' );
 		$this->requireString( 'contribution' );
 		$this->requireString( 'experience' );
@@ -167,6 +171,22 @@ class Apply extends Form {
 	}
 
 	/**
+	 * @param mixed $value Value of param
+	 * @return bool True if valid, false otherwise
+	 */
+	protected function validateStaffOrg( $value ) {
+		return $this->get( 'staff' ) ? (bool)$value : true;
+	}
+
+	/**
+	 * @param mixed $value Value of param
+	 * @return bool True if valid, false otherwise
+	 */
+	protected function validateBoardOrg( $value ) {
+		return $this->get( 'board' ) ? (bool)$value : true;
+	}
+
+	/**
 	 * Get the date of birth composite key value.
 	 *
 	 * @return DateTime|null Timestamp or null if invalid
@@ -234,6 +254,7 @@ class Apply extends Form {
 			'username', 'alt_users', 'project', 'project2', 'community',
 			'engage1', 'engage2', 'engage3', 'engage4', 'engage6',
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
+			'staff', 'staffOrg', 'board', 'boardOrg',
 			'involvement', 'contribution', 'experience', 'collaboration',
 			'prev_scholar', 'goals', 'involvement', 'contribution',
 			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14', 'wm15',
