@@ -119,3 +119,11 @@ a.sortable.sorted-asc {
 a.sortable.sorted-desc {
   background-image: url(data:image/gif;base64,R0lGODlhBwAEAIABACMtMP///yH5BAEKAAEALAAAAAAHAAQAAAIIhA+BGWoNWSgAOw==);
 }
+
+.minority-badge {
+  background-color: firebrick;
+  color: white;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 3px;
+}

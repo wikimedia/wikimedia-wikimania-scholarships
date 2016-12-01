@@ -22,7 +22,12 @@
 {% endmacro %}
 
 {% macro yearsOld( dob ) %}
-{{ date( dob ).diff( date( 'now' ) ).format( '%Y' ) }}
+  {% set age = date( dob ).diff( date( 'now' ) ).format( '%Y' ) %}
+  {% if age > 18 %}
+    ({{ age }})
+  {% else %}
+    <span class="minority-badge"><strong>{{ age }}</strong></span>
+  {% endif %}
 {% endmacro %}
 
 {% macro gender( ctx, g ) %}

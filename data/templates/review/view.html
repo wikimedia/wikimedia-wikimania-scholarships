@@ -79,7 +79,7 @@
             <dt>{{ 'review-view-dateofbirth'|message }}</dt>
             <dd>
               {% if schol.dob is not empty %}
-              {{ schol.dob }} ({{ helpers.yearsOld( schol.dob ) }})
+              {{ schol.dob }} {{ helpers.yearsOld( schol.dob ) }}
               {% else %}
               {{ 'review-view-not-specified'|message }}
               {% endif %}
