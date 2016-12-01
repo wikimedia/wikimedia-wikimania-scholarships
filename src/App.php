@@ -432,12 +432,6 @@ class App extends AbstractApp {
 				$page();
 			} )->name( 'review_countries' );
 
-			$slim->get( 'scores', function () use ( $slim ) {
-				$page = new Controllers\Review\Scores( $slim );
-				$page->setDao( $slim->applyDao );
-				$page();
-			} )->name( 'review_scores' );
-
 			$slim->get( 'regions', function () use ( $slim ) {
 				$page = new Controllers\Review\Regions( $slim );
 				$page->setDao( $slim->applyDao );

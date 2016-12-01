@@ -31,7 +31,6 @@
     <li><a href="{{ urlFor( 'review_p2_list' ) }}">{{ 'phase-2'|message }}</a></li>
     {% if isadmin|default(false) %}
     <li class="divider"></li>
-    <li><a href="{{ urlFor( 'review_scores' ) }}">{{ 'final-full'|message }}</a></li>
     <li><a href="{{ urlFor( 'review_export' ) }}">{{ 'nav-reports-export'|message }}</a></li>
     {% endif %}
   </ul>
