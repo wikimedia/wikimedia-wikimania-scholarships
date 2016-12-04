@@ -18,9 +18,7 @@ lang: currently selected display language
 {% block nav_li_apply %}class="active"{% endblock %}
 
 {% block javascript %}
-<script type="text/javascript">
-{% include 'apply.js' %}
-</script>
+<script src="{{ siteUrl( 'js/apply.js' ) }}"></script>
 {% endblock javascript %}
 
 {% block content %}
