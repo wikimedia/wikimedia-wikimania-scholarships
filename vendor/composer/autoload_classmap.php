@@ -333,7 +333,6 @@ return array(
     'Wikimania\\Scholarship\\Controllers\\Review\\Phase2List' => $baseDir . '/src/Controllers/Review/Phase2List.php',
     'Wikimania\\Scholarship\\Controllers\\Review\\PhaseGrid' => $baseDir . '/src/Controllers/Review/PhaseGrid.php',
     'Wikimania\\Scholarship\\Controllers\\Review\\Regions' => $baseDir . '/src/Controllers/Review/Regions.php',
-    'Wikimania\\Scholarship\\Controllers\\Review\\Scores' => $baseDir . '/src/Controllers/Review/Scores.php',
     'Wikimania\\Scholarship\\Controllers\\Review\\Search' => $baseDir . '/src/Controllers/Review/Search.php',
     'Wikimania\\Scholarship\\Controllers\\ScholarshipApplication' => $baseDir . '/src/Controllers/ScholarshipApplication.php',
     'Wikimania\\Scholarship\\Controllers\\User\\ChangePassword' => $baseDir . '/src/Controllers/User/ChangePassword.php',

@@ -121,34 +121,15 @@ abstract class AbstractApp {
 		$this->configureIoc( $this->slim->container );
 		$this->configureView( $this->slim->view );
 
-		// Add headers to all responses:
-		// * Vary: Cookie to help upstream caches to the right thing
-		// * X-Frame-Options: DENY
-		// * Content-Security-Policy to help protect against XSS attacks
-		// * Content-Type: text/html; charset=UTF-8
-		$headerMiddleware = new HeaderMiddleware( array(
-			'Vary' => 'Cookie',
-			'X-Frame-Options' => 'DENY',
-			'Content-Security-Policy' =>
-				"default-src 'self'; " .
-				"frame-src 'none'; " .
-				"object-src 'none'; " .
-				// Needed for css data:... sprites
-				"img-src 'self' data:; " .
-				// Needed for jQuery and Modernizr feature detection
-				"style-src 'self' 'unsafe-inline'",
-			// Don't forget to override this for any content that is not
-			// actually HTML (e.g. json)
-			'Content-Type' => 'text/html; charset=UTF-8',
-		) );
-		$this->slim->add( $headerMiddleware );
+		$this->slim->add(
+			new HeaderMiddleware( $this->configureHeaderMiddleware() )
+		);
 
 		// Add CSRF protection for POST requests
 		$this->slim->add( new CsrfMiddleware() );
 
 		$this->configureRoutes( $this->slim );
 	}
-
 
 	/**
 	 * Apply settings to the Slim application.
@@ -157,14 +138,12 @@ abstract class AbstractApp {
 	 */
 	abstract protected function configureSlim( \Slim\Slim $slim );
 
-
 	/**
 	 * Configure inversion of control/dependency injection container.
 	 *
 	 * @param \Slim\Helper\Set $container IOC container
 	 */
 	abstract protected function configureIoc( \Slim\Helper\Set $container );
-
 
 	/**
 	 * Configure view behavior.
@@ -173,14 +152,12 @@ abstract class AbstractApp {
 	 */
 	abstract protected function configureView( \Slim\View $view );
 
-
 	/**
 	 * Configure routes to be handled by application.
 	 *
 	 * @param \Slim\Slim $slim Application
 	 */
 	abstract protected function configureRoutes( \Slim\Slim $slim );
-
 
 	/**
 	 * Main entry point for all requests.
@@ -193,7 +170,6 @@ abstract class AbstractApp {
 		register_shutdown_function( 'session_write_close' );
 		$this->slim->run();
 	}
-
 
 	/**
 	 * Add a redirect route to the app.
@@ -213,7 +189,6 @@ abstract class AbstractApp {
 		} )->name( $routeName );
 	}
 
-
 	/**
 	 * Add a static template route to the app.
 	 * @param \Slim\Slim $slim App
@@ -228,5 +203,36 @@ abstract class AbstractApp {
 		$slim->get( $name, function () use ( $slim, $name ) {
 			$slim->render( "{$name}.html" );
 		} )->name( $routeName );
+	}
+
+	/**
+	 * Configure the default HeaderMiddleware installed for all routes.
+	 *
+	 * Default configuration adds these headers:
+	 * - "Vary: Cookie" to help upstream caches to the right thing
+	 * - "X-Frame-Options: DENY"
+	 * - A fairly strict 'self' only Content-Security-Policy to help protect
+	 *   against XSS attacks
+	 * - "Content-Type: text/html; charset=UTF-8"
+	 *
+	 * @return array
+	 */
+	protected function configureHeaderMiddleware() {
+		// Add headers to all responses:
+		return array(
+			'Vary' => 'Cookie',
+			'X-Frame-Options' => 'DENY',
+			'Content-Security-Policy' =>
+				"default-src 'self'; " .
+				"frame-src 'none'; " .
+				"object-src 'none'; " .
+				// Needed for css data:... sprites
+				"img-src 'self' data:; " .
+				// Needed for jQuery and Modernizr feature detection
+				"style-src 'self' 'unsafe-inline'",
+			// Don't forget to override this for any content that is not
+			// actually HTML (e.g. json)
+			'Content-Type' => 'text/html; charset=UTF-8',
+		);
 	}
 }
