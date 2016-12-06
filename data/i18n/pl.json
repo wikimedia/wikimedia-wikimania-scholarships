@@ -7,8 +7,8 @@
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Esino Lario 2016",
-	"header-title": "Wikimania 2016 - wniosek o stypendium",
+	"wikimania-location-year": "Montreal, Kanada 2017",
+	"header-title": "Wikimania 2017 – wniosek o stypendium",
 	"nav-apply": "Wniosek",
 	"nav-faq": "FAQ",
 	"nav-credits": "Twórcy",
@@ -22,6 +22,7 @@
 	"nav-account": "Moje konto",
 	"nav-settings": "Ustawienia",
 	"nav-reports-export": "Pełny eksport",
+	"form-intro-faq": "<a href='//wikimania2017.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Najczęściej zadawane pytania</a>",
 	"form-fname-error": "Proszę wpisać swoje imię.",
 	"form-lname-error": "Proszę wpisać swoje nazwisko.",
 	"form-email-error": "Podaj swój adres e-mail.",

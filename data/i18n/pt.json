@@ -7,7 +7,8 @@
 			"Macofe",
 			"Vitorvicentevalente",
 			"Waldir",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Ngl2016"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -94,6 +95,8 @@
 	"form-participation": "Participação nos projetos da Wikimedia",
 	"form-other-usernames": "(Se aplicável) Outros nomes de utilizador(a) Wikimedia utilizados para edição:",
 	"form-engagement-option10": "Nenhuma das anteriores",
+	"form-wikimedia-board": "Você é atualmente membro do conselho de administração de qualquer organização da Wikimedia?",
+	"form-staff-organization": "Se sim, por favor, identifique aqui a organização da Wikimedia:",
 	"form-privacy": "Privacidade",
 	"form-submit-app": "Submeter candidatura",
 	"form-email-subject": "Solicitação de bolsa de estudo Wikimania",
@@ -203,6 +206,8 @@
 	"review-view-study": "Área de estudo",
 	"review-view-username": "Nome de utilizador(a):",
 	"review-view-alt-users": "Outros nomes de utilizador(a):",
+	"review-view-staff-member": "Membro da equipa para:",
+	"review-view-board-member": "Membro do conselho de administração para:",
 	"review-view-active-projects": "Projeto wiki principal:",
 	"review-view-secondary-project": "Projeto wiki secundário:",
 	"review-view-attending-goals": "Experiências anteriores e metas para este ano",
