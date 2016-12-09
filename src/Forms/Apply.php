@@ -101,18 +101,8 @@ class Apply extends Form {
 		$this->requireString( 'collaboration' );
 
 		// Interest and involvement in Wikimania
-		$this->expectBool( 'wm05' );
-		$this->expectBool( 'wm06' );
-		$this->expectBool( 'wm07' );
-		$this->expectBool( 'wm08' );
-		$this->expectBool( 'wm09' );
-		$this->expectBool( 'wm10' );
-		$this->expectBool( 'wm11' );
-		$this->expectBool( 'wm12' );
-		$this->expectBool( 'wm13' );
-		$this->expectBool( 'wm14' );
-		$this->expectBool( 'wm15' );
 		$this->requireBool( 'prev_scholar' );
+		$this->requireBool( 'last_year_scholar' );
 		$this->requireString( 'goals' );
 		$this->expectBool( 'presentation' );
 		$this->expectString( 'presentationTopic', [
@@ -256,8 +246,7 @@ class Apply extends Form {
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
 			'staff', 'staffOrg', 'board', 'boardOrg',
 			'involvement', 'contribution', 'experience', 'collaboration',
-			'prev_scholar', 'goals', 'involvement', 'contribution',
-			'wm05', 'wm06', 'wm07', 'wm08', 'wm09', 'wm10', 'wm11', 'wm12', 'wm13', 'wm14', 'wm15',
+			'prev_scholar', 'last_year_scholar', 'goals', 'involvement', 'contribution',
 			'presentation', 'presentationTopic',
 
 			'willgetvisa', 'agreestotravelconditions', 'grantfortravelonly',

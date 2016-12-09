@@ -52,18 +52,8 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , contribution                TEXT
   , experience                  TEXT
   , collaboration               TEXT
-  , wm05                        TINYINT(1) DEFAULT NULL
-  , wm06                        TINYINT(1) DEFAULT NULL
-  , wm07                        TINYINT(1) DEFAULT NULL
-  , wm08                        TINYINT(1) DEFAULT NULL
-  , wm09                        TINYINT(1) DEFAULT NULL
-  , wm10                        TINYINT(1) DEFAULT NULL
-  , wm11                        TINYINT(1) DEFAULT NULL
-  , wm12                        TINYINT(1) DEFAULT NULL
-  , wm13                        TINYINT(1) DEFAULT NULL
-  , wm14                        TINYINT(1) DEFAULT NULL
-  , wm15                        TINYINT(1) DEFAULT NULL
   , prev_scholar                TINYINT(1) DEFAULT NULL
+  , last_year_scholar           TINYINT(1) DEFAULT NULL
   , goals                       TEXT
   , presentation                TINYINT(1) DEFAULT NULL
   , presentationTopic           TEXT

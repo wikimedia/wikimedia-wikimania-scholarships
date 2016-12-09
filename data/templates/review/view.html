@@ -204,34 +204,6 @@
         </div>
       </div>
       <div id="interest" class="panel-collapse collapse in">
-        <table class="table table-condensed">
-          <tr>
-            <th>2005</th>
-            <th>2006</th>
-            <th>2007</th>
-            <th>2008</th>
-            <th>2009</th>
-            <th>2010</th>
-            <th>2011</th>
-            <th>2012</th>
-            <th>2013</th>
-            <th>2014</th>
-            <th>2015</th>
-          </tr>
-          <tr>
-            {{ helpers.participation( schol.wm05 ) }}
-            {{ helpers.participation( schol.wm06 ) }}
-            {{ helpers.participation( schol.wm07 ) }}
-            {{ helpers.participation( schol.wm08 ) }}
-            {{ helpers.participation( schol.wm09 ) }}
-            {{ helpers.participation( schol.wm10 ) }}
-            {{ helpers.participation( schol.wm11 ) }}
-            {{ helpers.participation( schol.wm12 ) }}
-            {{ helpers.participation( schol.wm13 ) }}
-            {{ helpers.participation( schol.wm14 ) }}
-            {{ helpers.participation( schol.wm15 ) }}
-          </tr>
-        </table>
         <div class="panel-body">
           <dl class="dl-horizontal">
             <dt>{{ 'review-view-presenter'|message }}</dt>
@@ -242,6 +214,8 @@
             {% endif %}
             <dt>{{ 'review-view-previous-scholar'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.prev_scholar ) }}</dd>
+            <dt>{{ 'review-view-last-year-scholar'|message }}</dt>
+            <dd>{{ helpers.yesNo( schol.last_year_scholar ) }}</dd>
           </dl>
 
           {% if schol.prev_scholar %}
