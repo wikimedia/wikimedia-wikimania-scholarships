@@ -3,10 +3,10 @@
         lastActive = 0,
         refreshCsrf = function() {
             return $.getJSON(
-                '{{ urlFor( "revalidatecsrf") }}',
+                '/apply/revalidatecsrf',
                 function( data ) {
                     var $token = $( '#token' );
-                    $token.val( data[ "{{ csrf_param }}" ] );
+                    $token.val( data.csrf_token );
                     console.log( 'csrf token: ' + $token.val() );
                 }
             );

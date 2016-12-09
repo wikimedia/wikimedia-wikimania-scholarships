@@ -494,4 +494,27 @@ class App extends AbstractApp {
 		} );
 	}
 
+	/**
+	 * @inherit
+	 */
+	protected function configureHeaderMiddleware() {
+		$headers = parent::configureHeaderMiddleware();
+		$headers['Content-Security-Policy'] =
+			"style-src 'self'; " .
+			"form-action 'self'; " .
+			"font-src 'self'; ".
+			"child-src 'none'; " .
+			"connect-src 'self'; " .
+			"script-src 'self'; " .
+			"sandbox allow-forms allow-same-origin allow-scripts allow-top-navigation; " .
+			"object-src 'none'; " .
+			"default-src 'none'; " .
+			"frame-ancestors 'none'; " .
+			"media-src 'none'; " .
+			"base-uri 'none'; " .
+			// Needed for css data:... sprites
+			"img-src 'self' data:;";
+		return $headers;
+	}
+
 } // end App
