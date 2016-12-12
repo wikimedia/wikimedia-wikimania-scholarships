@@ -103,7 +103,9 @@ class Apply extends Form {
 		// Interest and involvement in Wikimania
 		$this->requireBool( 'prev_scholar' );
 		$this->requireBool( 'last_year_scholar' );
-		$this->requireString( 'goals' );
+		$this->expectString( 'reports', [
+			'validate' => [ $this, 'validateReports' ],
+		] );
 		$this->expectBool( 'presentation' );
 		$this->expectString( 'presentationTopic', [
 			'validate' => [ $this, 'validatePresentationTopic' ],
@@ -177,6 +179,14 @@ class Apply extends Form {
 	}
 
 	/**
+	 * @param mixed $value Value of param
+	 * @return bool True if valid, false otherwise
+	 */
+	protected function validateReports( $value ) {
+		return $this->get( 'prev_scholar' ) ? (bool)$value : true;
+	}
+
+	/**
 	 * Get the date of birth composite key value.
 	 *
 	 * @return DateTime|null Timestamp or null if invalid
@@ -246,7 +256,7 @@ class Apply extends Form {
 			'engage6', 'engage7', 'engage8', 'engage9', 'engage10',
 			'staff', 'staffOrg', 'board', 'boardOrg',
 			'involvement', 'contribution', 'experience', 'collaboration',
-			'prev_scholar', 'last_year_scholar', 'goals', 'involvement', 'contribution',
+			'prev_scholar', 'last_year_scholar', 'reports', 'involvement', 'contribution',
 			'presentation', 'presentationTopic',
 
 			'willgetvisa', 'agreestotravelconditions', 'grantfortravelonly',

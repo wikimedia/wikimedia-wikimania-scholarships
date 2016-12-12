@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , collaboration               TEXT
   , prev_scholar                TINYINT(1) DEFAULT NULL
   , last_year_scholar           TINYINT(1) DEFAULT NULL
-  , goals                       TEXT
+  , reports                     TEXT
   , presentation                TINYINT(1) DEFAULT NULL
   , presentationTopic           TEXT
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
