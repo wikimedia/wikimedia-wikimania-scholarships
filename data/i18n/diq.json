@@ -3,12 +3,14 @@
 		"authors": [
 			"Kumkumuk",
 			"Mirzali",
-			"Asmen"
+			"Asmen",
+			"1917 Ekim Devrimi",
+			"Gırd"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Esino Lario 2016",
-	"header-title": "Wikimania 2016 - Mıreceta Bursi",
+	"wikimania-location-year": "Montréal, Kanada 2017",
+	"header-title": "Wikimania 2017 - Mıreceta Bursi",
 	"nav-apply": "Dezge",
 	"nav-faq": "PVP",
 	"nav-credits": "Krediy",
@@ -125,7 +127,7 @@
 	"reset-password-success": "Cıraberdışê parola kewt be ser.",
 	"reset-password-fail": "Cıraberdışê parola be ser nêkewt.",
 	"reset-password-invalid": "Cıkerdışo nêvêrde.",
-	"error-heading": "Xetaya sistemi",
+	"error-heading": "Xetay sistemi",
 	"phase-1": "1.Sewiye",
 	"phase-2": "1.Sewiye",
 	"final-full": "Peyniye: Tam",
