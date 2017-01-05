@@ -7,8 +7,8 @@
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Esino Lario 2016",
-	"header-title": "Wikimania 2016 — Demanda de borsa",
+	"wikimania-location-year": "Montreal, Canadà 2017",
+	"header-title": "Wikimania 2017 — Demanda de borsa",
 	"nav-apply": "Aplicar",
 	"nav-faq": "FAQ",
 	"nav-credits": "Mercejaments",
@@ -22,6 +22,7 @@
 	"nav-account": "Mon compte",
 	"nav-settings": "Paramètres",
 	"nav-reports-export": "Exportacion completa",
+	"form-scholarship-type": "Tipe de borsa",
 	"required-field": "Camp obligatòri",
 	"form-contact-info": "Informacions de contacte",
 	"form-fname": "Prenom :",
