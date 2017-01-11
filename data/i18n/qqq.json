@@ -240,7 +240,7 @@
 	"admin-users-form-go": "Button label, triggers search\n{{Identical|Search}}",
 	"review-list-export": "Button label, triggers csv report download",
 	"review-list-export-csv": "Input label, preceded by checkbox, changes form sumbission response to csv report download",
-	"review-list-counter": "Table column header, row number.\n{{Related|Wsa-review-list}}",
+	"review-list-counter": "Table column header, row number.\n{{Related|Wsa-review-list}}\n{{Identical|Counter}}",
 	"review-list-id": "Table column header, scholarship submission identity.\n{{Related|Wsa-review-list}}\n{{Identical|ID}}",
 	"review-list-name": "Table column header, applicant full name.\n{{Related|Wsa-review-list}}\n{{Identical|Name}}",
 	"review-list-email": "Table column header, applicant email address.\n{{Related|Wsa-review-list}}\n{{Identical|E-mail}}",
