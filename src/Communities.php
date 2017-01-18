@@ -283,6 +283,7 @@ class Communities {
 		'SW' => 'Swahili',
 		'SZL' => 'Silesian',
 		'TA' => 'Tamil',
+		'TCY' => 'Tulu',
 		'TE' => 'Telugu',
 		'TET' => 'Tetum',
 		'TG' => 'Tajik',
