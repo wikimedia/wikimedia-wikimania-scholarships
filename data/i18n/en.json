@@ -31,7 +31,7 @@
 
 	"deadline-passed": "<p>Scholarship application deadline was February 20, 23:59 UTC.</p>\n<p>We will notify applicants in April 2017 about the result of their application.</p>\n<p>Please see the <a href='https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
 
-	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">Wikimania 2017</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Montréal, Quebec, Canada , Aug 9-13, 2017.</p>\n<p><b>Applications may be submitted in any language</b>, but every applicant must <b>provide evidence of English language abilities</b> that are at a level which would enable them to participate in Wikimania, a conference which is primarily conducted in English. Sufficient English abilities could be demonstrated in the application itself or elsewhere.</p>\n<p>This is not a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>Please note that <strong>if you need more then 10 minutes to complete this application, please draft your answers in a text editor</strong>, reload this page and then copy-paste your answers into corresponding fields before submitting. This application may give an error (\"Missing or invalid CSRF token\") if it is open for more then 15 minutes before submitting.</p>\n<p>The deadline to apply is <strong>February 20, 23:59 UTC</strong>.</p> ",
+	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">Wikimania 2017</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Montréal, Quebec, Canada, Aug 9-13, 2017.</p>\n<p><b>Applications may be submitted in any language</b>, but every applicant must <b>provide evidence of English language abilities</b> that are at a level which would enable them to participate in Wikimania, a conference which is primarily conducted in English. Sufficient English abilities could be demonstrated in the application itself or elsewhere.</p>\n<p>This is not a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>Please note that <strong>if you need more then 10 minutes to complete this application, please draft your answers in a text editor</strong>, reload this page and then copy-paste your answers into corresponding fields before submitting. This application may give an error (\"Missing or invalid CSRF token\") if it is open for more then 15 minutes before submitting.</p>\n<p>The deadline to apply is <strong>February 20, 23:59 UTC</strong>.</p> ",
 
 	"form-intro-faq": "<a href='https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ' target='_blank'>Frequently asked questions</a>",
 
@@ -116,12 +116,12 @@
 	"form-engagement-option4": "Wikimedia Check User, Admin, Bureaucrat, Steward, and/or OTRS (current or former)",
 	"form-engagement-option5": "Wikimedia Foundation Grantee",
 	"form-engagement-option6": "Wikimedia Researcher",
-	"form-engagement-option7": "Participant in a Wikimedia program (e.g. GLAM partnerships, Education program, etc)",
+	"form-engagement-option7": "Participant in a Wikimedia program (e.g. GLAM partnerships, Education program, etc.)",
 	"form-engagement-option8": "Participant in Wikimedia organized events (e.g. photographer contributing to Wiki Loves Monuments, workshop attendee)",
 	"form-engagement-option9": "Organizer of Wikimedia events (e.g. WLM, edit-a-thons)",
 	"form-engagement-option10": "None of the above",
 
-	"form-wikimedia-staff": "Are you currently a paid or contract staff of any Wikimedia organization?",
+	"form-wikimedia-staff": "Are you currently a paid or contract staff memeber of any Wikimedia organization?",
 	"form-wikimedia-board": "Are you currently board member of any Wikimedia organization?",
 	"form-staff-organization": "If yes, please identify the Wikimedia organization here:",
 	"form-board-organization": "If yes, please identify the Wikimedia organization here:",
@@ -129,7 +129,7 @@
 	"form-community": "Primary language community on wiki:",
 	"form-active-project": "Most active Wikimedia project:",
 	"form-active-project2": "Second most active Wikimedia project (if applicable):",
-	"form-extent-explain": "Tell us about your involvement in your home wiki or the broader Wikimedia movement. What have you built or contributed to in order to improve your wiki or community? Have you lead or organized any of these activities?",
+	"form-extent-explain": "Tell us about your involvement in your home wiki or the broader Wikimedia movement. What have you built or contributed to in order to improve your wiki or community? Have you led or organized any of these activities?",
 	"form-contrib-explain": "What’s something great that happened as a result of these activities? This could be described either quantitatively or qualitatively, and could impact either online or offline. Here are some <a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Relevant_experience\" target=\"_blank\">examples</a> that might help.",
 	"form-experience-explain": "How do you usually share your experiences (or things you’ve learned) with your community? Examples of on-wiki summaries/reports, blog posts, meetup talks, etc. are welcome here.",
 	"form-collaboration-explain": "What collaborations with other Wikimedians or Wikimedia organizations are you most proud of?",
@@ -147,7 +147,7 @@
 	"form-travel-conditions": "If I am awarded and accept a grant, I agree to use the travel booking service provided and paid for by the Wikimedia Foundation.",
 	"form-travel-only": "If I am awarded and accept a grant, I agree to use the grant exclusively for my travel expenses. I promise to reimburse the Wikimedia Foundation for any unspent or improperly spent funds.",
 	"form-friendly-space": "If I am awarded and accept a grant, I agree to abide by the Wikimedia Foundation <a href=\"https://wikimediafoundation.org/wiki/Special:MyLanguage/Friendly_space_policy\" target=\"blank\">Friendly Space Policy</a>. If I am found in violation of this policy and asked to leave, I agree to be responsible for any changes in my own travel expenses.",
-	"form-info-true": "I certify that all of the information provided with my application is true and accurate to the best of my knowledge and belief. The Wikimedia Foundation reserves the right to require grant recipients to pay back all or part of the grant if any of the information I provide is found to be untrue or inaccurate.",
+	"form-info-true": "I certify that all of the information provided with my application is true and accurate to the best of my knowledge and belief. The Wikimedia Foundation reserves the right to require me  to pay back all or part of the grant if any of the information I provide is found to be untrue or inaccurate.",
 
 	"form-privacy": "Privacy",
 	"form-review": "All information contained in this application will be reviewed by the members of the <a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarship_committee\">Wikimania Scholarship Committee</a>. All personal information will be held strictly confidential by the Committee, and the <a href=\"https://wikimediafoundation.org/\">Wikimedia Foundation</a>.",
