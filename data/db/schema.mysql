@@ -660,4 +660,6 @@ INSERT IGNORE INTO language_communities (code, language, size) VALUES
 , ( 'HO', 'Hiri Motu', 'Small' )
 , ( 'MUS', 'Muscogee', 'Small' )
 , ( 'KR', 'Kanuri', 'Small' )
-, ( 'HZ', 'Herero', 'Small' );
+, ( 'HZ', 'Herero', 'Small' )
+, ( 'TCY', 'Tulu', 'Small' )
+;
