@@ -12,7 +12,8 @@
 			"Grind24",
 			"Macofe",
 			"Urhixidur",
-			"Wladek92"
+			"Wladek92",
+			"Sukkoria"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -139,7 +140,7 @@
 	"form-travel-conditions": "Si je suis sélectionné et accepte une bourse, j’accepte d’utiliser le service de réservation de voyages fourni et payé par la Fondation Wikimédia.",
 	"form-travel-only": "Si je suis attribués et accepte une subvention, je suis d'accord pour utiliser la subvention exclusivement pour mes frais de voyage. Je promets de rembourser la Fondation Wikimédia pour les fonds non dépensés ou mal dépensés.",
 	"form-friendly-space": "Si je suis sélectionné et que j’accepte une subvention, je m’engage à respecter les <a href=\"https://wikimediafoundation.org/wiki/Special:MyLanguage/Friendly_space_policy\" target=\"blank\">Règles de comportement amical</a> de la Fondation Wikimédia. Si je venais à violer ces règles et étais mis dehors, j’accepte la responsabilité de tout changement dans mes frais de voyage.",
-	"form-info-true": "Je certifie que toutes les informations fournies avec ma demande sont justes et exactes, d’après ce que je sais ou crois. La Fondation Wikimédia se réserve le droit de demander aux bénéficiaires de rembourser tout ou partie de la subvention si une des informations fournies s’avérait fausse ou inexacte.",
+	"form-info-true": "Je certifie que toutes les informations fournies avec ma demande sont justes et exactes, d’après ce que je sais ou crois. La Fondation Wikimédia se réserve le droit de me demander de rembourser tout ou partie de la subvention si une des informations fournies s’avérait fausse ou inexacte.",
 	"form-privacy": "Confidentialité",
 	"form-review": "Toutes les informations contenues dans cette application seront lues par les membres du <a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarship_committee\">Comité de bourses de Wikimania</a>. Toutes les informations personnelles resteront strictement confidentielles pour le Comité, et la <a href=\"https://wikimediafoundation.org/\">Fondation Wikimédia</a>.",
 	"form-chapteragree": "<p>Les organisations de la mouvance Wikimédia (Chapitres, organisations thématiques, et groupes utilisateur) offrent aussi des bourses pour Wikimania, distinctes du programme de bourses de la Fondation Wikimédia. Lors de la soumission de cette demande d’une bourse de la Fondation Wikimédia, une organisation de la mouvance Wikimédia peut demander l’accès aux demandes qui relèvent de leur pays ou de leur communauté, afin de sélectionner et offrir leurs propres bourses de manière indépendante.</p>\n Veuillez indiquer si vous voulez ou non que vos informations soient partagées avec les autres organisations indépendantes de la mouvance Wikimédia.",
