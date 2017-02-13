@@ -6,7 +6,8 @@
 			"Ainali",
 			"Josve05a",
 			"Fader",
-			"Macofe"
+			"Macofe",
+			"Johan"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -25,7 +26,7 @@
 	"nav-account": "Mitt konto",
 	"nav-settings": "Inställningar",
 	"nav-reports-export": "Full exportering",
-	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Vanliga frågor</a>",
+	"form-intro-faq": "<a href='https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Vanliga frågor</a>",
 	"form-scholarship-type": "Stipendietyp",
 	"form-scholarship-full": "Jag ansöker om ett fullt stipendium.",
 	"form-scholarship-either": "Jag ansöker om ett fullt stipendium, men jag kommer att kunna närvara även med ett partiellt stipendium.",
@@ -56,7 +57,7 @@
 	"form-email": "E-postadress:",
 	"form-residence": "Hemland:",
 	"form-personalinfo": "Personlig information",
-	"form-haspassport": "Vill du ha ett giltigt pass?",
+	"form-haspassport": "Har du ett giltigt pass?",
 	"form-yes": "Ja",
 	"form-no": "Nej",
 	"form-airport": "Närmaste internationella flygplats:",
