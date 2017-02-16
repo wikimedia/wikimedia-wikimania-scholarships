@@ -188,6 +188,7 @@
 	"forgot-password": "비밀번호를 잊으셨나요?",
 	"forgot-password-email": "이메일 주소:",
 	"forgot-password-submit": "복구 메일 보내기",
+	"recover-account-subject": "비밀번호 복구 허가",
 	"recover-account-bad-input": "잘못된 입력.",
 	"reset-password-bad-token": "유효하지 않거나 만기된 복구 토큰이 제공되었습니다.",
 	"reset-password-no-match": "비밀번호가 일치하지 않습니다.",

@@ -9,7 +9,8 @@
 			"DRIHEM",
 			"Meno25",
 			"Mervat Salman",
-			"Mido"
+			"Mido",
+			"Aboulouei1"
 		]
 	},
 	"wikimania": "ويكيمانيا",
@@ -215,7 +216,7 @@
 	"admin-user-email": "البريد الإلكتروني :",
 	"admin-user-reviewer": "مُراجع:",
 	"admin-user-valid": "صالح:",
-	"admin-user-admin": "مدير:",
+	"admin-user-admin": "مدير:\n\nإداري:",
 	"admin-user-blocked": "محجوب:",
 	"admin-user-save": "حفظ التغييرات",
 	"admin-users-id": "المعرف",
@@ -264,7 +265,7 @@
 	"review-view-study": "مجال الدراسة",
 	"review-view-username": "اسم المستخدم:",
 	"review-view-alt-users": "أسماء مستخدم أخرى:",
-	"review-view-staff-member": "عضو في:",
+	"review-view-staff-member": "عضو طاقم في:",
 	"review-view-board-member": "عضو مجلس إدارة في:",
 	"review-view-community": "مجتمع اللغة الرئيسية:",
 	"review-view-active-projects": "مشروع ويكي الرئيسي:",
