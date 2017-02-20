@@ -7,7 +7,8 @@
 			"Josve05a",
 			"Fader",
 			"Macofe",
-			"Johan"
+			"Johan",
+			"Pyscowicz"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -60,6 +61,7 @@
 	"form-haspassport": "Har du ett giltigt pass?",
 	"form-yes": "Ja",
 	"form-no": "Nej",
+	"form-nationality": "Nationalitet (Vem har utfärdad/vilja utfärda din pass?):",
 	"form-airport": "Närmaste internationella flygplats:",
 	"form-language": "Inhemska språk:",
 	"form-dateofbirth": "Födelsedatum:",
