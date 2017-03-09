@@ -26,14 +26,16 @@
 	"mock": "Ne dalvez al lec'hienn-se nemet da rakjediñ ar yac'haldoù a c'houlennit, grit ganti evit ober taolioù-arnod hepken.",
 	"not-open": "N'eo ket digor an argerzh dereiñ yac'haldoù Wikimania 2017 c'hoazh. Evit gouzout hiroc'h, sellit ouzh :\n<ul>\n<li><a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">A-zivout Wikimania</a></li>\n<li><a href=\"https://wikimania2017.wikimedia.org/wiki/Special :MyLanguage/Scholarships\">A-zivout ar yac'haldoù</a></li>\n</ul>",
 	"deadline-passed": "<p> An deiziad diwezhañ evit fiziañ ur goulenn yalc'had a oa ar 20a viz C'hwevrer </p>\n<p> Kelaouiñ a raimp an emstriverien d'ur yalc'had  e miz Ebrel 2017 ha kelaouiñ a raimp anezho diwar-benn disoc'h o goulenn. </P>\n<p< Lennit ar bajenn wiki a denn da <a href='http://wikimania2017.wikimedia.org/wiki/ Special MyLanguage/Scholarships'>yalc'hadoù</a> evit gouzout hiroc'h. </p>",
-	"form-intro-faq": "<a href='https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ' target='_blank'>Goulennoù savet alies</a>",
+	"form-intro-faq": "<a href='https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Goulennoù savet alies</a>",
 	"form-scholarship-type": "Seurt yalc'had",
 	"form-scholarship": "<p>Er bloaz-mañ, evit Wikimedia 2017 e kinnigo an Diazezadur Wikimedia yalc'hadoù darnel hag a c'holoio an holl vizoù enskrivañ (hag ivez ar mizoù hent pe ar mizoù stag e-pad ar Wikimania). En enep ne vo ket goloet ar veaj, an enskrivadur hag ar mizoù stag gant ar yac'haldoù klok.\nMerkit peseurt yalc'had eus an Diazezadur Wikimedia emaoc'h o c'houlenn. Notennit e vo graet war-dro ar re a zibabo \"Goulenn a ran ur yalc'had klok, met gallout a rin bezañ war al lec'h ma resevan ur yalc'had darnel\", hervez ar <a href=\"https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Scholarship_details\">reolennoù diuzañ</a>.",
 	"form-scholarship-full": "Ur yalc'had klok a c'houlennan.",
+	"form-scholarship-either": "Goulenn a ran ur yalc'had klok, met gallout a rafen bezañ war al lec'h ma tegemeran ur yalc'had a-zarn.",
 	"form-scholarship-partial": "Goulenn a ran ur yalc'had darnel.",
 	"form-type-error": "Diuzit ur seurt yalc'had studioù, mar plij.",
 	"form-error": "Ho furmskrid zo fazioù ennañ. Reizhit ar fazioù, mar plij, ha kasit ar furmskrid en-dro.",
 	"form-save-error": "Ur fazi reizhiad zo c'hoarvezet p'ho peus enrollet hoc'h arload. Klaskit en-dro, mar plij.",
+	"form-scholarship-error": "Dibabit ar seurtoù yalc'hadoù, mar plij",
 	"form-wmfAgreeGuardian-error": "Ebarzhit anv ho kulator lezennel, mar plij.",
 	"form-presentationTopic-error": "Ebarzhit ho teul kinnig, mar plij.",
 	"form-fname-error": "Ebarzhit hoc'h anv-bihan, mar plij.",
@@ -248,5 +250,8 @@
 	"search-globalns": "Norzh/Su hollek :",
 	"search-phase1": "Lankad 1 an arnodenn tremenet",
 	"admin-settings-phase1pass": "Skor tremen al lankad 1 :",
-	"admin-settings-phase2pass": "Skol tremen al lankad 2 :"
+	"admin-settings-phase2pass": "Skol tremen al lankad 2 :",
+	"settings-app-period": "Mare goulenn",
+	"settings-app-period-open": "Digeriñ ar mare goulenn :",
+	"settings-app-period-close": "Serriñ ar mare goulenn :"
 }
