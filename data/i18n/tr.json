@@ -14,7 +14,8 @@
 			"HakanIST",
 			"Roxy",
 			"Velg",
-			"Burakolik"
+			"Burakolik",
+			"Vito Genovese"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -192,8 +193,8 @@
 	"forgot-password": "Parolanızı mı unuttunuz?",
 	"forgot-password-email": "E-posta adresi:",
 	"forgot-password-submit": "Kurtarma e-postası gönder",
-	"recover-account-subject": "Hibeler şifre kurtarma inceleme",
-	"recover-account-email": "Kullanıcı hesabınızın $3 adresinden bir şifre sıfırlama talebinde bulunuldu. \n\nKurtarma bilgisi:\n\nkullanıcı adı: $1\nkurtarma URL: $2\n\nKurtarma URL'sinin süresi 48 saat içinde dolacaktır. Bu isteği siz yapmadıysanız, bu e-postayı yok sayabilirsiniz. Hesabınız tehlikeye atılmamıştır.\n\nSaygılarımla,\nHibe yönetimi incelemesi",
+	"recover-account-subject": "Hibe incelemesi parolası kurtarma",
+	"recover-account-email": "Kullanıcı hesabınızın parolasının sıfırlanması için $3 sayfasından bir istekte bulunuldu. \n\nKurtarma bilgileri:\n\nkullanıcı adı: $1\nkurtarma URL'si: $2\n\nKurtarma URL'sinin süresi 48 saat içinde dolacaktır. Bu istekte bulunan siz değilseniz, bu e-postayı göz ardı edebilirsiniz. Hesabınız tehlikeye girmemiştir.\n\nSaygılarımızla,\nHibe incelemesi yöneticileri",
 	"recover-account-success": "Kurtarma talimatları gönderildi. E-posta ve spam klasörünü kontrol edin.",
 	"recover-account-bad-input": "Geçersiz girdi.",
 	"reset-password-bad-token": "Geçersiz veya süresi dolmuş kurtarma anahtarı sağlandı.",
