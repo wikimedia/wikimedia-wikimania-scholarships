@@ -170,6 +170,7 @@
 	"forgot-password": "Esqueceu sua senha?",
 	"forgot-password-email": "Endereço de email:",
 	"forgot-password-submit": "Enviar e-mail de recuperação",
+	"recover-account-subject": "Recuperação de senha de revisão de concessões",
 	"recover-account-success": "Instruções de recuperação enviados. Verifique se o seu e-mail e pasta de spam.",
 	"recover-account-bad-input": "Entrada inválida.",
 	"reset-password-bad-token": "Token de recuperação inválido ou expirado fornecido.",
