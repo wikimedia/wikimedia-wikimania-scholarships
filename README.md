@@ -115,6 +115,15 @@ Once the testing libraries are installed you can run tests with this command:
 
     composer test
 
+Additionaly for javascript material, we enforce style guide provided by the
+NodeJs package manager npm:
+
+    npm install
+
+Then run the tests:
+
+    npm test
+
 When submitting a patch for review you must ensure that your locally installed
 testing libraries have been removed:
 

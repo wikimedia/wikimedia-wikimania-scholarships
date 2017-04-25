@@ -29,6 +29,9 @@ Icon
 .Spotlight-V100
 .Trashes
 
+# npm
+/node_modules/
+
 # composer stuff
 /vendor/.git
 /composer.phar
