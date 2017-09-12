@@ -3,5 +3,5 @@ checks:
   scholarships_responds:
     type: command
     stage: promote
-    command: curl -SsI -H 'Host: scholarships.wikimedia.org' 'http://localhost:80/apply'
+    command: "curl -SsI -H 'Host: scholarships.wikimedia.org' 'http://localhost:80/apply'"
     timeout: 10
