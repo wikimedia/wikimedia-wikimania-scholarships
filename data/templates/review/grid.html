@@ -8,6 +8,10 @@
   <li>{{ ( 'phase-' ~ phase )|message }}</li>
 </ol>
 
+{% if totalScholarshipCount > 0 %}
+<p> <strong>Application count:</strong> {{ totalScholarshipCount }}</p>
+{% endif %}
+
 <ul class="nav nav-tabs" role="navigation">
   <li {{ apps == 'all' ? 'class="active"' }}><a href="{{ urlFor( route ) }}?apps=all">All applications</a></li>
   <li {{ apps == 'unreviewed' ? 'class="active"' }}><a href="{{ urlFor( route ) }}?apps=unreviewed">All unreviewed</a></li>
@@ -27,6 +31,7 @@
     <th class="p2">{{ 'review-list-num-p2'|message }}</th>
     {% endif %}
   </tr>
+ 
   {% for row in records %}
   <tr>
     <td>{{ row.id }}</td>

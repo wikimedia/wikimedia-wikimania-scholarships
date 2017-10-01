@@ -87,6 +87,14 @@ class Apply extends AbstractDao {
 		return $this->insert( $sql, $answers );
 	}
 
+	public function totalScholarshipCount() {
+		$sql = "SELECT COUNT(*) FROM scholarships";
+		$row = $this->fetch( $sql );
+
+		// reset() moves the internal pointer to the first element of
+		// the array *and* returns the value of the first element.
+		return reset( $row );
+	}
 	/**
 	 * @param array $params Query parameters
 	 */

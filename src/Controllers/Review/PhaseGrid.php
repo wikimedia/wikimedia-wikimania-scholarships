@@ -63,11 +63,13 @@ class PhaseGrid extends Controller {
 			'apps' => $this->form->get( 'apps' ),
 		];
 		$ret = $this->dao->gridData( $params );
+		$totalScholarshipCount = $this->dao->totalScholarshipCount();
 
 		$this->view->set( 'apps', $this->form->get( 'apps' ) );
 		$this->view->set( 'phase', $this->phase );
 		$this->view->set( 'records', $ret->rows );
 		$this->view->set( 'found', $ret->found );
+		$this->view->set( 'totalScholarshipCount', $totalScholarshipCount );
 
 		// pagination information
 		list( $pageCount, $first, $last ) = $this->pagination(
