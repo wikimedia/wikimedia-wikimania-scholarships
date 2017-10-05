@@ -32,7 +32,7 @@
 	"not-open": "Content for site landing page before date that scholarship request will be accepted",
 	"deadline-passed": "Content for site landing page after scholarship request period has closed",
 	"form-intro": "Static content to be shown at the top of the scholarship request form in a callout box",
-	"form-intro-faq": "Link to Scholarships/FAQ wiki page.",
+	"form-intro-faq": "Link to Scholarships/FAQ wiki page.\n{{Identical|Frequently asked questions}}",
 	"form-scholarship-type": "Dropdown box label for scholarship type question",
 	"form-scholarship": "Form section label",
 	"form-scholarship-full": "Scholarship type option",
