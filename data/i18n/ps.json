@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"Baloch Khan"
 		]
 	},
 	"wikimania": "ويکيمانيا",
@@ -135,7 +136,9 @@
 	"review-view-active-projects": "آرنۍ ويکي پروژه:",
 	"review-view-presentation-topic": "سکالو:",
 	"review-view-visa": "ويزه به پخپله اخلې؟",
+	"review-view-rank": "پوړ",
 	"review-view-reviewers": "مخکتونکي:",
+	"review-view-rankings": "رتبي",
 	"review-view-notes": "يادښتونه:",
 	"review-view-save": "خوندي کول",
 	"search-region": "جغرافي سيمه:",
