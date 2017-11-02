@@ -128,6 +128,8 @@
 	"reset-password-fail": "Cıraberdışê parola be ser nêkewt.",
 	"reset-password-invalid": "Cıkerdışo nêvêrde.",
 	"error-heading": "Xetay sistemi",
+	"error-id": "Kamiya xeta: $1",
+	"404-header": "Pele nêvêniye",
 	"phase-1": "1.Sewiye",
 	"phase-2": "1.Sewiye",
 	"final-full": "Peyniye: Tam",
