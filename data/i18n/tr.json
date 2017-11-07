@@ -165,7 +165,7 @@
 	"contact-us": "Bize ulaşın",
 	"contact-page": "E-posta: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Teşekkür ve Lisanslama",
-	"credits-page": "Wikimania burslar yazılımı açık kaynak kodludur ve <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU Genel Kamu Lisansı 3.0</a> altında <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">kullanılabilir</a>.\n</p><p>\nKod Wikimania 2009, 2010, 2011, 2012 ve 2013 için kullanılan Wikimania burs sistemine dayanmaktadır.",
+	"credits-page": "Wikimania burslar yazılımı açık kaynak kodludur ve <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU Genel Kamu Lisansı 3.0</a> altında <a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">kullanılabilir</a>.\n</p><p>\nKod Wikimania 2009, 2010, 2011, 2012 ve 2013 için kullanılan Wikimania burs sistemine dayanmaktadır.",
 	"help-translate": "Çeviriye yardım edin",
 	"translate-page": "Burs başvuru sisteminin mümkün olduğunca çok sayıda dile çevrilmesini istiyoruz.  \n</p><p>\nÖncelikle <a href=\"//translatewiki.net\">translatewiki.net</a>'ten çevirmen haklarını alın ve daha sonra <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">çevirmeye başlayabilirsiniz</a>.",
 	"footer-faq": "sss",

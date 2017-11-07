@@ -144,7 +144,7 @@
 	"contact-us": "Na kontaktoni",
 	"contact-page": "Email: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Kreditet & licencimi",
-	"credits-page": "Software i bursave Wikimania është me burim të hapur dhe <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">në dispozicion</a> nën <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU General public License 3.0</a>.\n</p><p>\nKodi është e bazuar në sistemin e bursave Wikimania, të përdorur për  Wikimania 2009, 2010, 2011, 2012 dhe 2013.",
+	"credits-page": "Software i bursave Wikimania është me burim të hapur dhe <a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">në dispozicion</a> nën <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU General public License 3.0</a>.\n</p><p>\nKodi është e bazuar në sistemin e bursave Wikimania, të përdorur për  Wikimania 2009, 2010, 2011, 2012 dhe 2013.",
 	"help-translate": "Ndihmo për të përkthyer",
 	"translate-page": "Neve do të na pëlqente sistemi i aplikimit për bursë në gjuhë sa më shumë të jetë e mundur.\n</p><p>\nJu lutemi kërkoni të drejta përkthyesi në <a href=\"//translatewiki.net\">translatewiki.net</a> dhe pas asaj ju mund të <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">filloni përkthimin</a>.",
 	"footer-faq": "Pyetje të shpeshta",

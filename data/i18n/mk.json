@@ -131,7 +131,7 @@
 	"contact-us": "Контактирајте нè",
 	"contact-page": "Е-пошта: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Припис и лиценцирање",
-	"credits-page": "Програмот за стипендии за Викиманија има отворен код и е <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">достапен</a> под <a href=\"http://www.gnu.org/copyleft/gpl.html\">ГНУ-овата општа јавна лиценца 3.0</a>.\n</p><p>\nКодот се заснова на системот за стипендии што се користеше за Викиманија 2009, 2010, 2011, 2012 и 2013.",
+	"credits-page": "Програмот за стипендии за Викиманија има отворен код и е <a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">достапен</a> под <a href=\"http://www.gnu.org/copyleft/gpl.html\">ГНУ-овата општа јавна лиценца 3.0</a>.\n</p><p>\nКодот се заснова на системот за стипендии што се користеше за Викиманија 2009, 2010, 2011, 2012 и 2013.",
 	"help-translate": "Помогнете со преводот",
 	"translate-page": "Би сакале системот за пријавување за стипендии да се преведе на што повеќе јазици.\n</p><p>\nПобарајте преведувачки права на <a href=\"//translatewiki.net\">translatewiki.net</a> и потоа ќе можете да <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">почнете со преведување</a>.",
 	"footer-faq": "чпп",

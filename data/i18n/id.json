@@ -96,7 +96,7 @@
 	"contact-us": "Hubungi kami",
 	"contact-page": "Surel: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Kredit & lisensi",
-	"credits-page": "Perangkat lunak beasiswa Wikimania bersifat sumber terbuka dan <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">tersedia</a> di bawah <a href=\"http://www.gnu.org/copyleft/gpl.html\">Lisensi GNU General Public 3.0</a>.\n</p><p>\nKodenya diambil dari sistem beasiswa Wikimania yang digunakan untuk Wikimania 2009, 2010, 2011, 2012, dan 2013.",
+	"credits-page": "Perangkat lunak beasiswa Wikimania bersifat sumber terbuka dan <a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">tersedia</a> di bawah <a href=\"http://www.gnu.org/copyleft/gpl.html\">Lisensi GNU General Public 3.0</a>.\n</p><p>\nKodenya diambil dari sistem beasiswa Wikimania yang digunakan untuk Wikimania 2009, 2010, 2011, 2012, dan 2013.",
 	"help-translate": "Bantu terjemahkan",
 	"translate-page": "Kami ingin sistem formulir beasiswa diterjemahkan ke berbagai bahasa.\n</p><p>\nHarap mengajukan permohonan hak penerjemah di <a href=\"//translatewiki.net\">translatewiki.net</a> dan setelah itu Anda bisa <a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">mulai menerjemahkan</a>.",
 	"footer-faq": "faq",
