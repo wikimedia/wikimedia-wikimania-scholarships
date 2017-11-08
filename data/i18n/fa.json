@@ -115,7 +115,7 @@
 	"contact-us": "تماس با ما",
 	"contact-page": "ایمیل: <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "اجازه‌نامه و تیم توسعه",
-	"credits-page": "نرم‌افزار درخواست کمک هزینه ویکی‌مانیا متن باز است و می‌توان آن را با اجازه‌نامهٔ <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>  <a href=\"//git.wikimedia.org/log/wikimedia%2Fwikimania-scholarships\">دربافت</a> کرد.\n</p><p>\nاین کد بر اساس سامانهٔ کمک هزینهٔ ویکی‌مانیا که برای ویکی‌مانیا‌های سال‌های ۲۰۰۹، ۲۰۱۰، ۲۰۱۲ و ۲۰۱۳ طراحی شده‌است.",
+	"credits-page": "نرم‌افزار درخواست کمک هزینه ویکی‌مانیا متن باز است و می‌توان آن را با اجازه‌نامهٔ <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>  <a href=\"https://phabricator.wikimedia.org/source/wikimania-scholarships/history/master/\">دربافت</a> کرد.\n</p><p>\nاین کد بر اساس سامانهٔ کمک هزینهٔ ویکی‌مانیا که برای ویکی‌مانیا‌های سال‌های ۲۰۰۹، ۲۰۱۰، ۲۰۱۲ و ۲۰۱۳ طراحی شده‌است.",
 	"help-translate": "کمک به ترجمه",
 	"translate-page": "ما می‌خواهیم که صفحهٔ درخواست کمک هزینه، هر چه بیشتر به زبان‌های دیگر ترجمه شود.\n</p><p>\nلطفاً درخواست حق ترجمه را در <a href=\"//translatewiki.net\">translatewiki.net</a>  بدهید و پس از آن می‌توانید<a href=\"//translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">ترجمهٔ خود را شروع کنید.</a>.",
 	"footer-faq": "پرسش و پاسخ",
