@@ -163,7 +163,7 @@
 	"contact-us": "Nous contacter",
 	"contact-page": "Courriel : <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a>",
 	"credits": "Crédits & licences",
-	"credits-page": "Le logiciel de bourses de Wikimania est du source libre et <a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">disponible</a> sous licence <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nLe code est basé sur le système de bourses de Wikimania utilisé pour les Wikimania 2009, 2010, 2011, 2012 et 2013.",
+	"credits-page": "Le logiciel de bourses de Wikimania est ouvert et <a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">disponible</a> sous licence <a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU General Public License 3.0</a>.\n</p><p>\nLe code est basé sur le système de bourses de Wikimania utilisé pour les Wikimania 2009, 2010, 2011, 2012 et 2013.",
 	"help-translate": "Aider à traduire",
 	"translate-page": "Nous voudrions traduire le système de demande de bourses en autant de langues que cela est possible. \n</p><p>\nSi vous le souhaitez, vous pouvez demander des droits de traducteur sur la page <a href=\"https://translatewiki.net\">translatewiki.net</a> et ensuite commencer à <a href=\"https://translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">traduire</a>.",
 	"footer-faq": "faq",
