@@ -86,6 +86,7 @@ lang: currently selected display language
     <legend>{{ 'form-scholarship-type'|message }}</legend>
     {{ forms.i18nSelect( ctx, 'form-scholarship', 'type', { 'form-scholarship-partial': 'partial', 'form-scholarship-full': 'full', 'form-scholarship-either': 'either' }, { 'required':true, 'escape':false } ) }}
     {{ forms.yesNo( ctx, 'form-chapteragree', 'chapteragree', { 'escape':false, 'required': true } ) }}
+    {{ forms.yesNo( ctx, 'form-separatejury', 'separatejury', { 'escape':false, 'required': true } ) }}
   </fieldset>
 
   <fieldset>
@@ -136,15 +137,14 @@ lang: currently selected display language
     {{ forms.textArea( ctx, 'form-contrib-explain', 'contribution', { 'required':true, 'escape':false } ) }}
     {{ forms.textArea( ctx, 'form-collaboration-explain', 'collaboration', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-experience-explain', 'experience', { 'required':true } ) }}
-</fieldset>
+    {{ forms.textArea( ctx, 'form-missing-knowledge-explain', 'missingKnowledge' ) }}
+  </fieldset>
 
   <fieldset>
     <legend>{{ 'form-interest'|message }}</legend>
     {{ forms.yesNo( ctx, 'form-prev-scholar', 'prev_scholar', { 'required':true } ) }}
     {{ forms.yesNo( ctx, 'form-last-year-scholar', 'last_year_scholar', { 'required':true } ) }}
     {{ forms.textArea( ctx, 'form-attending-reports', 'reports' ) }}
-    {{ forms.yesNo( ctx, 'form-presenter', 'presentation', { 'escape':false } ) }}
-    {{ forms.text( ctx, 'form-presentation-topic', 'presentationTopic' ) }}
 </fieldset>
 
   <fieldset>

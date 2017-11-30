@@ -43,7 +43,7 @@
 {% set opts = { 'required':false }|merge( opts ) %}
 {% set value = ctx.form.get( name ) %}
 {{ forms.startElement( ctx, mesg, name, opts ) }}
-  <textarea class="form-control" id="{{ name }}" name="{{ name }}" cols="80" rows="3" {{ opts['required'] ? 'required' }}>{{ value ?: '' }}</textarea>
+  <textarea class="form-control" id="{{ name }}" name="{{ name }}" cols="80" rows="6" {{ opts['required'] ? 'required' }}>{{ value ?: '' }}</textarea>
 {{ forms.endElement() }}
 {% endmacro %}
 
