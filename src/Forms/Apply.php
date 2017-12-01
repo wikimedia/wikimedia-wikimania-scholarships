@@ -53,6 +53,7 @@ class Apply extends Form {
 		// Scholarship type
 		$this->requireInArray( 'type', [ 'partial', 'full', 'either' ] );
 		$this->requireBool( 'chapteragree' );
+		$this->requireBool( 'separatejury' );
 
 		// Contact information
 		$this->requireString( 'fname' );
@@ -99,16 +100,13 @@ class Apply extends Form {
 		$this->requireString( 'contribution' );
 		$this->requireString( 'experience' );
 		$this->requireString( 'collaboration' );
+		$this->expectString( 'missingKnowledge' );
 
 		// Interest and involvement in Wikimania
 		$this->requireBool( 'prev_scholar' );
 		$this->requireBool( 'last_year_scholar' );
 		$this->expectString( 'reports', [
 			'validate' => [ $this, 'validateReports' ],
-		] );
-		$this->expectBool( 'presentation' );
-		$this->expectString( 'presentationTopic', [
-			'validate' => [ $this, 'validatePresentationTopic' ],
 		] );
 
 		// Application agreement
@@ -134,16 +132,6 @@ class Apply extends Form {
 	 */
 	protected function validateGenderOther( $value ) {
 		return $this->get( 'gender' ) == 'o' ? (bool)$value : true;
-	}
-
-	/**
-	 * Validate that presentationTopic is provided if presentation is set.
-	 *
-	 * @param mixed $value Value of param
-	 * @return bool True if value is valid, false otherwise
-	 */
-	protected function validatePresentationTopic( $value ) {
-		return $this->get( 'presentation' ) ? (bool)$value : true;
 	}
 
 	/**
@@ -247,7 +235,7 @@ class Apply extends Form {
 	 */
 	public function save() {
 		$colnames = [
-			'type', 'chapteragree', 'fname', 'lname', 'email', 'residence',
+			'type', 'chapteragree', 'separatejury', 'fname', 'lname', 'email', 'residence',
 
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
@@ -257,7 +245,7 @@ class Apply extends Form {
 			'staff', 'staffOrg', 'board', 'boardOrg',
 			'involvement', 'contribution', 'experience', 'collaboration',
 			'prev_scholar', 'last_year_scholar', 'reports', 'involvement', 'contribution',
-			'presentation', 'presentationTopic',
+			'missingKnowledge',
 
 			'willgetvisa', 'agreestotravelconditions', 'grantfortravelonly',
 			'agreestofriendlyspace', 'infotrue',

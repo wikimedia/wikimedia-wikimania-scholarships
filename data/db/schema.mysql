@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
     id                          INT(11) NOT NULL AUTO_INCREMENT
   , type                        ENUM('partial', 'full', 'either') DEFAULT NULL
   , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
+  , separatejury                TINYINT(1) NOT NULL DEFAULT '0'
   , fname                       VARCHAR(32) DEFAULT NULL
   , lname                       VARCHAR(32) DEFAULT NULL
   , email                       VARCHAR(64) DEFAULT NULL
@@ -52,11 +53,10 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , contribution                TEXT
   , experience                  TEXT
   , collaboration               TEXT
+  , missingKnowledge            TEXT
   , prev_scholar                TINYINT(1) DEFAULT NULL
   , last_year_scholar           TINYINT(1) DEFAULT NULL
   , reports                     TEXT
-  , presentation                TINYINT(1) DEFAULT NULL
-  , presentationTopic           TEXT
   , willgetvisa                 TINYINT(1) NOT NULL DEFAULT '0'
   , agreestotravelconditions    TINYINT(1) NOT NULL DEFAULT '0'
   , grantfortravelonly          TINYINT(1) NOT NULL DEFAULT '0'

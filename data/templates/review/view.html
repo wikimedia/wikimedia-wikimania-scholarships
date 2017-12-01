@@ -29,9 +29,13 @@
       </div>
       <div id="scholarship_type" class="panel-collapse collapse in">
         <div class="panel-body">
-          <dl class="dl-horizontal">
+          <dl class="dl-horizontal wide">
             <dt>{{ 'review-view-scholarship-type'|message }}</dt>
             <dd>{{ schol.type }}</dd>
+            <dt>{{ 'review-view-chapteragree'|message }}</dt>
+            <dd>{{ helpers.yesNo( schol.chapteragree ) }}</dd>
+            <dt>{{ 'review-view-separatejury'|message }}</dt>
+            <dd>{{ helpers.yesNo( schol.separatejury ) }}</dd>
           </dl>
         </div>
       </div>
@@ -181,7 +185,7 @@
             {% else %}
             <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
-        </div>
+          </div>
 
           <div class="well well-sm">
             <p><strong>{{ 'review-view-experience-explain'|message }}</strong></p>
@@ -189,6 +193,15 @@
             <p style="white-space:pre-wrap">{{ schol.experience }}</p>
             {% else %}
             <p>{{ 'review-view-not-specified'|message }}</p>
+            {% endif %}
+          </div>
+
+          <div class="well well-sm">
+            <p><strong>{{ 'review-view-missing-knowledge-explain'|message }}</strong></p>
+            {% if schol.missingKnowledge is not empty %}
+              <p style="white-space:pre-wrap">{{ schol.missingKnowledge }}</p>
+            {% else %}
+              <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
           </div>
         </div>
@@ -206,12 +219,6 @@
       <div id="interest" class="panel-collapse collapse in">
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>{{ 'review-view-presenter'|message }}</dt>
-            <dd>{{ helpers.yesNo( schol.presentation ) }}</dd>
-            {% if schol.presentation %}
-            <dt>{{ 'review-view-presentation-topic'|message }}</dt>
-            <dd>{{ schol.presentationTopic }}</dd>
-            {% endif %}
             <dt>{{ 'review-view-previous-scholar'|message }}</dt>
             <dd>{{ helpers.yesNo( schol.prev_scholar ) }}</dd>
             <dt>{{ 'review-view-last-year-scholar'|message }}</dt>
