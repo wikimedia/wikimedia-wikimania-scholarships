@@ -23,7 +23,6 @@
 	"form-error": "El formulari conté errors. Corregiu-los i envieu el formulari un altre cop.",
 	"form-save-error": "S’ha produït un error de sistema en desar la vostra sol·licitud. Torneu a provar-ho un altre cop.",
 	"form-gender_other-error": "Descriviu la vostra pròpia identitat sexual.",
-	"form-presentationTopic-error": "Introduïu el títol de la vostra presentació.",
 	"form-fname-error": "Introduïu el vostre nom.",
 	"form-lname-error": "Introduïu el vostre cognom.",
 	"form-email-error": "Introduïu la vostra adreça electrònica.",

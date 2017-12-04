@@ -22,7 +22,6 @@
 	"nav-account": "میرا کھاتہ",
 	"nav-settings": "ترتیبات",
 	"form-gender_other-error": "براہ مہربانی آپ کے ذاتی خیال میں جنس کی کیا شناخت ہے بیان کریں",
-	"form-presentationTopic-error": "براہ مہربانی اپنا پرزنٹیشن عنوان درج کریں۔",
 	"form-fname-error": "براہ مہربانی اپنا اسمِ اول درج کریں",
 	"form-lname-error": "براہ مہربانی اپنا اسمِ آخر درج کریں",
 	"form-email-error": "براہ مہربانی اپنا ای میل درج کریں۔",
@@ -124,7 +123,6 @@
 	"review-view-active-projects": "اصل ویکی منصوبہ:",
 	"review-view-secondary-project": "ثانوی:",
 	"review-view-previous-scholar": "سابقہ عالم؟",
-	"review-view-presentation-topic": "موضوع:",
 	"search-community-size": "کمیونیٹی حجم:",
 	"search-globalns": "عالمی شمالی/جنوبی",
 	"settings-pass-scores": "پاس اسکور"
