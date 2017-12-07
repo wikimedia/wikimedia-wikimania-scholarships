@@ -11,7 +11,8 @@
 			"Esketti",
 			"Robin van der Vliet",
 			"SPQRobin",
-			"Jos1950"
+			"Jos1950",
+			"Mar(c)"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -231,7 +232,7 @@
 	"admin-users-reviewer": "beoordeelaar?",
 	"admin-users-admin": "beheerder?",
 	"admin-users-valid": "geldig?",
-	"admin-users-blocked": "geblokeerd?",
+	"admin-users-blocked": "geblokkeerd?",
 	"admin-users-yes": "ja",
 	"admin-users-no": "nee",
 	"admin-users-add": "Nieuwe gebruiker toevoegen",
