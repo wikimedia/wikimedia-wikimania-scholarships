@@ -54,6 +54,7 @@ class Apply extends Form {
 		$this->requireInArray( 'type', [ 'partial', 'full', 'either' ] );
 		$this->requireBool( 'chapteragree' );
 		$this->requireBool( 'separatejury' );
+		$this->expectString( 'scholarorgs', [ 'validate' => [ $this, 'validateScholarOrgs' ] ] );
 
 		// Contact information
 		$this->requireString( 'fname' );
@@ -132,6 +133,16 @@ class Apply extends Form {
 	 */
 	protected function validateGenderOther( $value ) {
 		return $this->get( 'gender' ) == 'o' ? (bool)$value : true;
+	}
+
+	/**
+	 * Validate that scholarorgs is provided if separatejury == true.
+	 *
+	 * @param mixed $value Value of param
+	 * @return bool True if value is valid, false otherwise
+	 */
+	protected function validateScholarOrgs( $value ) {
+		return $this->get( 'separatejury' )  ? (bool)$value : true;
 	}
 
 	/**
@@ -235,8 +246,8 @@ class Apply extends Form {
 	 */
 	public function save() {
 		$colnames = [
-			'type', 'chapteragree', 'separatejury', 'fname', 'lname', 'email', 'residence',
-
+			'type', 'chapteragree', 'separatejury', 'scholarorgs',
+			'fname', 'lname', 'email', 'residence',
 			'haspassport', 'nationality', 'airport', 'languages', 'dob',
 			'gender', 'gender_other', 'occupation', 'areaofstudy',
 			'username', 'alt_users', 'project', 'project2', 'community',
