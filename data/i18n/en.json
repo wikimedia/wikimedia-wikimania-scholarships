@@ -31,12 +31,12 @@
 
 	"deadline-passed": "<p>Scholarship application deadline was February 20, 23:59 UTC.</p>\n<p>We will notify applicants in April 2018 about the result of their application.</p>\n<p>Please see the <a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>scholarships page</a> on the wiki for more details.</p>",
 
-	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">Wikimania 2018</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Cape Town, South Africa, July 18-22, 2018.</p>\n<p><b>Applications may be submitted in any language</b>, but every applicant must <b>provide evidence of English language abilities</b> that are at a level which would enable them to participate in Wikimania, a conference which is primarily conducted in English. Sufficient English abilities could be demonstrated in the application itself or elsewhere.</p>\n<p>This is not a scholarship for university study. Applications not obviously related to the conference will be discarded.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>Please note that <strong>if you need more then 10 minutes to complete this application, please draft your answers in a text editor</strong>, reload this page and then copy-paste your answers into corresponding fields before submitting. This application may give an error (\"Missing or invalid CSRF token\") if it is open for more then 15 minutes before submitting.</p>\n<p>The deadline to apply is <strong>February 20, 23:59 UTC</strong>.</p> ",
+	"form-intro": "<p>This is the application for sponsorship to attend <a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">Wikimania 2018</a>, the annual international conference centered on Wikimedia projects. Awardees will receive a scholarship which will cover conference registration fees, hotel, and roundtrip travel to Wikimania in Cape Town, South Africa, July 18-22, 2018.</p>\n<p><b>Applications may be submitted in any language</b>, but every applicant must <b>provide evidence of English language abilities</b> that are at a level which would enable them to participate in Wikimania, a conference which is primarily conducted in English. Sufficient English abilities could be demonstrated in the application itself or elsewhere.</p>\n<p>Please carefully consider your financial needs before applying for a scholarship to attend Wikimania. There are limited funds available and many applicants do not have the financial means to attend Wikimania without this opportunity. Thank you.</p>\n<p>Please note that <strong>if you need more then 10 minutes to complete this application, please draft your answers in a text editor</strong>, reload this page and then copy and paste your answers into corresponding fields before submitting. This application may give an error (\"Missing or invalid CSRF token\") if it is open for more then 15 minutes before submitting.</p>\n<p>The deadline to apply is <strong>January 22, 2018, 23:59 UTC</strong>.</p> ",
 
 	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Frequently asked questions</a>",
 
 	"form-scholarship-type": "Type of Scholarship",
-	"form-scholarship": "<p>This year for Wikimania 2018, the Wikimedia Foundation will be offering Partial scholarships which will cover all registration fees (which includes accommodation during Wikimania); however, these partial scholarships will NOT cover travel or incidental expenses. In contrast, Full scholarships will cover travel, registration and incidental expenses.</p>\n Please indicate which type of Wikimania Foundation scholarship are you applying for. Note that those who choose \"I am applying for a full scholarship, but would be able to attend if awarded a partial scholarship.\" will be considered according to the <a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Scholarship_details\">selection rules</a>.",
+	"form-scholarship": "<p>This year for Wikimania 2018, the Wikimedia Foundation will be offering Partial scholarships which will cover all registration fees (which includes accommodation during Wikimania); however, these partial scholarships will NOT cover travel or some incidental expenses. In contrast, Full scholarships will cover travel, registration and some incidental expenses.</p>\n Please indicate which type of Wikimania Foundation scholarship are you applying for. Note that those who choose \"I am applying for a full scholarship, but would be able to attend if awarded a partial scholarship.\" will be considered according to the <a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Scholarship_details\">selection rules</a>.",
 	"form-scholarship-full": "I am applying for a Full scholarship.",
 	"form-scholarship-either": "I am applying for a full scholarship, but would be able to attend if awarded a partial scholarship.",
 	"form-scholarship-partial": "I am applying for a Partial scholarship.",
@@ -47,6 +47,7 @@
 	"form-gender_other-error": "Please describe your self-defined gender identity.",
 	"form-reports-error": "Please provide links to your previous scholarship reports.",
 	"form-scholarship-error": "Please select the scholarship type",
+	"form-scholarorgs-error": "Please tell us the organizations you are applying for a scholarship with.",
 	"form-wmfAgreeGuardian-error": "Please enter your legal guardian's name.",
 	"form-fname-error": "Please enter your first name.",
 	"form-lname-error": "Please enter your last name.",
@@ -112,7 +113,7 @@
 	"form-engagement-option1": "Active contributor to a Wikimedia project (e.g. Wikipedia, Commons, Wikisource, Wikidata)",
 	"form-engagement-option2": "Mediawiki code contributor, gadget or other tool-builder for Wikimedia projects",
 	"form-engagement-option3": "Involvement in some form of Wikimedia organization (Chapters, Thematic Organizations, User Groups)",
-	"form-engagement-option4": "Wikimedia Check User, Admin, Bureaucrat, Steward, and/or OTRS (current or former)",
+	"form-engagement-option4": "Wikimedia CheckUser, Admin, Bureaucrat, Steward, and/or OTRS (current or former)",
 	"form-engagement-option5": "Wikimedia Foundation Grantee",
 	"form-engagement-option6": "Wikimedia Researcher",
 	"form-engagement-option7": "Participant in a Wikimedia program (e.g. GLAM partnerships, Education program, etc.)",
@@ -121,7 +122,7 @@
 	"form-engagement-option10": "None of the above",
 
 	"form-wikimedia-staff": "Are you currently a paid or contract staff member of any Wikimedia organization?",
-	"form-wikimedia-board": "Are you currently board member of any Wikimedia organization?",
+	"form-wikimedia-board": "Are you currently a board member of any Wikimedia organization?",
 	"form-staff-organization": "If yes, please identify the Wikimedia organization and whether you are full or part-time:",
 	"form-board-organization": "If yes, please identify the Wikimedia organization here:",
 
@@ -132,13 +133,13 @@
 	"form-contrib-explain": "What’s something great that happened as a result of these activities? This could be described either quantitatively or qualitatively, and could impact either online or offline. Here are some <a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Relevant_experience\">examples</a> that might help.",
 	"form-experience-explain": "How do you usually share your experiences (or things you’ve learned) with your community? Examples of on-wiki summaries/reports, blog posts, meetup talks, etc. are welcome here.",
 	"form-collaboration-explain": "What collaborations with other Wikimedians or Wikimedia organizations are you most proud of?",
-	"form-missing-knowledge-explain": "What knowledge matters to you that is still missing in the Wikimedia movement? Who has been left out? What are some ways you might participate at Wikimania to help address this?",
+	"form-missing-knowledge-explain": "Wikimania 2018's theme is focusing on supporting underrepresented voices and filling knowledge gaps in our movement. What are some communities, forms of knowledge, or subjects that are important to you and still missing from Wikimedia? How would you like to participate at Wikimania to help address this?",
 
 
 	"form-interest": "Attendance and involvement in Wikimania",
 	"form-attended": "Have you attended Wikimania before?  If so, in what year or years?",
 	"form-prev-scholar": "Have you previously attended any Wikimania on a WMF scholarship?",
-	"form-last-year-scholar": "In 2016, did you receive a WMF Scholarship and attend Wikimania on that scholarship?",
+	"form-last-year-scholar": "In 2017, did you receive a WMF Scholarship and attend Wikimania on that scholarship?",
 	"form-attending-reports": "Please provide the links to all of your previous WMF Scholarship reports.",
 
 	"form-agree": "Application agreement",
@@ -151,7 +152,8 @@
 	"form-privacy": "Privacy",
 	"form-review": "All information contained in this application will be reviewed by the members of the <a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarship_committee\">Wikimania Scholarship Committee</a>. All personal information will be held strictly confidential by the Committee, and the <a href=\"https://wikimediafoundation.org/\">Wikimedia Foundation</a>.",
 	"form-chapteragree": "<p>Wikimedia movement organizations (Chapters, Thematic organizations, and User Groups) also offer scholarships for Wikimania, separate from the Wikimedia Foundation Scholarship Program. While this application is submitted for a Wikimedia Foundation Scholarship, a Wikimedia movement organization may request access to applications that are relevant to their country or community, for the purpose of selecting and awarding their own, independently awarded scholarships.</p> \n Please indicate whether or not you would like your information shared with other, independent Wikimedia movement organizations.",
-	"form-separatejury": "Some Wikimedia movement organizations proceed with the results of the international Wikimania Scholarship Committee results, some will create their own jury process. In the second case, do you intend to apply for funding there, too? If so, we will work with the organisation in question to arrange the best solution.",
+	"form-separatejury": "Do you intend to apply to any local Chapter / other movement organization(s) for scholarship funding to Wikimania 2018?",
+	"form-scholarorgs": "If so, please list the organizations below:",
 
 	"form-rights-heading": "Applicant Rights & Consent to Data Processing and Transfer",
 	"form-rights1": "I as an applicant for a Wikimedia Foundation ('WMF') scholarship relating to my participation in the 2018 Wikimania conference hosted in Cape Town (South Africa), hereby acknowledge and affirmatively consent to the following as a prerequisite to the consideration of my 2018 Wikimania scholarship application ('Application'):",
@@ -302,6 +304,7 @@
 	"review-view-scholarship-type": "Scholarship type:",
 	"review-view-chapteragree": "Share info with chapters?",
 	"review-view-separatejury": "Apply with independent orgs?",
+	"review-view-scholarorgs": "Orgs:",
 	"review-view-name": "Name:",
 	"review-view-email": "Email:",
 	"review-view-residence": "Residence:",
@@ -320,13 +323,13 @@
 	"review-view-active-projects": "Main wiki project:",
 	"review-view-secondary-project": "Secondary wiki project:",
 	"review-view-previous-scholar": "Previous scholar?",
-	"review-view-last-year-scholar": "Scholarship in 2016?",
+	"review-view-last-year-scholar": "Scholarship in 2017?",
 	"review-view-attending-reports": "Previous scholarship reports",
 	"review-view-involvement": "What have you built or contributed to in order to improve your wiki or community? Have you lead or organized any of these activities?",
 	"review-view-contrib-explain": "What’s something interesting that happened as a result of these activities?",
 	"review-view-experience-explain": " How do you usually share your experiences (or things you’ve learned) with your community? Examples of on-wiki summaries/reports, blog posts, meetup talks, etc. are welcome here.",
 	"review-view-collaboration-explain": "What collaborations with other Wikimedians or Wikimedia organizations are you most proud of?",
-	"review-view-missing-knowledge-explain": "What knowledge matters to you that is still missing in the Wikimedia movement? Who has been left out? What are some ways you might participate at Wikimania to help address this?",
+	"review-view-missing-knowledge-explain": "Wikimania 2018's theme is focusing on supporting underrepresented voices and filling knowledge gaps in our movement. What are some communities, forms of knowledge, or subjects that are important to you and still missing from Wikimedia? How would you like to participate at Wikimania to help address this?",
 	"review-view-engagement": "Engagement with the Wikimedia movement",
 	"review-view-visa": "Will get visa?",
 	"review-view-travel-conditions": "Agrees to travel conditions?",

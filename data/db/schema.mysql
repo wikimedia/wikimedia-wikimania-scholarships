@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS scholarships (
   , type                        ENUM('partial', 'full', 'either') DEFAULT NULL
   , chapteragree                TINYINT(1) NOT NULL DEFAULT '0'
   , separatejury                TINYINT(1) NOT NULL DEFAULT '0'
+  , scholarorgs                 VARCHAR(255) DEFAULT NULL
   , fname                       VARCHAR(32) DEFAULT NULL
   , lname                       VARCHAR(32) DEFAULT NULL
   , email                       VARCHAR(64) DEFAULT NULL
