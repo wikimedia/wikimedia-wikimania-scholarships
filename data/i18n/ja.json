@@ -8,7 +8,8 @@
 			"Sujiniku",
 			"Otokoume",
 			"Takot",
-			"Psjk2106"
+			"Psjk2106",
+			"Omotecho"
 		]
 	},
 	"wikimania": "ウィキマニア",
@@ -30,10 +31,10 @@
 	"mock": "これは渡航助成金申請サイトのモックにすぎず、テストのためだけに使われます。",
 	"not-open": "2018年度ウィキマニア渡航助成金の手順はまだ公開されていません。詳細については以下をご参照ください:\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">ウィキマニアについて</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">奨学金について</a></li>\n</ul>",
 	"deadline-passed": "<p>参加助成金の申請締切は2月20日23:59 UTC です。</p>\n<p>申請結果については2018年4月に申請者に通知いたします。</p>\n<p>詳細については、ウィキの<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>渡航助成金ページ</a>をご覧ください。</p>",
-	"form-intro": "<p>これは年に一度開かれるウィキメディア・プロジェクトの国際会議<a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">ウィキマニア2018</a>の参加への支援を応募するフォームです。支援を受ける人は会費、宿泊費、2018年7月18日-22日にウィキマニアが行われる南アフリカのケープタウンまでの往復の旅費が補助されます。</p>\n<p><b>応募は何語でもかまいませんが</b>、応募者は基本的に英語で行われるウィキマニアに参加できるだけの<b>英語の能力を示す必要があります</b>。英語力はこの応募でも、他のところでも示すことができます。</p>\n<p>これは大学の奨学金ではありません。会議に関係あることが明らかでない応募は却下されます。</p>\n<p>支援に応募する前にご自身の経済状況についてよくお考えください。資金には限りがあり、多くの人がこの支援なくしては会議に参加する手段がないのです。ご協力いただきありがとうございます。</p>\n<p><strong>回答に10分以上を要する場合は、一度テキストエディタに下書きし</strong>、このページを再読み込みしてから回答をコピー&ペーストしてください。ページを開いてから15分以上経過した場合エラーが出る可能性があります。(\"Missing or invalid CSRF token\")</p>\n<p>応募締め切りは<strong>2月20日23:59(UTC)[2月21日8:59(JST)]です。</strong>.</p>",
+	"form-intro": "<p>これは年に一度開かれるウィキメディア・プロジェクトの国際会議<a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">ウィキマニア2018</a>の参加への支援を応募するフォームです。支援を受ける人は会費、宿泊費、2018年7月18日-22日にウィキマニアが行われる南アフリカのケープタウンまでの往復の旅費が補助されます。</p>\n<p><b>応募は何語でもかまいませんが</b>、応募者は基本的に英語で行われるウィキマニアに参加できるだけの<b>英語の能力を示す必要があります</b>。英語力はこの応募でも、他のところでも示すことができます。</p>\n<p>支援に応募する前にご自身の経済状況についてよくお考えください。資金には限りがあり、多くの人がこの支援なくしては会議に参加する手段がないのです。ご協力いただきありがとうございます。</p>\n<p><strong>回答に10分以上を要する場合は、一度テキストエディタに下書きし</strong>、このページを再読み込みしてから回答をコピー&ペーストしてください。ページを開いてから15分以上経過した場合エラーが出る可能性があります。(\"Missing or invalid CSRF token\")</p>\n<p>応募締め切りは<strong>2018年1月20日23:59(UTC)[2018年1月21日8:59(JST)]です。</strong>.</p>",
 	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ' target='_blank'>よくある質問</a>",
 	"form-scholarship-type": "助成金の種類",
-	"form-scholarship": "<p>今年は、ウィキメディア財団が拠出するウィキマニアの部分支援では会費と宿泊費が補助されます。しかし、部分支援では旅費や突発的に必要になった費用は補助されません。それに対し、全体支援では会費に加え旅費や突然の出費もカバーされます。</p>\nどちらのタイプの旅費支援に応募するか示してください。\"全体支援に応募しますが、部分支援でも参加できます。\"を選択した方は<a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Scholarship_details\">選考ルール</a>に基づいて扱われます。",
+	"form-scholarship": "<p>今年は、ウィキメディア財団が拠出するウィキマニアの部分支援では会費と宿泊費が補助されます。しかし、部分支援では旅費や突発的に必要になった特定の費用は補助されません。それに対し、全体支援では会費に加え旅費や突然の特定の出費もカバーされます。</p>\nどちらのタイプの旅費支援に応募するか示してください。「全体支援に応募しますが、部分支援でも参加できます。」を選択した方は<a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Scholarship_details\">選考ルール</a>に基づいて扱われます。",
 	"form-scholarship-full": "全体支援に応募します。",
 	"form-scholarship-either": "全体支援に応募しますが、部分支援でも参加できます。",
 	"form-scholarship-partial": "部分支援に応募します。",
@@ -123,7 +124,7 @@
 	"form-interest": "ウィキマニアへの出席と関わり",
 	"form-attended": "これまでにウィキマニアに参加したことはありますか？　ある場合は、いつですか？",
 	"form-prev-scholar": "これまでにウィキメディア財団の参加助成でウィキマニアに参加したことがありますか？",
-	"form-last-year-scholar": "2016年に、ウィキメディア財団の参加助成を受けて、その助成でウィキマニアに出席しましたか？",
+	"form-last-year-scholar": "2017年に、ウィキメディア財団の参加助成を受けて、その助成でウィキマニアに出席しましたか？",
 	"form-attending-reports": "これまでのウィキメディア財団の参加助成によるレポートへのリンクをすべて記述してください。",
 	"form-privacy": "プライバシー",
 	"form-wmfAgreeName": "氏名を入力してください:",
