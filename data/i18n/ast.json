@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Xuacu",
-			"Enolp"
+			"Enolp",
+			"Fitoschido"
 		]
 	},
 	"wikimania": "Wikimanía",
@@ -124,7 +125,7 @@
 	"form-attending-reports": "Apurre los enllaces a tolos informes de beques anteriores.",
 	"form-agree": "Alcuerdu de solicitú",
 	"form-visa": "Si gano y acepto una beca, voi ser responsable de llograr una visa de viaxe, si la necesites, antes de viaxar a Ciudá del Cabu, Suráfrica.",
-	"form-travel-conditions": "Si soi premiáu y acepto una beca, aceuto usar el serviciu de reserva de viaxes proporcionáu y pagáu pola Fundación Wikimedia.",
+	"form-travel-conditions": "Si soi seleccionáu y acepto una beca, aceuto usar el serviciu de reserva de viaxes proporcionáu y pagáu pola Fundación Wikimedia.",
 	"form-travel-only": "Si me conceden y acepto una beca, toi d'alcuerdu n'utilizar la beca puramente pa los mios gastos de viaxe. Prometo reembolsar a la Fundación Wikimedia cualquier fondu sin gastar o gastáu incorreutamente.",
 	"form-friendly-space": "Si me conceden y acepto una beca, aceuto cumplir la <a href=\"https://wikimediafoundation.org/wiki/Special:MyLanguage/Friendly_space_policy\">política d'espaciu amistosu</a> de la Fundación Wikimedia. Si s'alcuentra que toi frañando esta política y pídenme colar, aceuto ser responsable de cualquier cambéu nos mios gastos de viaxe.",
 	"form-info-true": "Certifico que tola información apurrida cola mio solicitú de beca ye verdadera y exauta acordies cola mio conocencia y creencia. La fundación Wikimedia acútase'l derechu a solicitame que devuelva toa o parte de la beca si dalguna parte de la información qu'apurrí alcuéntrase que ye falsa o nun ye exauta.",

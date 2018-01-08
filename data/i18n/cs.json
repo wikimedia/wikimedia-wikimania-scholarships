@@ -7,7 +7,8 @@
 			"Urbanecm",
 			"Walter Klosse",
 			"Dvorapa",
-			"Martin Urbanec"
+			"Martin Urbanec",
+			"Matěj Suchánek"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -88,7 +89,7 @@
 	"form-occupation": "Povolání (jste-li zaměstnán):",
 	"form-study": "Oblast studia (jste-li student):",
 	"form-participation": "Účast v projektech nadace Wikimedia",
-	"form-username": "Uživatelské jméno na vašem hlavním projektu nadace Wikimedia (bez prefixu Wikipedista:/Uživatel:, Uživatel:PQR123 by měl zadat jen PQR123). Prosím, nevkládejte cokoliv za nebo před za vaše uživatelské jméno.",
+	"form-username": "Uživatelské jméno na vašem hlavním projektu nadace Wikimedia (bez prefixu Wikipedista:/Uživatel:, Uživatel:PQR123 by měl zadat jen PQR123). Prosím, nevkládejte cokoliv před nebo za své uživatelské jméno.",
 	"form-other-usernames": "(Pokud existují) Jiná uživatelská jména používaná pro editaci projektů nadace Wikimedia:",
 	"form-multilingual-community": "Vybral jsem si jako \"Nejaktivnější projekt nadace Wikimedia Foundation\" Commons, Wikidruhy, Inkubátor, MediaWiki nebo Tool Labs. Nemohu si proto vybrat komunitní jazyk.",
 	"form-engagement": "Prosím, vyberte z následujícího jak jste zapojeni do hnutí Wikimedia.",
