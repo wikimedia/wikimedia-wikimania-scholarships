@@ -338,6 +338,6 @@
 	"settings-pass-scores": "Puntuaciones pasables",
 	"settings-weighing-factors": "Peso de los factores",
 	"settings-app-period": "Período de la solicitud",
-	"settings-app-period-open": "Período de solicitudes abierto:",
-	"settings-app-period-close": "Período de solicitudes cerrado:"
+	"settings-app-period-open": "Inicio del período de solicitudes:",
+	"settings-app-period-close": "Fin del período de solicitudes:"
 }
