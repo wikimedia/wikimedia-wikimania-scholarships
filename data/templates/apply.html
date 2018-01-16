@@ -69,6 +69,7 @@ lang: currently selected display language
 <div class="jumbotron">
   <div class="container">
     {{ 'form-intro'|message|raw }}
+    <p class="text-center">{{ 'form-intro-privacy'|message|raw }}</p>
     <p class="text-center">{{ 'form-intro-faq'|message|raw }}</p>
   </div>
 </div>
@@ -159,13 +160,8 @@ lang: currently selected display language
 
   <fieldset>
     <legend>{{ 'form-privacy'|message  }}</legend>
-    <p>{{ 'form-review'|message|raw }}</p>
-
-    <h4>{{ 'form-rights-heading'|message }}</h4>
-    <p>{{ 'form-rights1'|message|raw }}</p>
-    <p>{{ 'form-rights2'|message|raw }}</p>
-    <p>{{ 'form-rights3'|message|raw }}</p>
-    <p>{{ 'form-rights4'|message|raw }}</p>
+    <p>{{ 'form-privacy1'|message|raw }}</p>
+    <p>{{ 'form-privacy2'|message }}</p>
 
     {{ forms.checkbox( ctx, 'form-wmfagree', 'wmfagree', { 'required':true } ) }}
     {{ forms.text( ctx, 'form-wmfAgreeName', 'wmfAgreeName', { 'required':true } ) }}
