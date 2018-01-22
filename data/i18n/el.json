@@ -4,7 +4,8 @@
 			"Glavkos",
 			"Stam.nikos",
 			"Xaris333",
-			"Ανώνυμος Βικιπαιδιστής"
+			"Ανώνυμος Βικιπαιδιστής",
+			"Nikosgranturismogt"
 		]
 	},
 	"wikimania": "Το Wikimania",
@@ -48,6 +49,8 @@
 	"form-contribution-error": "Παρακαλώ περιγράψτε τη συμμετοχή και τις συνεισφορές σας σε άλλα έργα εκτός από τα εγχειρήματα του Wikimedia.",
 	"form-experience-error": "Παρακαλώ δώστε μας πληροφορίες σχετικά με το πώς μοιράζεστε τις εμπειρίες σας με την κοινότητα.",
 	"required-field": "Απαιτούμενο πεδίο",
+	"form-yes": "Ναι",
+	"form-no": "Όχι",
 	"form-select-day": "Ημέρα",
 	"form-select-month": "Μήνας",
 	"form-select-year": "Έτος",
