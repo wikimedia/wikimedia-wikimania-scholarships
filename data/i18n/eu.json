@@ -7,7 +7,8 @@
 			"Macofe",
 			"Gorkaazk",
 			"Mikel Ibaiba",
-			"Fitoschido"
+			"Fitoschido",
+			"EukeneFL"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -26,6 +27,7 @@
 	"nav-account": "Nire Kontua",
 	"nav-settings": "Ezarpenak",
 	"nav-reports-export": "Esportazio osoa",
+	"mock": "Hauxe beka maketa aplikazio gunea besterik ez da, erabil ezazu bakarrik probatzeko.",
 	"not-open": "Wikimania 2018rako bekak emateko prozesua oraindik ez dago zabalik. Informazio gehiagorako, ikus:\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">Wikimaniari buruz</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">Bekei buruz</a></li>\n</ul>",
 	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Maiz egindako galderak</a>",
 	"form-scholarship-type": "Beka mota",

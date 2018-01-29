@@ -8,7 +8,8 @@
 			"JuneAugust",
 			"凡人丶",
 			"LNDDYL",
-			"Macofe"
+			"Macofe",
+			"Assoc"
 		]
 	},
 	"wikimania": "维基媒体国际会议",
@@ -29,7 +30,7 @@
 	"nav-reports-export": "完整导出",
 	"mock": "这只是一个模拟的资费申请网站，仅做测试之用。",
 	"not-open": "2018年维基媒体国际会议资费尚未开放。更多信息请见：\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">关于维基媒体国际会议</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">关于资费</a></li>\n</ul>",
-	"deadline-passed": "<p>资费申请截止日期是2月20日，23:59（UTC时间）。</p>\n<p>我们将在2018年4月通知使用应用程序的申请人。</p>\n<p>更多信息请参见wiki上的<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>资费页面</a>。</p>",
+	"deadline-passed": "<p>资费申请截止日期是1月22日，23:59（UTC时间）。</p>\n<p>我们将在2018年4月通知使用应用程序的申请人。</p>\n<p>更多信息请参见wiki上的<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>资费页面</a>。</p>",
 	"form-intro": "<p>这是申请出席<a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">2018年维基媒体国际会议</a>的应用程序，维基媒体国际会议是以维基媒体项目为中心的年度国际会议。获奖者将收到包含会议登记费用、宾馆和往返旅行资费，他们将出席2018年7月18~22日在南非开普敦举办的维基媒体国际会议。</p>\n<p><b>申请可以使用任意语言提交</b>，但任何申请必须<b>证明其英语能力</b>的水平足以允许其参与维基媒体国际会议，这个以英语作为主要工作语言的会议。英语能力可以通过申请本身或者其他方式展现。</p>\n<p>在您申请与会资费前，请仔细考虑您的财政需求。我们只有有限的资费，并且很多申请人没能获得这笔资费，这意味着他们失去了与会的机会。感谢您。</p>\n<p>请注意<strong>如果您需要超过10分钟的时间填写完此申请，请在文本编辑器中将您的答案打草稿</strong>，重新加载该页面，并在提交前复制粘贴您的答案至对应字段。如果该应用程序在提交前已打开超过15分钟的话，它可能会显示一条错误消息（“Missing or invalid CSRF token”）。</p>\n<p>申请的截止日期是<strong>2018年1月22日 23:59 UTC</strong>。</p>",
 	"form-intro-privacy": "有关隐私和数据处理信息，请阅览<a href=\"https://wikimediafoundation.org/wiki/Wikimania_2018_Application_Form_Privacy_Statement\">应用程序隐私声明</a>。",
 	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>常见问题</a>",
