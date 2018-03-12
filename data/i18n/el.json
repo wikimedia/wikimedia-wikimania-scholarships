@@ -5,7 +5,8 @@
 			"Stam.nikos",
 			"Xaris333",
 			"Ανώνυμος Βικιπαιδιστής",
-			"Nikosgranturismogt"
+			"Nikosgranturismogt",
+			"Geraki"
 		]
 	},
 	"wikimania": "Το Wikimania",
@@ -14,7 +15,7 @@
 	"nav-apply": "Υποβάλετε αίτηση",
 	"nav-faq": "Συχνές ερωτήσεις",
 	"nav-credits": "Συντελεστές",
-	"nav-privacy": "Απόρρητο",
+	"nav-privacy": "Ιδιωτικότητα",
 	"nav-contact": "Επικοινωνία",
 	"nav-language": "Γλώσσα:",
 	"nav-review": "Θεώρηση",
@@ -71,7 +72,7 @@
 	"form-gender-unspecified": "Προτιμώ να μην δηλώσω",
 	"form-participation": "Συμμετοχή στα εγχειρήματα του Wikimedia",
 	"form-engagement-option10": "Κανένα από τα παραπάνω",
-	"form-privacy": "Απόρρητο",
+	"form-privacy": "Ιδιωτικότητα",
 	"form-wmfAgreeName": "Παρακαλούμε εισάγετε το ονοματεπώνυμο σας:",
 	"form-wmfAgreeGuardian": "Εάν είστε κάτω των 18 ετών, εισάγετε το ονοματεπώνυμο του γονέα ή κηδεμόνα σας:",
 	"form-submit-app": "Υποβολή αίτησης",
