@@ -159,6 +159,7 @@
 	"admin-users-add": "Lisää uusi käyttäjä",
 	"admin-users-form-go": "Hae",
 	"review-list-export": "Vienti-lista",
+	"review-list-export-csv": "Vie luettelo CSV-muodossa",
 	"review-list-counter": "Laskuri",
 	"review-list-id": "Tunnus",
 	"review-list-name": "Nimi",
