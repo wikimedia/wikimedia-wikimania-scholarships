@@ -12,7 +12,8 @@
 			"EagerLin",
 			"Macofe",
 			"Bowleerin",
-			"Kly"
+			"Kly",
+			"Sanmosa"
 		]
 	},
 	"wikimania": "維基媒體國際會議",
@@ -33,7 +34,7 @@
 	"nav-reports-export": "完整導出",
 	"mock": "這是一個模擬個人補助金申請頁，僅用於測試。",
 	"not-open": "2018 年維基媒體國際會議補助金申請程序尚未開始。可參閱以下網頁，以得取更多資訊：\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">關於維基媒體國際會議</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">關於補助金</a></li>\n</ul>",
-	"deadline-passed": "<p>補助金申請將於 2 月 20 日 23:59 UTC截止。</p>\n<p>我們會在 2018 年 4 月通知申請者他們的申請有何結果。</p>\n<p>詳情請參閱維基上的<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>補助金專頁</a>。</p>",
+	"deadline-passed": "<p>補助金申請將於 1 月 22 日 23:59 UTC截止。</p>\n<p>我們會在 2018 年 4 月通知申請者他們的申請有何結果。</p>\n<p>詳情請參閱維基上的<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>補助金專頁</a>。</p>",
 	"form-intro": "<p>本申請表乃是為了參加<a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">維基媒體國際會議 2018 </a>申請贊助使用。維基媒體國際會議是聚焦於維基媒體各計畫的國際年會，獲取者將能得到前往 2018 年 7 月 18 - 22 日在南非開普敦舉行的國際維基年會涵蓋註冊費、旅館住宿、以及交通費用的補助金。</p>\n<p><b>申請程序內容可以任何語言提交</b>，但每位申請人必須提供出足以讓他們能夠參與會議的<b>個人英語能力證明</b>，而會議裡主要是以英語來進行。若有足夠的英語能力可以在申請程序上或其它方面證明。</p>\n<p>申請此個人補助金之前，請仔細思考您是否迫切的需要這份財務的補助來參與維基國際年會。資金有限，許多申請人除此補助金外，沒有其他機會參與維基國際年會。謝謝您。</p>\n<p>請注意：因申請程序在確認提交前若超過 15 分鐘便會出現錯誤訊息「遺失或無效的CSRF令牌」，<strong>如果您需要花費超過 10 分鐘來完成申請程序,可以先將申請內容打在文字編輯器上</strong>，再重整頁面後，把打在文字編輯器的內容複製貼上於頁面所對應欄位裡再提交。</p>\n<p>申請截止日期為<strong> 2018 年 1 月 22 日，23:59 UTC</strong>。</p>",
 	"form-intro-privacy": "有關隱私以及資料處理方面的訊息，請檢視<a href=\"https://wikimediafoundation.org/wiki/Wikimania_2018_Application_Form_Privacy_Statement\">申請程序隱私聲明</a>。",
 	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special::MyLanguage/Scholarships/FAQ'>常見問答集</a>",
@@ -184,7 +185,7 @@
 	"month-nov": "11月",
 	"month-dec": "12月",
 	"login": "登入",
-	"username": "使用者名稱：",
+	"username": "用戶名：",
 	"password": "密碼：",
 	"login-success": "登入成功。",
 	"login-failed": "登入失敗。",
@@ -233,7 +234,7 @@
 	"admin-user-blocked": "已被封鎖：",
 	"admin-user-save": "儲存變更",
 	"admin-users-id": "id",
-	"admin-users-username": "使用者名稱",
+	"admin-users-username": "用戶名",
 	"admin-users-email": "電子郵件",
 	"admin-users-reviewer": "審查員？",
 	"admin-users-admin": "管理員？",
