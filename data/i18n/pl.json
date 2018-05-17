@@ -27,7 +27,7 @@
 	"mock": "To jest imitacja aplikacji do przyznawania stypendiów służąca wyłącznie do testowania.",
 	"not-open": "Proces 2018 Wikimania Scholarship jeszcze nie został zaczęty. Po więcej informacji zobacz:\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">O Wikimanii</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">O stypendiach</a></li>\n</ul>",
 	"deadline-passed": "<p>Terminem wnioskowania o stypendia był 22 lutego, 23:59 UTC.</p>\n<p>W kwietniu 2018 powiadomimy aplikujących o wynikach ich aplikacji.</p>\n<p>Zobacz <a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>stronę o stypendiach</a> na wiki po więcej szczegółów.</p>",
-	"form-intro-faq": "<a href='https://wikimania2017.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Najczęściej zadawane pytania</a>",
+	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Najczęściej zadawane pytania</a>",
 	"form-scholarship-type": "Typ stypendium",
 	"form-scholarship-full": "Ubiegam się o stypendium.",
 	"form-scholarship-either": "Ubiegam się o stypendium, jednak mogę wziąć udział pod warunkiem uzyskania częściowego stypendium.",
