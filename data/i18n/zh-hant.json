@@ -13,7 +13,8 @@
 			"Macofe",
 			"Bowleerin",
 			"Kly",
-			"Sanmosa"
+			"Sanmosa",
+			"A2093064"
 		]
 	},
 	"wikimania": "維基媒體國際會議",
@@ -185,7 +186,7 @@
 	"month-nov": "11月",
 	"month-dec": "12月",
 	"login": "登入",
-	"username": "用戶名：",
+	"username": "使用者名稱：",
 	"password": "密碼：",
 	"login-success": "登入成功。",
 	"login-failed": "登入失敗。",
@@ -234,7 +235,7 @@
 	"admin-user-blocked": "已被封鎖：",
 	"admin-user-save": "儲存變更",
 	"admin-users-id": "id",
-	"admin-users-username": "用戶名",
+	"admin-users-username": "使用者名稱",
 	"admin-users-email": "電子郵件",
 	"admin-users-reviewer": "審查員？",
 	"admin-users-admin": "管理員？",
