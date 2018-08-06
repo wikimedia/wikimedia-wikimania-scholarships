@@ -9,7 +9,8 @@
 			"Robby",
 			"Liuxinyu970226",
 			"Chase me ladies, I'm the Cavalry",
-			"Macofe"
+			"Macofe",
+			"Minh Nguyen"
 		]
 	},
 	"wikimania": "Used as image alt text and in the branding banner",
@@ -23,7 +24,7 @@
 	"nav-language": "Navigation menu label, followed by a select list of language codes.\n{{Identical|Language}}",
 	"nav-review": "Navigation menu label for list of review pages.\n{{Identical|Review}}",
 	"nav-reports": "Navigation menu label for list of report pages.\n{{Identical|Report}}",
-	"nav-admin": "Navigation menu label for list of administrative pages.\n{{Identical|Admin}}",
+	"nav-admin": "Navigation menu label for list of administrative pages. Translate as a verb meaning \"to administrate\", not as a noun meaning \"administrator\".\n{{Identical|Admin}}",
 	"nav-users": "Navigation menu label, links to user list page",
 	"nav-account": "Navigation menu label for list of pages specific to the authenticated user's account.\n{{Identical|My account}}",
 	"nav-settings": "Navigation menu label, for settings page\n{{Identical|Settings}}",
