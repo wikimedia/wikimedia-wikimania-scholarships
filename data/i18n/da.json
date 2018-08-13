@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Joedalton"
+			"Joedalton",
+			"Saederup92"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -70,6 +71,43 @@
 	"form-gender-unspecified": "Foretrækker ikke at oplyse",
 	"form-gender-specify": "Hvis Andet, så specificer venligst:",
 	"form-occupation": "Profession (hvis professionel):",
+	"form-engagement-option10": "Ingen af de ovenstående",
+	"form-privacy": "Privatliv",
+	"confirm-thanks": "Tak!",
+	"contact-us": "Kontakt os",
+	"help-translate": "Hjælp til med at oversætte",
+	"footer-faq": "oss",
+	"footer-credits": "anerkendelser",
+	"footer-privacy": "privatliv",
+	"footer-contact": "kontakt",
+	"month-jan": "Jan",
+	"month-feb": "Feb",
+	"month-mar": "Mar",
+	"month-apr": "Apr",
+	"month-may": "Maj",
+	"month-jun": "Jun",
+	"month-jul": "Jul",
+	"month-aug": "Aug",
+	"month-sep": "Sep",
+	"month-oct": "Okt",
+	"month-nov": "Nov",
+	"month-dec": "Dec",
+	"login": "Log på",
+	"username": "Brugernavn:",
+	"password": "Adgangskode:",
+	"error-heading": "Systemfejl",
+	"search": "Søg",
+	"password-username": "Brugernavn:",
+	"old-password": "Gammel adgangskode:",
+	"new-password": "Ny adgangskode:",
+	"new-password-again": "Ny adgangskode (igen):",
+	"admin-user-save": "Gem ændringer",
+	"admin-users-username": "brugernavn",
+	"admin-users-yes": "ja",
+	"admin-users-no": "nej",
+	"admin-users-add": "Tilføj ny bruger",
+	"admin-users-form-go": "Søg",
+	"review-list-name": "Navn",
 	"review-list-size": "Størrelse",
 	"review-list-gender": "Køn",
 	"review-list-age": "Alder",
@@ -88,5 +126,8 @@
 	"review-view-occupation": "Beskæftigelse:",
 	"review-view-study": "Studieretning",
 	"review-view-username": "Brugernavn:",
-	"review-view-alt-users": "Andre brugernavne:"
+	"review-view-alt-users": "Andre brugernavne:",
+	"review-view-save": "Gem",
+	"page-of-pages": "Side $1 af $2",
+	"no-results": "Ingen resultater blev fundet"
 }
