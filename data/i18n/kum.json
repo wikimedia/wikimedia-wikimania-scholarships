@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ArslanX"
+			"ArslanX",
+			"Arsenekoumyk"
 		]
 	},
 	"nav-apply": "Пайдаланмакъ",
@@ -23,7 +24,7 @@
 	"form-gender-female": "Къатын",
 	"form-gender-other": "Башгъа",
 	"form-privacy": "Энчилик",
-	"confirm-thanks": "Баракалла!",
+	"confirm-thanks": "Савбол!",
 	"help-translate": "Таржума булан ярдым",
 	"footer-credits": "ясавчулар",
 	"footer-privacy": "энчилик",
