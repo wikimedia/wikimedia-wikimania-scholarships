@@ -6,11 +6,12 @@
 			"Macofe",
 			"Robotukas11",
 			"Zygimantus",
-			"Manvydasz"
+			"Manvydasz",
+			"Vogone"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Esino Lario 2016",
+	"wikimania-location-year": "Keiptaunas, Pietų Afrika, 2018",
 	"header-title": "Wikimania 2018 - Stipendijos paraiška",
 	"nav-apply": "Kreiptis",
 	"nav-faq": "DUK",
@@ -26,8 +27,8 @@
 	"nav-settings": "Nustatymai",
 	"nav-reports-export": "Pilnas eksportas",
 	"mock": "Tai tik tariama stipendijų paraiškos svetainė, naudokite ją tik išbandymui.",
-	"not-open": "2016 m. Wikimania stipendijų skyrimas dar neprasidėjo. Daugiau informacijos rasite:\n<ul>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Main_Page\">Apie Wikimania</a></li>\n<li><a href=\"https://wikimania2016.wikimedia.org/wiki/Scholarships\">Apie Stipendijas</a></li>\n</ul>",
-	"deadline-passed": "<p>Stipendijų paraiškos pateikimo terminas buvo vasario 09 d., 2015, 23:59 val. (UTC)</p>\n<p>Mes paraiškų pateikėjus informuosime apie jų paraiškas 2016 m. balandžio mėn.</p>\n<p>Žiūrėkite <a href='https://wikimania2016.wikimedia.org/wiki/Scholarships'>stipendijos puslapį</a> viki dėl daugiau informacijos.</p>",
+	"not-open": "2018 m. Wikimania stipendijų skyrimas dar neprasidėjo. Daugiau informacijos rasite:\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Main_Page\">Apie Wikimania</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Scholarships\">Apie Stipendijas</a></li>\n</ul>",
+	"deadline-passed": "<p>Stipendijų paraiškos pateikimo terminas buvo sausio 22 d., 23:59 val. (UTC)</p>\n<p>Mes paraiškų pateikėjus informuosime apie jų paraiškas 2018 m. balandžio mėn.</p>\n<p>Žiūrėkite <a href='https://wikimania2018.wikimedia.org/wiki/Scholarships'>stipendijos puslapį</a> viki dėl daugiau informacijos.</p>",
 	"form-intro": "<p>Tai yra paraiška dėl paramos aplankyti <a href=\"http://wikimania2015.wikimedia.org\">Wikimania 2016 m.</a>, kasmetinę tarptautinę konferenciją, skirta Vikimedia projektams. Laimėtojai gaus stipendiją, kuri padengs konferencijos registracijos, viešbučių ir kelionės į abi puses, į Wikimania Esino Lario (Italija) išlaidas, 2016 m. liepos 21-28 d.</p>\n<p><b>Paraiškos gali būti atsiustos bet kokia kalba</b>, bet kiekvienas pareiškėjas turi <b>pateiktį Anglų kalbos gebėjimų įrodymą</b>, kurie yra tokio lygio, kad asmuo galėtų dalyvauti Wikimania, konferencijoje, kurioje pagrinde kalbama angliškai. Anglų k. lygis gali būti parodytas pačioje paraiškoje arba kitur.</p>\n<p>Tai <strong>ne</strong> universitetinių studijų stipendija. Paraiškos, nesusijusios su konferencija bus atmestos.</p>\n<p>Prašome atidžiai apsvarstyti savo finansinius poreikius prieš teikiant paraišką stipendijai dalyvauti Wikimania. Lėšos yra limituotos ir daug pareiškėjų neturi finansinių galimybių dalyvauti Wikimania be šios pagalbos. Ačiū.</p>\n<p>Prašome atkreipti dėmesį, <strong> kad jei jums reikia daugiau nei 10 minučių užbaigti šią paraišką turėtumėte paruošti savo atsakymus teksto redaktoriuje</strong>, po to įkelkite šį puslapį iš naujo ir nukopijuokite savo atsakymus į atitinkamus laukelius, prieš pateikdami paraišką. Ši paraiška gali pateikti klaidą („Nerastas ar negalimas CSRF raktas“), jei paraiška buvo atvira daugiau nei 15 minučių prieš ją išsiunčiant.</p>\n<p>Paraiškos pateikimo terminas <strong>, 2016 sausio 09 d. 23:59 val</strong>.</p>",
 	"form-intro-faq": "<a href='//wikimania2016.wikimedia.org/wiki/Scholarships/FAQ' target='_blank'>Dažnai užduodami klausimai</a>",
 	"form-scholarship-type": "Stipendijos tipas",
