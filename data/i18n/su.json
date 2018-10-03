@@ -3,7 +3,8 @@
 		"authors": [
 			"Fitoschido",
 			"Uchup19",
-			"Yana agun"
+			"Yana agun",
+			"Kandar"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -19,14 +20,14 @@
 	"nav-reports": "Laporan",
 	"nav-admin": "Kuncén",
 	"nav-users": "Kokola pamaké",
-	"nav-account": "Akun Kuring",
+	"nav-account": "Akun Kami",
 	"nav-settings": "Pangaturan",
 	"nav-reports-export": "Éksporkeun sagemblengna",
 	"mock": "Ieu mah situs formulir béasiswa bobodoan. Ajang uji coba.",
 	"not-open": "Béasiswa Wikimania 2018 acan dibuka. Info salengkepna, tingali:\n<ul>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">Ngeunaan Wikimania</a></li>\n<li><a href=\"https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">Ngeunaan Béasiswa</a></li>\n</ul>",
 	"form-scholarship-type": "Tipeu Béasiswa",
-	"form-scholarship-full": "Kuring ngajukeun pikeun Béasiswa pinuh.",
-	"form-scholarship-partial": "Kuring ngajukeun pikeun Beasiswa parsial",
+	"form-scholarship-full": "Kami ngajukeun béasiswa pinuh.",
+	"form-scholarship-partial": "Kami ngajukeun béasiswa parsial",
 	"form-type-error": "Pék pilih tipeu béasiswana.",
 	"form-select": "Pék pilih",
 	"form-select-day": "Poé",
