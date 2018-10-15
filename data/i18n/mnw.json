@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aue Nai"
+			"Aue Nai",
+			"Htawmonzel"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -44,7 +45,7 @@
 	"form-select-month": "ဂိတု",
 	"form-select-year": "သၞာံ",
 	"form-gender": "လိၚ်:",
-	"form-gender-male": "တြုံ",
+	"form-gender-male": "တြုဟ်",
 	"form-gender-female": "ဗြဴ",
 	"form-gender-other": "တၞဟ်",
 	"form-gender-unspecified": "ဒးဂၞပ်ကဵု ဟွံဒးဟီု",

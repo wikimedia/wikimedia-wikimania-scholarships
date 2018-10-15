@@ -18,7 +18,8 @@
 			"AlvaroMolina",
 			"Sophivorus",
 			"La Mantis",
-			"Translator-x"
+			"Translator-x",
+			"Tiberius1701"
 		]
 	},
 	"wikimania": "Wikimanía",
@@ -158,7 +159,7 @@
 	"form-email-subject": "Solicitud de beca para Wikimanía",
 	"form-email-response": "Estimado $1 $2:\n\nEsta es una confirmación de tu solicitud de beca para asistir a Wikimanía.\n\nTe informaremos la decisión sobre tu beca una vez que terminemos de revisar y calificar todas las solicitudes.\n\nSi tienes dudas, escribe a wikimania-scholarships@wikimedia.org\n\nSaludos,\n\nEquipo de becas de Wikimanía",
 	"confirm-thanks": "¡Gracias!",
-	"confirm-text": "Gracias por enviar tu solicitud de beca para Wikimanía. Contacta a <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> si tienes alguna pregunta.",
+	"confirm-text": "Gracias por enviar tu solicitud de beca para Wikimanía. Contacta con <a href='mailto:wikimania-scholarships@wikimedia.org'>wikimania-scholarships@wikimedia.org</a> si tienes alguna pregunta.",
 	"privacy-page-1": "Esta declaración describe de qué maneras y en qué momentos Wikimedia recopila, utiliza y comparte la información recibida de los solicitantes de becas. <h3>Finalidad del formulario</h3> ¡Gracias por tu interés en Wikimanía 2018! Este formulario se utiliza para solicitar una beca parcial o total para asistir a la conferencia. <h3>¿Qué información recopilamos?</h3> Este formulario almacena las respuestas que le proporciones a las preguntas planteadas. Existen dos tipos de respuestas: las definidas y las libres.",
 	"privacy-page-2": "<h3>Confidencialidad de la información</h3><p>La información que envíes en estas solicitudes será compartida sólo con los miembros de la Fundación Wikimedia y los contratistas, al igual que con el equipo de las becas de Wikimanía, que tienen que procesar esta información para administrar el programa de becas, con las excepciones listadas debajo.</p><p>En la solicitud, tienes la opción de permitirnos compartir tu información con otras organizaciones Wikimedia, tales como Capítulos,\n grupos de usuarios y organizaciones temáticas que también ofrecen becas. Si indicas que tenemos tu permiso de hacerlo, compartiremos la información de tu solicitud con aquellas organizaciones del movimiento que puedan darte una beca.</p>",
 	"privacy-page-3": "Publicaremos una lista de los nombres de usuario de los beneficiarios de las becas en Meta, <a href=\"https://meta.wikimedia.org/wiki/Grants:TPS/Wikimania_scholars\">https://meta.wikimedia.org/wiki/Grants:TPS/Wikimania_scholars</a>.<p>Finalmente, podríamos tener que revelar información que nos sea requerida por la ley, cuando tengamos tu permiso, para proteger nuestros derechos, privacidad, seguridad, usuarios o el público en general, y cuando sea necesario para acatar nuestro Términos y Condiciones o cualquier otra política de Wikimedia.</p><h3>Información importante</h3>",
