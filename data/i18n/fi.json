@@ -197,6 +197,8 @@
 	"review-view-valid": "Voimassa:",
 	"review-view-relexp": "Kokemus:",
 	"review-view-save": "Tallenna",
+	"review-export-export": "Vie lista CSV-muodossa",
+	"page-of-pages": "Sivu $1 / $2",
 	"no-results": "Tuloksia ei löydy",
 	"csrf-heading": "Virheellinen pyyntö",
 	"search-region": "Maantieteellinen alue:",

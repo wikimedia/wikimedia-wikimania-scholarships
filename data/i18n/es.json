@@ -19,7 +19,8 @@
 			"Sophivorus",
 			"La Mantis",
 			"Translator-x",
-			"Tiberius1701"
+			"Tiberius1701",
+			"Laura Ospina"
 		]
 	},
 	"wikimania": "Wikimanía",
@@ -149,10 +150,11 @@
 	"form-info-true": "Certifico que toda la información proporcionada en mi solicitud de beca es verdadera y exacta conforme a lo mejor de mi conocimiento y creencia. La fundación Wikimedia se reserva el derecho a solicitar que devuelva todo a parte del dinero de la beca si se encontrase que alguna parte de la información que proporcioné es falsa o inexacta.",
 	"form-privacy": "Privacidad",
 	"form-privacy1": "Consulta la <a href=\"https://wikimediafoundation.org/wiki/Wikimania_2018_Application_Form_Privacy_Statement\">declaración de privacidad de la aplicación</a> para obtener detalles sobre la privacidad y el manejo de datos.",
+	"form-privacy2": "Wikimedia es una organización global comprometida con la promoción del conocimiento libre y abierto. Al completar la encuesta, usted acepta la recopilación, transferencia, almacenamiento, procesamiento y uso de la información recopilada en los Estados Unidos y en otros lugares según sea necesario para llevar a cabo los propósitos y objetivos mencionados anteriormente. También acepta la transferencia de información desde los EE.UU. a otros países, que pueden tener leyes de protección de datos diferentes o menos estrictas que las de su país, con el fin de llevar a cabo los propósitos y objetivos antes mencionados.",
 	"form-chapteragree": "Las organizaciones del movimiento Wikimedia (capítulos, organizaciones temáticas y grupos de usuarios) también ofrecen becas para Wikimanía, independientes del Programa de Becas de la Fundación Wikimedia. Una organización del movimiento Wikimedia puede solicitar acceso a las solicitudes relevantes para su país o comunidad, para los propósitos de seleccionar y otorgar sus propias becas, independientemente de las otorgadas por este medio. \nPor favor, indica si te gustaría o no compartir tu información con otras organizaciones independientes del movimiento Wikimedia.",
 	"form-separatejury": "¿Pretendes solicitar recursos financieros a algún Capítulo local u otra organización del movimiento para obtener fondos para asistir a Wikimanía 2018?",
 	"form-scholarorgs": "De ser así, enumera las organizaciones a continuación:",
-	"form-wmfagree": "Estoy de acuerdo con la declaración de \"Derechos del solicitante y consentimiento de procesamiento y transferencia de datos\".",
+	"form-wmfagree": "Como solicitante de una beca de la Fundación Wikimedia relacionada con mi participación en la conferencia Wikimania 2018 que se celebra en Ciudad del Cabo (Sudáfrica), por la presente reconozco y doy mi consentimiento afirmativo a los términos de la declaración de privacidad de la solicitud como requisito previo para la consideración de mi solicitud de beca Wikimanía 2018.",
 	"form-wmfAgreeName": "Escribe tu nombre completo:",
 	"form-wmfAgreeGuardian": "Si es menor de 18 años, escriba el nombre completo de su padre, madre o tutor legal:",
 	"form-submit-app": "Enviar solicitud",
