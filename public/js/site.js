@@ -28,7 +28,7 @@
             projectvalue == 'Wikispecies' ||
             projectvalue == 'Incubator' ||
             projectvalue == 'MediaWiki' ||
-            projectvalue == 'Tool Labs'
+            projectvalue == 'Toolforge'
           ) {
             $('#community').val( 'MULTILINGUAL' );
         } else {
