@@ -9,35 +9,26 @@
  * file that was distributed with this source code.
  */
 
-class Twig_Tests_Cache_FilesystemTest extends PHPUnit_Framework_TestCase
+require_once dirname(dirname(__FILE__)).'/FilesystemHelper.php';
+
+class Twig_Tests_Cache_FilesystemTest extends \PHPUnit\Framework\TestCase
 {
-    private $nonce;
     private $classname;
     private $directory;
     private $cache;
 
     protected function setUp()
     {
-        $this->nonce = hash('sha256', uniqid(mt_rand(), true));
-        $this->classname = '__Twig_Tests_Cache_FilesystemTest_Template_'.$this->nonce;
-        $this->directory = sys_get_temp_dir().'/twig-test-'.$this->nonce;
+        $nonce = hash('sha256', uniqid(mt_rand(), true));
+        $this->classname = '__Twig_Tests_Cache_FilesystemTest_Template_'.$nonce;
+        $this->directory = sys_get_temp_dir().'/twig-test';
         $this->cache = new Twig_Cache_Filesystem($this->directory);
     }
 
     protected function tearDown()
     {
         if (file_exists($this->directory)) {
-            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->directory), RecursiveIteratorIterator::CHILD_FIRST);
-            foreach ($iterator as $filename => $fileInfo) {
-                if (!$iterator->isDot()) {
-                    if ($fileInfo->isDir()) {
-                        rmdir($filename);
-                    } else {
-                        unlink($filename);
-                    }
-                }
-            }
-            rmdir($this->directory);
+            Twig_Tests_FilesystemHelper::removeDir($this->directory);
         }
     }
 
@@ -74,26 +65,30 @@ class Twig_Tests_Cache_FilesystemTest extends PHPUnit_Framework_TestCase
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFalse(file_exists($key));
-        $this->assertFalse(file_exists($this->directory));
+        $this->assertFileNotExists($key);
+        $this->assertFileNotExists($this->directory);
 
         $this->cache->write($key, $content);
 
-        $this->assertTrue(file_exists($this->directory));
-        $this->assertTrue(file_exists($key));
+        $this->assertFileExists($this->directory);
+        $this->assertFileExists($key);
         $this->assertSame(file_get_contents($key), $content);
     }
 
     /**
      * @expectedException RuntimeException
-     * @expectedExceptionMessageRegExp #^Unable to create the cache directory #
+     * @expectedExceptionMessage Unable to create the cache directory
      */
     public function testWriteFailMkdir()
     {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            $this->markTestSkipped('Read-only directories not possible on Windows.');
+        }
+
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFalse(file_exists($key));
+        $this->assertFileNotExists($key);
 
         // Create read-only root directory.
         @mkdir($this->directory, 0555, true);
@@ -104,19 +99,23 @@ class Twig_Tests_Cache_FilesystemTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException RuntimeException
-     * @expectedExceptionMessageRegExp #^Unable to write in the cache directory #
+     * @expectedExceptionMessage Unable to write in the cache directory
      */
     public function testWriteFailDirWritable()
     {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            $this->markTestSkipped('Read-only directories not possible on Windows.');
+        }
+
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFalse(file_exists($key));
+        $this->assertFileNotExists($key);
 
         // Create root directory.
         @mkdir($this->directory, 0777, true);
         // Create read-only subdirectory.
-        @mkdir($this->directory.'/cache' , 0555);
+        @mkdir($this->directory.'/cache', 0555);
         $this->assertTrue(is_dir($this->directory.'/cache'));
 
         $this->cache->write($key, $content);
@@ -124,14 +123,14 @@ class Twig_Tests_Cache_FilesystemTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException RuntimeException
-     * @expectedExceptionMessageRegExp #^Failed to write cache file #
+     * @expectedExceptionMessage Failed to write cache file
      */
     public function testWriteFailWriteFile()
     {
         $key = $this->directory.'/cache/cachefile.php';
         $content = $this->generateSource();
 
-        $this->assertFalse(file_exists($key));
+        $this->assertFileNotExists($key);
 
         // Create a directory in the place of the cache file.
         @mkdir($key, 0777, true);
@@ -158,6 +157,31 @@ class Twig_Tests_Cache_FilesystemTest extends PHPUnit_Framework_TestCase
     {
         $key = $this->directory.'/cache/cachefile.php';
         $this->assertSame(0, $this->cache->getTimestamp($key));
+    }
+
+    /**
+     * Test file cache is tolerant towards trailing (back)slashes on the configured cache directory.
+     *
+     * @dataProvider provideDirectories
+     */
+    public function testGenerateKey($expected, $input)
+    {
+        $cache = new Twig_Cache_Filesystem($input);
+        $this->assertRegExp($expected, $cache->generateKey('_test_', get_class($this)));
+    }
+
+    public function provideDirectories()
+    {
+        $pattern = '#a/b/[a-zA-Z0-9]+/[a-zA-Z0-9]+.php$#';
+
+        return array(
+            array($pattern, 'a/b'),
+            array($pattern, 'a/b/'),
+            array($pattern, 'a/b\\'),
+            array($pattern, 'a/b\\/'),
+            array($pattern, 'a/b\\//'),
+            array('#/'.substr($pattern, 1), '/a/b'),
+        );
     }
 
     private function generateSource()

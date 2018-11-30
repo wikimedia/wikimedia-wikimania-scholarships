@@ -44,6 +44,10 @@ abstract class AbstractDao {
 	 * @var LoggerInterface $logger
 	 */
 	protected $logger;
+	/**
+	 * @var Integer $transactionCounter Used for keeping track of transaction status
+	 */
+	protected $transactionCounter = 0;
 
 	/**
 	 * @param string $dsn PDO data source name
@@ -55,11 +59,60 @@ abstract class AbstractDao {
 		$this->logger = $logger ?: new \Psr\Log\NullLogger();
 
 		$this->dbh = new PDO( $dsn, $user, $pass,
-			array(
+			[
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-			)
+			]
 		);
+	}
+
+	/**
+	 * Start a new transaction
+	 *
+	 * If already a transaction has been started, it will only increment the
+	 * counter. This method is useful in nested transactions.
+	 * @return bool True on success, false on failure.
+	 */
+	protected function transactionStart() {
+		if ( $this->transactionCounter == 0 ) {
+			$this->transactionCounter++;
+			return $this->dbh->beginTransaction();
+		}
+		$this->transactionCounter++;
+		return $this->transactionCounter >= 0;
+	}
+
+	/**
+	 * Commit a transaction
+	 *
+	 * If the transaction counter is zero, commit the transaction otherwise
+	 * decrement the transaction counter. This method is useful in nested
+	 * transactions.
+	 * @return bool True on success, false on failure.
+	 */
+	protected function transactionCommit() {
+		$this->transactionCounter--;
+		if ( $this->transactionCounter == 0 ) {
+			return $this->dbh->commit();
+		}
+		return $this->transactionCounter >= 0;
+	}
+
+	/**
+	 * Rollback a transaction
+	 *
+	 * If the transaction counter is greater than 0, set it to
+	 * 0 and rollback the transaction. This method is useful in nested
+	 * transactions.
+	 * @return bool True on success, false on failure.
+	 */
+	protected function transactionRollback() {
+		if ( $this->transactionCounter >= 0 ) {
+			$this->transactionCounter = 0;
+			return $this->dbh->rollback();
+		}
+		$this->transactionCounter = 0;
+		return false;
 	}
 
 	/**
@@ -75,7 +128,7 @@ abstract class AbstractDao {
 	 * @param array $values Values to bind
 	 */
 	protected function bind( $stmt, $values ) {
-		$values = $values ?: array();
+		$values = $values ?: [];
 
 		if ( (bool)count( array_filter( array_keys( $values ), 'is_string' ) ) ) {
 			// associative array provided
@@ -133,7 +186,7 @@ abstract class AbstractDao {
 	 * @return array Result rows
 	 */
 	protected function fetchAll( $sql, $params = null ) {
-		$this->logger->debug( $sql, $params ?: array() );
+		$this->logger->debug( $sql, $params ?: [] );
 		$stmt = $this->dbh->prepare( $sql );
 		$this->bind( $stmt, $params );
 		$stmt->execute();
@@ -172,19 +225,19 @@ abstract class AbstractDao {
 	protected function update( $sql, $params = null ) {
 		$stmt = $this->dbh->prepare( $sql );
 		try {
-			$this->dbh->begintransaction();
+			$this->transactionStart();
 			$stmt->execute( $params );
-			$this->dbh->commit();
+			$this->transactionCommit();
 			return true;
 
 		} catch ( PDOException $e ) {
-			$this->dbh->rollback();
-			$this->logger->error( 'Update failed.', array(
+			$this->transactionRollback();
+			$this->logger->error( 'Update failed.', [
 				'method' => __METHOD__,
 				'exception' => $e,
 				'sql' => $sql,
 				'params' => $params,
-			) );
+			] );
 			return false;
 		}
 	}
@@ -199,20 +252,20 @@ abstract class AbstractDao {
 	protected function insert( $sql, $params = null ) {
 		$stmt = $this->dbh->prepare( $sql );
 		try {
-			$this->dbh->beginTransaction();
+			$this->transactionStart();
 			$stmt->execute( $params );
 			$rowid = $this->dbh->lastInsertId();
-			$this->dbh->commit();
+			$this->transactionCommit();
 			return $rowid;
 
 		} catch ( PDOException $e ) {
-			$this->dbh->rollback();
-			$this->logger->error( 'Insert failed.', array(
+			$this->transactionRollback();
+			$this->logger->error( 'Insert failed.', [
 				'method' => __METHOD__,
 				'exception' => $e,
 				'sql' => $sql,
 				'params' => $params,
-			) );
+			] );
 			return false;
 		}
 	}
@@ -266,7 +319,7 @@ abstract class AbstractDao {
 	 * @return string New string
 	 */
 	protected static function concat( /*varags*/ ) {
-		$args = array();
+		$args = [];
 		foreach ( func_get_args() as $arg ) {
 			if ( is_array( $arg ) ) {
 				$args = array_merge( $args, $arg );

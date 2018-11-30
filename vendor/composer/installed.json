@@ -51,17 +51,17 @@
     },
     {
         "name": "monolog/monolog",
-        "version": "1.17.2",
-        "version_normalized": "1.17.2.0",
+        "version": "1.23.0",
+        "version_normalized": "1.23.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
-            "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+            "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
             "shasum": ""
         },
         "require": {
@@ -72,17 +72,17 @@
             "psr/log-implementation": "1.0.0"
         },
         "require-dev": {
-            "aws/aws-sdk-php": "^2.4.9",
+            "aws/aws-sdk-php": "^2.4.9 || ^3.0",
             "doctrine/couchdb": "~1.0@dev",
             "graylog2/gelf-php": "~1.0",
             "jakub-onderka/php-parallel-lint": "0.9",
+            "php-amqplib/php-amqplib": "~2.4",
             "php-console/php-console": "^3.1.3",
             "phpunit/phpunit": "~4.5",
             "phpunit/phpunit-mock-objects": "2.3.0",
-            "raven/raven": "^0.13",
             "ruflin/elastica": ">=0.90 <3.0",
-            "swiftmailer/swiftmailer": "~5.3",
-            "videlalvaro/php-amqplib": "~2.4"
+            "sentry/sentry": "^0.13",
+            "swiftmailer/swiftmailer": "^5.3|^6.0"
         },
         "suggest": {
             "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -90,17 +90,18 @@
             "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
             "ext-mongo": "Allow sending log messages to a MongoDB server",
             "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
             "php-console/php-console": "Allow sending log messages to Google Chrome",
-            "raven/raven": "Allow sending log messages to a Sentry server",
             "rollbar/rollbar": "Allow sending log messages to Rollbar",
             "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-            "videlalvaro/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib"
+            "sentry/sentry": "Allow sending log messages to a Sentry server"
         },
-        "time": "2015-10-14T12:51:02+00:00",
+        "time": "2017-06-19T01:22:40+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.16.x-dev"
+                "dev-master": "2.0.x-dev"
             }
         },
         "installation-source": "dist",
@@ -130,35 +131,48 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v5.2.9",
-        "version_normalized": "5.2.9.0",
+        "version": "v6.0.6",
+        "version_normalized": "6.0.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "73b61679809615850706f1dbf88e6df2ddc05745"
+            "reference": "8190d73eb5def11a43cfb020b7f36db65330698c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/73b61679809615850706f1dbf88e6df2ddc05745",
-            "reference": "73b61679809615850706f1dbf88e6df2ddc05745",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/8190d73eb5def11a43cfb020b7f36db65330698c",
+            "reference": "8190d73eb5def11a43cfb020b7f36db65330698c",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.0.0"
+            "ext-ctype": "*",
+            "ext-filter": "*",
+            "php": ">=5.5.0"
         },
         "require-dev": {
-            "phpdocumentor/phpdocumentor": "*",
-            "phpunit/phpunit": "4.1.*"
+            "doctrine/annotations": "1.2.*",
+            "friendsofphp/php-cs-fixer": "^2.2",
+            "phpdocumentor/phpdocumentor": "2.*",
+            "phpunit/phpunit": "^4.8 || ^5.7",
+            "zendframework/zend-eventmanager": "3.0.*",
+            "zendframework/zend-i18n": "2.7.3",
+            "zendframework/zend-serializer": "2.7.*"
         },
-        "time": "2014-09-26T18:33:30+00:00",
+        "suggest": {
+            "ext-mbstring": "Needed to send email in multibyte encoding charset",
+            "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+            "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+            "psr/log": "For optional PSR-3 debug logging",
+            "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+            "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
+        },
+        "time": "2018-11-16T00:41:32+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "classmap": [
-                "class.phpmailer.php",
-                "class.pop3.php",
-                "class.smtp.php"
-            ]
+            "psr-4": {
+                "PHPMailer\\PHPMailer\\": "src/"
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -185,25 +199,33 @@
     },
     {
         "name": "psr/log",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
             "shasum": ""
         },
-        "time": "2012-12-21T11:40:51+00:00",
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2018-11-20T15:27:04+00:00",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "Psr\\Log\\": ""
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -217,6 +239,7 @@
             }
         ],
         "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
         "keywords": [
             "log",
             "psr",
@@ -225,26 +248,27 @@
     },
     {
         "name": "slim/slim",
-        "version": "2.6.2",
-        "version_normalized": "2.6.2.0",
+        "version": "2.6.3",
+        "version_normalized": "2.6.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/slimphp/Slim.git",
-            "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37"
+            "reference": "9224ed81ac1c412881e8d762755e3d76ebf580c0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/slimphp/Slim/zipball/20a02782f76830b67ae56a5c08eb1f563c351a37",
-            "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37",
+            "url": "https://api.github.com/repos/slimphp/Slim/zipball/9224ed81ac1c412881e8d762755e3d76ebf580c0",
+            "reference": "9224ed81ac1c412881e8d762755e3d76ebf580c0",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
         "suggest": {
-            "ext-mcrypt": "Required for HTTP cookie encryption"
+            "ext-mcrypt": "Required for HTTP cookie encryption",
+            "phpseclib/mcrypt_compat": "Polyfil for mcrypt extension"
         },
-        "time": "2015-03-08T18:41:17+00:00",
+        "time": "2017-01-07T12:21:41+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -327,38 +351,103 @@
         ]
     },
     {
-        "name": "twig/twig",
-        "version": "v1.23.1",
-        "version_normalized": "1.23.1.0",
+        "name": "symfony/polyfill-ctype",
+        "version": "v1.10.0",
+        "version_normalized": "1.10.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/twigphp/Twig.git",
-            "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6"
+            "url": "https://github.com/symfony/polyfill-ctype.git",
+            "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
-            "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+            "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.2.7"
+            "php": ">=5.3.3"
         },
-        "require-dev": {
-            "symfony/debug": "~2.7",
-            "symfony/phpunit-bridge": "~2.7"
+        "suggest": {
+            "ext-ctype": "For best performance"
         },
-        "time": "2015-11-05T12:49:06+00:00",
+        "time": "2018-08-06T14:22:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.23-dev"
+                "dev-master": "1.9-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Ctype\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            },
+            {
+                "name": "Gert de Pagter",
+                "email": "BackEndTea@gmail.com"
+            }
+        ],
+        "description": "Symfony polyfill for ctype functions",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "ctype",
+            "polyfill",
+            "portable"
+        ]
+    },
+    {
+        "name": "twig/twig",
+        "version": "v1.35.4",
+        "version_normalized": "1.35.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twigphp/Twig.git",
+            "reference": "7e081e98378a1e78c29cc9eba4aefa5d78a05d2a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/7e081e98378a1e78c29cc9eba4aefa5d78a05d2a",
+            "reference": "7e081e98378a1e78c29cc9eba4aefa5d78a05d2a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "symfony/polyfill-ctype": "^1.8"
+        },
+        "require-dev": {
+            "psr/container": "^1.0",
+            "symfony/debug": "^2.7",
+            "symfony/phpunit-bridge": "^3.3"
+        },
+        "time": "2018-07-13T07:12:17+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.35-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Twig_": "lib/"
+            },
+            "psr-4": {
+                "Twig\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -379,12 +468,12 @@
             },
             {
                 "name": "Twig Team",
-                "homepage": "http://twig.sensiolabs.org/contributors",
+                "homepage": "https://twig.symfony.com/contributors",
                 "role": "Contributors"
             }
         ],
         "description": "Twig, the flexible, fast, and secure template language for PHP",
-        "homepage": "http://twig.sensiolabs.org",
+        "homepage": "https://twig.symfony.com",
         "keywords": [
             "templating"
         ]
@@ -446,35 +535,35 @@
     },
     {
         "name": "wikimedia/slimapp",
-        "version": "v0.8.0",
-        "version_normalized": "0.8.0.0",
+        "version": "v0.9.0",
+        "version_normalized": "0.9.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/wikimedia/wikimedia-slimapp.git",
-            "reference": "c66a25d6e06087637da24c27c6beb30c3e736a02"
+            "url": "https://github.com/wikimedia/slimapp.git",
+            "reference": "d96fa22dc12f645c09d7f4385575efc31146357e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wikimedia/wikimedia-slimapp/zipball/c66a25d6e06087637da24c27c6beb30c3e736a02",
-            "reference": "c66a25d6e06087637da24c27c6beb30c3e736a02",
+            "url": "https://api.github.com/repos/wikimedia/slimapp/zipball/d96fa22dc12f645c09d7f4385575efc31146357e",
+            "reference": "d96fa22dc12f645c09d7f4385575efc31146357e",
             "shasum": ""
         },
         "require": {
             "bd808/monolog-udp2log-handler": "~1.0",
-            "monolog/monolog": "~1.15",
-            "php": ">=5.3.7",
-            "phpmailer/phpmailer": "~5.2",
+            "monolog/monolog": "~1.23.0",
+            "php": ">=5.5.9",
+            "phpmailer/phpmailer": "~6.0",
             "slim/slim": "~2.4",
             "slim/views": "~0.1",
-            "twig/twig": "~1.20",
+            "twig/twig": "~1.30",
             "wikimedia/simplei18n": "~1.0"
         },
         "require-dev": {
-            "jakub-onderka/php-parallel-lint": "~0.9",
-            "mediawiki/mediawiki-codesniffer": "0.5.1|0.7.2",
+            "jakub-onderka/php-parallel-lint": "~1.0",
+            "mediawiki/mediawiki-codesniffer": "19.1.0",
             "phpunit/phpunit": "~4.8|~5.0"
         },
-        "time": "2016-11-23T18:29:30+00:00",
+        "time": "2018-11-30T00:39:03+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
