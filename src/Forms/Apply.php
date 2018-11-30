@@ -44,6 +44,9 @@ class Apply extends Form {
 	 */
 	protected $dao;
 
+	/**
+	 * @param Wikimania\Scholarship\Dao\Apply|null $dao DAO
+	 */
 	public function __construct( $dao = null ) {
 		$this->dao = $dao ?: new ApplyDao();
 		$validCountries = array_keys( Countries::$COUNTRY_NAMES );
@@ -94,9 +97,9 @@ class Apply extends Form {
 		$this->expectBool( 'engage9' );
 		$this->expectBool( 'engage10' );
 		$this->requireBool( 'staff' );
-		$this->expectString( 'staffOrg', [ 'validate' => [ $this, 'validateStaffOrg'] ] );
+		$this->expectString( 'staffOrg', [ 'validate' => [ $this, 'validateStaffOrg' ] ] );
 		$this->requireBool( 'board' );
-		$this->expectString( 'boardOrg', [ 'validate' => [ $this, 'validateBoardOrg'] ] );
+		$this->expectString( 'boardOrg', [ 'validate' => [ $this, 'validateBoardOrg' ] ] );
 		$this->requireString( 'involvement' );
 		$this->requireString( 'contribution' );
 		$this->requireString( 'experience' );
@@ -142,7 +145,7 @@ class Apply extends Form {
 	 * @return bool True if value is valid, false otherwise
 	 */
 	protected function validateScholarOrgs( $value ) {
-		return $this->get( 'separatejury' )  ? (bool)$value : true;
+		return $this->get( 'separatejury' ) ? (bool)$value : true;
 	}
 
 	/**
@@ -243,6 +246,8 @@ class Apply extends Form {
 
 	/**
 	 * Save the collected user input to the database.
+	 *
+	 * @return bool
 	 */
 	public function save() {
 		$colnames = [

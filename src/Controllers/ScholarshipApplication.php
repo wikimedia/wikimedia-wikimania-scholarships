@@ -24,7 +24,6 @@ namespace Wikimania\Scholarship\Controllers;
 
 use Wikimania\Scholarship\Communities;
 use Wikimania\Scholarship\Countries;
-use Wikimania\Scholarship\Forms\Apply as ApplyForm;
 use Wikimania\Scholarship\Wikis;
 
 use Wikimedia\Slimapp\Controller;
@@ -38,7 +37,7 @@ use Wikimedia\Slimapp\Controller;
 class ScholarshipApplication extends Controller {
 
 	/**
-	 * @param \Slim\Slim $slim Slim application
+	 * @param \Slim\Slim|null $slim Slim application
 	 */
 	public function __construct( \Slim\Slim $slim = null ) {
 		parent::__construct( $slim );

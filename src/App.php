@@ -257,7 +257,6 @@ class App extends AbstractApp {
 
 		// "Root" routes for non-autenticated users
 		$slim->group( '/', function () use ( $slim, $middleware ) {
-
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'apply' ) );
@@ -302,7 +301,6 @@ class App extends AbstractApp {
 				$slim->authManager->logout();
 				$slim->redirect( $slim->urlFor( 'home' ) );
 			} )->name( 'logout' );
-
 		} );
 
 		// Account management helpers
@@ -345,7 +343,6 @@ class App extends AbstractApp {
 		$slim->group( '/user/',
 			$middleware['must-revalidate'], $middleware['require-user'],
 			function () use ( $slim, $middleware ) {
-
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'user_changepassword' ) );
@@ -361,14 +358,12 @@ class App extends AbstractApp {
 				$page->setDao( $slim->userDao );
 				$page();
 			} )->name( 'user_changepassword_post' );
-
 		 } );
 
 		// routes for reviewers
 		$slim->group( '/review/',
 			$middleware['must-revalidate'], $middleware['require-user'],
 			function () use ( $slim, $middleware ) {
-
 			$slim->get( '', function () use ( $slim ) {
 				$slim->flashKeep();
 				$slim->redirect( $slim->urlFor( 'review_phase1' ) );
@@ -456,7 +451,6 @@ class App extends AbstractApp {
 		$slim->group( '/admin/',
 			$middleware['must-revalidate'], $middleware['require-user'], $middleware['require-admin'],
 			function () use ( $slim ) {
-
 			$slim->get( 'users', function () use ( $slim ) {
 				$page = new Controllers\Admin\Users( $slim );
 				$page->setDao( $slim->userDao );
@@ -495,7 +489,7 @@ class App extends AbstractApp {
 	}
 
 	/**
-	 * @inherit
+	 * @inheritDoc
 	 */
 	protected function configureHeaderMiddleware() {
 		$headers = parent::configureHeaderMiddleware();

@@ -69,7 +69,7 @@ class Search extends Controller {
 				'residence' => $this->form->get( 'r' ),
 				'region' => $this->form->get( 'rg' ),
 				'size' => $this->form->get( 'cs' ),
-				'globalns' =>$this->form->get( 'ns' ),
+				'globalns' => $this->form->get( 'ns' ),
 				'items' => $this->form->get( 'items' ),
 				'page' => $this->form->get( 'p' ),
 				'phase1' => $this->form->get( 'p1' ),

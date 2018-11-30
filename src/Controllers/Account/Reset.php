@@ -32,6 +32,10 @@ use Wikimedia\Slimapp\Controller;
  */
 class Reset extends Controller {
 
+	/**
+	 * @param int $id User ID
+	 * @param string $token Password reset token
+	 */
 	protected function handleGet( $id, $token ) {
 		if ( $this->dao->validatePasswordResetToken( $id, $token ) ) {
 			$this->view->set( 'id', $id );
@@ -45,6 +49,10 @@ class Reset extends Controller {
 		}
 	}
 
+	/**
+	 * @param int $id User ID
+	 * @param string $token Password reset token
+	 */
 	protected function handlePost( $id, $token ) {
 		$this->form->requireString( 'newpw1' );
 		$this->form->requireString( 'newpw2' );

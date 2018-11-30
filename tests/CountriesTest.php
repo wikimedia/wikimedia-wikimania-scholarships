@@ -23,10 +23,11 @@ namespace Wikimania\Scholarship;
 
 /**
  *
+ * @covers Wikimania\Scholarship\Countries
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
-class CountriesTest extends \PHPUnit_Framework_TestCase {
+class CountriesTest extends \PHPUnit\Framework\TestCase {
 
 	public function testHaveAllCountries() {
 		$this->assertCount( 250, Countries::$COUNTRY_NAMES );

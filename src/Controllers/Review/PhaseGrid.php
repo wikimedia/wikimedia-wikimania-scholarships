@@ -37,6 +37,9 @@ class PhaseGrid extends Controller {
 	 */
 	protected $phase;
 
+	/**
+	 * @param int $p Phase
+	 */
 	public function setPhase( $p ) {
 		$this->phase = $p;
 	}

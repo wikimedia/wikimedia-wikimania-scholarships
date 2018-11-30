@@ -54,8 +54,8 @@ class Apply extends AbstractDao {
 	 * @param string $user Database user
 	 * @param string $pass Database password
 	 * @param int|bool $uid Authenticated user
-	 * @param array $settings Configuration settings
-	 * @param LoggerInterface $logger Log channel
+	 * @param array|null $settings Configuration settings
+	 * @param LoggerInterface|null $logger Log channel
 	 */
 	public function __construct( $dsn, $user, $pass,
 		$uid = false, $settings = null, $logger = null
@@ -75,7 +75,6 @@ class Apply extends AbstractDao {
 	public function saveApplication( $answers ) {
 		$cols = array_keys( $answers );
 		$parms = array_map( function ( $elm ) { return ":{$elm}";
-
 	 }, $cols );
 		$sql = self::concat(
 			'INSERT INTO scholarships (',
@@ -95,8 +94,10 @@ class Apply extends AbstractDao {
 		// the array *and* returns the value of the first element.
 		return reset( $row );
 	}
+
 	/**
 	 * @param array $params Query parameters
+	 * @return object StdClass with rows and found memebers
 	 */
 	public function gridData( $params ) {
 		$defaults = [
@@ -242,8 +243,12 @@ class Apply extends AbstractDao {
 		);
 
 		return $this->fetchAllWithFound( $sql, $bindVars );
-	} // end gridData
+	}
 
+	/**
+	 * @param int $phase Review phase
+	 * @return array
+	 */
 	public function myUnreviewed( $phase ) {
 		if ( $phase == 1 ) {
 			$crit = 'valid';
@@ -267,10 +272,13 @@ class Apply extends AbstractDao {
 			'crit' => $crit,
 		] );
 		return array_map( function ( $row ) { return $row['id'];
-
 	 }, $res );
 	}
 
+	/**
+	 * @param array $params Search params
+	 * @return object StdClass with rows and found memebers
+	 */
 	public function search( $params ) {
 		$defaults = [
 			'first' => null,
@@ -373,6 +381,10 @@ class Apply extends AbstractDao {
 		return $this->fetchAllWithFound( $sql, $crit );
 	}
 
+	/**
+	 * @param int $id Scholarship ID
+	 * @return array
+	 */
 	public function getScholarship( $id ) {
 		$fields = [
 			's.*',
@@ -394,6 +406,8 @@ class Apply extends AbstractDao {
 
 	/**
 	 * Find the next unreviewed id after the given id.
+	 * @param int $id Scholarship ID
+	 * @param int $phase Review phase
 	 * @return int|bool Next id or false if none available
 	 */
 	public function nextApp( $id, $phase ) {
@@ -406,6 +420,12 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
+	/**
+	 * Find the first unreviewed id before the given id.
+	 * @param int $id Scholarship ID
+	 * @param int $phase Review phase
+	 * @return int|bool Prior id or flase if none available
+	 */
 	public function prevApp( $id, $phase ) {
 		$myapps = $this->myUnreviewed( $phase );
 		$prior = false;
@@ -418,6 +438,12 @@ class Apply extends AbstractDao {
 		return false;
 	}
 
+	/**
+	 * @param int $scholarship_id Scholarship ID
+	 * @param string $criterion
+	 * @param int $rank
+	 * @return bool
+	 */
 	public function insertOrUpdateRanking( $scholarship_id, $criterion, $rank ) {
 		$sql = self::concat(
 			'INSERT INTO rankings (user_id, scholarship_id, criterion, rank)',
@@ -433,6 +459,11 @@ class Apply extends AbstractDao {
 		] );
 	}
 
+	/**
+	 * @param int $id Scholarship ID
+	 * @param string $notes Notes
+	 * @return bool
+	 */
 	public function updateNotes( $id, $notes ) {
 		return $this->update(
 			'update scholarships set notes = :notes where id = :int_id',
@@ -443,6 +474,11 @@ class Apply extends AbstractDao {
 		);
 	}
 
+	/**
+	 * @param int $id Scholarship ID
+	 * @param int $phase Review phase
+	 * @return array Result rows
+	 */
 	public function getReviewers( $id, $phase ) {
 		$where = [ "r.scholarship_id = :int_sid" ];
 		if ( $phase == 1 ) {
@@ -461,6 +497,11 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( $sql, [ 'int_sid' => $id ] );
 	}
 
+	/**
+	 * @param int $id Scholarship ID
+	 * @param int $phase Review phase
+	 * @return array Result rows
+	 */
 	public function myRankings( $id, $phase ) {
 		$where = [ "r.scholarship_id = :int_sid" ];
 		if ( $phase == 1 ) {
@@ -516,18 +557,26 @@ class Apply extends AbstractDao {
 		] );
 	}
 
+	/**
+	 * @return array Result rows
+	 */
 	public function getPhase1EarlyRejects() {
 		return $this->getPhase1List( false );
 	}
 
+	/**
+	 * @return array Result rows
+	 */
 	public function getPhase1Success() {
 		return $this->getPhase1List( true );
 	}
 
+	/**
+	 * @return array Result rows
+	 */
 	public function getRegionList() {
 		$res = $this->fetchAll( "SELECT DISTINCT region FROM iso_countries" );
 		return array_map( function ( $row ) { return $row['region'];
-
 	 }, $res );
 	}
 
@@ -620,8 +669,10 @@ class Apply extends AbstractDao {
 		return $this->fetchAll( $sql, $params );
 	}
 
-	// Country administration
-	public function getListOfCountries( $order = "country_name" ) {
+	/**
+	 * @return array Result rows
+	 */
+	public function getListOfCountries() {
 		return $this->fetchAll( self::concat(
 			"SELECT count(*) as sid, c.country_name, c.region",
 			"FROM scholarships s",
@@ -630,20 +681,20 @@ class Apply extends AbstractDao {
 		) );
 	}
 
-	/*
+	/**
 	 * Fetch applications for different language groups
 	 * Possible language groupings are:
-	 * Small language community - Global North
-	 * Small language community - Global South
-	 * Medium language community - Global North
-	 * Medium language community - Global South
-	 * Large language community - Global South
-	 * Large language community - Global North
-	 * Multilingual community - Global North
-	 * Multilingual community - Global South
+	 * - Small language community - Global North
+	 * - Small language community - Global South
+	 * - Medium language community - Global North
+	 * - Medium language community - Global South
+	 * - Large language community - Global South
+	 * - Large language community - Global North
+	 * - Multilingual community - Global North
+	 * - Multilingual community - Global South
+	 * @return array Result rows
 	 */
 	public function getListOfCommunities() {
-
 		$p1scoreSql = $this->makeAggregateRankSql( 'valid', 'SUM', 'p1score' );
 
 		$fields = [
@@ -666,6 +717,9 @@ class Apply extends AbstractDao {
 		] );
 	}
 
+	/**
+	 * @return array Result rows
+	 */
 	public function getListOfRegions() {
 		return $this->fetchAll( self::concat(
 			"SELECT count(*) as count, c.region",
@@ -677,6 +731,7 @@ class Apply extends AbstractDao {
 
 	/**
 	 * @param array $params Query parameters
+	 * @return object StdClass with rows and found memebers
 	 */
 	public function export( $params ) {
 		$defaults = [
@@ -750,7 +805,7 @@ class Apply extends AbstractDao {
 	 *
 	 * @param string $criterion Ranking criterion to aggregate
 	 * @param string $func Aggregate function (AVG,SUM,MAX,MIN,...)
-	 * @param string $alias Aggregate column alias
+	 * @param string|null $alias Aggregate column alias
 	 * @return string SQL to compute the desired aggregate for all scholarships
 	 */
 	protected function makeAggregateRankSql(

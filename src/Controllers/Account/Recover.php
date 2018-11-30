@@ -56,12 +56,16 @@ class Recover extends Controller {
 			$this->flash( 'error',
 				$this->i18nContext->message( 'recover-account-bad-input' )
 			);
-			$dest =  $this->urlFor( 'account_recover' );
+			$dest = $this->urlFor( 'account_recover' );
 		}
 
 		$this->redirect( $dest );
 	}
 
+	/**
+	 * @param array $user User data
+	 * @param string $token Recovery token
+	 */
 	protected function sendEmail( $user, $token ) {
 		$sent = $this->mailer->mail(
 			$user['email'],

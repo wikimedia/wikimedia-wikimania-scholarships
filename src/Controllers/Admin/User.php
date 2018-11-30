@@ -33,6 +33,9 @@ use Wikimedia\Slimapp\Controller;
  */
 class User extends Controller {
 
+	/**
+	 * @param int $id User ID
+	 */
 	protected function handleGet( $id ) {
 		if ( $id === 'new' ) {
 			$user = [

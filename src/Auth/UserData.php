@@ -38,6 +38,9 @@ class UserData implements ArrayAccess, SlimUserData {
 	 */
 	protected $data;
 
+	/**
+	 * @param array $data User data
+	 */
 	public function __construct( array $data ) {
 		$this->data = $data;
 	}
@@ -53,7 +56,7 @@ class UserData implements ArrayAccess, SlimUserData {
 	/**
 	 * Get user's password.
 	 * @return string
-	 **/
+	 */
 	public function getPassword() {
 		return isset( $this->data['password'] ) ?
 			$this->data['password'] : '';
@@ -86,12 +89,18 @@ class UserData implements ArrayAccess, SlimUserData {
 		return $this->getFlag( 'reviewer' );
 	}
 
+	/**
+	 * Get the value of a boolean flag
+	 *
+	 * @param string $flag Flag to check
+	 * @return bool
+	 */
 	protected function getFlag( $flag ) {
 		return isset( $this->data[$flag] ) ? (bool)$this->data[$flag] : false;
 	}
 
 	/**
-	 * @inherit
+	 * @inheritDoc
 	 */
 	public function offsetSet( $offset, $value ) {
 		if ( is_null( $offset ) ) {
@@ -102,21 +111,21 @@ class UserData implements ArrayAccess, SlimUserData {
 	}
 
 	/**
-	 * @inherit
+	 * @inheritDoc
 	 */
 	public function offsetExists( $offset ) {
 		return isset( $this->data[$offset] );
 	}
 
 	/**
-	 * @inherit
+	 * @inheritDoc
 	 */
 	public function offsetUnset( $offset ) {
 		unset( $this->data[$offset] );
 	}
 
 	/**
-	 * @inherit
+	 * @inheritDoc
 	 */
 	public function offsetGet( $offset ) {
 		return isset( $this->data[$offset] ) ? $this->data[$offset] : null;

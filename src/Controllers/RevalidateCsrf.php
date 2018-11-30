@@ -33,10 +33,6 @@ use Wikimedia\Slimapp\CsrfMiddleware;
  */
 class RevalidateCsrf extends Controller {
 
-	public function __construct( \Slim\Slim $slim = null ) {
-		parent::__construct( $slim );
-	}
-
 	protected function handleGet() {
 		// Touch the key in the session to make sure it is kept alive
 		$token = $_SESSION[CsrfMiddleware::PARAM];

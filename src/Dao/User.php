@@ -58,6 +58,10 @@ class User extends AbstractDao implements UserManager {
 		return new UserData( $data );
 	}
 
+	/**
+	 * @param int $id User ID
+	 * @return array
+	 */
 	public function getUsername( $id ) {
 		return $this->fetch(
 			'SELECT username FROM users WHERE id = ?',
@@ -65,6 +69,10 @@ class User extends AbstractDao implements UserManager {
 		);
 	}
 
+	/**
+	 * @param array $params Search parameters
+	 * @return object StdClass with rows and found memebers
+	 */
 	public function search( array $params ) {
 		$defaults = [
 			'name' => null,
@@ -111,6 +119,10 @@ class User extends AbstractDao implements UserManager {
 		return $this->fetchAllWithFound( $sql, $crit );
 	}
 
+	/**
+	 * @param int $user_id User ID
+	 * @return array
+	 */
 	public function getUserInfo( $user_id ) {
 		return $this->fetch(
 			"SELECT * FROM users WHERE id = ?",
@@ -118,6 +130,10 @@ class User extends AbstractDao implements UserManager {
 		);
 	}
 
+	/**
+	 * @param array $answers User data
+	 * @return bool
+	 */
 	public function newUserCreate( $answers ) {
 		$fields = [
 			'username', 'password', 'email', 'reviewer', 'isvalid', 'isadmin'
@@ -139,7 +155,7 @@ class User extends AbstractDao implements UserManager {
 	/**
 	 * @param array $answers Updated user data
 	 * @param int $id User id
-	 * @return bool True if update suceeded, false otherwise
+	 * @return bool True if update succeeded, false otherwise
 	 */
 	public function updateUserInfo( $answers, $id ) {
 		$fields = [
@@ -176,6 +192,13 @@ class User extends AbstractDao implements UserManager {
 		}
 	}
 
+	/**
+	 * @param string $oldpw Old password
+	 * @param string $newpw New password
+	 * @param int $id User ID
+	 * @param bool|null $force Force update without checking old password
+	 * @return bool
+	 */
 	public function updatePassword( $oldpw, $newpw, $id, $force = null ) {
 		if ( !$force ) {
 			$res = $this->fetch(
@@ -216,6 +239,10 @@ class User extends AbstractDao implements UserManager {
 		}
 	}
 
+	/**
+	 * @param int $id User ID
+	 * @return bool
+	 */
 	public function userIsBlocked( $id ) {
 		$res = $this->query( "SELECT blocked FROM users WHERE id = ?", [ $id ] );
 		return $res['blocked'];
@@ -244,6 +271,11 @@ class User extends AbstractDao implements UserManager {
 		return $ret;
 	}
 
+	/**
+	 * @param int $id User ID
+	 * @param string $hash Reset hash
+	 * @return bool
+	 */
 	protected function updatePasswordResetHash( $id, $hash ) {
 		$ret = false;
 		$stmt = $this->dbh->prepare(

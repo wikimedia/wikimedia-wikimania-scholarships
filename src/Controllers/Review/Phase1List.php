@@ -40,10 +40,16 @@ class Phase1List extends Controller {
 	 */
 	protected $type = self::TYPE_SUCCESS;
 
+	/**
+	 * @param string $type Type to display
+	 */
 	public function setType( $type ) {
 		$this->type = $type;
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function getRows() {
 		if ( $this->type === self::TYPE_SUCCESS ) {
 			return $this->dao->getPhase1Success();
