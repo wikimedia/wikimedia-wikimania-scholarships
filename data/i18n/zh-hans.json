@@ -10,7 +10,8 @@
 			"LNDDYL",
 			"Macofe",
 			"Assoc",
-			"夢蝶葬花"
+			"夢蝶葬花",
+			"A Chinese Wikipedian"
 		]
 	},
 	"wikimania": "维基媒体国际会议",
@@ -103,7 +104,7 @@
 	"form-participation": "参与的维基媒体项目",
 	"form-username": "在您主要贡献的维基媒体项目的用户名（注意：请省略在您用户名之前的“User:”前缀，例如User:PQR123只应输入PQR123。请不要在您的用户名之前或之后包含任何东西）：",
 	"form-other-usernames": "（如果适用）其他用于编辑维基媒体用户名：",
-	"form-multilingual-community": "我已选择维基共享资源、维基物种、维基数据、维基孵育场、MediaWiki或工具实验室作为我的“最活跃的维基媒体项目”。因此我不能再选择一个语言社群。",
+	"form-multilingual-community": "我已选择了维基共享资源、维基物种、维基数据、维基孵育场、MediaWiki或工具实验室作为我的“最活跃的维基媒体项目”。因此我不能再选择一个语言社群。",
 	"form-engagement": "请选择以下所有形容您如何从事维基媒体运动的选项。",
 	"form-engagement-option1": "某个维基媒体项目（例如维基百科、共享资源、维基文库、维基数据等）的活跃贡献者",
 	"form-engagement-option2": "Mediawiki代码、小工具或其他为维基媒体而制作的工具的贡献者",

@@ -108,7 +108,7 @@
 	"form-participation": "Participation aux projets Wikimédia",
 	"form-username": "Nom d’utilisateur dans votre projet Wikimédia principal (note : Ne pas mettre le préfixe 'Utilisateur:' devant votre nom d’utilisateur, par ex. Utilisateur:PQR123 doit être saisi comme PQR123 seulement. Merci ne de rien inclure avant ou après votre nom d’utilisateur) :",
 	"form-other-usernames": "(Si applicable) Autres noms d’utilisateur Wikimédia utilisés pour contribuer :",
-	"form-multilingual-community": "J’ai sélectionné comme mon « projet Wikimédia le plus actif » Commons, Species, Data, Incubator, MediaWiki, ou Tool Labs. Je ne peux donc pas choisir une communauté de langue.",
+	"form-multilingual-community": "J’ai sélectionné comme mon « projet Wikimédia le plus actif » Commons, Species, Data, Incubator, MediaWiki, ou Toolforge. Je ne peux donc pas choisir une communauté de langue.",
 	"form-engagement": "Veuillez sélectionner un des choix suivants qui décrivent comment vous êtes engagé dans le mouvement Wikimédia.",
 	"form-engagement-option1": "Contributeur actif à un projet Wikimédia (par ex. Wikipédia, Commons, Wikisource, Wikidata)",
 	"form-engagement-option2": "Contributeur au code Médiawiki, constructeur de gadget ou d’autre outil pour les projets Wikimédia",
