@@ -99,7 +99,7 @@
 	"form-participation": "Partecipazione ai progetti Wikimedia",
 	"form-username": "Nome utente sul tuo progetto Wikimedia principale (Nota: ometti il prefisso 'User:' o 'Utente:' che precede il tuo nome utente, ad esempio Utente:PQR123 dovrebbe essere inserito solo come PQR123. Non inserire niente prima o dopo il tuo nome utente):",
 	"form-other-usernames": "(Se presenti) altri nomi utente utilizzati per modifiche su Wikimedia:",
-	"form-multilingual-community": "Ho selezionato come mio \"Progetto Wikimedia più attivo\" Commons, Species, Data, Incubator, MediaWiki, o Tool Labs. Quindi non posso scegliere una comunità linguistica.",
+	"form-multilingual-community": "Ho selezionato come mio \"Progetto Wikimedia più attivo\" Commons, Species, Data, Incubator, MediaWiki, o Toolforge. Quindi non posso scegliere una comunità linguistica.",
 	"form-engagement": "Per favore, seleziona fra le seguenti tutte le opzioni che descrivono come ti sei impegnato nel movimento Wikimedia.",
 	"form-engagement-option1": "Collaboratore attivo a un progetto di Wikimedia (per esempio Wikipedia, Commons, Wikisource, Wikidata)",
 	"form-engagement-option2": "Collaboratore al codice di MediaWiki, a gadget o autore di altri strumenti per Wikimedia",
