@@ -5,7 +5,8 @@
 			"Macofe",
 			"Levietduong",
 			"Trần Nguyễn Minh Huy",
-			"Phjtieudoc"
+			"Phjtieudoc",
+			"Leduyquang753"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -98,7 +99,7 @@
 	"form-participation": "Cách tham gia vào các dự án Wikimedia",
 	"form-username": "Tên người dùng tại dự án Wikimedia chính (vui lòng bỏ qua tiền tố “Thành viên:” đằng trước tên người dùng, ví dụ Thành viên:PQR123 chỉ ghi PQR123; xin đừng đưa ký tự nào đằng trước hoặc đằng sau tên người dùng của bạn):",
 	"form-other-usernames": "Các tên người dùng Wikimedia khác được sử dụng để sửa đổi (nếu có):",
-	"form-multilingual-community": "Tôi đã chọn “dự án Wikimedia tích cực nhất của tôi” là Commons, Wikispecies, Wikidata, Vườn ươm, MediaWiki, hoặc Phòng thí nghiệm Công cụ, cho nên tôi không thể chọn một cộng đồng ngôn ngữ.",
+	"form-multilingual-community": "Tôi đã chọn “dự án Wikimedia tích cực nhất của tôi” là Commons, Wikispecies, Wikidata, Vườn ươm, MediaWiki, hoặc Phòng thí nghiệm Công cụ. Vì vậy tôi không thể chọn một cộng đồng ngôn ngữ.",
 	"form-engagement": "Xin vui lòng chọn tất cả những lý do dưới đây mà mô tả cách mà bạn đã tham gia với phong trào Wikimedia.",
 	"form-engagement-option1": "Người đóng góp tích cực vào một dự án Wikimedia (ví dụ Wikipedia, Commons, Wikisource, Wikidata)",
 	"form-engagement-option2": "Người đóng góp mã nguồn cho MediaWiki, tiện ích, hoặc công cụ khác dành cho các dự án Wikimedia",
