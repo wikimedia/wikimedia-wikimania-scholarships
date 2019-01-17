@@ -6,10 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit2e6e10f556679c2c7b16b6914f1c13e1
 {
-    public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'W' => 
         array (
@@ -23,7 +19,6 @@ class ComposerStaticInit2e6e10f556679c2c7b16b6914f1c13e1
         ),
         'S' => 
         array (
-            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Slim\\Views\\' => 11,
         ),
         'P' => 
@@ -54,10 +49,6 @@ class ComposerStaticInit2e6e10f556679c2c7b16b6914f1c13e1
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Slim\\Views\\' => 
         array (
@@ -234,7 +225,6 @@ class ComposerStaticInit2e6e10f556679c2c7b16b6914f1c13e1
         'Slim\\Views\\Smarty' => __DIR__ . '/..' . '/slim/views/Smarty.php',
         'Slim\\Views\\Twig' => __DIR__ . '/..' . '/slim/views/Twig.php',
         'Slim\\Views\\TwigExtension' => __DIR__ . '/..' . '/slim/views/TwigExtension.php',
-        'Symfony\\Polyfill\\Ctype\\Ctype' => __DIR__ . '/..' . '/symfony/polyfill-ctype/Ctype.php',
         'Twig\\Cache\\CacheInterface' => __DIR__ . '/..' . '/twig/twig/src/Cache/CacheInterface.php',
         'Twig\\Cache\\FilesystemCache' => __DIR__ . '/..' . '/twig/twig/src/Cache/FilesystemCache.php',
         'Twig\\Cache\\NullCache' => __DIR__ . '/..' . '/twig/twig/src/Cache/NullCache.php',
