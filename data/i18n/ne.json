@@ -6,7 +6,8 @@
 			"सरोज कुमार ढकाल",
 			"राम प्रसाद जोशी",
 			"Suniltheblue",
-			"Drjpoudel"
+			"Drjpoudel",
+			"पर्वत सुबेदी"
 		]
 	},
 	"wikimania": "विकिमेनिया",
@@ -86,7 +87,7 @@
 	"month-oct": "अक्टोबर",
 	"month-nov": "नोभेम्बर",
 	"month-dec": "डिसेम्बर",
-	"login": "प्रवेश (लग ईन)",
+	"login": "प्रवेश",
 	"username": "प्रयोगकर्ता नाम:",
 	"password": "पासवर्ड:",
 	"login-success": "प्रवेश सफल ।",
@@ -105,7 +106,7 @@
 	"by-language-group": "भाषा समुह अनुसार",
 	"by-region": "क्षेत्र अनुसार",
 	"change-password": "पासवर्ड परिवर्तन गर्नुहोस्",
-	"logout": "निर्गमन (लग आउट)",
+	"logout": "निर्गमन",
 	"password-username": "प्रयोगकर्ता नाम:",
 	"old-password": "पुरानो पासवर्ड:",
 	"new-password": "नयाँ पासवर्ड:",
