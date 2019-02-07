@@ -141,7 +141,6 @@ return array(
     'Slim\\Views\\Smarty' => $vendorDir . '/slim/views/Smarty.php',
     'Slim\\Views\\Twig' => $vendorDir . '/slim/views/Twig.php',
     'Slim\\Views\\TwigExtension' => $vendorDir . '/slim/views/TwigExtension.php',
-    'Symfony\\Polyfill\\Ctype\\Ctype' => $vendorDir . '/symfony/polyfill-ctype/Ctype.php',
     'Twig\\Cache\\CacheInterface' => $vendorDir . '/twig/twig/src/Cache/CacheInterface.php',
     'Twig\\Cache\\FilesystemCache' => $vendorDir . '/twig/twig/src/Cache/FilesystemCache.php',
     'Twig\\Cache\\NullCache' => $vendorDir . '/twig/twig/src/Cache/NullCache.php',
