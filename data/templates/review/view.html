@@ -197,15 +197,6 @@
             <p>{{ 'review-view-not-specified'|message }}</p>
             {% endif %}
           </div>
-
-          <div class="well well-sm">
-            <p><strong>{{ 'review-view-missing-knowledge-explain'|message }}</strong></p>
-            {% if schol.missingKnowledge is not empty %}
-              <p style="white-space:pre-wrap">{{ schol.missingKnowledge }}</p>
-            {% else %}
-              <p>{{ 'review-view-not-specified'|message }}</p>
-            {% endif %}
-          </div>
         </div>
       </div>
 

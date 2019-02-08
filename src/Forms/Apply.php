@@ -104,7 +104,6 @@ class Apply extends Form {
 		$this->requireString( 'contribution' );
 		$this->requireString( 'experience' );
 		$this->requireString( 'collaboration' );
-		$this->expectString( 'missingKnowledge' );
 
 		// Interest and involvement in Wikimania
 		$this->requireBool( 'prev_scholar' );
@@ -261,7 +260,6 @@ class Apply extends Form {
 			'staff', 'staffOrg', 'board', 'boardOrg',
 			'involvement', 'contribution', 'experience', 'collaboration',
 			'prev_scholar', 'last_year_scholar', 'reports', 'involvement', 'contribution',
-			'missingKnowledge',
 
 			'willgetvisa', 'agreestotravelconditions', 'grantfortravelonly',
 			'agreestofriendlyspace', 'infotrue',
