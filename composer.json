@@ -4,8 +4,7 @@
 	"license": "GPL-3.0",
 	"require": {
 		"php": ">=5.5.9",
-		"phpmailer/phpmailer": "v6.0.6",
-		"wikimedia/slimapp": "0.9.0"
+		"wikimedia/slimapp": "0.9.1"
 	},
 	"replace": {
 		"symfony/polyfill-ctype": "1.99"

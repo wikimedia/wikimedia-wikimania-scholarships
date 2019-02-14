@@ -131,17 +131,17 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v6.0.6",
-        "version_normalized": "6.0.6.0",
+        "version": "v6.0.7",
+        "version_normalized": "6.0.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "8190d73eb5def11a43cfb020b7f36db65330698c"
+            "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/8190d73eb5def11a43cfb020b7f36db65330698c",
-            "reference": "8190d73eb5def11a43cfb020b7f36db65330698c",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0c41a36d4508d470e376498c1c0c527aa36a2d59",
+            "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59",
             "shasum": ""
         },
         "require": {
@@ -166,7 +166,7 @@
             "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
             "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
         },
-        "time": "2018-11-16T00:41:32+00:00",
+        "time": "2019-02-01T15:04:28+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -352,33 +352,33 @@
     },
     {
         "name": "twig/twig",
-        "version": "v1.35.4",
-        "version_normalized": "1.35.4.0",
+        "version": "v1.37.1",
+        "version_normalized": "1.37.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/twigphp/Twig.git",
-            "reference": "7e081e98378a1e78c29cc9eba4aefa5d78a05d2a"
+            "reference": "66be9366c76cbf23e82e7171d47cbfa54a057a62"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/7e081e98378a1e78c29cc9eba4aefa5d78a05d2a",
-            "reference": "7e081e98378a1e78c29cc9eba4aefa5d78a05d2a",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/66be9366c76cbf23e82e7171d47cbfa54a057a62",
+            "reference": "66be9366c76cbf23e82e7171d47cbfa54a057a62",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.3",
+            "php": ">=5.4.0",
             "symfony/polyfill-ctype": "^1.8"
         },
         "require-dev": {
             "psr/container": "^1.0",
             "symfony/debug": "^2.7",
-            "symfony/phpunit-bridge": "^3.3"
+            "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
         },
-        "time": "2018-07-13T07:12:17+00:00",
+        "time": "2019-01-14T14:59:29+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.35-dev"
+                "dev-master": "1.37-dev"
             }
         },
         "installation-source": "dist",
@@ -475,17 +475,17 @@
     },
     {
         "name": "wikimedia/slimapp",
-        "version": "v0.9.0",
-        "version_normalized": "0.9.0.0",
+        "version": "v0.9.1",
+        "version_normalized": "0.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/wikimedia/slimapp.git",
-            "reference": "d96fa22dc12f645c09d7f4385575efc31146357e"
+            "reference": "9fd0deba96f635c96d28d59d1f761283f62842d4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wikimedia/slimapp/zipball/d96fa22dc12f645c09d7f4385575efc31146357e",
-            "reference": "d96fa22dc12f645c09d7f4385575efc31146357e",
+            "url": "https://api.github.com/repos/wikimedia/slimapp/zipball/9fd0deba96f635c96d28d59d1f761283f62842d4",
+            "reference": "9fd0deba96f635c96d28d59d1f761283f62842d4",
             "shasum": ""
         },
         "require": {
@@ -503,7 +503,7 @@
             "mediawiki/mediawiki-codesniffer": "19.1.0",
             "phpunit/phpunit": "~4.8|~5.0"
         },
-        "time": "2018-11-30T00:39:03+00:00",
+        "time": "2019-02-14T00:05:17+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
