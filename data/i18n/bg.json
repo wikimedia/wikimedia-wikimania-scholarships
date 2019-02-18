@@ -3,12 +3,13 @@
 		"authors": [
 			"DCLXVI",
 			"StanProg",
-			"Vodnokon4e"
+			"Vodnokon4e",
+			"Vlad5250"
 		]
 	},
 	"wikimania": "Уикимания",
-	"wikimania-location-year": "Кейптаун, Република Южна Африка, 2018",
-	"header-title": "Уикимания 2018 — формуляр за кандидатстване за стипендия",
+	"wikimania-location-year": "Стокхолм, Швеция, 2019",
+	"header-title": "Уикимания 2019 — формуляр за кандидатстване за стипендия",
 	"nav-apply": "Кандидатстване",
 	"nav-faq": "ЧЗВ",
 	"nav-credits": "За създателите",
@@ -20,7 +21,7 @@
 	"nav-admin": "Админ",
 	"nav-account": "Моят профил",
 	"nav-settings": "Настройки",
-	"form-intro-faq": "<a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ' target='_blank'>Често задавани въпроси</a>",
+	"form-intro-faq": "<a href='https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>Често задавани въпроси</a>",
 	"form-scholarship-type": "Вид стипендия",
 	"form-scholarship-full": "Кандидатствам за пълна стипендия.",
 	"form-scholarship-either": "Кандидатствам за пълна стипендия, но ще мога да присъствам и ако получа само частична стипендия.",
@@ -68,7 +69,7 @@
 	"form-engagement-option10": "Нищо от по-горе изброените",
 	"form-attended": "Участвали ли сте досега на Уикимания? Ако да, през коя година или години?",
 	"form-prev-scholar": "Получавали ли сте стипендия на Уикимания или Фондация Уикипедия?",
-	"form-last-year-scholar": "През 2017 г. получихте ли стипендия на ФУ и посетихте ли Уикимания с тази стипендия?",
+	"form-last-year-scholar": "През 2018 г. получихте ли стипендия на ФУ и посетихте ли Уикимания с тази стипендия?",
 	"form-attending-reports": "Моля, посочете препратките към всички ваши предишни отчети към стипендии на ФУ.",
 	"confirm-thanks": "Благодарим ви!",
 	"contact-us": "Свържете се с нас",
@@ -116,7 +117,7 @@
 	"review-view-gender": "Пол",
 	"review-view-occupation": "Професия:",
 	"review-view-username": "Потребителско име:",
-	"review-view-last-year-scholar": "Стипендия през 2017 г.?",
+	"review-view-last-year-scholar": "Стипендия през 2018 г.?",
 	"review-view-save": "Съхраняване",
 	"no-results": "Не бяха открити резултати"
 }
