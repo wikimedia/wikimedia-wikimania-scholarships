@@ -13,7 +13,8 @@
 			"夢蝶葬花",
 			"A Chinese Wikipedian",
 			"Blissghost",
-			"WDLJT"
+			"WDLJT",
+			"AF"
 		]
 	},
 	"wikimania": "维基媒体国际会议",
@@ -35,8 +36,8 @@
 	"mock": "这只是一个模拟的奖助金申请网站，仅做测试之用。",
 	"not-open": "2019年维基媒体国际会议奖助金申请尚未开放。更多信息请见：\n<ul>\n<li><a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">关于维基媒体国际会议</a></li>\n<li><a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">关于资费</a></li>\n</ul>",
 	"deadline-passed": "<p>奖助金申请截止日期是3月15日，23:59（UTC）。</p>\n<p>我们将在2019年5月通知使用此应用程序的申请者。</p>\n<p>更多信息请参见此wiki上的<a href='https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>资费页面</a>。</p>",
-	"form-intro": "<p>这是申请出席<a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">2019年维基媒体国际会议</a>的应用程序。维基媒体国际会议是以维基媒体项目为中心的年度国际会议。获得奖助金的申请者将收到包含会议登记费用、住宿费用和往返旅费的资助，以出席2019年8月14~18日在瑞典斯德哥尔摩举办的维基媒体国际会议。</p>\n<p><b>申请可以使用任意语言提交</b>，但申请者必须<b>证明自己英语能力</b>水平足以参与以英语为主要工作语言的维基媒体国际会议。英语能力可以通过申请本身或者其他方式展现。</p>\n<p>在您申请与会资费前，请仔细考虑您的财务需求。我们只有有限的资费，并且很多申请人因没能获得这笔资费而失去了参与会议的机会。感谢您。</p>\n<p>请注意<strong>如果您需要超过10分钟的时间填写完此申请，请在文本编辑器中将您的答案打草稿</strong>，重新加载该页面，并在提交前复制粘贴您的答案至对应字段。如果该应用程序在提交前已打开超过15分钟的话，它可能会显示一条错误消息（“CSRF令牌丢失或无效”）。</p>\n<p>申请的截止日期是<strong>2019年3月15日 23:59 UTC</strong>。</p>",
-	"form-intro-privacy": "有关隐私和数据处理的信息，参见<a href=\"https://wikimediafoundation.org/wiki/Wikimania_2019_Application_Form_Privacy_Statement\">应用程序隐私声明</a>。",
+	"form-intro": "<p>这是申请出席<a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">2019年维基媒体国际会议</a>的申请表。维基媒体国际会议是以维基媒体项目为中心的年度国际会议。获得奖助金的申请者将收到包含会议登记费用、住宿费用和往返旅费的资助，以出席2019年8月14~18日在瑞典斯德哥尔摩举办的维基媒体国际会议。</p>\n<p><b>申请可以使用任意语言提交</b>，但申请者必须<b>证明自己英语能力</b>水平足以参与以英语为主要工作语言的维基媒体国际会议。英语能力可以通过申请本身或者其他方式展现。</p>\n<p>在您申请与会资费前，请仔细考虑您的财务需求。我们只有有限的资费，并且很多申请人因没能获得这笔资费而失去了参与会议的机会。感谢您。</p>\n<p>请注意<strong>如果您需要超过10分钟的时间填写完此申请，请在文本编辑器中将您的答案打草稿</strong>，重新加载该页面，并在提交前复制粘贴您的答案至对应字段。如果该应用程序在提交前已打开超过15分钟的话，它可能会显示一条错误消息（“CSRF令牌丢失或无效”）。</p>\n<p>申请的截止日期是<strong>2019年3月15日 23:59 UTC</strong>。</p>",
+	"form-intro-privacy": "有关隐私和数据处理的信息，参见<a href=\"https://wikimediafoundation.org/wiki/Wikimania_2019_Application_Form_Privacy_Statement\">申请表隐私声明</a>。",
 	"form-intro-faq": "<a href='https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships/FAQ'>常见问题与解答列表</a>",
 	"form-scholarship-type": "奖助金类型",
 	"form-scholarship": "<p>在今年举办的2019维基媒体国际会议上，维基媒体基金会将提供部分奖助金，这种奖助金包含注册费用（也包括维基媒体国际会议期间的住宿费）；然而，部分奖助金将不会包含旅费与部分额外开支。相比之下，全额奖助金将包含旅费、注册费以及部分额外开支。</p>\n 请注明您申请哪种类型的维基媒体基金会奖助金。请注意，选择“我正在申请全额奖助金，但即便被授予部分奖助金，我也能够出席。”的申请者将被按照<a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships#Scholarship_details\">选择条款</a>仔细考虑。",
