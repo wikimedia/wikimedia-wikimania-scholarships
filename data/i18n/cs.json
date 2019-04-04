@@ -31,7 +31,7 @@
 	"nav-settings": "Nastavení",
 	"nav-reports-export": "Kompletní export",
 	"mock": "Tato žádost je pouze testovací.",
-	"deadline-passed": "<p>Závěrečná lhůta pro žádosti o stipendium byla dne 22. ledna v 23:59 hodin UTC.</p>\n<p>Výsledky žádostí oznámíme uchazečům v dubnu 2018.</p>\n<p>Pro další informace vizte prosím <a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>stránku stipendií</a> na wiki.</p>",
+	"deadline-passed": "<p>Závěrečná lhůta pro žádosti o stipendium byla dne 22. ledna v 23:59 hodin UTC.</p>\n<p>Výsledky žádostí oznámíme uchazečům v dubnu 2018.</p>\n<p>Pro další informace viz prosím <a href='https://wikimania2018.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>stránku stipendií</a> na wiki.</p>",
 	"form-scholarship-type": "Typ stipendia",
 	"form-scholarship-either": "Žádám o plné stipendium, ale budu schopen se zúčastnit, pokud obdržím částečné stipendium.",
 	"form-scholarship-partial": "Žádám o částečné stipendium",
