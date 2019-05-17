@@ -6,7 +6,8 @@
 			"Aursani",
 			"Indus Asia",
 			"Fitoschido",
-			"JogiAsad"
+			"JogiAsad",
+			"Tweety"
 		]
 	},
 	"wikimania": "وڪيمينيا",
@@ -282,6 +283,7 @@
 	"review-view-interest": "وڪيمينيا ۾ دلچسپي:",
 	"review-view-notes": "نوٽس:",
 	"review-view-save": "سانڍيو",
+	"review-export-export": "فھرسٽ کي سي ايس وي طور برآمد ڪيو",
 	"page-of-pages": "$2 جو $1 صفحو",
 	"no-results": "ڪي بہ نتيجا نہ لڌا",
 	"csrf-heading": "ناقابل قبول درخواست",
