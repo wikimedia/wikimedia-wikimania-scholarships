@@ -3,19 +3,22 @@
 		"authors": [
 			"Kusavica",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Luky001"
 		]
 	},
 	"wikimania": "Wikimánia",
-	"wikimania-location-year": "Kapské Mesto, Juhoafrická republika, 2018",
+	"wikimania-location-year": "Štokholm, Švédsko, 2019",
 	"header-title": "Wikimánia 2019 - žiadosti o štipendium",
 	"nav-apply": "Požiadať",
+	"nav-faq": "Často kladené otázky",
 	"nav-privacy": "Súkromie",
 	"nav-contact": "Kontakt",
 	"nav-language": "Jazyk:",
 	"nav-account": "Môj účet",
 	"nav-settings": "Nastavenia",
 	"form-scholarship-type": "Druh štipendia",
+	"form-type-error": "Zvoľte, prosím, typ štipendia.",
 	"required-field": "Povinné pole",
 	"form-contact-info": "Kontaktné informácie",
 	"form-fname": "Meno:",
