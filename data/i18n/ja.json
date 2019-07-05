@@ -10,7 +10,8 @@
 			"Takot",
 			"Psjk2106",
 			"Omotecho",
-			"Cudo29"
+			"Cudo29",
+			"神樂坂秀吉"
 		]
 	},
 	"wikimania": "ウィキマニア",
@@ -28,7 +29,7 @@
 	"nav-users": "ユーザーを管理",
 	"nav-account": "アカウント設定",
 	"nav-settings": "設定",
-	"nav-reports-export": "すべてエクスポート",
+	"nav-reports-export": "全てエクスポート",
 	"mock": "これは補助金申請サイトのモックにすぎません。テストのためだけに使ってください。",
 	"not-open": "2019年ウィキマニア補助金の申請はまだ受け付けていません。詳細については以下をご参照ください。\n<ul>\n<li><a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Main_Page\">ウィキマニアについて</a></li>\n<li><a href=\"https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships\">補助金について</a></li>\n</ul>",
 	"deadline-passed": "<p>補助金の申請締切は3月15日23:59 (UTC) です。</p>\n<p>申請結果は2018年5月に申請者に通知いたします。</p>\n<p>詳細は、ウィキの<a href='https://wikimania.wikimedia.org/wiki/Special:MyLanguage/Scholarships'>補助金ページ</a>をご覧ください。</p>",
