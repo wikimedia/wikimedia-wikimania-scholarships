@@ -188,7 +188,7 @@
 	"reset-password-fail": "Reimpostazione della password non riuscita.",
 	"reset-password-invalid": "Inserimento non valido.",
 	"error-heading": "Errore di sistema",
-	"error-message": "Si è verificato un errore imprevisto e stiamo lavorando per risolvere il problema. Riprova in un secondo momento",
+	"error-message": "Si è verificato un errore imprevisto e stiamo lavorando per risolvere il problema. Riprova in un secondo momento.",
 	"error-id": "Errore ID: $1",
 	"404-header": "Pagina non trovata",
 	"404-message": "La pagina richiesta non può essere trovata. Si prega di controllare il collegamento/URL e riprovare.",
