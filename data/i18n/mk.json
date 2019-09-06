@@ -3,7 +3,8 @@
 		"authors": [
 			"Bjankuloski06",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Vlad5250"
 		]
 	},
 	"wikimania": "Викиманија",
@@ -147,6 +148,9 @@
 	"login-success": "Најавата е успешна.",
 	"login-failed": "Најавата не успеа.",
 	"login-error": "Се бараат корисничко име и лозинка.",
+	"forgot-password": "Ја заборавивте лозинката?",
+	"forgot-password-email": "Е-пошта:",
+	"recover-account-bad-input": "Неважечки внос.",
 	"reset-password-no-match": "Лозинките не се совпаѓаат.",
 	"reset-password-empty": "Лозинката не може да стои празна.",
 	"reset-password-success": "Лозинката е успешно сменета.",
