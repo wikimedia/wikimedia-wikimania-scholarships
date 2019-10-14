@@ -20,7 +20,8 @@
 			"TmY e12",
 			"By erdo can",
 			"Fitoschido",
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"Grkn gll"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -194,7 +195,7 @@
 	"login": "Oturum aç",
 	"username": "Kullanıcı adı:",
 	"password": "Parola:",
-	"login-success": "Giriş başarılı.",
+	"login-success": "Oturum açma başarılı.",
 	"login-failed": "Oturum açma başarısız.",
 	"login-error": "Kullanıcı adı ve parola gerekli.",
 	"forgot-password": "Parolanızı mı unuttunuz?",
@@ -236,9 +237,9 @@
 	"admin-user-id": "Kimlik:",
 	"admin-user-email": "E-posta:",
 	"admin-user-reviewer": "İnceleyici:",
-	"admin-user-valid": "Geçerli:",
-	"admin-user-admin": "Yönetici:",
-	"admin-user-blocked": "Engelli:",
+	"admin-user-valid": "Geçerli mi:",
+	"admin-user-admin": "Yönetici mi:",
+	"admin-user-blocked": "Engelli mi:",
 	"admin-user-save": "Değişiklikleri kaydet",
 	"admin-users-id": "kimlik",
 	"admin-users-username": "kullanıcı adı",
