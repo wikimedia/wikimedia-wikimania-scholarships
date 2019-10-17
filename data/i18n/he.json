@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Inkbug",
-			"YaronSh"
+			"YaronSh",
+			"Amire80"
 		]
 	},
 	"wikimania": "ויקימניה",
@@ -157,5 +158,5 @@
 	"review-export-export": "ייצוא הרשימה כ־CSV",
 	"page-of-pages": "עמוד $1 מתוך $2",
 	"no-results": "לא נמצאו תוצאות",
-	"csrf-heading": "בקשה שגויה"
+	"csrf-heading": "בקשה בלתי־תקינה"
 }
