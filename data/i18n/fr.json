@@ -18,7 +18,8 @@
 			"Bachounda",
 			"Cquoi",
 			"Pymouss",
-			"Verdy p"
+			"Verdy p",
+			"Thibaut120094"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -110,8 +111,8 @@
 	"form-study": "Domaine d’étude (si étudiant) :",
 	"form-participation": "Participation aux projets Wikimedia",
 	"form-username": "Nom d’utilisateur dans votre projet Wikimedia principal (note : ne pas mettre le préfixe « Utilisateur: » devant votre nom d’utilisateur, par ex. « Utilisateur:PQR123 » doit être saisi comme « PQR123 » seulement. Merci ne de rien inclure avant ou après votre nom d’utilisateur) :",
-	"form-other-usernames": "(Le cas échéant) Autres noms d’utilisateur Wikimedia utilisés pour contribuer :",
-	"form-multilingual-community": "J’ai sélectionné Commons, Species, Data, Incubator, MediaWiki ou Toolforge comme mon « projet Wikimedia le plus actif ». Je ne peux donc pas choisir une communauté de langue.",
+	"form-other-usernames": "(Le cas échéant) Autres noms d’utilisateur Wikimedia utilisés pour contribuer :",
+	"form-multilingual-community": "J’ai sélectionné Commons, Species, Data, Incubator, MediaWiki ou Toolforge comme mon « projet Wikimedia le plus actif ». Je ne peux donc pas choisir une communauté de langue.",
 	"form-engagement": "Veuillez sélectionner un des choix suivants qui décrivent comment vous êtes engagé dans le mouvement Wikimedia.",
 	"form-engagement-option1": "Contributeur actif à un projet Wikimedia (par ex. Wikipédia, Commons, Wikisource, Wikidata)",
 	"form-engagement-option2": "Contributeur au code Mediawiki, constructeur de gadget ou d’autre outil pour les projets Wikimedia",
@@ -157,7 +158,7 @@
 	"form-wmfAgreeGuardian": "Si vous avez moins de 18 ans, veuillez entrer le nom complet d’un parent ou d’un tuteur légal :",
 	"form-submit-app": "Soumettre la candidature",
 	"form-email-subject": "Demande de bourse pour Wikimania",
-	"form-email-response": "Cher / chère $1 $2,\n\nCeci est une confirmation de votre candidature pour une bourse afin de participer à Wikimania.\n\nNous vous ferons savoir la décision concernant cette bourse après avoir examiné et noté toutes les demandes.\n\nVeuillez écrire à wikimania-scholarships@wikimedia.org si vous avez des questions.\n\nCordialement,\n\nL’équipe des bourses de Wikimania",
+	"form-email-response": "Cher / chère $1 $2,\n\nCeci est une confirmation de votre candidature pour une bourse afin de participer à Wikimania.\n\nNous vous ferons savoir la décision concernant cette bourse après avoir examiné et noté toutes les demandes.\n\nVeuillez écrire à wikimania-scholarships@wikimedia.org si vous avez des questions.\n\nCordialement,\n\nL’équipe des bourses de Wikimania",
 	"confirm-thanks": "Merci !",
 	"confirm-text": "Merci d’avoir envoyé une demande de bourse pour Wikimania. Veuillez contacter <a href=\"mailto:wikimania-scholarships@wikimedia.org\">wikimania-scholarships@wikimedia.org</a> pour toute question.",
 	"privacy-page-1": "Cette déclaration décrit comment et quand Wikimédia collecte, utilise et partage les informations que nous recevons des candidats aux bourses. <h3>But du formulaire</h3> Merci pour votre intérêt dans Wikimania 2019 ! Ce formulaire est utilisé pour solliciter une bourse partielle ou totale pour participer à la conférence. <h3>Quelle information collectons-nous ?</h3> Ce formulaire récupère les réponses que vous fournissez aux questions posées ; elles sont de deux types : réponses prédéfinies et réponses libres.",
