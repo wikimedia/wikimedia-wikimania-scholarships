@@ -17,7 +17,8 @@
 			"AF",
 			"神樂坂秀吉",
 			"予弦",
-			"A Retired User"
+			"A Retired User",
+			"WhitePhosphorus"
 		]
 	},
 	"wikimania": "维基媒体国际会议",
@@ -171,7 +172,7 @@
 	"credits": "制作人员和授权",
 	"credits-page": "维基媒体国际会议资费软件是开源软件，其<a href=\"https://phabricator.wikimedia.org/diffusion/WWSC/\">源代码</a>依据<a href=\"https://www.gnu.org/copyleft/gpl.html\">GNU通用公共许可证第3版</a>授权。</p><p>代码基于2009、2010、2011、2012和2013年维基媒体国际会议资费系统。",
 	"help-translate": "协助翻译",
-	"translate-page": "我们希望奖助金申请系统被尽可能地翻译成多种语言。\n</p><p>\n请在<a href=\"https://translatewiki.net\">translatewiki.net</a>申请译者权限，之后您就可以<a href=\"https://translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">开始翻译</a>了。",
+	"translate-page": "我们希望将奖助金申请系统翻译成尽可能多的语言。\n</p><p>\n请在<a href=\"https://translatewiki.net\">translatewiki.net</a>申请译者权限，之后您就可以<a href=\"https://translatewiki.net/wiki/Special:Translate/out-wikimania-scholarships-app\">开始翻译</a>了。",
 	"footer-faq": "常见问题及回答列表",
 	"footer-credits": "制作人员",
 	"footer-privacy": "隐私政策",
@@ -270,8 +271,8 @@
 	"review-countries-count": "资费计数",
 	"review-communities-size": "语言组",
 	"review-communities-globalns": "全球北/南营",
-	"review-communities-count": "资费计数",
-	"review-view-scholarship-type": "资费类型：",
+	"review-communities-count": "奖助金计数：",
+	"review-view-scholarship-type": "奖助金类型：",
 	"review-view-chapteragree": "是否与分会分享信息？",
 	"review-view-separatejury": "是否向独立组织申请？",
 	"review-view-scholarorgs": "组织：",
@@ -289,7 +290,7 @@
 	"review-view-alt-users": "其他用户名：",
 	"review-view-staff-member": "是……组织的职员：",
 	"review-view-board-member": "是……组织的董事会成员：",
-	"review-view-community": "主要活跃的语言社区：",
+	"review-view-community": "主要活跃的语言社群：",
 	"review-view-active-projects": "主要活跃的维基项目：",
 	"review-view-secondary-project": "第二活跃的维基项目：",
 	"review-view-previous-scholar": "之前获得的奖助金？",

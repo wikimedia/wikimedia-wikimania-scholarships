@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Macofe"
+			"Macofe",
+			"Qllach"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Ciutat del Cap, Sud-àfrica, 2018",
+	"wikimania-location-year": "Estocolm, Suècia, 2019",
 	"header-title": "Wikimania 2019: sol·licitud de beca",
 	"nav-apply": "Sol·licita",
 	"nav-faq": "Preguntes freqüents",
@@ -62,7 +63,7 @@
 	"form-occupation": "Ocupació (si sou professional):",
 	"form-study": "Camp d’estudi (si sou estudiant):",
 	"form-participation": "Participació als projectes de Wikimedia",
-	"form-username": "Nom d’usuari al vostre projecte principal de Wikimedia (ometeu el prefix «Usuari:»):",
+	"form-username": "Nom d’usuari al vostre projecte principal de Wikimedia (Nota: ometeu el prefix «Usuari:» davant del nom d'usuari. Per exemple, Usuari:PQR123 ha d’introduir solament PQR123. No afegiu res al davant ni al darrere del vostre nom d’usuari):",
 	"form-other-usernames": "(Si s’escau) Altres noms d’usuari utilitzats a Wikimedia per editar:",
 	"form-engagement-option10": "Cap de les anteriors",
 	"form-privacy": "Privadesa",

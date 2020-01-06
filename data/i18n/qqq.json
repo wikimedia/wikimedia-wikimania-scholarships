@@ -10,7 +10,8 @@
 			"Liuxinyu970226",
 			"Chase me ladies, I'm the Cavalry",
 			"Macofe",
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"WhitePhosphorus"
 		]
 	},
 	"wikimania": "Used as image alt text and in the branding banner",
@@ -319,7 +320,7 @@
 	"csrf-message": "Cross site request forgery (CSRF) error page body",
 	"search-region": "Input label, followed by text box",
 	"search-community-size": "Input label, followed by text box",
-	"search-globalns": "Input label, followed by text box",
+	"search-globalns": "Input label, followed by text box (see [https://strategy.wikimedia.org/wiki/Global_South definition of Global North/South])",
 	"search-phase1": "Input label, preceeded by checkbox",
 	"admin-settings-phase1pass": "Input label, for phase 1 pass score",
 	"admin-settings-phase2pass": "Input label, for phase 2 pass score",
