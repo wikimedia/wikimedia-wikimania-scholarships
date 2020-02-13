@@ -194,7 +194,7 @@
 	"recover-account-success": "Інструкції з відновлення надіслано. Будь ласка, перевірте Вашу електронну скриньку та каталог спаму в ній.",
 	"recover-account-bad-input": "Неправильний ввід.",
 	"reset-password-bad-token": "Надано токен, який є неправильним, або термін дії якого сплив.",
-	"reset-password-no-match": "Паролі не співпадають.",
+	"reset-password-no-match": "Паролі не збігаються.",
 	"reset-password-empty": "Пароль не може бути порожнім.",
 	"reset-password-success": "Пароль скинуто успішно.",
 	"reset-password-fail": "Не вдалось скинути пароль.",
