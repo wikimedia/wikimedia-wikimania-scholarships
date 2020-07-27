@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"01miki10",
 			"Fitoschido",
 			"Nike",
 			"Pyscowicz",
@@ -45,7 +46,7 @@
 	"form-dd-error": "Valitse syntymäpäiväsi.",
 	"form-mm-error": "Valitse syntymäkuukautesi.",
 	"form-gender-error": "Valitse sukupuolesi.",
-	"form-username-error": "Syötä käyttäjätunnuksesi ensisijaisessa Wikimedia-hankkeessasi.",
+	"form-username-error": "Syötä käyttäjänimesi ensisijaisessa Wikimedia-hankkeessasi.",
 	"form-project-error": "Valitse aktiivisin Wikimedia-hankkeesi.",
 	"form-involvement-error": "Selitä osallistumisesi Wikimedia-hankkeisiin.",
 	"form-contribution-error": "Selittä oma osallistumisesi ja panoksesi muihin kuin Wikimedia-hankkeisiin.",
@@ -189,7 +190,7 @@
 	"review-view-occupation": "Ammatti:",
 	"review-view-study": "Alan tutkimus",
 	"review-view-username": "Käyttäjänimi:",
-	"review-view-alt-users": "Muut käyttäjätunnukset:",
+	"review-view-alt-users": "Muut käyttäjänimet:",
 	"review-view-community": "Ensisijainen kieliyhteisö:",
 	"review-view-active-projects": "Tärkein wiki-projekti",
 	"review-view-secondary-project": "Toissijainen wiki-projekti:",
