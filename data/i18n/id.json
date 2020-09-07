@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Beeyan",
+			"Daud I.F. Argana",
 			"Farras",
 			"Fitoschido",
 			"Irus",
@@ -138,7 +139,7 @@
 	"form-visa": "Jika saya mendapatkan dan menerima hibah, saya akan bertanggung jawab dalam memperoleh visa perjalanan; kalau perlu sebelum bepergian ke Stockholm, Swedia.",
 	"form-travel-conditions": "Jika saya mendapatkan dan menerima hibah, saya setuju menggunakan layanan pemesanan perjalanan yang disediakan dan dibayar oleh Yayasan Wikimedia.",
 	"form-travel-only": "Jika saya mendapatkan hibah, saya setuju untuk menggunakan hibah hanya untuk biaya perjalanan. Saya berjanji untuk mengganti rugi kepada Wikimedia Foundation terhadap seluruh biaya yang tidak terpakai atau terpakai secara tidak layak.",
-	"form-friendly-space": "Jika saya mendapatkan hibah, saya setuju untuk taat terhadap kebijakan <a href=\"https://wikimediafoundation.org/wiki/Special:MyLanguage/Friendly_space_policy\">Friendly Space Policy</a> dari Wikimedia Foundation. Jika saya melanggar kebijakan tersebut dan di minta untuk pergi, saya setuju untuk bertanggung jawab terhadap setiap perubahan pada biaya perjalanan saya.",
+	"form-friendly-space": "Jika saya mendapatkan hibah, saya setuju untuk taat terhadap kebijakan <a href=\"https://foundation.wikimedia.org/wiki/Special:MyLanguage/Friendly_space_policy\">Friendly Space Policy</a> dari Wikimedia Foundation. Jika saya melanggar kebijakan tersebut dan di minta untuk pergi, saya setuju untuk bertanggung jawab terhadap setiap perubahan pada biaya perjalanan saya.",
 	"form-info-true": "Saya menyatakan bahwa semua informasi yang saya berikan pada permohonan saya adalah benar dan tepat dari pengetahuan dan kepercayaan saya. Wikimedia Foundation berhak untuk meminta saya untuk membayar kembali semua atau sebagian hibah jika ada bagian dari informasi yang saya berikan adalah salah atau tidak tepat.",
 	"form-privacy": "Privasi",
 	"form-privacy1": "Silakan baca <a href=\"https://foundation.wikimedia.org/wiki/Wikimania_2019_Application_Form_Privacy_Statement\">pernyataan privasi aplikasi</a> untuk rincian mengenai privasi dan penanganan data.",
