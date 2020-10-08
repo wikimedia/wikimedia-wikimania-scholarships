@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"DCLXVI",
+			"Kareyac",
 			"StanProg",
 			"Vlad5250",
 			"Vodnokon4e"
@@ -73,6 +74,7 @@
 	"form-attending-reports": "Моля, посочете препратките към всички ваши предишни отчети към стипендии на ФУ.",
 	"confirm-thanks": "Благодарим ви!",
 	"contact-us": "Свържете се с нас",
+	"footer-faq": "чзв",
 	"month-jan": "яну",
 	"month-feb": "фев",
 	"month-mar": "мар",
@@ -114,6 +116,7 @@
 	"review-countries-region": "Регион",
 	"review-view-name": "Име:",
 	"review-view-email": "Е-поща:",
+	"review-view-nationality": "Националност:",
 	"review-view-gender": "Пол",
 	"review-view-occupation": "Професия:",
 	"review-view-username": "Потребителско име:",
