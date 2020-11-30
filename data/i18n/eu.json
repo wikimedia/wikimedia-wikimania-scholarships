@@ -8,7 +8,8 @@
 			"Macofe",
 			"Mikel Ibaiba",
 			"Sator",
-			"Subi"
+			"Subi",
+			"Xabier Armendaritz"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -303,7 +304,7 @@
 	"review-view-notes": "Oharrak:",
 	"review-view-save": "Gorde",
 	"review-export-export": "Esportatu zerrenda CSV gisa",
-	"page-of-pages": "$1 orrialdea $2-tik",
+	"page-of-pages": "Orria: $1/$2",
 	"no-results": "Ez da emaitzarik aurkitu",
 	"csrf-heading": "Eskaera baliogabetua",
 	"csrf-message": "Bidali zen eskaerak ez zuen haren edukiak token babestearen faltsutze froga. Itzul zaitez inprimakira, berriro kargatu orria eta saiatu berriro.",
