@@ -10,6 +10,7 @@
 			"Sujiniku",
 			"Takot",
 			"Whym",
+			"おはぐろ蜻蛉",
 			"神樂坂秀吉",
 			"아라"
 		]
@@ -109,7 +110,7 @@
 	"form-engagement-option1": "ウィキメディア・プロジェクト（ウィキペディア、コモンズ、ウィキソース、ウィキデータなど）で実際に活動する利用者",
 	"form-engagement-option2": "ウィキメディア・プロジェクト群におけるメディアウィキのコード貢献者、ガジェットその他のツールの作成者",
 	"form-engagement-option3": "ウィキメディア組織になんらかの形で関与（支部・国別協会、テーマ別組織、利用者グループ）",
-	"form-engagement-option4": "ウィキメディアのチェックユーザー、管理者、ビューロクラット、スチュワード、OTRS（現旧は問わない）",
+	"form-engagement-option4": "ウィキメディアの利用者調査者、管理者、ビューロクラット、スチュワード、OTRS（現旧は問わない）",
 	"form-engagement-option5": "ウィキメディア財団の補助金を受給",
 	"form-engagement-option6": "ウィキメディアの研究員",
 	"form-engagement-option7": "ウィキメディアのプログラム（GLAMや教育プログラムなど）の参加者",
