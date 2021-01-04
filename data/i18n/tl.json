@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Emem.calist",
+			"Exec8",
 			"Fitoschido",
 			"Leeheonjin",
 			"Sky Harbor"
 		]
 	},
 	"wikimania": "Wikimania",
-	"wikimania-location-year": "Esino Lario 2016",
+	"wikimania-location-year": "Stockholm, Sweden, 2019",
 	"header-title": "Wikimania 2019 - Pormularyo para sa paghiling ng subsidiya",
 	"nav-apply": "Ilapat",
 	"nav-faq": "Mga karaniwang itinatanong",
@@ -50,7 +51,7 @@
 	"form-occupation": "Hanapbuhay (kung propesyonal):",
 	"form-study": "Larangan ng pag-aaral (kung mag-aaral):",
 	"form-participation": "Paglalahok sa mga proyektong Wikimedia",
-	"form-username": "Bansag sa iyong pangunahing proyektong Wikimedia:",
+	"form-username": "Username sa iyong pangunahing proyekto sa Wikimedia (Tandaan: Ilabas ang awtomatikong 'User:' bago ang iyong username, hal. Gumagamit: PQR123 dapat ipasok lamang ang PQR123. Mangyaring huwag magsama ng anuman bago o pagkatapos ng iyong username",
 	"form-other-usernames": "(Kung maaari) Ibang mga bansag sa Wikimedia na ginagamit para sa pamamatnugot:",
 	"form-staff-organization": "Kung tama, maaaring pakisaad sa organisasyon ng 'Wikimedia' pati na kung ikaw ay nagtratrabaho ng hulugan o ng kabuuan.",
 	"form-email-response": "Nilulugod na $1 $2,\n\nIto ang pag-kumpirma ng iyong aplikasyon para sa ''scholarship'' upang makalahok sa Wikimania.\n\nIpapaalam namin sa iyo ang naging pasya sa iyong ''scholarship'' matapos naming siyasatin at suriin ang lahat ng mga aplikasyon.\n\nMangyaring tumugon sa wikimania-scholarships@wikimedia.org kung mayroon ka mang mga katanungan.\n\nGumagalang,\n\n''Wikimania scholarship team''",
