@@ -191,7 +191,7 @@
 	"recover-account-success": "Talimatê reyayışi rışiyaye. Adresê eposta u klasorê spami kontrol kerê",
 	"recover-account-bad-input": "Cıkerdışo nêvêrde.",
 	"reset-password-bad-token": "Nêraverde ya zi kehan jeton gêriyayo.",
-	"reset-password-no-match": "Paroleyi zey yewbini niyê.",
+	"reset-password-no-match": "Paroleyi zey pê niyê.",
 	"reset-password-empty": "Parola veng nêbena.",
 	"reset-password-success": "Cıraberdışê parola kewt be ser.",
 	"reset-password-fail": "Cıraberdışê parola be ser nêkewt.",
