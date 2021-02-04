@@ -5,7 +5,8 @@
 			"Exec8",
 			"Fitoschido",
 			"Leeheonjin",
-			"Sky Harbor"
+			"Sky Harbor",
+			"Yivan000"
 		]
 	},
 	"wikimania": "Wikimania",
@@ -29,7 +30,7 @@
 	"form-infotrue-error": "Upang magpatuloy, mangyaring sumang-ayon na ang iyong inilahad na impormasyon ay totoo at akma.",
 	"form-fname": "Pangalan:",
 	"form-lname": "Apelyido:",
-	"form-email": "Direksiyong e-liham:",
+	"form-email": "Adres ng email:",
 	"form-residence": "Bansang tinitirhan:",
 	"form-haspassport": "May pasaporte ka bang may saysay?",
 	"form-yes": "Oo",
